@@ -4,7 +4,9 @@ import { Stack, Typography } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Cup2 from '@/public/team_connect.png'
 import Cup1 from '@/public/cup1.png'
+import Cup3 from '@/public/cup3.png'
 export default function Home() {
   const router = useRouter();
   return (
@@ -20,7 +22,7 @@ export default function Home() {
         </Stack>
       </Stack>
       {/* end of top nav bar */}
-      <Stack style={{ minWidth: '100%', minHeight: '100vh' }} justifyContent='center' alignItems='center' spacing={3}>
+      <Stack style={{ minWidth: '100%', minHeight: '100vh',padding:'8px' }} justifyContent='center' alignItems='center' spacing={3}>
         <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3' }}>
           <Image src={Logo}
             layout='fill'
@@ -42,9 +44,22 @@ export default function Home() {
           <p style={{ color: 'white', fontSize: '24px', fontWeight: '600' }}>Why play money winning games</p>
           <p style={{ color: 'white', fontSize: '13px', fontWeight: '400' }}>Register Today to Play and Start Winning Daily Cash Prizes</p>
         </Stack>
-        <Stack spacing={3} sx={{padding:'12px'}} justifyContent='center' alignItems='center'>
+        <Stack spacing={3} sx={{padding:'12px',borderRadius:'15px',border:'2px solid #D03151',width:'335px'}} justifyContent='center' alignItems='center'>
           <Image src={Cup1} width={154} height={149} alt="trophy1" style={{borderRadius:'100px'}}/>
           <p style={{ fontWeight:'600',fontSize:'20px' }}>500 +</p>
+          <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Daily Matches</p>
+        </Stack>
+
+        <Stack spacing={3} sx={{padding:'12px',borderRadius:'15px',border:'2px solid #D03151',width:'335px'}} justifyContent='center' alignItems='center'>
+          <Image src={Cup2} width={154} height={149} alt="trophy2" style={{borderRadius:'100px'}}/>
+          <p style={{ fontWeight:'600',fontSize:'20px' }}>10 000 +</p>
+          <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Active Users</p>
+        </Stack>
+
+        <Stack spacing={3} sx={{padding:'12px',borderRadius:'15px',border:'2px solid #D03151',width:'335px'}} justifyContent='center' alignItems='center'>
+          <Image src={Cup3} width={154} height={150} alt="trophy3" style={{borderRadius:'100px'}}/>
+          <p style={{ fontWeight:'600',fontSize:'20px' }}>200 000 +</p>
+          <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Successful Transactions</p>
         </Stack>
       </Stack>
     </Stack>
