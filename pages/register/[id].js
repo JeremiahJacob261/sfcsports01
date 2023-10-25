@@ -21,6 +21,7 @@ import { supabase } from '../api/supabase'
 import Backdrop from '@mui/material/Backdrop';
 import Wig from '../../public/icon/wig.png'
 import Big from '../../public/icon/badge.png'
+import Warn from '@/public/warn.png'
 import codes from '../api/codeswithflag.json'
 export default function Register({ refer }) {
   const [password, setPassword] = useState("")
@@ -28,7 +29,7 @@ export default function Register({ refer }) {
   const route = useRouter();
   const [phone, setPhone] = useState("")
   const [username, setUsername] = useState("")
-  const [age, setAge] = useState("+91");
+  const [age, setAge] = useState("+84");
   const [drop, setDrop] = useState(false);
   const [idR, setidR] = useState(refer);
   const [agecheck, setAgecheck] = useState(false);
@@ -233,7 +234,7 @@ export default function Register({ refer }) {
     <Stack justifyContent="center" alignItems="center"
       spacing={5}
       style={{
-        background: "#0B122C", width: '100%', minHeight: '100vh'
+        background: "black", width: '100%', minHeight: '100vh'
       }}>
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -258,6 +259,7 @@ export default function Register({ refer }) {
             className="glass"
             sx={{ height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
             <Stack direction="column" spacing={4} justifyContent="center" alignItems="center">
+              <Image src={LOGO} width={100} height={120} alt='logo sfcsports'/>
               <Link href="/" style={{ textDecoration: "none" }}>
                 <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </Typography>
               </Link>
@@ -270,14 +272,14 @@ export default function Register({ refer }) {
             </Stack>
 
             <TextField id="outlined-basic" label="Username" variant="outlined"
-              sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#172242', input: { color: '#E5E7EB', } }}
+              sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB', } }}
               value={username}
               onChange={(e) => {
                 setUsername((e.target.value).trim())
               }}
             />
             <TextField id="outlined-basic" label="Email" variant="outlined"
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#172242', input: { color: '#E5E7EB' } }}
+              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
               value={email}
               type='email'
               onChange={(e) => {
@@ -287,7 +289,7 @@ export default function Register({ refer }) {
             <TextField id="outlined-basic" label="Invite Code" variant="outlined"
               value={idR}
               disabled
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%",color: '#E5E7EB', background: '#172242', input: { color: '#E5E7EB' } }}
+              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%",color: '#E5E7EB', background: '#D8B16B', input: { color: '#E5E7EB' } }}
               onChange={(e) => {
                 setidR(e.target.value)
               }} />
@@ -297,8 +299,8 @@ export default function Register({ refer }) {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={age}
-                label="+91"
-                sx={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#172242', input: { color: '#E5E7EB' } }}
+                label="+84"
+                sx={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
                 onChange={(e) => {
                   setAge(e.target.value);
                 }}
@@ -307,7 +309,7 @@ export default function Register({ refer }) {
                 {
                   codes.countries.map((c) => {
                     return (
-                      <MenuItem value={c.code} key={c.name} sx={{ color: '#E5E7EB', background: '#172242' }}>
+                      <MenuItem value={c.code} key={c.name} sx={{ color: '#E5E7EB', background: '#D8B16B' }}>
                         <Stack direction='row' spacing={1}>
                           <Image src={c.flag_image_link} alt={c.name} width={25} height={22}/>
                         <Typography sx={{fontFamily: 'Poppins, sans-serif'}}> {c.code} {c.name}</Typography>
@@ -330,7 +332,7 @@ export default function Register({ refer }) {
             <TextField id="outlined-basic" label="Phone"
               type="number"
               variant="outlined"
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#172242', input: { color: '#E5E7EB' } }}
+              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
               value={phone}
               onChange={(e) => {
                 setPhone(e.target.value);
@@ -343,7 +345,7 @@ export default function Register({ refer }) {
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={handleChange('password')}
-                sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#172242', input: { color: '#E5E7EB' } }}
+                sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -364,7 +366,7 @@ export default function Register({ refer }) {
               id="outlined-required"
               label="Confirm Password"
               type="password"
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#172242', input: { color: '#E5E7EB' } }}
+              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#FFFFFF' } }}
               value={cpassword}
               onChange={(e) => {
                 setcPassword((e.target.value).trim());
@@ -416,7 +418,7 @@ export default function Register({ refer }) {
                   Alerts('Please Input a Complete Phone Number! at least 9 digits', false)
                 }
               }}>
-              <Typography sx={{ fontFamily: 'Poppins, sans-serif', marginLeft: "3px", color: '#03045E', fontSize: '14px', color: '#E5E7EB' }}>Register</Typography>
+              <p style={{  marginLeft: "3px", color: '#D8B16B', fontSize: '14px',fontWeight:'400'}}>Register</p>
             </Button>
             <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: '22px' }} spacing={1}>
               <Typography sx={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '100', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>Already have an Account ? </Typography>
@@ -454,16 +456,16 @@ export default function Register({ refer }) {
           transform: 'translate(-50%, -50%)',
           padding: '12px'
         }}>
-          <Image src={aleT ? Big : Wig} width={120} height={120} alt='widh' />
-          <Typography id="modal-modal-title" sx={{ fontFamily: 'Poppins,sans-serif', fontSize: '20px', fontWeight: '500' }}>
+          <Image src={aleT ? Big : Warn} width={120} height={120} alt='widh' />
+          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
 
-            {aleT ? 'Success' : 'Eh Sorry!'}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ fontFamily: 'Poppins,sans-serif', mt: 2, fontSize: '14px', fontWeight: '300' }}>
+            {aleT ? 'Success' : 'Sorry!'}
+          </p>
+          <p id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
             {ale}
-          </Typography>
-          <Divider sx={{ background: 'black' }} />
-          <Button variant='contained' sx={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', background: '#03045E', padding: '8px', width: '100%' }} onClick={() => {
+          </p>
+          <Divider sx={{ borderBottomWidth: '45px'}} />
+          <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               route.push('/user')
@@ -471,7 +473,7 @@ export default function Register({ refer }) {
 
               setOpen(false)
             }
-          }}>Okay</Button>
+          }}>OKAY</p>
         </Stack>
 
       </Modal>)
@@ -481,10 +483,12 @@ export async function getStaticPaths() {
   const { data, error } = await supabase
     .from('users')
     .select()
+    console.log(data)
+    console.log(error);
   const paths = data.map((ref) => ({
     params: { id: ref.newrefer },
   }))
-  return { paths, fallback: true }
+  return { paths, fallback: false }
 }
 
 // This also gets called at build time

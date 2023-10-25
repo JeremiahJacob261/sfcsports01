@@ -33,7 +33,7 @@ export default function Home() {
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '700' }}>GET UP TO 100% BONUS DAILY</p>
           <p style={{ width: '300px', color: 'white', fontSize: '24px', fontWeight: '700' }}>BET On Football Games & Win Upto $1 Million</p>
           <p style={{ width: '300px', color: 'white', fontSize: '14px', fontWeight: '300' }}>Build Your Team To  Get Multiple Bonuses and Unlimited Priviledges</p>
-          <Link href='/register/000208'>
+          <Link href='/register/0'>
             <Stack sx={{ background: "linear-gradient(#C61F41, #D13655);", padding: '16px', borderRadius: '10px', width: '191px' }} justifyContent='center' alignItems='center' >
               <p style={{ color: 'white', fontSize: '14px', fontWeight: '300' }}>GET STARTED NOW!</p>
             </Stack>
