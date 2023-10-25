@@ -12,7 +12,7 @@ const options = {
       headers: { 'x-my-custom-header': 'my-app-name' },
     },
   }
-const supabaseUrl = 'https://aidkzrgsgrfotjiouxto.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFpZGt6cmdzZ3Jmb3RqaW91eHRvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2ODQwODMwMiwiZXhwIjoxOTgzOTg0MzAyfQ.pYEZHag6dPdqQWgApbgCBoV-pxSUWgPPqIy0adJoTgk'
+const supabaseUrl = 'https://fsyxfwfrzfggwmqznwmb.supabase.cov'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzeXhmd2ZyemZnZ3dtcXpud21iIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5ODA4NTY1NywiZXhwIjoyMDEzNjYxNjU3fQ.F8S219c2ZpzPkQpv8PH0eI8oea17NISi19-fj_UhIrov'
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
