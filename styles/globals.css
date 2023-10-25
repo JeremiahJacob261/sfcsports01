@@ -25,3 +25,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.authactionbtn{
+  background: rgb(105,15,33);
+background: -moz-linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
+background: -webkit-linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
+background: linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#690f21",endColorstr="#c61f41",GradientType=1);
+}

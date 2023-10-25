@@ -383,7 +383,7 @@ export default function Register({ refer }) {
               }}
               style={{ color: "#E5E7EB" }}
             />
-            <Button variant="contained" sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', background: '#FE9D16' }}
+            <Button variant="contained" className="authactionbtn" sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', background: '#FE9D16' }}
               onClick={() => {
                 if (phone.length >= 9) {
 
