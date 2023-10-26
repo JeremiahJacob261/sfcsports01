@@ -146,34 +146,7 @@ const { error } = await supabase
   }
  
   const login = async () => {
-//firebase
-const fire = async (emailer) => {
-  signInWithEmailAndPassword(auth, emailer, values.password)
-          .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            // ...
-  
-            supabaseMigrate(user.displayName, user.uid);
-            alert('you are Logged in');
-            console.log(user.displayName)
-            localStorage.setItem('signedIns', true);
-            localStorage.setItem('signUids', user.uid);
-            localStorage.setItem('signNames', user.displayName);
-            setDrop(false)
-            router.push('/user');
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(error.message)
-            setDrop(false)
-              alert(error.code);
-              if(error.code === 'network-request-failed'){
-                alert('Please Check Your internet connection or Check your password')
-              }
-          });
-        }
+
         
           //end of firebase
     async function findemail() {
@@ -195,7 +168,7 @@ const fire = async (emailer) => {
             const errorMessage = error.message;
             console.log(error.message)
             if(error.message === 'Invalid login credentials'){
-             fire(emailer);
+             alert("Please Ensure your Email and Password is correct")
             }else{
               console.log(error.message)
             }
@@ -269,7 +242,7 @@ const fire = async (emailer) => {
           const errorMessage = error.message;
           console.log(error.message)
           if(error.message === 'Invalid login credentials'){
-           fire(emailer);
+           alert("Please Ensure your Email and Password is correct")
           }else{
             console.log(error.message)
           }
