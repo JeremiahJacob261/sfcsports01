@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { Button,Stack } from '@mui/material';
 import { wallet } from '@/crypto/wc'
 export default function Home() {    
     const [addresst, setAddress] = useState('');
     const [amount, setAmount] = useState(0);
-    const [reciept, setReciept] = useState(null);
+    const [reciept, setReciept] = useState('');
     const [authed, setAuthed] = useState(false);
     const sendTRX = async () => {
+      console.log('started ...')
         let transaction = {
+          from:addresst,
             to: reciept,
             amount: amount,
             message: 'Betting'
@@ -19,7 +21,7 @@ export default function Home() {
             console.log(signature);
             alert('Transaction sent successfully');
           } catch (error) {
-            console.log('signTransaction:' + error);
+            console.log(error);
           }
      };
      useEffect(() => { 
