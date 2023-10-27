@@ -8,7 +8,7 @@ import Cup2 from '@/public/team_connect.png'
 import Cup1 from '@/public/cup1.png'
 import Cup3 from '@/public/cup3.png'
 import Head from 'next/head';
-import { wallet } from './crypto/wc'
+import { wallet } from '../crypto/wc'
 export default function Home() {
   const router = useRouter();
   const WalletConnect = async () => {
