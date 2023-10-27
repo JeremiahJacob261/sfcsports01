@@ -23,11 +23,19 @@ import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
 export default function Login() {
   const [username, setUsername] = useState("")
-  const [open, setOpen] = React.useState(false);
   const [drop, setDrop] = useState(false)
   const router = useRouter();
   const [email, setEmail] = useState('')
-
+   //alerts
+   const [ale, setAle] = useState('')
+   const [open, setOpen] = useState(false)
+   const [aleT, setAleT] = useState(false)
+   const Alerts = (m, t) => {
+     setAle(m)
+     setAleT(t)
+     setOpen(true)
+   }
+   //end of alerts
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
