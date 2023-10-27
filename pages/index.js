@@ -9,16 +9,22 @@ import Cup2 from '@/public/team_connect.png'
 import Cup1 from '@/public/cup1.png'
 import Cup3 from '@/public/cup3.png'
 import Head from 'next/head';
-import { wallet } from '@/crypto/wc'
+import { adapter,tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
 export default function Home() {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
   const WalletConnect = async () => {
     try{
-
-      const { address } = await wallet.connect();
-      console.log(address);
+ // connect
+ try{
+   await adapter.connect();
+ 
+  alert("Connecting ...")
+console.log(adapter.address);
+    }catch(e){
+        console.log(e)
+    }
     }catch(err){
       console.log(err);
     }
@@ -26,10 +32,9 @@ export default function Home() {
   useEffect(() => { 
     const checkAuth = async () => {
       try {
-        const { address } = await wallet.checkConnectStatus();
+      const address = adapter.address;
         console.log(address);
         if(address){
-          localStorage.setItem('address',address);
           setAuthed(true);
           router.push('/user');
         }else{
