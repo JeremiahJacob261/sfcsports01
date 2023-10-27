@@ -1,3 +1,4 @@
+import React,{useState} from 'react'
 import Image from 'next/image'
 import Logo from "@/public/Sheffield_FC.svg.png";
 import { Stack, Typography } from '@mui/material';
@@ -8,8 +9,10 @@ import Cup2 from '@/public/team_connect.png'
 import Cup1 from '@/public/cup1.png'
 import Cup3 from '@/public/cup3.png'
 import Head from 'next/head';
-import { wallet } from '../crypto/wc'
+import { wallet } from '@/crypto/wc'
+import { useEffect } from 'react';
 export default function Home() {
+  const [authed, setAuthed] = useState(false);
   const router = useRouter();
   const WalletConnect = async () => {
     try{
@@ -20,6 +23,24 @@ export default function Home() {
       console.log(err);
     }
   }
+  useEffect(() => { 
+    const checkAuth = async () => {
+      try {
+        const { address } = await wallet.checkConnectStatus();
+        console.log(address);
+        if(address){
+          localStorage.setItem('address',address);
+          setAuthed(true);
+          router.push('/user');
+        }else{
+          setAuthed(false);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    checkAuth();
+   }, [authed]);
   return (
     <Stack style={{ minWidth: '100vh' }} >
       <Head>
