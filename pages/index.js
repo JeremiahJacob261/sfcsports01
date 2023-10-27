@@ -7,10 +7,27 @@ import Link from 'next/link';
 import Cup2 from '@/public/team_connect.png'
 import Cup1 from '@/public/cup1.png'
 import Cup3 from '@/public/cup3.png'
+import Head from 'next/head';
+import { wallet } from './crypto/wc'
 export default function Home() {
   const router = useRouter();
+  const WalletConnect = async () => {
+    try{
+
+      const { address } = await wallet.connect();
+      console.log(address);
+    }catch(err){
+      console.log(err);
+    }
+  }
   return (
     <Stack style={{ minWidth: '100vh' }} >
+      <Head>
+        <title>SFCSPORTS01</title>
+        <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
+        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       {/* top nav bar */}
       <Stack style={{ background: '#C61F41', width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
         <Stack direction='row' alignItems='center' spacing={2}>
@@ -33,11 +50,14 @@ export default function Home() {
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '700' }}>GET UP TO 100% BONUS DAILY</p>
           <p style={{ width: '300px', color: 'white', fontSize: '24px', fontWeight: '700' }}>BET On Football Games & Win Upto $1 Million</p>
           <p style={{ width: '300px', color: 'white', fontSize: '14px', fontWeight: '300' }}>Build Your Team To  Get Multiple Bonuses and Unlimited Priviledges</p>
-          <Link href='/register/0'>
-            <Stack sx={{ background: "linear-gradient(#C61F41, #D13655);", padding: '16px', borderRadius: '10px', width: '191px' }} justifyContent='center' alignItems='center' >
+        
+            <Stack onClick={()=>{
+              WalletConnect();
+              alert('Wallet Connected');
+            }} sx={{ background: "linear-gradient(#C61F41, #D13655);", padding: '16px', borderRadius: '10px', width: '191px' }} justifyContent='center' alignItems='center' >
               <p style={{ color: 'white', fontSize: '14px', fontWeight: '300' }}>GET STARTED NOW!</p>
             </Stack>
-          </Link>
+          
         </Stack>
         <Stack spacing={5} justifyContent='center' alignItems='center'>
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '700' }}>Trusted by millions of players</p>

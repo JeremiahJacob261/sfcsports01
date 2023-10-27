@@ -22,6 +22,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Wig from '../../public/icon/wig.png'
 import Big from '../../public/icon/badge.png'
 import Warn from '@/public/warn.png'
+import Success from '@/public/success.png'
 import codes from '../api/codeswithflag.json'
 export default function Register({ refer }) {
   const [password, setPassword] = useState("")
@@ -218,7 +219,7 @@ export default function Register({ refer }) {
               Alerts('Please enter a valid email address', false)
             } else {
 
-              Alerts('Please Chcek Your internet connection and try again, if problem persist please contact support', false)
+              Alerts('Please Check Your internet connection and try again, if problem persist please contact support', false)
             }
           }
         }
@@ -456,7 +457,7 @@ export default function Register({ refer }) {
           transform: 'translate(-50%, -50%)',
           padding: '12px'
         }}>
-          <Image src={aleT ? Big : Warn} width={120} height={120} alt='widh' />
+          <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
           <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
 
             {aleT ? 'Success' : 'Sorry!'}
