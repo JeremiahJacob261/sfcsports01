@@ -74,14 +74,20 @@ export default function Home() {
       return (
         <Stack style={{  width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
           <Stack direction='row' alignItems='center' spacing={2}>
-            <Image src={Logo} width={41} height={36} alt="sfclogo" />
-            <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>SFCSPORTS01</p>
-          </Stack>
-          <Stack>
-          <motion.div whileHover={{ color: '#C61F41',width:'50px' }}>
-            <Icon icon="ic:round-menu" width={39} height={33} className='iconbtn' style={{ color: '#545454', background: '#D03151', opacity: '0.7' }} />
-            </motion.div>
+            <div style={{ borderRadius:'100px',background:'#D8B16B'}}>
+            <Image src={Avatar} width={40} height={29} alt="sfclogo" />
+            </div>
+            <Stack>
+            <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning</p>
+            <p className='gradtest' style={{  fontSize: '15px', fontWeight: '600' }}>NEW USER</p>
             </Stack>
+          </Stack>
+          <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
+             
+            <motion.div whileHover={{ color: '#C61F41' }}>
+              <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
+            </motion.div>
+          </Stack>
         </Stack>
       );
     } else {
