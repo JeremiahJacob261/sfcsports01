@@ -58,9 +58,10 @@ export default function Home() {
                             let contract = await tronWeb.contract().at(trc20ContractAddress);
                             let result = await contract.balanceOf(addres).call();
                             console.log(parseFloat(result));
-                            setBalance(parseFloat(result));
+                            setBalance(parseFloat(result)/1000000);
         } else {
           setAuthed(false);
+          router.push('/');
         }
       } catch (err) {
         console.log(err);
