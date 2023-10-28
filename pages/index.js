@@ -22,6 +22,7 @@ export default function Home() {
  
   alert("Connecting ...")
 console.log(adapter.address);
+router.push('/user')
     }catch(e){
         console.log(e)
     }
@@ -47,7 +48,13 @@ console.log(adapter.address);
     checkAuth();
    }, [authed]);
   return (
-    <Stack style={{ minWidth: '100vh' }} >
+    <Stack style={{ minWidth: '100vw' }} >
+      <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3' }}>
+          <Image src={Logo}
+            layout='fill'
+            objectFit='cover'
+          />
+        </div>
       <Head>
         <title>SFCSPORTS01</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -66,12 +73,7 @@ console.log(adapter.address);
       </Stack>
       {/* end of top nav bar */}
       <Stack style={{ minWidth: '100%', minHeight: '100vh',padding:'8px' }} justifyContent='center' alignItems='center' spacing={3}>
-        <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3' }}>
-          <Image src={Logo}
-            layout='fill'
-            objectFit='cover'
-          />
-        </div>
+        
         <Stack direction="column" justifyContent='center' alignItems='center' spacing={3} style={{ padding: '12px', width: '100%', height: '100vh' }}>
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '700' }}>GET UP TO 100% BONUS DAILY</p>
           <p style={{ width: '300px', color: 'white', fontSize: '24px', fontWeight: '700' }}>BET On Football Games & Win Upto $1 Million</p>
