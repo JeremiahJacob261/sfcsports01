@@ -22,7 +22,7 @@ export default function Home() {
  
   alert("Connecting ...")
 console.log(adapter.address);
-router.push('/user')
+router.push('/dashboard')
     }catch(e){
         console.log(e);
     }
@@ -37,7 +37,7 @@ router.push('/user')
         console.log(address);
         if(address){
           setAuthed(true);
-          router.push('/user');
+          router.push('/dashboard');
         }else{
           setAuthed(false);
         }

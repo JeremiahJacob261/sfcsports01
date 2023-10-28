@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 export default function HomeBottom() {
   const router = useRouter();
   const selectPage = {
-      0: '/user',
-      1:'/user/event',
-      2:'/user/bets',
-      3:'/user/account',
-      4:'/user/history'
+      0: '/dashboard',
+      1:'/dashboard/event',
+      2:'/dashboard/bets',
+      3:'/dashboard/account',
+      4:'/dashboard/history'
     }
   const [selected, setSelected] = useState(0);
   const selectLogic = (index) => {

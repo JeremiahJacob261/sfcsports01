@@ -46,6 +46,7 @@ export default function Home() {
     }
   };
   useEffect(() => {
+    localStorage.clear()
     const checkAuth = async () => {
       try {
         setAddress(adapter.address);

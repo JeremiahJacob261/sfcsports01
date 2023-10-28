@@ -117,7 +117,7 @@ export default function Register({ refer }) {
         localStorage.setItem('signedIns', true);
         localStorage.setItem('signUids', user.id);
         localStorage.setItem('signNames', user.user_metadata.displayName);
-        route.push('/user');
+        route.push('/dashboard');
       } else {
 
         console.log('sign out');
@@ -441,7 +441,7 @@ export default function Register({ refer }) {
         onClose={() => {
           if (aleT) {
             setOpen(false)
-            route.push('/user')
+            route.push('/dashboard')
           } else {
             setOpen(false)
           }
@@ -469,7 +469,7 @@ export default function Register({ refer }) {
           <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
-              route.push('/user')
+              route.push('/dashboard')
             } else {
 
               setOpen(false)

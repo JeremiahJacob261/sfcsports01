@@ -82,7 +82,7 @@ export default function Login() {
         localStorage.setItem('signedIns', true);
         localStorage.setItem('signUids', user.id);
         localStorage.setItem('signNames', user.user_metadata.displayName);
-        router.push('/user');
+        router.push('/dashboard');
       } else {
 
         console.log('sign out');
@@ -120,7 +120,7 @@ export default function Login() {
     //         localStorage.setItem('signedIns', true);
     //         localStorage.setItem('signUids', uid);
     //         localStorage.setItem('signNames', user.displayName);
-    //         router.push('/user');
+    //         router.push('/dashboard');
     //       } else {
     //         // User is signed out
     //         // ...
@@ -151,7 +151,7 @@ const { error } = await supabase
 .eq('email', email);
     }
     uidch();
-    router.push('/user')
+    router.push('/dashboard')
 
   }
  
@@ -194,7 +194,7 @@ const { error } = await supabase
             localStorage.setItem('signNames', user.user_metadata.displayName);
             console.log(user.user_metadata.displayName)
             setDrop(false)
-            router.push('/user')
+            router.push('/dashboard')
           }
         }
        sign(data[0].email);
@@ -212,7 +212,7 @@ const { error } = await supabase
       //     localStorage.setItem('signUids', user.uid);
       //     localStorage.setItem('signNames', user.displayName);
       //     setDrop(false)
-      //     router.push('/user');
+      //     router.push('/dashboard');
       //   })
       //   .catch((error) => {
       //     const errorCode = error.code;
@@ -267,7 +267,7 @@ const { error } = await supabase
           localStorage.setItem('signUids', user.id);
           localStorage.setItem('signNames', user.user_metadata.displayName);
           setDrop(false)
-          router.push('/user')
+          router.push('/dashboard')
         }
       }
      sign(email);
@@ -382,7 +382,7 @@ const { error } = await supabase
         onClose={() => {
           if (aleT) {
             setOpen(false)
-            router.push('/user')
+            router.push('/dashboard')
           } else {
             setOpen(false)
           }
@@ -410,7 +410,7 @@ const { error } = await supabase
           <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
-              router.push('/user')
+              router.push('/dashboard')
             } else {
 
               setOpen(false)
