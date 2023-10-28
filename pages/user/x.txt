@@ -1,0 +1,16 @@
+<Stack direction='column' sx={{ padding:'8px',minHeight:'100vh' }} className='backgrounds' spacing={3}>
+        <h1 style={{ color: 'black' }}>user address :{addresst}</h1>
+      <TextField value={amount} placeholder='amouunt' onChange={(e) => { setAmount(e.target.value) }} />
+      <TextField value={reciept} placeholder='reciever' onChange={(e) => { setReciept(e.target.value) }} />
+      <Button onClick={() => { sendTRX() }}>sendTRX</Button>
+      <Button onClick={async () => {
+        // connect
+        try {
+          localStorage.clear();
+          let as = await adapter.disconnect();
+          console.log(as);
+        } catch (e) {
+          console.log(e)
+        }
+      }}>Disconnect</Button>
+      </Stack>

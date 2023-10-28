@@ -24,7 +24,7 @@ export default function Home() {
 console.log(adapter.address);
 router.push('/user')
     }catch(e){
-        console.log(e)
+        console.log(e);
     }
     }catch(err){
       console.log(err);
@@ -48,7 +48,7 @@ router.push('/user')
     checkAuth();
    }, [authed]);
   return (
-    <Stack style={{ minWidth: '100vw' }} >
+    <Stack style={{ minWidth: '100vw',minHeight:'100vh' }} >
       <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3' }}>
           <Image src={Logo}
             layout='fill'

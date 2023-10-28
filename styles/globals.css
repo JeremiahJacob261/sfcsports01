@@ -32,3 +32,57 @@ background: -webkit-linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,
 background: linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#690f21",endColorstr="#c61f41",GradientType=1);
 }
+.iconbtn{
+
+}
+.iconbtn:hover{
+  color: #C61F41;
+}
+.bottombtn{
+  background: rgb(105,15,33);
+}
+p{
+  color:'black';
+  font-family:var(--font-poppins);
+}
+.bottomnav{
+  background-color: rgb(44, 2, 10);
+  padding: 8px;
+}
+.homebtn{
+  color:#573b41;
+}
+.home:hover{
+  color:#f0e7e9;
+}
+.homebtnselected{
+  color:#C61F41;
+}
+.backgrounds{
+  min-height: 100vh;
+  background: rgb(27,3,0);
+background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
+background: -webkit-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
+background: linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1b0300",endColorstr="#2c040a",GradientType=1);
+}
+.gradtest{
+  background: -webkit-linear-gradient(297deg, rgba(194,127,8,1) 33%, rgba(245,186,79,1) 87%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ungradtext{
+  color:#ac915fd2;
+}
+.accountinfo{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+width:90%;
+margin: 12px;
+height:20vh;
+}
