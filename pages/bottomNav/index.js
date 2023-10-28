@@ -23,7 +23,6 @@ export default function HomeBottom() {
   useEffect(() => { 
     let selecteds = localStorage.getItem("selected");
     let page = selectPage[selecteds];
-    router.push(page);
     setSelected(selecteds);
   }, [selected]);
     return (
