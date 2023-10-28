@@ -14,6 +14,7 @@ export default function Home() {
   const [addresst, setAddress] = useState('');
   const [amount, setAmount] = useState(0);
   const [reciept, setReciept] = useState('');
+  const [balance, setBalance] = useState(0);
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
   const sendTRX = async () => {
@@ -46,13 +47,18 @@ export default function Home() {
     }
   };
   useEffect(() => {
-    localStorage.clear()
     const checkAuth = async () => {
       try {
         setAddress(adapter.address);
         let addres = adapter.address;
         if (addres) {
           setAuthed(true);
+            const trc20ContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // USDT contract address
+                            tronWeb.setAddress(addres);
+                            let contract = await tronWeb.contract().at(trc20ContractAddress);
+                            let result = await contract.balanceOf(addres).call();
+                            console.log(parseFloat(result));
+                            setBalance(parseFloat(result));
         } else {
           setAuthed(false);
         }
@@ -115,7 +121,7 @@ export default function Home() {
       </Stack>
       <Stack className='accountinfo' alignItems='center' justifyContent='center' spacing={3} direction='column'>
       <p style={{ fontSize:'12px',fontWeight:'200'}}>Total Balance</p>
-      <p style={{ fontSize:'24px',fontWeight:'600'}}>$ 0.000000</p>
+      <p style={{ fontSize:'24px',fontWeight:'600'}}>$ {balance}</p>
       </Stack>
       <HomeBottom />
     </Stack>
