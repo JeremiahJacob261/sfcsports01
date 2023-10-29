@@ -93,44 +93,9 @@ export default function Login() {
         router.push('/login');
       }
     }
-    // getSe();
+    getSe();
 
-
-    //       if (user) {
-    //         // User is signed in, see docs for a list of available properties
-    //         // https://firebase.google.com/docs/reference/js/auth.user
-    //         const uid = user.uid;
-    //         // ...
-    //         async function GET() {
-    //           try{
-    //  const { data, error } = await supabase
-    //             .from('users')
-    //             .select()
-    //             .eq('username', user.displayName);
-    //           localStorage.setItem('signRef', data[0].newrefer);
-    //           console.log(data);
-    //           }catch(e){
-
-    //           }
-
-    //         }
-    //         // GET();
-
-    //         console.log(localStorage.getItem('signInfo'))
-    //         localStorage.setItem('signedIns', true);
-    //         localStorage.setItem('signUids', uid);
-    //         localStorage.setItem('signNames', user.displayName);
-    //         router.push('/dashboard');
-    //       } else {
-    //         // User is signed out
-    //         // ...
-    //         console.log('sign out');b 
-    //         localStorage.removeItem('signedIns');
-    //         localStorage.removeItem('signUids');
-    //         localStorage.removeItem('signNames');
-    //         localStorage.removeItem('signRef');
-    //       }
-
+    
   }, [])
   const supabaseMigrate = async (username, uid) => {
     const { data, error } = await supabase.auth.signUp({

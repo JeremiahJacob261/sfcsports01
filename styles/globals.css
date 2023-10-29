@@ -51,12 +51,14 @@ p{
 }
 .homebtn{
   color:#573b41;
+  cursor:pointer;
 }
 .home:hover{
   color:#f0e7e9;
 }
 .homebtnselected{
   color:#C61F41;
+  cursor: pointer;
 }
 .backgrounds{
   min-height: 100vh;

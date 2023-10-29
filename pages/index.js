@@ -14,39 +14,39 @@ import { useEffect } from 'react';
 export default function Home() {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
-  const WalletConnect = async () => {
-    try{
- // connect
- try{
-   await adapter.connect();
+//   const WalletConnect = async () => {
+//     try{
+//  // connect
+//  try{
+//    await adapter.connect();
  
-  alert("Connecting ...")
-console.log(adapter.address);
-router.push('/dashboard')
-    }catch(e){
-        console.log(e);
-    }
-    }catch(err){
-      console.log(err);
-    }
-  }
+//   alert("Connecting ...")
+// console.log(adapter.address);
+// router.push('/dashboard')
+//     }catch(e){
+//         console.log(e);
+//     }
+//     }catch(err){
+//       console.log(err);
+//     }
+//   }
   useEffect(() => { 
-    const checkAuth = async () => {
-      try {
-      const address = adapter.address;
-        console.log(address);
-        if(address){
-          setAuthed(true);
-          router.push('/dashboard');
-        }else{
-          setAuthed(false);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    checkAuth();
-   }, [authed]);
+    // const checkAuth = async () => {
+    //   try {
+    //   const address = adapter.address;
+    //     console.log(address);
+    //     if(address){
+    //       setAuthed(true);
+    //       router.push('/dashboard');
+    //     }else{
+    //       setAuthed(false);
+    //     }
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // checkAuth();
+   }, []);
   return (
     <Stack style={{ minWidth: '100vw',minHeight:'100vh' }} >
       <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3' }}>
@@ -80,12 +80,10 @@ router.push('/dashboard')
           <p style={{ width: '300px', color: 'white', fontSize: '14px', fontWeight: '300' }}>Build Your Team To  Get Multiple Bonuses and Unlimited Priviledges</p>
         
             <Stack onClick={()=>{
-              WalletConnect();
-              alert('Wallet Connected');
+              router.push('/register/0');
             }} sx={{ background: "linear-gradient(#C61F41, #D13655);", padding: '16px', borderRadius: '10px', width: '191px' }} justifyContent='center' alignItems='center' >
               <p style={{ color: 'white', fontSize: '14px', fontWeight: '300' }}>GET STARTED NOW!</p>
             </Stack>
-          
         </Stack>
         <Stack spacing={5} justifyContent='center' alignItems='center'>
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '700' }}>Trusted by millions of players</p>

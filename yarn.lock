@@ -100,6 +100,11 @@
     stream-browserify "^3.0.0"
     util "^0.12.4"
 
+"@edge-runtime/cookies@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@edge-runtime/cookies/-/cookies-4.0.2.tgz#001d8447939c47e4d4d5483bfa0d0ae1e113bbda"
+  integrity sha512-BphVamVz/yt9FN1b60ZXp+iTJVRLUHI0POxKYZG3gn+RsP+M0phqS87Z9JnDn2YOsPx9SRhhrN9AB7yhpexNEw==
+
 "@emotion/babel-plugin@^11.11.0":
   version "11.11.0"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.11.0.tgz#c2d872b6a7767a9d176d007f5b31f7d504bb5d6c"
@@ -1144,6 +1149,14 @@
     "@types/phoenix" "^1.5.4"
     "@types/websocket" "^1.0.3"
     websocket "^1.0.34"
+
+"@supabase/ssr@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@supabase/ssr/-/ssr-0.0.4.tgz#cd7d9dfbdec661c0e0af68c7a6639988e6b62e7b"
+  integrity sha512-whqSXZvDD4VOmiFhUAWAYuRDbvps1I9nQMAi87PxNHiYNhfCS+SL5DDUgkRtyxPheIcl+cAqiOHqLuC9IaPBIg==
+  dependencies:
+    cookie "^0.5.0"
+    ramda "^0.29.0"
 
 "@supabase/storage-js@^2.5.4":
   version "2.5.4"
@@ -2349,6 +2362,11 @@ convert-source-map@^1.5.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.9.0.tgz#7faae62353fb4213366d0ca98358d22e8368b05f"
   integrity sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==
+
+cookie@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
+  integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
 
 copy-to-clipboard@^3.3.3:
   version "3.3.3"
@@ -4443,6 +4461,11 @@ quick-format-unescaped@^4.0.3:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/quick-format-unescaped/-/quick-format-unescaped-4.0.4.tgz#93ef6dd8d3453cbc7970dd614fad4c5954d6b5a7"
   integrity sha512-tYC1Q1hgyRuHgloV/YXs2w15unPVh8qfu/qCTfhTYamaw7fyhumKa2yGpdSo87vY32rIclj+4fWYQXUMs9EHvg==
+
+ramda@^0.29.0:
+  version "0.29.1"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.29.1.tgz#408a6165b9555b7ba2fc62555804b6c5a2eca196"
+  integrity sha512-OfxIeWzd4xdUNxlWhgFazxsA/nl3mS4/jGZI5n00uWOoSSFRhC1b6gl6xvmzUamgmqELraWp0J/qqVlXYPDPyA==
 
 randombytes@^2.1.0:
   version "2.1.0"

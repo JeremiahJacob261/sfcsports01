@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@edge-runtime/cookies": "^4.0.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.14",
     "@mui/material": "^5.14.14",
     "@next/font": "^14.0.0",
+    "@supabase/ssr": "^0.0.4",
     "@supabase/supabase-js": "^2.38.2",
     "@tronweb3/tronwallet-adapter-walletconnect": "^1.0.4",
     "@tronweb3/walletconnect-tron": "^2.0.0",

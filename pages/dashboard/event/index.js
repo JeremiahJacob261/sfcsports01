@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeBottom from '../../bottomNav';
+import HomeBottom from '../../UIComponents/bottomNav';
 export default function Event() {
     return (
         <div className='backgrounds'>

@@ -3,69 +3,74 @@ import TextField from '@mui/material/TextField';
 import { Button, Stack } from '@mui/material';
 import { adapter, tronWeb } from '@/crypto/adaptedwc'
 import { Icon } from '@iconify/react';
+import { supabase } from '../api/supabase';
 import { useRouter } from 'next/router';
 import Logo from "@/public/Sheffield_FC.svg.png";
 import Head from 'next/head';
 import Image from 'next/image'
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
-import HomeBottom from '../bottomNav';
+import HomeBottom from '../UIComponents/bottomNav';
 export default function Home() {
   const [addresst, setAddress] = useState('');
   const [amount, setAmount] = useState(0);
   const [reciept, setReciept] = useState('');
   const [balance, setBalance] = useState(0);
   const [authed, setAuthed] = useState(false);
+  const [ user, setUser ] = useState(null);
   const router = useRouter();
-  const sendTRX = async () => {
-    console.log('started ...');
-    try {
-      const unSignedTransaction = await tronWeb.transactionBuilder.sendTrx(reciept, amount, adapter.address);
-      // using adapter to sign the transaction
-      console.log(unSignedTransaction)
-      const signedTransaction = await adapter.signTransaction(unSignedTransaction);
-      // broadcast the transaction
-      console.log(signedTransaction)
-      await tronWeb.trx.sendRawTransaction(signedTransaction);
-    } catch (e) {
+  // const sendTRX = async () => {
+  //   console.log('started ...');
+  //   try {
+  //     const unSignedTransaction = await tronWeb.transactionBuilder.sendTrx(reciept, amount, adapter.address);
+  //     // using adapter to sign the transaction
+  //     console.log(unSignedTransaction)
+  //     const signedTransaction = await adapter.signTransaction(unSignedTransaction);
+  //     // broadcast the transaction
+  //     console.log(signedTransaction)
+  //     await tronWeb.trx.sendRawTransaction(signedTransaction);
+  //   } catch (e) {
 
-    }
+  //   }
 
 
-  };
-  const walletConnect = async () => {
-    // connect
-    try {
-      localStorage.clear();
-      let as = await adapter.connect();
-      console.log(as);
+  // };
+  // const walletConnect = async () => {
+  //   // connect
+  //   try {
+  //     localStorage.clear();
+  //     let as = await adapter.connect();
+  //     console.log(as);
 
-      console.log(adapter.address);
-    } catch (e) {
-      console.log(e)
-      console.log(e.code)
-    }
-  };
+  //     console.log(adapter.address);
+  //   } catch (e) {
+  //     console.log(e)
+  //     console.log(e.code)
+  //   }
+  // };
   useEffect(() => {
     const checkAuth = async () => {
-      try {
-        setAddress(adapter.address);
-        let addres = adapter.address;
-        if (addres) {
-          setAuthed(true);
-            const trc20ContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // USDT contract address
-                            tronWeb.setAddress(addres);
-                            let contract = await tronWeb.contract().at(trc20ContractAddress);
-                            let result = await contract.balanceOf(addres).call();
-                            console.log(parseFloat(result));
-                            setBalance(parseFloat(result)/1000000);
-        } else {
-          setAuthed(false);
-          router.push('/');
-        }
-      } catch (err) {
-        console.log(err);
-      }
+          const signedIn = localStorage.getItem('signedIns');
+          const uid = localStorage.getItem('signUids');
+          if(signedIn){
+            setAuthed(true)
+            const getUser = async () => {
+              try {
+                const { data,error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('uid',uid)
+              setUser(data[0]);
+              console.log(data[0])
+              } catch (error) {
+                console.log(error)
+              }
+              
+            }
+            getUser();
+          }else{  
+            router.push('/login')  
+          }
     };
     checkAuth();
   }, [authed]);
@@ -79,11 +84,13 @@ export default function Home() {
             </div>
             <Stack>
             <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning</p>
-            <p className='gradtest' style={{  fontSize: '15px', fontWeight: '600' }}>NEW USER</p>
+            <p className='gradtest' style={{  fontSize: '15px', fontWeight: '600' }}>{user ? user.username : 'Loading name ...'}</p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
-             
+          <motion.div whileHover={{ color: '#C61F41' }}>
+              <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
+            </motion.div>
             <motion.div whileHover={{ color: '#C61F41' }}>
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
             </motion.div>
@@ -99,12 +106,12 @@ export default function Home() {
             </div>
             <Stack>
             <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning</p>
-            <p className='gradtest' style={{  fontSize: '15px', fontWeight: '600' }}>NEW USER</p>
+            <p className='gradtest' style={{  fontSize: '15px', fontWeight: '600' }}></p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
               <motion.div whileHover={{ color: '#C61F41' }}>
-              <Icon icon="iconamoon:link-bold" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={walletConnect}/>
+              <Icon icon="iconamoon:link-bold" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
             </motion.div>
 
             <motion.div whileHover={{ color: '#C61F41' }}>

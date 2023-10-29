@@ -1,4 +1,4 @@
-import HomeBottom from '../../bottomNav';
+import HomeBottom from '../../UIComponents/bottomNav';
 export default function Account() {
     return (
         <div className='backgrounds'>
