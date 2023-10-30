@@ -59,7 +59,7 @@ export default function Home() {
                 const { data,error } = await supabase
                 .from('users')
                 .select('*')
-                .eq('uid',uid)
+                .eq('userId',uid)
               setUser(data[0]);
               console.log(data[0])
               } catch (error) {
