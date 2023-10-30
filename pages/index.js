@@ -11,6 +11,7 @@ import Cup3 from '@/public/cup3.png'
 import Head from 'next/head';
 import { adapter,tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
+import { supabase } from './api/supabase';
 export default function Home() {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
@@ -67,7 +68,18 @@ export default function Home() {
           <Image src={Logo} width={41} height={36} alt="sfclogo" />
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>SFCSPORTS01</p>
         </Stack>
-        <Stack>
+        <Stack onClick={async()=>{
+          try{
+             
+const { data, error } = await supabase.auth.signUp({
+  email: 'jeremiahjacob261@email.com',
+  password: 'examplepassword',
+})
+          console.log(data);
+          }catch(e){
+            console.log(e);
+          }
+        }}>
           <Icon icon="ic:round-menu" width={39} height={33} style={{ color: '#545454', background: '#D03151', opacity: '0.7' }} />
         </Stack>
       </Stack>

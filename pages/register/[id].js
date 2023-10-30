@@ -484,7 +484,7 @@ export async function getStaticPaths() {
   const { data, error } = await supabase
     .from('users')
     .select()
-    console.log(data)
+    console.log(data);
     console.log(error);
   const paths = data.map((ref) => ({
     params: { id: ref.newrefer },
