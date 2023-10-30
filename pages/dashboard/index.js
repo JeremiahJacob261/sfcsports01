@@ -151,7 +151,7 @@ export default function Home() {
         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ background: 'rgb(27,3,0)',width:'30%' }}>
           <Box sx={{ width: '100%', height: '5px', maxWidth: 360, backgroundColor: '#C61F41' }}>
           </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>People's Favourites</p>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>People Favourites</p>
         </Stack>
 
         {/* today games */}
