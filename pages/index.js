@@ -71,10 +71,7 @@ export default function Home() {
         <Stack onClick={async()=>{
           try{
              
-const { data, error } = await supabase.auth.signUp({
-  email: 'jeremiahjacob261@email.com',
-  password: 'examplepassword',
-})
+
           console.log(data);
           }catch(e){
             console.log(e);

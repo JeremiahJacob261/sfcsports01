@@ -88,3 +88,9 @@ width:90%;
 margin: 12px;
 height:20vh;
 }
+.headers{
+  color:#C61F41;
+  background-color: #573b41;
+  height: 45px;
+  font-family:var(--font-pops);
+}

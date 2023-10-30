@@ -143,7 +143,7 @@ const { error } = await supabase
             const errorMessage = error.message;
             console.log(error.message)
             if(error.message === 'Invalid login credentials'){
-             alert("Please Ensure your Email and Password is correct")
+             Alerts("Please Ensure your Email and Password is correct",false)
             }else{
               console.log(error.message)
             }
@@ -151,7 +151,7 @@ const { error } = await supabase
           } else {
             // User successfully signed in
             let user = data.user;
-            alert('You are logged in');
+            Alerts('You are logged in',true);
             console.log(user)
             // localStorage.setItem('signRef', data[0].newrefer);
             localStorage.setItem('signedIns', true);
@@ -200,7 +200,7 @@ const { error } = await supabase
 
         findemail()
       } else {
-        alert('username does not exist or check your internet connection')
+        Alerts('username does not exist or check your internet connection',false)
         setDrop(false)
       }
     } else {
@@ -217,7 +217,7 @@ const { error } = await supabase
           const errorMessage = error.message;
           console.log(error.message)
           if(error.message === 'Invalid login credentials'){
-           alert("Please Ensure your Email and Password is correct")
+           Alerts("Please Ensure your Email and Password is correct",false)
           }else{
             console.log(error.message)
           }
@@ -225,14 +225,13 @@ const { error } = await supabase
         } else {
           // User successfully signed in
           let user = data.user;
-          alert('you are logged in');
+          Alerts('you are logged in',true);
           console.log(user)
           // localStorage.setItem('signRef', data[0].newrefer);
           localStorage.setItem('signedIns', true);
           localStorage.setItem('signUids', user.id);
           localStorage.setItem('signNames', user.user_metadata.displayName);
           setDrop(false)
-          router.push('/dashboard')
         }
       }
      sign(email);
