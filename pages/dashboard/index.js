@@ -174,7 +174,7 @@ export default function Home({ footDat}) {
     {
       footDat.map((data)=>{ 
         return(
-        <Stack direction="column" sx={{ width:'100%'}} className='rowsofdata' justifyContent='center' spacing={1}>
+        <Stack direction="column" sx={{ width:'100%'}} className='rowsofdata' justifyContent='center' spacing={1} key={data.match_id}>
       <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
       <Stack direction="row" alignItems='center'> 
 
