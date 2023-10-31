@@ -260,7 +260,9 @@ export default function Register({ refer }) {
             className="glass"
             sx={{ height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
             <Stack direction="column" spacing={4} justifyContent="center" alignItems="center">
-              <Image src={LOGO} width={100} height={120} alt='logo sfcsports'/>
+              <Link href='/'>
+              <Image src={LOGO} width={100} height={120} alt='logo sfcsports' />
+              </Link>
               <Link href="/" style={{ textDecoration: "none" }}>
                 <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </Typography>
               </Link>

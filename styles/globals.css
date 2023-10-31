@@ -94,3 +94,22 @@ height:20vh;
   height: 45px;
   font-family:var(--font-pops);
 }
+.rowsofdata{
+  background-color: #573b41;
+  height: auto;
+  font-family:var(--font-lilpops);
+  font-size: 12px;
+  padding: 8px;
+  font-weight: 200;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+.odds{
+  background-color: #C61F41;
+  color: #f0e7e9;
+  padding:8px;
+  font-family:var(--font-lilpops);
+  font-size: 12px;
+  font-weight: 200;
+  text-align: center;
+}

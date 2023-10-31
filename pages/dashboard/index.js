@@ -11,7 +11,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
-export default function Home() {
+export default function Home({ footDat}) {
   const [addresst, setAddress] = useState('');
   const [amount, setAmount] = useState(0);
   const [reciept, setReciept] = useState('');
@@ -133,7 +133,7 @@ export default function Home() {
     }
   }
   return (
-    <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh' }} className='backgrounds' spacing={3}>
+    <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh' }} className='backgrounds' spacing={1}>
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -148,29 +148,77 @@ export default function Home() {
       </Stack>
       <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px',width:'100%' }}>
         {/* fans favourite */}
-        <Stack direction='column' alignItems='center' justifyContent='center' sx={{ background: 'rgb(27,3,0)',width:'30%' }}>
-          <Box sx={{ width: '100%', height: '5px', maxWidth: 360, backgroundColor: '#C61F41' }}>
+        <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)',width:'30%' }}>
+          <Box sx={{ width: '100%', height: '5px', backgroundColor: '#C61F41' }}>
           </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>People Favourites</p>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>People  Favourites</p>
         </Stack>
 
         {/* today games */}
-        <Stack sx={{ background: 'rgb(27,3,0)',width:'30%' }}>
-          <Box sx={{ height: '5px', width: '100%', maxWidth: 360, backgroundColor: 'green' }}>
+        <Stack sx={{ background: 'rgb(27,3,0)',width:'30%' }} alignItems='center' spacing={1}>
+          <Box sx={{ height: '5px', width: '100%',backgroundColor: 'green' }}>
           </Box>
           <p style={{ textAlign: 'center', fontSize: '13px' }}>Today Matches</p>
         </Stack>
 
         {/* tomorrow games */}
-        <Stack sx={{ background: 'rgb(27,3,0)' ,width:'30%'}}>
-          <Box sx={{ height: '5px', width: '100%', maxWidth: 360, backgroundColor: 'rgba(194,127,8,1)' }}>
+        <Stack sx={{ background: 'rgb(27,3,0)' ,width:'30%'}} alignItems='center' spacing={1}>
+          <Box sx={{ height: '5px', width: '100%',  backgroundColor: 'rgba(194,127,8,1)' }}>
           </Box>
           <p style={{ textAlign: 'center', fontSize: '13px' }}>Tomorrow Matches</p>
         </Stack>
 
       </Stack>
+      <Stack direction='column' spacing={1} style={{ padding:'8px',marginBottom:'100px'}}>
+    {/* container for all matches i sabove */}
+    {
+      footDat.map((data)=>{ 
+        return(
+        <Stack direction="column" sx={{ width:'100%'}} className='rowsofdata' justifyContent='center' spacing={1}>
+      <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
+      <Stack direction="row" alignItems='center'> 
 
+      <Stack direction='column' sx={{ width:'50%'}} spacing={1}>
+        <Stack direction='row' spacing={1}><Image src={data.ihome} alt='home' width={20} height={20}/><p>{data.home}</p></Stack>
+        <Stack direction='row' spacing={1}><Image src={data.iaway} alt="away" width={20} height={20}/><p>{data.away}</p></Stack>
+      </Stack>
+
+      <Stack direction="row" sx={{ width:'50%',height:'100%'}} spacing={2} alignItems='center' justifyContent='center'>
+        <p className='odds'>{data.onenil}</p>
+        <p className='odds'>{data.nilnil}</p>
+        <p className='odds'>{data.nilone}</p>
+      </Stack>
+      </Stack>
+      <Stack direction="row"></Stack>
+        </Stack>
+        )
+       })
+    }
+        
+
+      </Stack>
       <HomeBottom />
     </Stack>
   )
+}
+export async function getServerSideProps(context) {
+  try{
+const { data, error } = await supabase
+    .from('bets')
+    .select()
+    .limit(10)
+    .order('id', { ascending: false });
+  let footDat = data;
+  console.log(data)
+  return {
+    props: { footDat }, // will be passed to the page component as props
+  }
+  }catch(e){
+    console.log(e);
+    let err = [];
+    return {
+      props: { err }, // will be passed to the page component as props
+    }
+  }
+  
 }

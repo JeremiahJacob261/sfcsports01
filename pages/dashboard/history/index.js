@@ -6,7 +6,7 @@ export default function History() {
     const router = useRouter();
     return (
         <div className='backgrounds' style={{ width:'100vw',height:'100vh' }}>
-             <Stack className='headers' direction="row" alignItems='center' sx={{padding:'8px'}}>
+             <Stack className='headers' direction="row" alignItems='center' sx={{padding:'8px'}} spacing={1}>
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={()=>{
                     router.push('/dashboard')
                 }}/>

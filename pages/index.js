@@ -116,6 +116,7 @@ export default function Home() {
           <p style={{ fontWeight:'600',fontSize:'20px' }}>200 000 +</p>
           <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Successful Transactions</p>
         </Stack>
+        
       </Stack>
     </Stack>
   )
