@@ -223,6 +223,7 @@ if (refreshToken && accessToken) {
 let {data:user ,error} = await supabase.auth.getUser()
     console.log(user.user.user_metadata)
     console.log(error)
+   
   try{
 const { data, error } = await supabase
     .from('bets')
