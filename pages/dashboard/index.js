@@ -11,7 +11,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
-export default function Home({ footDat}) {
+export default function Home({ footDat,usernam}) {
   const [addresst, setAddress] = useState('');
   const [amount, setAmount] = useState(0);
   const [reciept, setReciept] = useState('');
@@ -73,6 +73,8 @@ export default function Home({ footDat}) {
       }
     };
     checkAuth();
+    
+    
   }, [authed]);
   function NavbAR() {
     if (authed) {
@@ -84,7 +86,7 @@ export default function Home({ footDat}) {
             </div>
             <Stack>
               <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning!</p>
-              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user.username : 'Loading name ...'}</p>
+              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{usernam ? usernam : 'Loading name ...'}</p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
@@ -143,6 +145,7 @@ export default function Home({ footDat}) {
       <Stack sx={{ height: '50px', width: '100%' }}>
         <NavbAR />
       </Stack>
+      <marquee>Welcome to SFSPORTSO1</marquee>
       <Stack alignItems='center' justifyContent='center' sx={{ height: '100px', width: '100%', background: 'grey' }}>
         <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>Image Banners go here</p>
       </Stack>
@@ -201,7 +204,25 @@ export default function Home({ footDat}) {
     </Stack>
   )
 }
-export async function getServerSideProps(context) {
+export async function getServerSideProps({req}) {
+  const refreshToken = req.cookies['my-refresh-token']
+const accessToken = req.cookies['my-access-token']
+console.log(accessToken)
+if (refreshToken && accessToken) {
+    console.log('sign insss')
+  let sess = await supabase.auth.setSession({
+    refresh_token: refreshToken,
+    access_token: accessToken,
+  })
+} else {
+  // make sure you handle this case!
+  throw new Error('User is not authenticated.')
+}
+
+// returns user information
+let {data:user ,error} = await supabase.auth.getUser()
+    console.log(user.user.user_metadata)
+    console.log(error)
   try{
 const { data, error } = await supabase
     .from('bets')
@@ -209,9 +230,9 @@ const { data, error } = await supabase
     .limit(10)
     .order('id', { ascending: false });
   let footDat = data;
-  console.log(data)
+  let usernam = user.user.user_metadata.displayName;
   return {
-    props: { footDat }, // will be passed to the page component as props
+    props: { footDat,usernam }, // will be passed to the page component as props
   }
   }catch(e){
     console.log(e);

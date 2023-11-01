@@ -113,3 +113,13 @@ height:20vh;
   font-weight: 200;
   text-align: center;
 }
+.betTab{
+  padding: 15px;
+  border-radius: 3px 10px 10px 10px;
+  background-color: #971831;
+}
+.betTabSelected{
+  padding: 15px;
+  border-radius: 3px 10px 10px 10px;
+  background-color: #e4264c;
+}

@@ -12,6 +12,9 @@ export default function Account() {
                 }}/>
            <p style={{ fontSize:'16px',fontWeight:'600'}}>Account</p>
             </Stack>
+            <Stack>
+                
+            </Stack>
             <HomeBottom />
         </div>
     )
