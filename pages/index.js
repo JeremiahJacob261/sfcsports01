@@ -70,7 +70,8 @@ export default function Home() {
         </Stack>
         <Stack onClick={async()=>{
           try{
-             
+            const { data,error } = supabase.auth.signOut();
+            localStorage.clear();
 
           console.log(data);
           }catch(e){
