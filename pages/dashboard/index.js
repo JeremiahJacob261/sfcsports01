@@ -134,8 +134,46 @@ export default function Home({ footDat,usernam}) {
       );
     }
   }
+  function MatchRow() {
+    if (footDat) {
+      return(
+        <Stack direction='column' spacing={1} style={{ padding:'4px', marginBottom:'100px', maxWidth:'310px', minWidth:'80vw'}}>
+      {/* container for all matches i sabove */}
+      {
+        footDat.map((data)=>{ 
+          return(
+          <Stack direction="column" sx={{ minWidth:'87vw',maxWidth:'310px'}} className='rowsofdata' justifyContent='center' spacing={1} key={data.match_id}>
+        <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
+        <Stack direction="row" alignItems='center'> 
+  
+        <Stack direction='column' sx={{ width:'50%'}} spacing={1}>
+          <Stack direction='row' spacing={1}><Image src={data.ihome} alt='home' width={20} height={20}/><p>{data.home}</p></Stack>
+          <Stack direction='row' spacing={1}><Image src={data.iaway} alt="away" width={20} height={20}/><p>{data.away}</p></Stack>
+        </Stack>
+  
+        <Stack direction="row" sx={{ width:'50%',height:'100%'}} spacing={2} alignItems='center' justifyContent='center'>
+          <p className='odds'>{data.onenil}</p>
+          <p className='odds'>{data.nilnil}</p>
+          <p className='odds'>{data.nilone}</p>
+        </Stack>
+        </Stack>
+        <Stack direction="row"></Stack>
+          </Stack>
+          )
+         })
+      }
+       </Stack>
+      )
+    } else {
+      return(
+      <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'100vh'}}>
+        <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
+        <p style={{ color:'grey'}}>Please Check your internet connection</p>
+      </Stack>)
+    }
+  }
   return (
-    <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh' }} className='backgrounds' spacing={1}>
+    <Stack direction='column' alignItems='center' sx={{ minHeight: '90vh' }} className='backgrounds' spacing={1}>
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -172,34 +210,7 @@ export default function Home({ footDat,usernam}) {
         </Stack>
 
       </Stack>
-      <Stack direction='column' spacing={1} style={{ padding:'8px',marginBottom:'100px'}}>
-    {/* container for all matches i sabove */}
-    {
-      footDat.map((data)=>{ 
-        return(
-        <Stack direction="column" sx={{ width:'100%'}} className='rowsofdata' justifyContent='center' spacing={1} key={data.match_id}>
-      <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
-      <Stack direction="row" alignItems='center'> 
-
-      <Stack direction='column' sx={{ width:'50%'}} spacing={1}>
-        <Stack direction='row' spacing={1}><Image src={data.ihome} alt='home' width={20} height={20}/><p>{data.home}</p></Stack>
-        <Stack direction='row' spacing={1}><Image src={data.iaway} alt="away" width={20} height={20}/><p>{data.away}</p></Stack>
-      </Stack>
-
-      <Stack direction="row" sx={{ width:'50%',height:'100%'}} spacing={2} alignItems='center' justifyContent='center'>
-        <p className='odds'>{data.onenil}</p>
-        <p className='odds'>{data.nilnil}</p>
-        <p className='odds'>{data.nilone}</p>
-      </Stack>
-      </Stack>
-      <Stack direction="row"></Stack>
-        </Stack>
-        )
-       })
-    }
-        
-
-      </Stack>
+     <MatchRow/>
       <HomeBottom />
     </Stack>
   )
@@ -207,21 +218,27 @@ export default function Home({ footDat,usernam}) {
 export async function getServerSideProps({req}) {
   const refreshToken = req.cookies['my-refresh-token']
 const accessToken = req.cookies['my-access-token']
-console.log(accessToken)
+try{
 if (refreshToken && accessToken) {
     console.log('sign insss')
-  let sess = await supabase.auth.setSession({
+   await supabase.auth.setSession({
     refresh_token: refreshToken,
     access_token: accessToken,
   })
 } else {
   // make sure you handle this case!
-  throw new Error('User is not authenticated.')
+  throw new Error('User is not authenticated.');
+  console.log('not logged in')
 }
+}catch(e){
+  console.log(e)
+
+}
+
 
 // returns user information
 let {data:user ,error} = await supabase.auth.getUser()
-    console.log(user.user.user_metadata)
+    
     console.log(error)
    
   try{

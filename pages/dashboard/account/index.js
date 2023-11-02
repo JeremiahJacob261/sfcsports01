@@ -49,7 +49,15 @@ export default function Account({users}) {
                      }} 
                      whileTap={{ background:'#573b41',scale:'1.05' }} 
                      whileHover={{ background:'#573b41'}} 
-                     style={{ fontWeight:'500',fontSize:'12px',color:'white',padding:'8px',background:'#C61F41',width:'100%',textAlign:'center',cursor:'pointer' }}>DEPOSIT</motion.p>
+                     style={{ fontWeight:'500',fontSize:'12px',color:'white',padding:'8px',background:'#C61F41',width:'100%',textAlign:'center',cursor:'pointer' }}>
+                        DEPOSIT</motion.p>
+                        <motion.p onClick={()=>{
+                        router.push('/dashboard/fund')
+                     }} 
+                     whileTap={{ background:'#573b41',scale:'1.05' }} 
+                     whileHover={{ background:'#573b41'}} 
+                     style={{ fontWeight:'500',fontSize:'12px',color:'#C61F41',padding:'8px',background:'white',width:'100%',textAlign:'center',cursor:'pointer' }}>
+                        WITHDRAW</motion.p>
                    </Stack>
             </Stack>
 
