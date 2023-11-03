@@ -166,7 +166,7 @@ export default function Home({ footDat,usernam}) {
       )
     } else {
       return(
-      <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'100vh'}}>
+      <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'55vh'}}>
         <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
         <p style={{ color:'grey'}}>Please Check your internet connection</p>
       </Stack>)

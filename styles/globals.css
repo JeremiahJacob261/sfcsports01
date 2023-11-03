@@ -61,7 +61,7 @@ p{
   cursor: pointer;
 }
 .backgrounds{
-  min-height: 100vh;
+  min-height: 80vh;
   background: rgb(27,3,0);
 background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
 background: -webkit-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
@@ -114,11 +114,13 @@ padding: 12px;
   padding: 15px;
   border-radius: 3px 10px 10px 10px;
   background-color: #ad1c39;
+  cursor:pointer;
 }
 .betTabSelected{
   padding: 15px;
   border-radius: 3px 10px 10px 10px;
   background-color: #e4264c;
+  cursor:pointer;
 }
 .acctext{
   font-size: small;

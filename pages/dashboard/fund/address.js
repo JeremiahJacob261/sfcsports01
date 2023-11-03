@@ -9,7 +9,7 @@ export default function Address(){
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={()=>{
                     router.push('/dashboard/account')
                 }}/>
-           <p style={{ fontSize:'16px',fontWeight:'600'}}>Fund Account</p>
+           <p style={{ fontSize:'16px',fontWeight:'600'}}>Input Address</p>
             </Stack>
                 <Stack direction='column' alignItems='start' justifyContent='center' spacing={1}>
                     <p style={{ fontSize:'14px',fontWeight:'400px',color:'rgba(194,127,8,1)'}}>Amount</p>

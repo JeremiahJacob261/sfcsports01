@@ -38,6 +38,13 @@ export default function Account({ users }) {
                         whileHover={{ background: '#573b41' }}
                         style={{ fontWeight: '500', fontSize: '12px', color: '#C61F41', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
                         WITHDRAW</motion.p>
+                        <motion.p onClick={() => {
+                        router.push('/dashboard/transactions')
+                    }}
+                        whileTap={{ background: '#ac915fd2', scale: '1.05' }}
+                        whileHover={{ background: '#ac915fd2' }}
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: 'rgba(245,186,79,1)', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
+                        SEE TRANSACTIONS</motion.p>
                     <Stack direction='row' justifyContent='stretch' alignItems='center'>
                         <Stack sx={{ padding: '8px' }} justifyContent='center' alignItems='center'>
                             <p style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totald}</p>
@@ -103,9 +110,14 @@ export async function getServerSideProps({ req }) {
         throw new Error('User is not authenticated.')
     }
     // returns user information
-    let { data: user, error } = await supabase.auth.getUser()
+    try{
+        let { data: user, error } = await supabase.auth.getUser()
     console.log(user.user.user_metadata)
     console.log(error)
+    }catch(e){
+        console.log(e)
+    }
+    
     try {
         const { data, error } = await supabase
             .from('users')

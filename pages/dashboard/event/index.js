@@ -10,7 +10,7 @@ export default function Event({ footDat}) {
     function MatchRow() {
       if (footDat) {
         return(
-          <Stack direction='column' spacing={1} style={{ padding:'8px',marginBottom:'100px',maxWidth:'80vh'}}>
+          <Stack direction='column' spacing={1} alignItems='center' style={{ padding:'4px', marginBottom:'100px',width:'100vw'}}>
         {/* container for all matches i sabove */}
         {
           footDat.map((data)=>{ 
