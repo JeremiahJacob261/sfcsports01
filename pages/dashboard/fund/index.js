@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { Icon } from '@iconify/react';
-import { Stack, TextField } from '@mui/material';
+import { Stack, TextField, Button } from '@mui/material';
 export default function Fund(){
     const router = useRouter();
     return(
@@ -14,7 +14,9 @@ export default function Fund(){
                 <Stack direction='column' alignItems='start' justifyContent='center' spacing={1}>
                     <p style={{ fontSize:'14px',fontWeight:'400px',color:'rgba(194,127,8,1)'}}>Amount</p>
                     <TextField variant='standard' placeholder='amount' sx={{ color:'white'}}/>
-                    <Button sx={{ color:'rgba(194,127,8,1)', maxWidth:'200px',minWidth:'140px'}}>Next</Button>
+                    <Button sx={{ color:'rgba(194,127,8,1)', maxWidth:'200px',minWidth:'140px'}} onClick={()=>{
+                        router.push('/dashboard/address')
+                    }}>Next</Button>
                 </Stack>
      
         </div>
