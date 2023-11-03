@@ -137,7 +137,7 @@ export default function Home({ footDat,usernam}) {
   function MatchRow() {
     if (footDat) {
       return(
-        <Stack direction='column' spacing={1} style={{ padding:'4px', marginBottom:'100px', maxWidth:'310px', minWidth:'80vw'}}>
+        <Stack direction='column' spacing={1} alignItems='center' style={{ padding:'4px', marginBottom:'100px',width:'100vw'}}>
       {/* container for all matches i sabove */}
       {
         footDat.map((data)=>{ 

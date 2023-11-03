@@ -3,6 +3,7 @@ import { Piedra, Poppins } from '@next/font/google'
 import { supabase } from './api/supabase'
 import localFont from 'next/font/local'
 import { useEffect } from 'react';
+import Head from 'next/head';
 const poppins = Poppins({ weight: ['300','400','600'],subsets: ['latin']});
 const pops = localFont({ src: '../public/font/poppins.woff2' });
 const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
@@ -25,6 +26,12 @@ export default function App({ Component, pageProps }) {
   },[])
   return (
     <main className={lilpop.className} style={{ minHeight:'100vh'}}>
+            <Head>
+        <title>SFCSPORTS01</title>
+        <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
+        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
   <Component {...pageProps} />
     </main>
   )
