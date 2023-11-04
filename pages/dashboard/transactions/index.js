@@ -1,16 +1,45 @@
 import { Stack} from '@mui/material'
 import { Icon } from '@iconify/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 export default function Transaction({transaction}) {
     const [selected, setSelected] = useState(0);
+    const [content,setContent] = useState([]);
     const betSelectLogic = (index) => {
         setSelected(index);
         //return bet desired data
     }
+    useEffect(()=>{
+    let usernam = localStorage.getItem('signNames');
+        const testRoute = async ()=>{
+            let test = await fetch('/api/test', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: usernam,type:'all' })
+              }).then(data => {
+                return data.json();
+                })
+                console.log(test)
+                setContent(test);
+          }
+          testRoute();
+    },[])
     function ListedTransactions(){
     if(transaction){
         return(
-            <div>hello world it works</div>
+            <Stack>
+                {
+                    content.map((m)=>{
+                        return(
+                            <div>
+                                <p>{m.type ?? 'unknown type'}</p>
+                                <p>{m.amount ?? '0'} USDT</p>
+                            </div>
+                        )
+                    })
+                }
+            </Stack>
         )
     }else{
         return(

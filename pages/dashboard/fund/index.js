@@ -15,9 +15,13 @@ export default function Fund(){
             </Stack>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ padding:'12px',margin:'8px',background:'rgba(77, 3, 3, 1)'}}>
                     <p style={{ fontSize:'14px',fontWeight:'400px',color:'rgba(194,127,8,1)'}}>Amount</p>
-                    <TextField variant='standard' placeholder='amount' sx={{ color:'white',letterSpacing:'1px',input: { color: 'white', }}} value={amount} onChange={(e)=>{
+                    <Stack>
+                        <TextField variant='standard' type='number' placeholder='amount' sx={{ color:'white',letterSpacing:'1px',input: { color: 'white', }}} value={amount} onChange={(e)=>{
                         setAmount(e.target.value);
                     }}/>
+                    <p>USDT(TRC20)</p>
+                    </Stack>
+                    
                     <Button sx={{ color:'rgba(194,127,8,1)',background:'white', maxWidth:'200px',minWidth:'140px'}} onClick={()=>{
                         router.push('/dashboard/fund/address')
                     }}>Next</Button>

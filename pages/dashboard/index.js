@@ -48,6 +48,18 @@ export default function Home({ footDat,usernam}) {
   //     console.log(e.code)
   //   }
   // };
+    const testRoute = async ()=>{
+      // let test = await fetch('/api/test', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify({ name: usernam,type:'all' })
+      //   }).then(data => {
+      //     return data.json();
+      //     })
+      //     console.log(test)
+    }
   useEffect(() => {
     const checkAuth = async () => {
       const signedIn = localStorage.getItem('signedIns');
@@ -98,7 +110,7 @@ export default function Home({ footDat,usernam}) {
                 router.push('/login')
               }}/>
             </motion.div>
-            <motion.div whileHover={{ color: '#C61F41' }}>
+            <motion.div whileHover={{ color: '#C61F41' }} onClick={testRoute}>
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
             </motion.div>
           </Stack>

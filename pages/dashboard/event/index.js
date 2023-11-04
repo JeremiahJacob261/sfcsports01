@@ -39,7 +39,7 @@ export default function Event({ footDat}) {
         )
       } else {
         return(
-        <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'100vh'}}>
+        <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',minHeight:'85vh'}}>
           <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
           <p style={{ color:'grey'}}>Please Check your internet connection</p>
         </Stack>)

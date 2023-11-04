@@ -101,6 +101,10 @@ export default function Account({ users }) {
                         <p>Total Wins</p>
                         <p style={{ color:'blue'}}>0</p>
                         </Stack>
+                        <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
+                        <p>Total Lost</p>
+                        <p style={{ color:'red'}}>0</p>
+                        </Stack>
                 </Stack>
             </Stack>
         );
