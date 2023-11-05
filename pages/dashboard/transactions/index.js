@@ -34,12 +34,12 @@ export default function Transaction({transaction}) {
                 {
                     content.map((m)=>{
                         return(
-                            <div>
+                            <div key={m.uid}> 
                                 <p>{m.type ?? 'unknown type'}</p>
                                 <p>{m.amount ?? '0'} USDT</p>
                             </div>
                         )
-                    })
+                    }) 
                 }
             </Stack>
         )
