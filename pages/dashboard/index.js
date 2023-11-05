@@ -91,7 +91,7 @@ export default function Home({ footDat,usernam}) {
   function NavbAR() {
     if (authed) {
       return (
-        <Stack style={{ width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
+        <Stack style={{ width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between' className='navBar'>
           <Stack direction='row' alignItems='center' spacing={2}>
             <div style={{ borderRadius: '100px', background: '#D8B16B' }}>
               <Image src={Avatar} width={40} height={29} alt="sfclogo" />

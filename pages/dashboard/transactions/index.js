@@ -1,7 +1,9 @@
 import { Stack} from '@mui/material'
 import { Icon } from '@iconify/react'
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
 export default function Transaction({transaction}) {
+    const router = useRouter();
     const [selected, setSelected] = useState(0);
     const [content,setContent] = useState([]);
     const betSelectLogic = (index) => {
@@ -26,7 +28,7 @@ export default function Transaction({transaction}) {
           testRoute();
     },[])
     function ListedTransactions(){
-    if(transaction){
+    if(content){
         return(
             <Stack>
                 {

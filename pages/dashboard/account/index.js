@@ -73,7 +73,7 @@ export default function Account({ users }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="material-symbols:casino-outline-sharp" width={24} height={24} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Bets</p>
+                        <p style={{ fontWeight: '500', fontSize: '15px',color:'#C61F41' }}>Bets</p>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>

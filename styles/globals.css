@@ -110,6 +110,8 @@ padding: 12px;
   font-size: 12px;
   font-weight: 200;
   text-align: center;
+  width: 41px;
+  height:34px;
 }
 .betTab{
   padding: 15px;
@@ -134,4 +136,11 @@ padding: 12px;
 }
 p{
   color:white;
+}
+.navBar{
+  /* From https://css.glass */
+background: rgba(162, 22, 22, 0.22);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.3px);
+-webkit-backdrop-filter: blur(9.3px);
 }

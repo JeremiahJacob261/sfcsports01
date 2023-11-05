@@ -20,8 +20,8 @@ export default function Event({ footDat}) {
           <Stack direction="row" alignItems='center'> 
     
           <Stack direction='column' sx={{ width:'50%'}} spacing={1}>
-            <Stack direction='row' spacing={1}><Image src={data.ihome} alt='home' width={20} height={20}/><p>{data.home}</p></Stack>
-            <Stack direction='row' spacing={1}><Image src={data.iaway} alt="away" width={20} height={20}/><p>{data.away}</p></Stack>
+            <Stack direction='row' spacing={1}><Image src={data.ihome} alt='home' width={20} height={20}/><p style={{ color:'white'}} >{data.home}</p></Stack>
+            <Stack direction='row' spacing={1}><Image src={data.iaway} alt="away" width={20} height={20}/><p style={{ color:'white'}}>{data.away}</p></Stack>
           </Stack>
     
           <Stack direction="row" sx={{ width:'50%',height:'100%'}} spacing={2} alignItems='center' justifyContent='center'>
@@ -51,7 +51,7 @@ export default function Event({ footDat}) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={()=>{
                     router.push('/dashboard')
                 }}/>
-           <p style={{ fontSize:'16px',fontWeight:'600'}}>Events</p>
+           <p style={{ fontSize:'16px',fontWeight:'600',color:'#C61F41'}}>Events</p>
             </Stack>
                 <MatchRow/>
             <HomeBottom />

@@ -50,7 +50,7 @@ export default function Home() {
    }, []);
   return (
     <Stack style={{ minWidth: '100vw',minHeight:'100vh' }} >
-      <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3' }}>
+      <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3',background:'black' }}>
           <Image src={Logo}
             layout='fill'
             objectFit='cover'

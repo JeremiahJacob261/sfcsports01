@@ -25,7 +25,7 @@ export default function Bets({ betDta }) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}>Bets</p>
+                <p style={{ fontSize: '16px', fontWeight: '600',color:'#C61F41' }}>Bets</p>
             </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
                 <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>Open Bets</p>
