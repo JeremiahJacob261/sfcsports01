@@ -19,7 +19,7 @@ export default function Account({ users }) {
             <Stack style={{ width: '100%' }} justifyContent='center' alignItems='center'>
                 <Stack sx={{ width: '100%', padding: '8px' }}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
-                        <Icon icon="mdi:cash" width={24} height={24} />
+                        <Icon icon="mdi:cash" width={24} height={24} style={{ color:'white'}}/>
                         <p style={{ fontWeight: '500', fontSize: '15px' }}>Wallet</p>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
@@ -72,7 +72,7 @@ export default function Account({ users }) {
             <Stack style={{ width: '100%' }} justifyContent='start' alignItems='center'>
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
-                        <Icon icon="material-symbols:casino-outline-sharp" width={24} height={24} />
+                        <Icon icon="material-symbols:casino-outline-sharp" width={24} height={24} style={{ color:'white'}}/>
                         <p style={{ fontWeight: '500', fontSize: '15px',color:'#C61F41' }}>Bets</p>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
@@ -80,19 +80,19 @@ export default function Account({ users }) {
                 <Stack className='accountinfo'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                            <Icon icon="mdi:receipt-text-pending" /> 
+                            <Icon icon="mdi:receipt-text-pending" style={{ color:'white'}} /> 
                         <p>Pending Bets</p></Stack>
                         <p style={{ color:'rgba(245,186,79,1)'}}>0</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                     <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                            <Icon icon="mdi:store-complete-outline" /> 
+                            <Icon icon="mdi:store-complete-outline" style={{ color:'white'}}/> 
                         <p>Settled Bets</p></Stack>
                         <p style={{ color:'green'}}>0</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                     <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                            <Icon icon="mdi:cup-full" /> 
+                            <Icon icon="mdi:cup-full" style={{ color:'white'}}/> 
                         <p>Total Bets</p></Stack>
                         <p style={{ color:'grey'}}>0</p>
                     </Stack>
@@ -117,7 +117,7 @@ export default function Account({ users }) {
             <Stack style={{ width: '100%' }} justifyContent='start' alignItems='center'>
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
-                        <Icon icon="mdi:security" width={24} height={24} />
+                        <Icon icon="mdi:security" width={24} height={24} style={{ color:'white'}}/>
                         <p style={{ fontWeight: '500', fontSize: '15px' }}>Security</p>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
@@ -125,21 +125,21 @@ export default function Account({ users }) {
                 <Stack className='accountinfo'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                     <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                            <Icon icon="ic:baseline-password" /> 
+                            <Icon icon="ic:baseline-password" style={{ color:'white'}}/> 
                         <p>Change Password</p></Stack>
-                        <Icon icon="mdi:chevron-right" width={24} height={24} />
+                        <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color:'white'}}/>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                     <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                            <Icon icon="mdi-light:email" /> 
+                            <Icon icon="mdi-light:email" style={{ color:'white'}}/> 
                         <p>Change Email</p></Stack>
-                        <Icon icon="mdi:chevron-right" width={24} height={24} />
+                        <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color:'white'}}/>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                     <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                            <Icon icon="solar:key-broken" /> 
+                            <Icon icon="solar:key-broken" style={{ color:'white'}}/> 
                         <p>Change Transaction Password</p></Stack>
-                        <Icon icon="mdi:chevron-right" width={24} height={24} />
+                        <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color:'white'}}/>
                     </Stack>
                 </Stack>
             </Stack>
