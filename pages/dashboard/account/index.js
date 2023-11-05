@@ -36,7 +36,7 @@ export default function Account({ users }) {
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
                         DEPOSIT</motion.p>
                     <motion.p onClick={() => {
-                        router.push('/dashboard/fund')
+                        router.push('/dashboard/withdraw')
                     }}
                         whileTap={{ background: '#573b41', scale: '1.05' }}
                         whileHover={{ background: '#573b41' }}

@@ -46,6 +46,7 @@ export default function Address(){
                 }}/>
                         </motion.div>
                 </Stack>
+                <p style={{ color:'green',fontSize:'13px',fontWeight:'200',maxWidth:'70vw'}}>Network: USDT (TRC20)</p>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                 <Icon icon="ph:info-light" color="#ad1c39" />
                 <p style={{ color:'grey',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!</p>

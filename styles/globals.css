@@ -147,3 +147,9 @@ backdrop-filter: blur(9.3px);
 Icon{
   color:white;
 }
+.payment-options{
+  background-color: #573b41;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 8px;
+}

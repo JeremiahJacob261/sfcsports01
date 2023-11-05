@@ -36,9 +36,9 @@ export default function Alertz({amount}) {
         <motion.p onClick={() => {
                         checkCredible()
                     }}
-                        whileTap={{ background: '#573b41', scale: '1.05' }}
-                        whileHover={{ background: '#573b41' }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer' }}>
+                        whileTap={{ background: '#573b41', scale: '0.9' }}
+                        whileHover={{ background: '#573b41', scale: '1.1' }}
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                         DEPOSIT</motion.p>
       <Modal
         open={open}
