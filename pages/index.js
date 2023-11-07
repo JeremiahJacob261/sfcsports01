@@ -49,7 +49,7 @@ export default function Home() {
     // checkAuth();
    }, []);
   return (
-    <Stack style={{ minWidth: '100vw',minHeight:'100vh' }} >
+    <Stack style={{ minWidth: '100vw',minHeight:'100vh',background:'black',opacity:0.9 }} >
       <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3',background:'black' }}>
           <Image src={Logo}
             layout='fill'

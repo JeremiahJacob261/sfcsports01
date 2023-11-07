@@ -25,15 +25,18 @@ export default function Withdraw() {
                 <Stack spacing={1} sx={{ minWidth: '60vw' }}>
                     <p>Select Wallet Address</p>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                        <InputLabel id="demo-simple-select-label">Payment Address</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={wallet}
-                            label="Age"
+                            label="Select Payment Address"
                             onChange={(e) => {
                                 setWallet(e.target.value);
-                                router.push('/dashboard/bind-wallet')
+                                if (e.target.value === 2) {
+                                      router.push('/dashboard/bind')
+                                }
+                              
                             }}
                             sx={{ color: 'black', backgroundColor: 'white' }}
                         >

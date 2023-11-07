@@ -54,7 +54,7 @@ export default function Address(){
                     <motion.p onClick={() => {
                       router.push('/dashboard/fund/upload')
                     }}
-                        whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 1.09 }}
+                        whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
                         whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                         NEXT</motion.p>
