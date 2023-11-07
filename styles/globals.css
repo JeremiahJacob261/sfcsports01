@@ -153,3 +153,22 @@ Icon{
   border-radius: 8px;
   margin: 8px;
 }
+.standard-input{
+  color:rgb(73, 39, 39);
+  background-color: #d4cdce;
+  padding:8px;
+  border:1px solid #7e7777;
+  border-radius: 6px;
+  min-width: 300px;
+  max-width: 85vw;
+  height: 45px;
+}
+.standard-input:focus{
+  outline: 2px solid #585656;     /* oranges! yey */
+}
+.arrange-label{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
