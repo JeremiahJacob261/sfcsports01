@@ -61,7 +61,7 @@ p{
   cursor: pointer;
 }
 .backgrounds{
-  min-height: 80vh;
+  min-height: 90vh;
   margin-bottom: 80px;
   background: rgb(27,3,0);
 background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);

@@ -147,7 +147,8 @@ export default function Home({ footDat,usernam}) {
     }
   }
   function MatchRow() {
-    if (footDat) {
+    if (footDat && footDat.length > 0) {
+      console.log(footDat)
       return(
         <Stack direction='column' spacing={1} alignItems='center' style={{ padding:'4px', marginBottom:'100px',width:'100vw'}}>
       {/* container for all matches i sabove */}
@@ -185,7 +186,7 @@ export default function Home({ footDat,usernam}) {
     }
   }
   return (
-    <Stack direction='column' alignItems='center' sx={{ minHeight: '90vh' }} className='backgrounds' spacing={1}>
+    <Stack direction='column' alignItems='center' sx={{ minHeight: '98vh' }} className='backgrounds' spacing={1}>
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />

@@ -13,6 +13,59 @@ export default function Bets({ betDta }) {
         setSelected(index);
         //return bet desired data
     }
+    function MatchRow() {
+     
+        if (betDta && betDta.length > 0) {
+          console.log(betDta)
+          return(
+            <Stack direction='column' sx={{ maxWidth: '100vw',padding:'8px',marginBottom:'100px' }} alignItems='center' spacing={2}>
+            {
+             betDta.map((bet)=>{
+                      {/* bet data according to betTabSelected */}
+                 return(
+
+             <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }} key={bet.betid} spacing={1}>
+             {/* statusOfBet */}
+             <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ padding:'8px', background:(bet.won === 'true') ? 'green' : 'grey',borderRadius:'6px'}}><p>Status</p>    <p>{(bet.won === 'true') ? 'Won' :'Lost'}</p> </Stack>
+             {/* team data */}
+             <Stack direction='row'> 
+             {/* team names and logo */}
+             <Stack spacing={1}>
+                 {/* home team */}
+             <Stack direction='row' spacing={1}>
+             <Image src={ bet.ihome ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png' } width={20} height={20} alt="home logo"/>
+             <p>{bet.home}</p>
+             </Stack>
+             {/* end of home team */}
+             {/* away team */}
+             <Stack direction='row' spacing={1}>
+             <Image src={ bet.iaway ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png' } width={20} height={20} alt='away logo'/>
+             <p>{bet.away}</p>
+             </Stack>
+             {/* end of away team */}
+             </Stack>
+             {/* end of team name and logo */}
+              </Stack>
+              {/* end of team data */}
+             <Stack><p>Stake: {bet.stake} USDT</p></Stack>
+             </Stack>
+
+                 )
+             {/*end of  bet data according to betTabSelected */}
+             })
+            }
+         </Stack>
+        
+          )
+        }else{
+          return(
+            <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',minHeight:'85vh'}}>
+              <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
+              <p style={{ color:'grey'}}>Please Check your internet connection</p>
+            </Stack>)
+        }
+    
+    }
     return (
         <div className='backgrounds'>
             <Head>
@@ -31,43 +84,7 @@ export default function Bets({ betDta }) {
                 <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>Open Bets</p>
                 <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Settled Bets</p>
             </Stack>
-            <Stack direction='column' sx={{ maxWidth: '100vw',padding:'8px',marginBottom:'100px' }} alignItems='center' spacing={2}>
-               {
-                betDta.map((bet)=>{
-                         {/* bet data according to betTabSelected */}
-                    return(
-
-                <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }} key={bet.betid} spacing={1}>
-                {/* statusOfBet */}
-                <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ padding:'8px', background:(bet.won === 'true') ? 'green' : 'grey',borderRadius:'6px'}}><p>Status</p>    <p>{(bet.won === 'true') ? 'Won' :'Lost'}</p> </Stack>
-                {/* team data */}
-                <Stack direction='row'> 
-                {/* team names and logo */}
-                <Stack spacing={1}>
-                    {/* home team */}
-                <Stack direction='row' spacing={1}>
-                <Image src={ bet.ihome ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png' } width={20} height={20} alt="home logo"/>
-                <p>{bet.home}</p>
-                </Stack>
-                {/* end of home team */}
-                {/* away team */}
-                <Stack direction='row' spacing={1}>
-                <Image src={ bet.iaway ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png' } width={20} height={20} alt='away logo'/>
-                <p>{bet.away}</p>
-                </Stack>
-                {/* end of away team */}
-                </Stack>
-                {/* end of team name and logo */}
-                 </Stack>
-                 {/* end of team data */}
-                <Stack><p>Stake: {bet.stake} USDT</p></Stack>
-                </Stack>
-
-                    )
-                {/*end of  bet data according to betTabSelected */}
-                })
-               }
-            </Stack>
+                <MatchRow/>
             <HomeBottom />
         </div>
     )

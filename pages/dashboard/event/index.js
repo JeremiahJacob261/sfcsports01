@@ -8,7 +8,8 @@ import { supabase } from '../../api/supabase';
 export default function Event({ footDat}) {
     const router = useRouter();
     function MatchRow() {
-      if (footDat) {
+      if (footDat && footDat.length > 0) {
+        console.log(footDat)
         return(
           <Stack direction='column' spacing={1} alignItems='center' style={{ padding:'4px', marginBottom:'100px',width:'100vw'}}>
         {/* container for all matches i sabove */}
