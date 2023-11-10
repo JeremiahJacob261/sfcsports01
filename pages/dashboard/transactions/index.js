@@ -18,7 +18,7 @@ export default function Transaction({transaction}) {
                 headers: {
                   'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name: usernam,type:'all' })
+                body: JSON.stringify({ name: usernam,type:'all',key:'akpomoshi18+' })
               }).then(data => {
                 return data.json();
                 })

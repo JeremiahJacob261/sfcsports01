@@ -5,10 +5,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { supabase } from '@/pages/api/supabase';
 import { useState } from 'react';
 import { motion } from 'framer-motion'
 import { useEffect } from 'react';
-export default function Withdraw() {
+export default function Withdraw({users}) {
     const router = useRouter();
     const [wallet, setWallet] = useState('');
     const [password, setPassword] = useState('');
@@ -45,13 +46,21 @@ export default function Withdraw() {
                             sx={{ color: 'black', backgroundColor: 'white' }}
                         >
                             <MenuItem value={1}>Select Wallet Address</MenuItem>
+                            {
+                               users.map((data)=>{
+                                    return(
+                                            <MenuItem key={data.id }value={data.id + 10}>{data.wallet}</MenuItem>
+                                        
+                                    )
+                               })
+                            }
                             <MenuItem value={2}>ADD New Wallet Address</MenuItem>
                         </Select>
                     </FormControl>
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
                     <p>Amount(USDT)</p>
-                    <TextField variant='standard' type='float' placeholder='Amount(USDT)' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
+                    <TextField variant='standard' type='number' placeholder='Amount(USDT)' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={amount}
                         onChange={(e) => {
                             setAmount(e.target.value)
@@ -86,4 +95,43 @@ export default function Withdraw() {
             </Stack>
         </div>
     )
+}
+export async function getServerSideProps({ req }) {
+    const refreshToken = req.cookies['my-refresh-token']
+    const accessToken = req.cookies['my-access-token']
+    console.log(accessToken)
+    if (refreshToken && accessToken) {
+        console.log('sign insss')
+        let sess = await supabase.auth.setSession({
+            refresh_token: refreshToken,
+            access_token: accessToken,
+        })
+        console.log(sess)
+    } else {
+        // make sure you handle this case!
+        throw new Error('User is not authenticated.')
+    }
+    // returns user information
+
+
+    try {
+        let { data: user, error: err } = await supabase.auth.getUser()
+        console.log(user.user.user_metadata)
+        const { data, error } = await supabase
+            .from('wallets')
+            .select('*')
+            .eq('username', user.user.user_metadata.displayName)
+        let users = data;
+        console.log(users)
+        return {
+            props: { users }, // will be passed to the page component as props
+        }
+    } catch (error) {
+        console.log(error)
+        let users = {};
+        return {
+            props: { users }, // will be passed to the page component as props
+        }
+    }
+
 }

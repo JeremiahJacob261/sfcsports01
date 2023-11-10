@@ -93,7 +93,7 @@ console.log(data.publicUrl);
     useEffect(()=>{
         console.log(localStorage.getItem('deposit-amount'))
         if(localStorage.getItem('deposit-amount') === null){
-            router.push('/dashboard/fund/address')
+            router.push('/dashboard/fund')
         }
         // setInterval(()=>{
         //     setCurrentTxt(changingtext[Math.floor(Math.random() * 3) + 1])
@@ -130,13 +130,13 @@ console.log(data.publicUrl);
 
                 <motion.div
                 whileTap={{  scale: 0.9  }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.04 }}
                 >
                      <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ height: '58px', background: '#ad1c39', borderRadius: '5px', padding: '16px' }} spacing={2}>
                     <InsertDriveFileIcon sx={{ color: 'white', fontFamily: 'Poppins,sans-serif' }} />
                     <Stack alignItems='start' justifyContent='start'>
                         <p style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.name ? file.name : 'No File Selected'}</p>
-                        <p style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.size ? file.name : '0.0mb'}</p>
+                        <p style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.size ? file.size : '0.0mb'}</p>
 
                     </Stack>
                     <ClearIcon sx={{ width: '24px', height: '24px', color: '#573b41' }} onClick={() => {

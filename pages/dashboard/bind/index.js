@@ -5,12 +5,13 @@ import { motion } from 'framer-motion'
 import { useState } from 'react';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import { supabase } from '@/pages/api/supabase';
 import Modal from '@mui/material/Modal';
 import { Divider } from '@mui/material';
 import Image from 'next/image'
 import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
-export default function BindWallet() {
+export default function BindWallet({name}) {
     const router = useRouter();
     const [address , setAddress] = useState('')
     const [password , setPassword] = useState('')
@@ -25,6 +26,25 @@ export default function BindWallet() {
       setAleT(t)
     }
     //end of alerts
+    const testRoute = async ()=>{
+      let test = await fetch('/api/bind', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name: name,pass:password,wallet:address })
+        }).then(data => {
+          return data.json();
+          })
+          console.log(test);
+          if(test[0].status === 'Failed'){
+            alert('Wrong Password !')
+          }else{
+            
+            router.push('/dashboard/bind/success')
+          }
+
+    }
     const checkValid = () => {
         if(address === ''){
             Alerted('Please enter address',false)
@@ -35,7 +55,7 @@ export default function BindWallet() {
         }else if(password !== confirmPassword){
             Alerted('Password and confirm password must be same',false)
         }else{
-            router.push('/dashboard/bind/success')
+          testRoute();
         }
     }
     return(
@@ -125,4 +145,38 @@ export default function BindWallet() {
        
         )
     }
+}
+export async function getServerSideProps({ req }) {
+  const refreshToken = req.cookies['my-refresh-token']
+  const accessToken = req.cookies['my-access-token']
+  console.log(accessToken)
+  if (refreshToken && accessToken) {
+      console.log('sign insss')
+      let sess = await supabase.auth.setSession({
+          refresh_token: refreshToken,
+          access_token: accessToken,
+      })
+      console.log(sess)
+  } else {
+      // make sure you handle this case!
+      throw new Error('User is not authenticated.')
+  }
+  // returns user information
+
+
+  try {
+      let { data: user, error: err } = await supabase.auth.getUser()
+      console.log(user.user.user_metadata)
+    let name = user.user.user_metadata.displayName;
+      return {
+          props: { name }, // will be passed to the page component as props
+      }
+  } catch (error) {
+      console.log(error)
+      let name = null;
+      return {
+          props: { name }, // will be passed to the page component as props
+      }
+  }
+
 }
