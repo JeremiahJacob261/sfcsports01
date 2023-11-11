@@ -162,7 +162,7 @@ export default function Account({ users }) {
             <Stack direction='column' alignItems='center'>
                 <Stack className='accountinfo' direction='row' alignItems='center' spacing={2} style={{ padding: '8px' }}>
                     <div className='avatar'>
-                        <Image src={Avatar} alt="profile_pic" width={55} height={50} />
+                        <Image src={users.profile ?? Avatar} alt="profile_pic" width={55} height={50} />
                     </div>
                     {/* textedUserInfo */}
                     <Stack justifyContent='center' className='acctext'>

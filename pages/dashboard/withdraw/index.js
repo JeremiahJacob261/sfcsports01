@@ -17,6 +17,7 @@ export default function Withdraw({users}) {
     const [password, setPassword] = useState('');
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
+    const [method, setMethod] = useState(1);
     const testRoute = async ()=>{
         let test = await fetch('/api/withdraw', {
             method: 'POST',
@@ -65,9 +66,44 @@ export default function Withdraw({users}) {
                 <p style={{ fontSize: '16px', fontWeight: '600' }}> Withdraw</p>
             </Stack>
             <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ padding: '12px', width: '100%', height: '100%' }}>
-                <p className='payment-options'>
-                    USDT
-                </p>
+                <Stack direction='column' >
+                <Stack direction='row' alignItems='center' justifyContent='space-between' >
+<p style={{ fontSize: '12px', fontWeight: '600' }}> Method</p>
+<p style={{ fontSize: '12px', fontWeight: '600' }}>USDT</p>
+                </Stack>
+                    <p style={{ fontSize: '12px', fontWeight: '600' }}>Withdrawal</p>
+                <Stack direction='row' alignItems='center' justifyContent='space-between' >
+<p style={{ fontSize: '12px', fontWeight: '600' }}> Amount</p>
+<p style={{ fontSize: '12px', fontWeight: '600' }}> {amount}</p>
+                </Stack>
+                <Stack direction='row' alignItems='center' justifyContent='space-between' >
+<p style={{ fontSize: '12px', fontWeight: '600' }}> Charge </p>
+<p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount/0.05).toFixed(3)}</p>
+                </Stack>
+                <Stack direction='row' alignItems='center' justifyContent='space-between' >
+<p style={{ fontSize: '12px', fontWeight: '600' }}> Total </p>
+<p style={{ fontSize: '12px', fontWeight: '600' }}> {amount + (amount/0.05)}</p>
+                </Stack>
+                </Stack>
+                <Stack spacing={2} sx={{ width: '310px' }}>
+                    <p>Select Payment Method</p>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Payment Method</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={method}
+                            label="Select Payment Method"
+                            onChange={(e) => {
+                                setMethod(e.target.value);
+                            }}
+                            sx={{ color: 'black', backgroundColor: 'white' }}
+                        >
+                            <MenuItem value={1}>USDT (TRC20)</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Stack>
+                
                 <Stack spacing={2} sx={{ width: '310px' }}>
                     <p>Select Wallet Address</p>
                     <FormControl fullWidth>
