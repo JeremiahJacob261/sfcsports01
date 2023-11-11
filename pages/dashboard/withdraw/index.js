@@ -9,7 +9,9 @@ import { supabase } from '@/pages/api/supabase';
 import { useState } from 'react';
 import { motion } from 'framer-motion'
 import { useEffect } from 'react';
+import Link from 'next/link';
 export default function Withdraw({users}) {
+    console.log(users)
     const router = useRouter();
     const [wallet, setWallet] = useState('');
     const [password, setPassword] = useState('');
@@ -21,16 +23,19 @@ export default function Withdraw({users}) {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users.username,pass:password,wallet:wallet,amount:amount })
+            body: JSON.stringify({ name: users[0].username,pass:password,wallet:wallet,amount:amount })
           }).then(data => {
             return data.json();
             })
             console.log(test);
             if(test[0].status === 'Failed'){
-              alert('Wrong Password !')
+              alert(test[0].message);
+              if(test[0].message === 'No transaction pin has been set'){
+                router.push('/dashboard/codesetting')
+              }
             }else{
               
-              router.push('/dashboard/bind/success')
+              router.push('/dashboard/withdraw/success')
             }
   
       }
@@ -132,7 +137,11 @@ export default function Withdraw({users}) {
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
                     style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                     WITHDRAW!</motion.p>
-            </Stack>
+                    <Link href='/dashboard/codesetting'>
+                               <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'lighter',textDecoration:'underline'}}>Set a transaction pin</p>
+            
+                        </Link>
+             </Stack>
         </div>
     )
 }

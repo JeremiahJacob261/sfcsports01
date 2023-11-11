@@ -16,13 +16,21 @@ export default async  function handler(req, res) {
                         console.log('wrong password')
                         
                 res.status(200).json([{'status':'Failed','message':'Wrong password'}]);
-                    }else if(data[0].amount < body.amount){
+                    }else if(data[0].balance < body.amount){
                         console.log('insufficient funds')
                         res.status(200).json([{'status':'Failed','message':'Insufficient funds'}]);
 
                     }else{
+                        const { error } = await supabase
+            .from('notification')
+            .insert({ address: body.codeset, username: body.name, amount: body.amount, sent: 'pending', type: "withdraw", method: 'usdt' })
+          try{
+
                         const { data, error } = await supabase
-                        .rpc('withdrawer', { amount: amo1, names: dusername })
+                        .rpc('withdrawer', { amount: body.amount, names: body.name })
+          }catch(e){
+console.log(e)
+          }
                         console.log('Success')
                         res.status(200).json([{'status':'Success','message':'Withdrawal Request as been sent'}]);
 
