@@ -15,6 +15,42 @@ export default function Withdraw({users}) {
     const [password, setPassword] = useState('');
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
+    const testRoute = async ()=>{
+        let test = await fetch('/api/withdraw', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: users.username,pass:password,wallet:wallet,amount:amount })
+          }).then(data => {
+            return data.json();
+            })
+            console.log(test);
+            if(test[0].status === 'Failed'){
+              alert('Wrong Password !')
+            }else{
+              
+              router.push('/dashboard/bind/success')
+            }
+  
+      }
+    const transaction = async () => {
+        if (wallet === 1) {
+            alert('Please select a wallet address')
+        } else if (wallet === 2) {
+            alert('Please add a wallet address')
+        } else if (password === '') {
+            alert('Please enter your password')
+        } else if (cpassword === '') {
+            alert('Please confirm your password')
+        } else if (password !== cpassword) {
+            alert('Password does not match')
+        } else if (amount === '') {
+            alert('Please enter amount')
+        } else {
+            testRoute();
+        }
+    }
     return (
         <div className="backgrounds" style={{ minHeight: '99vh', width: '100%' }}>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
@@ -48,10 +84,13 @@ export default function Withdraw({users}) {
                             <MenuItem value={1}>Select Wallet Address</MenuItem>
                             {
                                users.map((data)=>{
+                                if(data.wallet !== '' && data.wallet !== null){
                                     return(
-                                            <MenuItem key={data.id }value={data.id + 10}>{data.wallet}</MenuItem>
+                                            <MenuItem key={data.id }value={data.id + 2}>{data.wallet}</MenuItem>
                                         
                                     )
+                                }
+                                    
                                })
                             }
                             <MenuItem value={2}>ADD New Wallet Address</MenuItem>
@@ -87,6 +126,7 @@ export default function Withdraw({users}) {
                 </Stack>
                 <motion.p onClick={() => {
                     //   router.push('/dashboard/fund/success')
+                    transaction();
                 }}
                     whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
