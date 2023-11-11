@@ -2,10 +2,70 @@ import { Stack } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { Box, Button } from "@mui/material";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React from "react";
+import { useState, useRef } from 'react';
 import Modal from '@mui/material/Modal';
 import Image from "next/image";
+import { supabase } from '@/pages/api/supabase';
+import { v4 as uuidv4 } from 'uuid';
 export default function Swapic({image,name}) {
+  const [file, setfile] = useState([]);
+  //from stackoverflow
+  const [ modified, setModified ] = useState('');
+  const inputFile = useRef(null);
+  //end
+
+  const fileNameMod = (fil) => {
+    const uuid = uuidv4();
+    const modifieds = uuid + fil.name;
+    console.log(modifieds)
+    setModified(modifieds);
+}
+const getURL = async () => {
+    try {
+        const { data, error } = supabase
+            .storage
+            .from('trcreceipt/profile')
+            .getPublicUrl(modified);
+        uploadData(data.publicUrl);
+        console.log(data.publicUrl);
+    } catch (error) {
+        console.log(error)
+    }
+}
+const uploadData = async (address) => {    
+  try {
+      let name = localStorage.getItem('signNames');
+  const { data, error } = await supabase
+  .from('users')
+  .update({ 
+      'profile':address
+})
+.eq('username', name)
+} catch (error) {
+console.log(error)
+}
+}
+const uploadImage = async (fil) => {
+    try {
+        const { data, error } = await supabase
+            .storage
+            .from('trcreceipt/profile')
+            .upload(modified, fil);
+        console.log(data)
+        getURL();
+        if (error) {
+            alert('Error uploading file.');
+            return;
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+
+    alert('File uploaded successfully!');
+}
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -39,8 +99,17 @@ export default function Swapic({image,name}) {
         <motion.p 
                 whileTap={{ background: '#573b41', scale: '1.05' }}
                 whileHover={{ background: '#573b41' }}
+                onClick={()=>{
+                    inputFile.current.click();
+                }}
                 style={{ fontWeight: '500', fontSize: '12px', color: '#C61F41', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
                 Change Picture</motion.p>
+                <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
+                            accept="image/*" onChange={(e) => {
+                                setfile(e.target.files[0]);
+                                fileNameMod(e.target.files[0]);
+                                uploadImage(e.target.files[0]);
+                            }} />
             </Stack>
         </Box>
       </Modal>

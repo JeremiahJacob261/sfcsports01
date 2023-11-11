@@ -171,7 +171,7 @@ export default function Account({ users }) {
                         <p style={{ fontWeight: '200', color: 'white' }}>{users.userId}</p>
                     </Stack>
                     <Stack>
-                        <Swapic image={Avatar} name={users.username} />
+                        <Swapic image={users.profile ?? Avatar} name={users.username} />
                     </Stack>
                 </Stack>
                 <AccountsBalance />

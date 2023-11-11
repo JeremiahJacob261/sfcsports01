@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion'
 import { useEffect } from 'react';
 import Link from 'next/link';
-export default function Withdraw({users}) {
+export default function Withdraw({ users }) {
     console.log(users)
     const router = useRouter();
     const [wallet, setWallet] = useState('');
@@ -18,28 +18,28 @@ export default function Withdraw({users}) {
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
     const [method, setMethod] = useState(1);
-    const testRoute = async ()=>{
+    const testRoute = async () => {
         let test = await fetch('/api/withdraw', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username,pass:password,wallet:wallet,amount:amount })
-          }).then(data => {
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: amount })
+        }).then(data => {
             return data.json();
-            })
-            console.log(test);
-            if(test[0].status === 'Failed'){
-              alert(test[0].message);
-              if(test[0].message === 'No transaction pin has been set'){
+        })
+        console.log(test);
+        if (test[0].status === 'Failed') {
+            alert(test[0].message);
+            if (test[0].message === 'No transaction pin has been set') {
                 router.push('/dashboard/codesetting')
-              }
-            }else{
-              
-              router.push('/dashboard/withdraw/success')
             }
-  
-      }
+        } else {
+
+            router.push('/dashboard/withdraw/success')
+        }
+
+    }
     const transaction = async () => {
         if (wallet === 1) {
             alert('Please select a wallet address')
@@ -53,7 +53,13 @@ export default function Withdraw({users}) {
             alert('Password does not match')
         } else if (amount === '') {
             alert('Please enter amount')
-        } else {
+        } else if(amount < 20){
+            alert('Minimum amount to withdraw is 20 USDT')
+            
+        }else if(amount > 100){
+            alert('Maximum amount to withdraw is 100 USDT')
+
+        }else{
             testRoute();
         }
     }
@@ -66,24 +72,23 @@ export default function Withdraw({users}) {
                 <p style={{ fontSize: '16px', fontWeight: '600' }}> Withdraw</p>
             </Stack>
             <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ padding: '12px', width: '100%', height: '100%' }}>
-                <Stack direction='column' >
-                <Stack direction='row' alignItems='center' justifyContent='space-between' >
-<p style={{ fontSize: '12px', fontWeight: '600' }}> Method</p>
-<p style={{ fontSize: '12px', fontWeight: '600' }}>USDT</p>
-                </Stack>
-                    <p style={{ fontSize: '12px', fontWeight: '600' }}>Withdrawal</p>
-                <Stack direction='row' alignItems='center' justifyContent='space-between' >
-<p style={{ fontSize: '12px', fontWeight: '600' }}> Amount</p>
-<p style={{ fontSize: '12px', fontWeight: '600' }}> {amount}</p>
-                </Stack>
-                <Stack direction='row' alignItems='center' justifyContent='space-between' >
-<p style={{ fontSize: '12px', fontWeight: '600' }}> Charge </p>
-<p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount/0.05).toFixed(3)}</p>
-                </Stack>
-                <Stack direction='row' alignItems='center' justifyContent='space-between' >
-<p style={{ fontSize: '12px', fontWeight: '600' }}> Total </p>
-<p style={{ fontSize: '12px', fontWeight: '600' }}> {amount + (amount/0.05)}</p>
-                </Stack>
+                <Stack direction='column' sx={{ width:'320px'}} spacing={2}>
+                    <Stack direction='row' alignItems='center' justifyContent='space-between' >
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Method</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}>USDT(TRC20)</p>
+                    </Stack>
+                    <Stack direction='row' alignItems='center' justifyContent='space-between' >
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Amount</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {amount ?? 0} USDT</p>
+                    </Stack>
+                    <Stack direction='row' alignItems='center' justifyContent='space-between' >
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Charge </p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.05).toFixed(3) ?? 0} USDT</p>
+                    </Stack>
+                    <Stack direction='row' alignItems='center' justifyContent='space-between' >
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Total </p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.05).toFixed(3) ?? 0} USDT</p>
+                    </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
                     <p>Select Payment Method</p>
@@ -103,7 +108,7 @@ export default function Withdraw({users}) {
                         </Select>
                     </FormControl>
                 </Stack>
-                
+
                 <Stack spacing={2} sx={{ width: '310px' }}>
                     <p>Select Wallet Address</p>
                     <FormControl fullWidth>
@@ -124,15 +129,15 @@ export default function Withdraw({users}) {
                         >
                             <MenuItem value={1}>Select Wallet Address</MenuItem>
                             {
-                               users.map((data)=>{
-                                if(data.wallet !== '' && data.wallet !== null){
-                                    return(
-                                            <MenuItem key={data.id }value={data.id + 2}>{data.wallet}</MenuItem>
-                                        
-                                    )
-                                }
-                                    
-                               })
+                                users.map((data) => {
+                                    if (data.wallet !== '' && data.wallet !== null) {
+                                        return (
+                                            <MenuItem key={data.id} value={data.id + 2}>{data.wallet}</MenuItem>
+
+                                        )
+                                    }
+
+                                })
                             }
                             <MenuItem value={2}>ADD New Wallet Address</MenuItem>
                         </Select>
@@ -173,11 +178,11 @@ export default function Withdraw({users}) {
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
                     style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                     WITHDRAW!</motion.p>
-                    <Link href='/dashboard/codesetting'>
-                               <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'lighter',textDecoration:'underline'}}>Set a transaction pin</p>
-            
-                        </Link>
-             </Stack>
+                <Link href='/dashboard/codesetting'>
+                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</p>
+
+                </Link>
+            </Stack>
         </div>
     )
 }
