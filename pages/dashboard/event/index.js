@@ -3,6 +3,8 @@ import { Icon } from '@iconify/react';
 import { Stack } from '@mui/material';
 import { useRouter } from 'next/router';
 import HomeBottom from '../../UIComponents/bottomNav';
+import Link from 'next/link'
+import { motion } from 'framer-motion';
 import Image from 'next/image'
 import { supabase } from '../../api/supabase';
 export default function Event({ footDat}) {
