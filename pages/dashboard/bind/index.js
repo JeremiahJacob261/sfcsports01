@@ -11,7 +11,7 @@ import { Divider } from '@mui/material';
 import Image from 'next/image'
 import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
-export default function BindWallet({name}) {
+export default function BindWallet({name,users}) {
     const router = useRouter();
     const [address , setAddress] = useState('')
     const [password , setPassword] = useState('')
@@ -67,6 +67,33 @@ export default function BindWallet({name}) {
                 }} />
                 <p className="text-sm text-gray-500">BIND WALLET</p>
             </Stack>
+            <Stack direction='column' justifyContent='center' alignItems='center' spacing={2} sx={{ padding: '8px', width: '100%' }}>
+             
+            <Stack direction='column' alignItems='center' justifyContent='center' sx={{ background:'#573b41',padding:'12px',borderRadius:'8px',margin:'8px',maxWidth:'310px'}}>
+              <p style={{ color:'rgba(194,127,8,1)' ,fontSize:'18px'}} >Existing Wallets</p>
+                {
+                  users.map((m)=>{
+                    let date = new Date(m.created_at);
+                    let month = date.getMonth()+1;
+                    let day = date.getDate();
+                    let year = date.getFullYear();
+                    let hours = date.getHours();
+                    let minutes = date.getMinutes();
+                    let seconds = date.getSeconds();
+                    let created_at = month+'/'+day+'/'+year+' '+hours+':'+minutes+':'+seconds;
+                    return(
+                      <Stack key={m.id} direction='row' alignItems='center' spacing={2}>
+                        <Stack direction='column'>
+                           <p style={{ fontSize:'15px',color:'#C61F41',fontWeight:'600' }}>{m.wallet}</p>
+                        <p style={{ fontSize:'12px',color:'#FFFFFF' }}>{created_at}</p>
+                        </Stack>
+                       <Icon icon="akar-icons:edit" width={24} height={24} onClick={()=>{
+                          router.push('/dashboard/bind/edit')}}/>
+                      </Stack>
+                    )
+                  })
+                }
+            </Stack>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={2} sx={{ padding:'12px'}}>
                 <p>BIND WALLET</p>
                 <form>
@@ -97,6 +124,7 @@ export default function BindWallet({name}) {
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#C61F41',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                     Bind Wallet</motion.p>
                 </Stack>
+              </Stack>
             </div>
     )
     function Alerteds() {
@@ -168,14 +196,21 @@ export async function getServerSideProps({ req }) {
       let { data: user, error: err } = await supabase.auth.getUser()
       console.log(user.user.user_metadata)
     let name = user.user.user_metadata.displayName;
+
+    const { data, error } = await supabase
+            .from('wallets')
+            .select('*')
+            .eq('username', name)
+        let users = data;
       return {
-          props: { name }, // will be passed to the page component as props
+          props: { name,users }, // will be passed to the page component as props
       }
   } catch (error) {
       console.log(error)
       let name = null;
+      let users = [];
       return {
-          props: { name }, // will be passed to the page component as props
+          props: { name,users }, // will be passed to the page component as props
       }
   }
 

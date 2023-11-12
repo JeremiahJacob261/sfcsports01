@@ -10,7 +10,7 @@ import Tether from '@/public/tether.jpg'
 export default function Fund() {
     const router = useRouter();
     const [amount, setAmount] = useState('');
-const [met,setMet] = useState('visible');
+const [met,setMet] = useState('none');
 
     return (
         <div className="backgrounds" style={{ height: '100vh', width: 'auto' }}>
@@ -36,15 +36,15 @@ const [met,setMet] = useState('visible');
                     </motion.div>
                 </Stack>
                 <Stack direction='column' spacing={2} alignItems='center' justifyContent='center' sx={{ display:met}}>
-                    <p style={{ fontSize: '18px', fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>Amount</p>
-                    <Stack direction='row' alignItems='center' justifyContent='center'>
-                        <TextField variant='standard' type='number' placeholder='Amount' sx={{ color: 'white', background: '#ad1c39', padding: '8px', borderRadius: '5px', letterSpacing: '1px', input: { color: 'white', } }} value={amount} onChange={(e) => {
+                    <p style={{ fontSize: '18px',display:met, fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>Amount</p>
+                    <Stack direction='row' alignItems='center' justifyContent='center' sx={{ display:met}}>
+                        <TextField variant='standard' type='number' placeholder='Amount' sx={{ display:met,color: 'white', background: '#ad1c39', padding: '8px', borderRadius: '5px', letterSpacing: '1px', input: { color: 'white', } }} value={amount} onChange={(e) => {
                             setAmount(e.target.value);
                         }} />
-                        <p>USDT</p>
+                        <p sx={{ display:met}}>USDT</p>
                     </Stack>
 
-                    <Alertz amount={amount} />
+                    <Alertz amount={amount} sx={{ display:met}}/>
                 </Stack>
             </Stack>
 

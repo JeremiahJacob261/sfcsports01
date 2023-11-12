@@ -64,7 +64,7 @@ testRoute();
             <Stack spacing={1} sx={{ minWidth: '344px' }}>
                 <Typography sx={{ fontSize: '12px', fontWeight: '500', fontFamily: 'Poppins,sans-serif', color: 'white' }}>Enter Transaction Password </Typography>
                 <TextField
-                    sx={{ color: 'white', input: { color: '#E5E7EB', }  }}
+                    sx={{ color: 'white',background:'grey',borderRadius:'8px', input: { color: '#E5E7EB', }  }}
                     value={pi}
                     label='Enter Transaction Password'
                     type='text'
@@ -76,7 +76,7 @@ testRoute();
             <Stack spacing={1} sx={{ minWidth: '344px' }}>
                 <Typography sx={{ fontSize: '12px', fontWeight: '500', fontFamily: 'Poppins,sans-serif', color: 'white' }}>Confirm Transaction Password </Typography>
                 <TextField
-                    sx={{ color: 'white' ,input: { color: '#E5E7EB', },inputLabel: { color: '#E5E7EB',}  }}
+                    sx={{ color: 'white',background:'grey',borderRadius:'8px' ,input: { color: '#E5E7EB', },inputLabel: { color: '#E5E7EB',}  }}
                     label='Confirm Transaction Password'
                     type='password'
                     value={pin}
@@ -86,10 +86,10 @@ testRoute();
                 />
             </Stack>
             <Stack spacing={1} sx={{ minWidth: '344px' }}>
-                <Typography sx={{ fontSize: '12px', fontWeight: '500', fontFamily: 'Poppins,sans-serif', color: 'white' }}>Enter Password </Typography>
+                <Typography sx={{ fontSize: '12px', fontWeight: '500',borderRadius:'8px', fontFamily: 'Poppins,sans-serif', color: 'white' }}>Enter Password </Typography>
                 <TextField
-                    sx={{ color: '#03045E', input: { color: '#E5E7EB', }  }}
-                    label='Enter Pin'
+                    sx={{ color: '#03045E',borderRadius:'8px',background:'grey', input: { color: '#E5E7EB', }  }}
+                    label='Enter Password'
                     type='password'
                     value={cpin}
                     onChange={(p) => {
