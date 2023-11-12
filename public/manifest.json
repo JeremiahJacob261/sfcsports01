@@ -1,17 +1,28 @@
-   {
-       "theme_color": "#1fd4c0",
-       "background_color": "#259409",
-       "display": "standalone",
-       "scope": "/",
-       "start_url": "/",
-       "name": "SFCSPORTS01",
-       "short_name": "SFC",
-       "description": "SFCSPORTS01 INVESTMENT BET",
-       "icons": [
-        {
-            "src": "/Sheffield_FC.svg.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }]
-
-         }
+{
+  "theme_color": "#ff3842",
+  "background_color": "#7e1616",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "icon512_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-GB",
+  "name": "SFCSPORTS01",
+  "short_name": "SFC",
+  "start_url": "https://www.sfcsports01.com/dashboard",
+  "scope": "https://www.sfcsports01.com/",
+  "description": "SFCSPORTS01 INVESTMENT BET",
+  "id": "https://www.sfcsports01.com/dashboard"
+}
