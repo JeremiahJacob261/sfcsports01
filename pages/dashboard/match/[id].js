@@ -1,5 +1,5 @@
 import { Typography, Stack, Divider, Button, Paper, TextField } from "@mui/material"
-import { supabase } from "../../api/supabase"
+import { supabase } from "@/pages/api/supabase"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useContext } from "react";
@@ -14,15 +14,11 @@ import MuiAlert from '@mui/material/Alert';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import Cover from '../cover'
 import { Drawer } from '@mui/material'
-import { app } from '../../api/firebase';
 import Image from 'next/image'
-import Ims from '../../../public/simps/ball.png'
-import Depx from '../../../public/depx.png'
-import Bal from '../../../public/bball.png'
-import { onAuthStateChanged } from "firebase/auth";
-import { getAuth, signOut } from "firebase/auth";
+import Ims from '@/public/ball.png'
+import Depx from '@/public/depx.png'
+import Bal from '@/public/bball.png'
 export default function Match({ matchDat }) {
     //backdrop
     const [drop, setDrop] = useState(false)
@@ -43,7 +39,6 @@ export default function Match({ matchDat }) {
     const [balance,setBalance] = useState(0);
     const [refCount, setRefCount] = useState(0);
     const [viplevel, setViplevel] = useState(1);
-    const auth = getAuth(app);
     const Reads = async (dtype, damount) => {
         const { data, error } = await supabase
             .rpc(dtype, { amount: damount })
@@ -185,7 +180,6 @@ const { data, error } = await supabase
 
     //main ui
     return (
-        <Cover>
         <Stack style={{ width: "100%", minHeight: '100vh', background: '#E5E7EB' }} alignItems="center">
             <Draws />
             <Backdrop
@@ -403,7 +397,6 @@ const { data, error } = await supabase
                 </Stack>
             </Stack>
         </Stack>
-      </Cover>
     );
     function Draws() {
         const [stake,setStake] = useState(0);
@@ -421,7 +414,6 @@ const { data, error } = await supabase
                 }}
             >
                 
-                <Cover>
                 <Stack direction='column' spacing={2} style={{ background: '#E5E7EB', padding: '8px', minHeight: '100vh',paddingBottom:'12px' }}>
                     <Stack direction='row' sx={{ padding: '5px' }}>
                         <KeyboardArrowLeftOutlinedIcon onClick={()=>{
@@ -556,7 +548,6 @@ const { data, error } = await supabase
                             Place Bet
                         </Button>
                 </Stack>
-                </Cover>
             </Drawer>
         )
     }
