@@ -11,6 +11,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
+import Link from 'next/link';
 export default function Home({ footDat,usernam}) {
   const [addresst, setAddress] = useState('');
   const [amount, setAmount] = useState(0);
@@ -155,7 +156,8 @@ export default function Home({ footDat,usernam}) {
       {
         footDat.map((data)=>{ 
           return(
-          <Stack direction="column" sx={{ minWidth:'87vw',maxWidth:'310px'}} className='rowsofdata' justifyContent='center' spacing={1} key={data.match_id}>
+          <Link href={`/dashboard/match/${data.id}`} key={data.match_id}>
+            <Stack direction="column" sx={{ minWidth:'87vw',maxWidth:'310px'}} className='rowsofdata' justifyContent='center' spacing={1}>
         <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
         <Stack direction="row" alignItems='center'> 
   
@@ -172,6 +174,7 @@ export default function Home({ footDat,usernam}) {
         </Stack>
         <Stack direction="row"></Stack>
           </Stack>
+            </Link>
           )
          })
       }

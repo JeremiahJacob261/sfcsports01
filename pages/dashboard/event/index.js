@@ -16,7 +16,8 @@ export default function Event({ footDat}) {
         {
           footDat.map((data)=>{ 
             return(
-            <Stack direction="column" sx={{ minWidth:'90vw',maxWidth:'310px'}} className='rowsofdata' justifyContent='center' spacing={1} key={data.match_id}>
+              <Link href={`/dashboard/match/${data.id}`} key={data.match_id}>
+            <Stack direction="column" sx={{ minWidth:'90vw',maxWidth:'310px'}} className='rowsofdata' justifyContent='center' spacing={1} >
           <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
           <Stack direction="row" alignItems='center'> 
     
@@ -33,6 +34,7 @@ export default function Event({ footDat}) {
           </Stack>
           <Stack direction="row"></Stack>
             </Stack>
+            </Link>
             )
            })
         }
