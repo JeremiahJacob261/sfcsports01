@@ -1,0 +1,17 @@
+   {
+       "theme_color": "#1fd4c0",
+       "background_color": "#259409",
+       "display": "standalone",
+       "scope": "/",
+       "start_url": "/",
+       "name": "SFCSPORTS01",
+       "short_name": "SFC",
+       "description": "SFCSPORTS01 INVESTMENT BET",
+       "icons": [
+        {
+            "src": "/Sheffield_FC.svg.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }]
+
+         }
