@@ -27,14 +27,14 @@ export default function Account() {
             const { data: place, error: perr } = await supabase
         .from('placed')
         .select()
-        .eq('username', localStorage.getItem(signNames))
+        .eq('username', localStorage.getItem('signNames'))
         .limit(10)
         .order('id', { ascending: false });
         setPlaced(place);
         const { data,error} = await supabase
         .from('users')
         .select('*')
-        .eq('username', localStorage.getItem(signNames))
+        .eq('username', localStorage.getItem('signNames'))
         }
         GET();
       },[])
