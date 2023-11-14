@@ -24,19 +24,26 @@ export default function Account() {
             router.push('/login')
         }
         const GET = async () => { 
-            const { data: place, error: perr } = await supabase
-        .from('placed')
-        .select()
-        .eq('username', localStorage.getItem('signNames'))
-        .limit(10)
-        .order('id', { ascending: false });
-        setPlaced(place);
+            console.log('hello world')
+           
         const { data,error} = await supabase
         .from('users')
         .select('*')
         .eq('username', localStorage.getItem('signNames'))
+        setUser(data[0])
+        console.log(data)
         }
         GET();
+        const Plc = async ()=> {
+            const { data: place, error: perr } = await supabase
+            .from('placed')
+            .select()
+            .eq('username', localStorage.getItem('signNames'))
+            .limit(10)
+            .order('id', { ascending: false });
+            setPlaced(place);
+        }
+        Plc();
       },[])
     //vip logics
     const [rprogress, setRProgress] = useState(0);
@@ -100,12 +107,12 @@ export default function Account() {
                                 'firstd': true
                             });
                         setRefCount(count)
-                        setViplevel((info.totald < 50 || count < 3) ? '1' : (info.totald < 100 || count < 5) ? '2' : (info.totald < 200 || count < 8) ? '3' : (info.totald < 300 || count < 12) ? '4' : (info.totald < 500 || count < 15) ? '5' : (info.totald < 1000 || count < 20) ? '6' : '7');
-                        let vipl = (info.totald < 50 || count < 3) ? '1' : (info.totald < 100 || count < 5) ? '2' : (info.totald < 200 || count < 8) ? '3' : (info.totald < 300 || count < 12) ? '4' : (info.totald < 500 || count < 15) ? '5' : (info.totald < 1000 || count < 20) ? '6' : '7';
-                        setRProgress((parseInt(info.totald) / parseInt(viplimit[vipl])) * 100);
+                        setViplevel((users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7');
+                        let vipl = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+                        setRProgress((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100);
                         setCProgress((parseInt(count) / parseInt(vipclimit[vipl])) * 100);
                         setC1((Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)));
-                        setR1((Number(((parseInt(info.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(info.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)));
+                        setR1((Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)));
                         console.log(rprogress, cprogress, refCount, viplevel)
                     } catch (e) {
                         console.log(e)
@@ -118,7 +125,7 @@ export default function Account() {
 
         }
         GET();
-
+console.log(users.totald)
 
     }, [rprogress, cprogress, refCount, viplevel])
     //end of vip logics
@@ -253,7 +260,7 @@ export default function Account() {
                             whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
                         >
                             <Icon icon="solar:copy-bold-duotone" width={24} height={24} onClick={() => {
-                                navigator.clipboard.writeText('TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z');
+                                navigator.clipboard.writeText('https://sfcsports01.com/register/' + users.newrefer);
                                 toast.success('Referral link copied to clipboard');
                             }} />
                         </motion.div>
@@ -414,7 +421,40 @@ export default function Account() {
         )
     }
     //end of socials
+    //start of exit
+    function Exit() {
+        return (
+            <Stack style={{ width: '100%' }} justifyContent='start' alignItems='center'>
+                <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
+                    <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
+                        <Icon icon="mdi:security" width={24} height={24} style={{ color: 'white' }} />
+                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Exit</p>
+                    </Stack>
+                    <Divider sx={{ background: 'white', color: 'white' }} />
+                </Stack>
+                <Stack className='accountinfo'>
+                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }} onClick={()=>{
+                            const { data,error } = supabase.auth.signOut();
+                            localStorage.clear();
+                            console.log('sign out')
+                            router.push('/login')
+                        }}>
+                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1} onClick={()=>{
+                            const { data,error } = supabase.auth.signOut();
+                            localStorage.clear();
+                            console.log('sign out')
+                            router.push('/login')
+                        }}>
+                            <Icon icon="solar:exit-bold-duotone" style={{ color: 'white' }} />
+                            <p>LOG OUT</p></Stack>
+                        <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
+                    </Stack>
+                </Stack>
+            </Stack>
 
+        )
+    }
+    //end of exit
     const router = useRouter();
     return (
         <div className='backgrounds'>
@@ -445,7 +485,7 @@ export default function Account() {
             <Stack direction='column' alignItems='center'>
                 <Stack className='accountinfo' direction='row' alignItems='center' spacing={2} style={{ padding: '8px' }}>
                     <div className='avatar'>
-                        <Image src={users.profile ?? Avatar} alt="profile_pic" width={55} height={50} />
+                        <Image src={users.profile ?? Avatar} alt="profile_pic" width={60} height={60} style={{ borderRadius:"10px"}}/>
                     </div>
                     {/* textedUserInfo */}
                     <Stack justifyContent='center' className='acctext'>
@@ -463,6 +503,7 @@ export default function Account() {
                 <Bets />
                 <Security />
                 <Social />
+                <Exit />
             </Stack>
             <HomeBottom />
         </div>

@@ -7,6 +7,7 @@ import { supabase } from '../api/supabase';
 import { useRouter } from 'next/router';
 import Logo from "@/public/Sheffield_FC.svg.png";
 import Head from 'next/head';
+import Ball from '@/public/ball.png';
 import Image from 'next/image'
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
@@ -164,8 +165,8 @@ export default function Home() {
         <Stack direction="row" alignItems='center'> 
   
         <Stack direction='column' sx={{ width:'50%'}} spacing={1}>
-          <Stack direction='row' spacing={1}><Image src={data.ihome} alt='home' width={20} height={20}/><p>{data.home}</p></Stack>
-          <Stack direction='row' spacing={1}><Image src={data.iaway} alt="away" width={20} height={20}/><p>{data.away}</p></Stack>
+          <Stack direction='row' spacing={1}><Image src={data.ihome ?? Ball} alt='home' width={20} height={20}/><p>{data.home}</p></Stack>
+          <Stack direction='row' spacing={1}><Image src={data.iaway ?? Ball} alt="away" width={20} height={20}/><p>{data.away}</p></Stack>
         </Stack>
   
         <Stack direction="row" sx={{ width:'50%',height:'100%'}} spacing={2} alignItems='center' justifyContent='center'>

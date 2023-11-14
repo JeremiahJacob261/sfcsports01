@@ -7,14 +7,14 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 export default function Referral() { 
     const router =useRouter();
-    const [refer,setRefer] = useState([]);
+    const [refers,setRefer] = useState([]);
     const [selected, setSelected] = useState(0);
     const [user,setUser] = useState({});
     useEffect(()=>{ 
         if(!localStorage.getItem('signedIns')){
             router.push('/login')
         }
-        setUser(JSON.parse(localStorage.getItem('userinfo')));
+        setUser(localStorage.getItem('userinfo'));
      },[])
     const betSelectLogic = (index) => {
         setSelected(index);
@@ -49,7 +49,7 @@ export default function Referral() {
             </Stack>
             <Stack direction='column' alignItems='center' sx={{minHeight:'90vh',padding:'12px'}} spacing={2}>
             {
-        refer.map((t)=>{
+        refers.map((t)=>{
           let date = new Date(t.crdate);
           let dates = date.getDate() + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear()
           let month = months[date.getMonth()];
@@ -63,8 +63,8 @@ export default function Referral() {
  <Typography style={{ color:'black',fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: '500' }}>{t.username}
                    </Typography> 
                    <Typography sx={{color:'#808080'}}>•</Typography>
-                   <Typography style={{ color:(refers === t.refer) ? '#793D20' : (refers === t.lvla) ? '#5E6172' : '#BE6D07',fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '300' }}>
-                    {(refers === t.refer) ? 'Level 1' : (refers === t.lvla) ? 'Level 2' : 'Level 3'}
+                   <Typography style={{ color:(user.newrefer === t.refer) ? '#793D20' : (user.newrefer === t.lvla) ? '#5E6172' : '#BE6D07',fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '300' }}>
+                    {(user.newrefer === t.refer) ? 'Level 1' : (user.newrefer === t.lvla) ? 'Level 2' : 'Level 3'}
                    </Typography>
                     </Stack>
                    <Typography style={{ color:'black',fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>

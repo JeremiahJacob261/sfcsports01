@@ -4,6 +4,7 @@ import { Box, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
 import { useState, useRef } from 'react';
+import Avatar from '@/public/avatar.png';
 import Modal from '@mui/material/Modal';
 import Image from "next/image";
 import { supabase } from '@/pages/api/supabase';
@@ -94,7 +95,7 @@ const uploadImage = async (fil) => {
       >
         <Box sx={style}>
         <Stack direction='column' justifyContent='center' alignItems='center' spacing={2}>
-        <Image src={image} width={100} height={100} alt="image_profile"/>
+        <Image src={image ?? Avatar} width={100} height={100} alt="image_profile" style={{ borderRadius:"10px"}} />
         <p style={{ fontSize:'24px',fontFamily:"Poppins,sans-serif",color:'#ac915fd2'}}>{name}</p>
         <motion.p 
                 whileTap={{ background: '#573b41', scale: '1.05' }}
