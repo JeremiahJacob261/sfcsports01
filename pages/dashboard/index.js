@@ -66,6 +66,7 @@ export default function Home() {
     const checkAuth = async () => {
       const signedIn = localStorage.getItem('signedIns');
       const uid = localStorage.getItem('signUids');
+      setUser(localStorage.getItem('signNames'))
       if (signedIn) {
         setAuthed(true)
         const getUser = async () => {
@@ -100,7 +101,7 @@ export default function Home() {
             </div>
             <Stack>
               <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning!</p>
-              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{usernam ? usernam : 'Loading name ...'}</p>
+              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user : 'Loading name ...'}</p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>

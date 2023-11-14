@@ -156,7 +156,7 @@ const { error } = await supabase
             const { data:users,error:uerr} = await supabase
             .from('users')
             .select('*')
-            .eq('uid',user.id)
+            .eq('username',user.user_metadata.displayName)
             let usersinfo = users[0];
             localStorage.setItem('userinfo', usersinfo);
             Alerts('You are logged in',true);
