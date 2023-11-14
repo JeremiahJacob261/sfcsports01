@@ -1,15 +1,22 @@
 import { Icon } from '@iconify/react';
 import { Stack, TextField, Button,Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/pages/api/supabase';
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded';
-export default function CodeSetting({use}) {
+export default function CodeSetting() {
     const router = useRouter();
     const [pi,setPi] = useState('') ;
     const [pin, setPin] = useState('');
     const [cpin, setCPin] = useState('');
+    const [ use,setUse] = useState('')
+    useEffect(()=>{ 
+        if(!localStorage.getItem('signedIns')){
+            router.push('/login')
+        }
+        setUse(localStorage.getItem('signNames'))
+     },[])
     const testRoute = async ()=>{
         console.log(use)
         let test = await fetch('/api/pinset', {
@@ -109,38 +116,4 @@ testRoute();
             
         </div >
     )
-}
-export async function getServerSideProps({ req }) {
-    const refreshToken = req.cookies['my-refresh-token']
-    const accessToken = req.cookies['my-access-token']
-    console.log(accessToken)
-    if (refreshToken && accessToken) {
-        console.log('sign insss')
-        let sess = await supabase.auth.setSession({
-            refresh_token: refreshToken,
-            access_token: accessToken,
-        })
-        console.log(sess)
-    } else {
-        // make sure you handle this case!
-        throw new Error('User is not authenticated.')
-    }
-    // returns user information
-
-
-    try {
-        let { data: user, error: err } = await supabase.auth.getUser()
-        console.log(user.user.user_metadata)
-       let use = user.user.user_metadata.displayName;
-        return {
-            props: { use }, // will be passed to the page component as props
-        }
-    } catch (error) {
-        console.log(error)
-        let use = {};
-        return {
-            props: { use }, // will be passed to the page component as props
-        }
-    }
-
 }

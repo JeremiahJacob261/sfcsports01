@@ -10,21 +10,31 @@ import { useState } from 'react';
 import { motion } from 'framer-motion'
 import { useEffect } from 'react';
 import Link from 'next/link';
-export default function Withdraw({ users }) {
-    console.log(users)
+export default function Withdraw() {
     const router = useRouter();
     const [wallet, setWallet] = useState('');
+    const [users, setUsers] = useState([]);
     const [password, setPassword] = useState('');
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
     const [method, setMethod] = useState(1);
+    useEffect(() => { 
+        const getRef = async () => { 
+            const { data, error } = await supabase
+            .from('wallets')
+            .select('*')
+            .eq('username', localStorage.getItem('signNames'))
+            setUsers(data[0]);
+        }
+        getRef();
+    }, [users])
     const testRoute = async () => {
         let test = await fetch('/api/withdraw', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: amount })
+            body: JSON.stringify({ name: users.username, pass: password, wallet: wallet, amount: amount })
         }).then(data => {
             return data.json();
         })
@@ -185,43 +195,4 @@ export default function Withdraw({ users }) {
             </Stack>
         </div>
     )
-}
-export async function getServerSideProps({ req }) {
-    const refreshToken = req.cookies['my-refresh-token']
-    const accessToken = req.cookies['my-access-token']
-    console.log(accessToken)
-    if (refreshToken && accessToken) {
-        console.log('sign insss')
-        let sess = await supabase.auth.setSession({
-            refresh_token: refreshToken,
-            access_token: accessToken,
-        })
-        console.log(sess)
-    } else {
-        // make sure you handle this case!
-        throw new Error('User is not authenticated.')
-    }
-    // returns user information
-
-
-    try {
-        let { data: user, error: err } = await supabase.auth.getUser()
-        console.log(user.user.user_metadata)
-        const { data, error } = await supabase
-            .from('wallets')
-            .select('*')
-            .eq('username', user.user.user_metadata.displayName)
-        let users = data;
-        console.log(users)
-        return {
-            props: { users }, // will be passed to the page component as props
-        }
-    } catch (error) {
-        console.log(error)
-        let users = {};
-        return {
-            props: { users }, // will be passed to the page component as props
-        }
-    }
-
 }

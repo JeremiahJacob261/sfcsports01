@@ -1,0 +1,32 @@
+import { NextResponse } from 'next/server'
+ import { supabase } from './pages/api/supabase'
+// This function can be marked `async` if using `await` inside
+export async function middleware(request) {
+    let req = request;
+    const refreshToken = req.cookies['my-refresh-token']
+    const accessToken = req.cookies['my-access-token']
+    try{
+    if (refreshToken && accessToken) {
+        console.log('sign insss')
+       await supabase.auth.setSession({
+        refresh_token: refreshToken,
+        access_token: accessToken,
+      })
+    } else {
+      // make sure you handle this case!
+      console.log('not logged in')
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+    }catch(e){
+      console.log(e)
+    
+    }
+
+    // if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    //   }
+}
+ 
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: '/dashboard/:path*',
+}

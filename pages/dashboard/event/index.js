@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import HomeBottom from '../../UIComponents/bottomNav';
 import Link from 'next/link'
 import { motion } from 'framer-motion';
+import ball from '../../../public/ball.png'
 import Image from 'next/image'
 import { supabase } from '../../api/supabase';
 export default function Event({ footDat}) {
@@ -24,8 +25,8 @@ export default function Event({ footDat}) {
           <Stack direction="row" alignItems='center'> 
     
           <Stack direction='column' sx={{ width:'50%'}} spacing={1}>
-            <Stack direction='row' spacing={1}><Image src={data.ihome} alt='home' width={20} height={20}/><p style={{ color:'white'}} >{data.home}</p></Stack>
-            <Stack direction='row' spacing={1}><Image src={data.iaway} alt="away" width={20} height={20}/><p style={{ color:'white'}}>{data.away}</p></Stack>
+            <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20}/><p style={{ color:'white'}} >{data.home}</p></Stack>
+            <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20}/><p style={{ color:'white'}}>{data.away}</p></Stack>
           </Stack>
     
           <Stack direction="row" sx={{ width:'50%',height:'100%'}} spacing={2} alignItems='center' justifyContent='center'>

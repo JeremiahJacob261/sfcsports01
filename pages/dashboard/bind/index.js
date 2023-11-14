@@ -11,8 +11,11 @@ import { Divider } from '@mui/material';
 import Image from 'next/image'
 import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
-export default function BindWallet({name,users}) {
+import { useEffect } from 'react';
+export default function BindWallet() {
     const router = useRouter();
+    const [users,setUsers] = useState([])
+    const [name,setName] = useState('')
     const [address , setAddress] = useState('')
     const [password , setPassword] = useState('')
     const [confirmPassword , setConfirmPassword] = useState('');
@@ -58,6 +61,17 @@ export default function BindWallet({name,users}) {
           testRoute();
         }
     }
+    useEffect(()=>{ 
+      const check = async () => { 
+        const { data,error } = await supabase
+      .from('wallet')
+      .select('*')
+      .eq('username', localStorage.getItem('signNames'))
+      setUsers(data[0])
+      }
+      check()
+      setName(localStorage.getItem('signNames'))
+    },[])
     return(
         <div className="backgrounds" style={{ minHeight:'99vh',width:'100%'}}>
             <Alerteds />
@@ -88,7 +102,7 @@ export default function BindWallet({name,users}) {
                         <p style={{ fontSize:'12px',color:'#FFFFFF' }}>{created_at}</p>
                         </Stack>
                        <Icon icon="akar-icons:edit" width={24} height={24} onClick={()=>{
-                          router.push('/dashboard/bind/edit')}}/>
+                          router.push('/dashboard/bind')}}/>
                       </Stack>
                     )
                   })
@@ -173,45 +187,4 @@ export default function BindWallet({name,users}) {
        
         )
     }
-}
-export async function getServerSideProps({ req }) {
-  const refreshToken = req.cookies['my-refresh-token']
-  const accessToken = req.cookies['my-access-token']
-  console.log(accessToken)
-  if (refreshToken && accessToken) {
-      console.log('sign insss')
-      let sess = await supabase.auth.setSession({
-          refresh_token: refreshToken,
-          access_token: accessToken,
-      })
-      console.log(sess)
-  } else {
-      // make sure you handle this case!
-      throw new Error('User is not authenticated.')
-  }
-  // returns user information
-
-
-  try {
-      let { data: user, error: err } = await supabase.auth.getUser()
-      console.log(user.user.user_metadata)
-    let name = user.user.user_metadata.displayName;
-
-    const { data, error } = await supabase
-            .from('wallets')
-            .select('*')
-            .eq('username', name)
-        let users = data;
-      return {
-          props: { name,users }, // will be passed to the page component as props
-      }
-  } catch (error) {
-      console.log(error)
-      let name = null;
-      let users = [];
-      return {
-          props: { name,users }, // will be passed to the page component as props
-      }
-  }
-
 }

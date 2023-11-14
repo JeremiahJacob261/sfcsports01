@@ -12,13 +12,14 @@ import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
-export default function Home({ footDat,usernam}) {
+export default function Home() {
   const [addresst, setAddress] = useState('');
   const [amount, setAmount] = useState(0);
   const [reciept, setReciept] = useState('');
   const [balance, setBalance] = useState(0);
   const [authed, setAuthed] = useState(false);
   const [user, setUser] = useState(null);
+  const [footDat, setFootDat] = useState([]);
   const router = useRouter();
   // const sendTRX = async () => {
   //   console.log('started ...');
@@ -70,11 +71,11 @@ export default function Home({ footDat,usernam}) {
         const getUser = async () => {
           try {
             const { data, error } = await supabase
-              .from('users')
-              .select('*')
-              .eq('userId', uid)
-            setUser(data[0]);
-            console.log(data[0])
+            .from('bets')
+            .select()
+            .limit(10)
+            .order('id', { ascending: false });
+            setFootDat(data);
           } catch (error) {
             console.log(error)
           }
@@ -230,50 +231,4 @@ export default function Home({ footDat,usernam}) {
       <HomeBottom />
     </Stack>
   )
-}
-export async function getServerSideProps({req}) {
-  const refreshToken = req.cookies['my-refresh-token']
-const accessToken = req.cookies['my-access-token']
-try{
-if (refreshToken && accessToken) {
-    console.log('sign insss')
-   await supabase.auth.setSession({
-    refresh_token: refreshToken,
-    access_token: accessToken,
-  })
-} else {
-  // make sure you handle this case!
-  throw new Error('User is not authenticated.');
-  console.log('not logged in')
-}
-}catch(e){
-  console.log(e)
-
-}
-
-
-// returns user information
-let {data:user ,error} = await supabase.auth.getUser()
-    
-    console.log(error)
-   
-  try{
-const { data, error } = await supabase
-    .from('bets')
-    .select()
-    .limit(10)
-    .order('id', { ascending: false });
-  let footDat = data;
-  let usernam = user.user.user_metadata.displayName;
-  return {
-    props: { footDat,usernam }, // will be passed to the page component as props
-  }
-  }catch(e){
-    console.log(e);
-    let err = [];
-    return {
-      props: { err }, // will be passed to the page component as props
-    }
-  }
-  
 }

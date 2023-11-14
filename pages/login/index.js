@@ -72,6 +72,8 @@ export default function Login() {
               .select()
               .eq('username', user.user_metadata.displayName);
             localStorage.setItem('signRef', data[0].newrefer);
+            
+            localStorage.setItem('userinfo', data[0]);
             console.log(data);
           } catch (e) {
 
@@ -151,6 +153,12 @@ const { error } = await supabase
           } else {
             // User successfully signed in
             let user = data.user;
+            const { data:users,error:uerr} = await supabase
+            .from('users')
+            .select('*')
+            .eq('uid',user.id)
+            let usersinfo = users[0];
+            localStorage.setItem('userinfo', usersinfo);
             Alerts('You are logged in',true);
             console.log(user)
             // localStorage.setItem('signRef', data[0].newrefer);

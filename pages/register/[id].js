@@ -107,6 +107,8 @@ export default function Register({ refer }) {
               .select()
               .eq('username', user.user_metadata.displayName);
             localStorage.setItem('signRef', data[0].newrefer);
+            let usersinfo = data[0];
+            localStorage.setItem('userinfo', usersinfo);
             console.log(data);
           } catch (e) {
 
@@ -114,6 +116,12 @@ export default function Register({ refer }) {
 
         }
         GET();
+        const { data:users,error:uerr} = await supabase
+        .from('users')
+        .select('*')
+        .eq('uid',user.id)
+        let usersinfo = users[0];
+        localStorage.setItem('userinfo', usersinfo);
         localStorage.setItem('signedIns', true);
         localStorage.setItem('signUids', user.id);
         localStorage.setItem('signNames', user.user_metadata.displayName);
