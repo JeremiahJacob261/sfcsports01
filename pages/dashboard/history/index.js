@@ -2,6 +2,7 @@ import { Stack } from '@mui/material';
 import HomeBottom from '../../UIComponents/bottomNav';
 import { useRouter } from 'next/router';
 import { Icon, InlineIcon } from '@iconify/react';
+import HistoryDx from '@/pages/UIComponents/dialogs/historydx.js'
 export default function History() {
     const router = useRouter();
     return (
@@ -22,7 +23,7 @@ export default function History() {
                     <p style={{ color:'white'}}>Time</p>
                     </Stack>
                    <Stack justifyContent='center' alignItems="center">
-                        <Icon icon="fa6-solid:expand" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
+                       <HistoryDx/>
                 
                    </Stack>
                 </Stack>
