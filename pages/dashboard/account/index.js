@@ -30,7 +30,7 @@ export default function Account() {
         .from('users')
         .select('*')
         .eq('username', localStorage.getItem('signNames'))
-        setUser(data[0])
+        setUser(data[0] ?? localStorage.getItem('userinfo'))
         console.log(data)
         }
         GET();
