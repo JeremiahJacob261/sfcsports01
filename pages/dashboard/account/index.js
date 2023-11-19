@@ -17,34 +17,34 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 export default function Account() {
-    const [ users,setUser] = useState({});
-    const [placed,setPlaced] = useState([]);
-     useEffect(()=>{ 
-        if(!localStorage.getItem('signedIns')){
+    const [users, setUser] = useState({});
+    const [placed, setPlaced] = useState([]);
+    useEffect(() => {
+        if (!localStorage.getItem('signedIns')) {
             router.push('/login')
         }
-        const GET = async () => { 
+        const GET = async () => {
             console.log('hello world')
-           
-        const { data,error} = await supabase
-        .from('users')
-        .select('*')
-        .eq('username', localStorage.getItem('signNames'))
-        setUser(data[0] ?? localStorage.getItem('userinfo'))
-        console.log(data)
+
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('username', localStorage.getItem('signNames'))
+            setUser(data[0] ?? localStorage.getItem('userinfo'))
+            console.log(data)
         }
         GET();
-        const Plc = async ()=> {
+        const Plc = async () => {
             const { data: place, error: perr } = await supabase
-            .from('placed')
-            .select()
-            .eq('username', localStorage.getItem('signNames'))
-            .limit(10)
-            .order('id', { ascending: false });
+                .from('placed')
+                .select()
+                .eq('username', localStorage.getItem('signNames'))
+                .limit(10)
+                .order('id', { ascending: false });
             setPlaced(place);
         }
         Plc();
-      },[])
+    }, [])
     //vip logics
     const [rprogress, setRProgress] = useState(0);
     const [cprogress, setCProgress] = useState(0);
@@ -125,7 +125,7 @@ export default function Account() {
 
         }
         GET();
-console.log(users.totald)
+        console.log(users.totald)
 
     }, [rprogress, cprogress, refCount, viplevel])
     //end of vip logics
@@ -395,10 +395,11 @@ console.log(users.totald)
                     </Stack>
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
-                        onClick={() => {
-                            alert('Contact Customer Care')
-                        }}>
-                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+                       onClick={() => {
+                        router.push('/dashboard/promotion')
+                    }}>
+                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}
+                            >
                             <Icon icon="icons8:advertising" style={{ color: 'white' }} />
                             <p>Promotions</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
@@ -433,14 +434,14 @@ console.log(users.totald)
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
                 <Stack className='accountinfo'>
-                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }} onClick={()=>{
-                            const { data,error } = supabase.auth.signOut();
-                            localStorage.clear();
-                            console.log('sign out')
-                            router.push('/login')
-                        }}>
-                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1} onClick={()=>{
-                            const { data,error } = supabase.auth.signOut();
+                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }} onClick={() => {
+                        const { data, error } = supabase.auth.signOut();
+                        localStorage.clear();
+                        console.log('sign out')
+                        router.push('/login')
+                    }}>
+                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1} onClick={() => {
+                            const { data, error } = supabase.auth.signOut();
                             localStorage.clear();
                             console.log('sign out')
                             router.push('/login')
@@ -485,7 +486,7 @@ console.log(users.totald)
             <Stack direction='column' alignItems='center'>
                 <Stack className='accountinfo' direction='row' alignItems='center' spacing={2} style={{ padding: '8px' }}>
                     <div className='avatar'>
-                        <Image src={users.profile ?? Avatar} alt="profile_pic" width={60} height={60} style={{ borderRadius:"10px"}}/>
+                        <Image src={users.profile ?? Avatar} alt="profile_pic" width={60} height={60} style={{ borderRadius: "10px" }} />
                     </div>
                     {/* textedUserInfo */}
                     <Stack justifyContent='center' className='acctext'>
