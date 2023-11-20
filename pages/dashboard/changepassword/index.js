@@ -38,13 +38,19 @@ export default function ChangePassword() {
             alert('Please login again');
             router.push('/login');
      }else{
-        let { data, error } = await supabase.auth.update({ email: email, password: password })
-        if(error){
+        let { data:user, error:uerr } = await supabase.auth.update({ email: email, password: password })
+        if(uerr){
             alert('Something went wrong');
             return;
         }else{
             alert('Password changed successfully');
-            router.push('/dashboard/account');
+            let userx = supabase.auth.user();
+        let emailx = userx.email;
+           const { data, error } = await supabase
+           .from('users')
+           .update({ password: password })
+           .eq('email', email)
+           router.push('/dashboard/account');
         }
      }
     }
