@@ -10,7 +10,17 @@ export default function ChangePassword() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [oldpassword, setOldPassword] = useState('');
     const [ confirmOldPassword, setConfirmOldPassword] = useState('');
-
+    useEffect(() => { 
+        try{
+            const get = async () => { 
+                 const { data: { user } } = await supabase.auth.getUser()
+            console.log(user);
+            }
+           get();
+        }catch(err){
+            console.log(err);
+        }
+    }, []);
     //func for change pasword
     const ChangePasswordFunc = async ()=>{ 
         if(password === ''){
@@ -32,27 +42,32 @@ export default function ChangePassword() {
         alert('Old password does not match');
         return;
      }else{
-        let user = supabase.auth.user();
-        let email = user.email;
-        if(email === null){
-            alert('Please login again');
-            router.push('/login');
-     }else{
-        let { data:user, error:uerr } = await supabase.auth.update({ email: email, password: password })
-        if(uerr){
-            alert('Something went wrong');
-            return;
-        }else{
-            alert('Password changed successfully');
-            let userx = supabase.auth.user();
-        let emailx = userx.email;
-           const { data, error } = await supabase
-           .from('users')
-           .update({ password: password })
-           .eq('email', email)
-           router.push('/dashboard/account');
+        try{
+            const get = async () => { 
+                 
+           
+const { data, error } = await supabase.auth.updateUser({password: password})
+console.log(data);
+if(error){
+    alert(error.message);
+    if(error.message === 'New password should be different from the old password.'){
+        alert('New password should be different from the old password.');
+        return;
+    }else if(error.message === 'Password should be at least 6 characters.'){
+        alert('Password should be at least 6 characters.');
+        return;
+    
+    }
+}
+if(data.user){
+ alert('Password changed successfully');
+    }
+
+            }
+           get();
+        }catch(err){
+            console.log(err);
         }
-     }
     }
 }
     return(
