@@ -179,12 +179,24 @@ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(8.9px);
 -webkit-backdrop-filter: blur(8.9px);
 width:100vw;
-height:100vh;
+min-height:100vh;
+overflow-y: auto;
 }
 .cancelbrn{
   position: fixed;
   bottom: 5vh;
   left: 45%;
+  background: rgba(238, 183, 183, 0.22);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.9px);
+-webkit-backdrop-filter: blur(8.9px);
+border-radius: 25px;
+padding: 12px;
+}
+.cancelbrnmatch{
+  position: fixed;
+  top: 80vh;
+  left: 80%;
   background: rgba(238, 183, 183, 0.22);
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(8.9px);
