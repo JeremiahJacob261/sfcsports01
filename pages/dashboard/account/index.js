@@ -294,8 +294,14 @@ export default function Account() {
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
                 <Stack className='accountinfo'>
-                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
-                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }} 
+                    onClick={() => { 
+                        router.push('/dashboard/changepassword')
+                    }}
+                    >
+                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}   onClick={() => { 
+                        router.push('/dashboard/changepassword')
+                    }}>
                             <Icon icon="ic:baseline-password" style={{ color: 'white' }} />
                             <p>Change Password</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
