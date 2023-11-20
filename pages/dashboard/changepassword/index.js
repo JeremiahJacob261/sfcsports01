@@ -8,6 +8,7 @@ export default function ChangePassword() {
     const router = useRouter();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [users,setUser ] = useState({});
     const [oldpassword, setOldPassword] = useState('');
     const [ confirmOldPassword, setConfirmOldPassword] = useState('');
     useEffect(() => { 
@@ -15,6 +16,7 @@ export default function ChangePassword() {
             const get = async () => { 
                  const { data: { user } } = await supabase.auth.getUser()
             console.log(user);
+            setUser(user);
             }
            get();
         }catch(err){
@@ -44,8 +46,6 @@ export default function ChangePassword() {
      }else{
         try{
             const get = async () => { 
-                 
-           
 const { data, error } = await supabase.auth.updateUser({password: password})
 console.log(data);
 if(error){
@@ -61,6 +61,18 @@ if(error){
 }
 if(data.user){
  alert('Password changed successfully');
+ const updateOnSQL = async () => {
+    try{
+ const { data,error} = await supabase
+    .from('users')
+    .update({ 'password':password})
+    .eq('username',users.user_metadata.displayName)
+    }catch(e){
+        console.log(e)
+    }
+   
+ }
+ updateOnSQL();
     }
 
             }
