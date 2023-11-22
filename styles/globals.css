@@ -204,3 +204,20 @@ backdrop-filter: blur(8.9px);
 border-radius: 25px;
 padding: 12px;
 }
+.placerstyles{
+  min-width: none;
+  min-height: 300px;
+  background: rgb(27,3,0);
+background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
+background: -webkit-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
+background: linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
+padding:16px;
+}
+.figures{
+  padding:8px;
+  width: 50px;
+  text-align: center;
+  color:whitesmoke;
+  background-color: #ad1c39;
+  border-radius: 5px;
+}
