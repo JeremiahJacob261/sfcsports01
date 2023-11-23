@@ -19,6 +19,7 @@ export default function History() {
         }
         getNoti();
     },[]);
+    
     function NotiFunc() {
         if(noti && noti.length > 0){
             return(
@@ -30,7 +31,7 @@ export default function History() {
                             let month = date.getMonth() + 1;
                             let fullDay = day + '/' + month
                             return(
-                                <Stack className='bottomnav' direction='row' justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
                             <p className='ungradtext' style={{ fontSize: '16px' }}>{item.type ?? 'none'}</p>
                             <p style={{ color: 'white' }}>{item.amount ?? 0}</p>
