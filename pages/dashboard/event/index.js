@@ -13,8 +13,8 @@ import { Button, Drawer } from '@mui/material';
 import { useState } from 'react';
 export default function Event({ footDat }) {
   const [selected, setSelected] = React.useState(null);
-  const [parentopen, setParentOpen] = React.useState(false);
   const router = useRouter();
+  const [parentopen, setParentOpen] = useState(false);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -22,26 +22,33 @@ export default function Event({ footDat }) {
     right: false,
   });
  
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
 
-    setState({ ...state, [anchor]: open });
-  };
+  
   function Placer({txt}) {
-    const [amountInput,setAmountInput] = useState();
-
+   const [amountInput,setAmountInput] = useState('');
+  
     const click = (number) =>{
+      if(number === 'X'){
+        const newVal = amountInput.substring (0, amountInput.length - 1);
+        console.log(newVal)
+        setAmountInput(newVal);
+      }else{
+        
       setAmountInput(amountInput + number);
+      }
     }
+   
     return (
       <React.Fragment key={'bottom'} >
-        <p className='odds' onClick={() => { toggleDrawer('bottom', true) }}>{txt}</p>
+        <Button className='odds' onClick={() => {
+          setParentOpen(true) }}>
+<p>{txt}</p>
+        </Button>
+        
         <Drawer
           anchor={'bottom'}
-          open={state['bottom']}
-          onClose={toggleDrawer('bottom', false)}
+          open={parentopen}
+          onClose={() => {setParentOpen(false)}}
           style={{ backgroundColor: 'transparent' }}
         >
           <div
@@ -62,34 +69,32 @@ export default function Event({ footDat }) {
            <Stack direction="column" spacing={2}>
               {/* calculator sizes stack */}
               <Stack direction="row" spacing={1}>
-                <motion.p onClick={click('0')}  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">0</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">1</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">2</motion.p>
+                <motion.p onClick={()=>click('0')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">0</motion.p>
+                <motion.p onClick={()=>click('1')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">1</motion.p>
+                <motion.p onClick={()=>click('2')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">2</motion.p>
               </Stack>
 
               <Stack direction="row" spacing={1}>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">3</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">4</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">5</motion.p>
+                <motion.p onClick={()=>click('3')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">3</motion.p>
+                <motion.p onClick={()=>click('4')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">4</motion.p>
+                <motion.p onClick={()=>click('5')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">5</motion.p>
               </Stack>
 
               <Stack direction="row" spacing={1}>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">6</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">7</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">8</motion.p>
+                <motion.p onClick={()=>click('6')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">6</motion.p>
+                <motion.p onClick={()=>click('7')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">7</motion.p>
+                <motion.p onClick={()=>click('8')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">8</motion.p>
               </Stack>
 
               <Stack direction="row" spacing={1}>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">9</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">.</motion.p>
-                <motion.p  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">X</motion.p>
+                <motion.p onClick={()=>click('9')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">9</motion.p>
+                <motion.p onClick={()=>click('.')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">.</motion.p>
+                <motion.p onClick={()=>click('X')}  whileTap={{ backgroundColor: '#585656', scale: 0.9 }}  className="figures">X</motion.p>
               </Stack>
             </Stack>
             
             <Stack>
-             <TextField type="number" placeholder='amount' sx={{ background:'white'}} value={amountInput} onChange={(event)=>{
-              setAmountInput(event.target.value)
-             }}/>
+            <p style={{ color:'black',background:'whitesmoke',padding:'12px',minWidth:'50px',borderRadius:'5px'}}>{amountInput}</p>
             </Stack>
            </Stack>
 
