@@ -9,7 +9,12 @@ import { AnimatePresence } from 'framer-motion';
 import { Button } from '@mui/material';
 import React from 'react';
 export default function Matchs({ matchDat }) {
-    let data = matchDat[0];
+    const [matches, setMatches] = useState({});
+  useEffect(() => { 
+    matchDat.map((m) => {
+        setMatches(m)
+    })
+   }, [])
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -105,7 +110,7 @@ export default function Matchs({ matchDat }) {
         )
       }
     return (
-        <div classNmae="backgrounds">
+        <div className="backgrounds">
             <Stack>
                 <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                     <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { }} />
@@ -117,9 +122,9 @@ export default function Matchs({ matchDat }) {
                        <p>away</p>
                     </Stack>
                     <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-                        <Placer txt={data.onenil} />
-                        <Placer txt={data.nilnil} />
-                        <Placer txt={data.nilone} />
+                        <Placer txt={matches.onenil} />
+                        <Placer txt={matches.nilnil} />
+                        <Placer txt={matches.nilone} />
                     </Stack>
                 </Stack>
                 </Stack>

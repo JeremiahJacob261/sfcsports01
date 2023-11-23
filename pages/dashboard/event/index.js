@@ -11,7 +11,6 @@ import { supabase } from '../../api/supabase';
 import { useEffect } from 'react';
 import { Button, Drawer } from '@mui/material';
 import { useState } from 'react';
-import MatchDx from '../../UIComponents/dialogs/matchdx.js';
 export default function Event({ footDat }) {
   const [selected, setSelected] = React.useState(null);
   const [parentopen, setParentOpen] = React.useState(false);
@@ -165,7 +164,6 @@ export default function Event({ footDat }) {
         <MatchRow />
         <HomeBottom />
       </Stack>
-      <Placer />
     </div>
 
   )
