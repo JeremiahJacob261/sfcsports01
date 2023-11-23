@@ -103,14 +103,17 @@ padding: 12px;
   border-radius: 3px;
 }
 .odds{
-  background-color: #C61F41;
-  color: #f0e7e9;
-  padding:8px;
+ 
+  color:#e4264c;
+  background-color: whitesmoke;
+  padding:4px;
   font-family:var(--font-lilpops);
   font-size: 12px;
+  border-radius: 5px;
   font-weight: 200;
   text-align: center;
-  width: 41px;
+  width: 70px;
+  display: inline;
   height:34px;
 }
 .betTab{
@@ -212,12 +215,28 @@ background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%)
 background: -webkit-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
 background: linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
 padding:16px;
+font-family:var(--font-lilpops);
 }
 .figures{
-  padding:8px;
-  width: 50px;
+  padding:12px;
+  min-width: 50px;
   text-align: center;
   color:whitesmoke;
   background-color: #ad1c39;
   border-radius: 5px;
+  font-family:var(--font-lilpops);
+}
+.countdown-container{
+  width:100vw;
+  padding:4px;
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+  color: #c2a4a4;
+}
+.homecol, .awaycol, .drawcol{
+  background-color: #ad1c39;
+  padding: 8px;
+  border-radius: 12px;
+  width: 100%;
 }

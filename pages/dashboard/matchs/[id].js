@@ -1,21 +1,17 @@
-import React from 'react'
-import { Icon } from '@iconify/react';
-import { Stack, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
-import HomeBottom from '../../UIComponents/bottomNav';
-import Link from 'next/link'
-import { useRef } from 'react'
+import { supabase } from '@/pages/api/supabase';
+import { Icon } from '@iconify/react';
+import { Stack } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import ball from '../../../public/ball.png'
-import Image from 'next/image'
-import { supabase } from '../../api/supabase';
-import { useEffect } from 'react';
-import { Button, Drawer } from '@mui/material';
-import { useState } from 'react';
-export default function Event({ footDat }) {
-  const [selected, setSelected] = React.useState(null);
-  const router = useRouter();
+import { Drawer, TextField } from '@mui/material';
+import { AnimatePresence } from 'framer-motion';
+import { Button } from '@mui/material';
+import React from 'react';
+export default function Matchs({ matchDat }) {
+  const [matches, setMatches] = useState(matchDat[0]);
   const [user, setUser] = useState({});
+  console.log(matches)
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem('signedIns')) {
@@ -97,8 +93,10 @@ export default function Event({ footDat }) {
 
   function Placer({ txt, data, pick }) {
     const [amountInput, setAmountInput] = useState('');
+    console.log(txt)
     let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
+    console.log((parseFloat(parseFloat(amountInput).toFixed(3))) + parseFloat((parseFloat(txt) / 100).toFixed(3)))
     const click = (number) => {
       if (number === 'X') {
         const newVal = amountInput.substring(0, amountInput.length - 1);
@@ -128,7 +126,11 @@ export default function Event({ footDat }) {
         <div className='odds' onClick={() => {
           setParentOpen(true)
         }}>
-          <p style={{ color: '#e4264c',fontSize:'14px' }}>{txt}</p>
+          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center'>
+             <p style={{ color: 'black' }}>{markets[pick]}</p>
+          <p style={{ color: '#e4264c' }}>{txt}</p>
+          </Stack>
+         
         </div>
 
         <Drawer
@@ -182,7 +184,7 @@ export default function Event({ footDat }) {
 
                 <Stack sx={{ width: '200px' }} spacing={2}>
                   <p>Stake: {amountInput}</p>
-                  <p>Profit: {(profit == NaN) ? 0 : profit}</p>
+                  <p>Profit: {profit}</p>
                   <p>Total Winnings: {total}</p>
                   <p style={{ color: 'black', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '50px', borderRadius: '5px' }}>{amountInput}</p>
                 </Stack>
@@ -205,139 +207,95 @@ export default function Event({ footDat }) {
 
     )
   }
-  function MatchRow() {
-    if (footDat && footDat.length > 0) {
-      console.log(footDat)
-      return (
-        <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100vw' }}>
-          {/* container for all matches i sabove */}
-          {
-            footDat.map((data) => {
-              return (
-                <Link href={'/dashboard/matchs/'+data.match_id} key={data.match_id}>
-                <Stack direction="column" sx={{ minWidth: '90vw', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
-                  onClick={() => {
-
-                  }}>
-                  <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
-                  <Stack direction="row" alignItems='center'>
-
-                    <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                      <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
-                      <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
-                    </Stack>
-
-                    <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-                      <Placer txt={data.onenil} data={data} pick={'onenil'} />
-                      <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
-                      <Placer txt={data.nilone} data={data} pick={'nilone'} />
-                    </Stack>
-                  </Stack>
-                  <Stack direction="row"></Stack>
-                </Stack>
-                </Link>
-              )
-            })
-          }
-        </Stack>
-      )
-    } else {
-      return (
-        <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
-          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
-          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
-        </Stack>)
-    }
-  }
-  function CountDown() {
-    const [hours, setHours] = useState('')
-    const [minutes, setMinutes] = useState('')
-    const [seconds, setSeconds] = useState('')
-    let playable = {
-      0: 3,
-      1: 2,
-      2: 1,
-      3: 0
-    }
-    function calculateTimeRemaining() {
-      const currentDate = new Date();
-      const targetDate = new Date();
-      targetDate.setHours(23);
-      targetDate.setMinutes(0);
-      targetDate.setSeconds(0);
-      targetDate.setMilliseconds(0);
-      const timeRemaining = targetDate - currentDate;
-      return timeRemaining;
-    }
-    useEffect(() => {
-      const timer = setInterval(() => {
-        try {
-          const timeRemaining = calculateTimeRemaining();
-          setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
-          setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
-          setSeconds(Math.floor((timeRemaining / 1000) % 60));
-
-        } catch (e) {
-          console.log(e)
-        }
-
-
-      }, 1000);
-
-      return () => clearInterval(timer);
-    }, []);
-
+  function OddArrange() {
     return (
-      <div>
-        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
-          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
-          <p style={{ color: 'greenyellow' }}>{playable[user.gcount]}</p>
+      <Stack direction='column' spacing={3} alignItems='center'>
+
+        <Stack direction="column" className='homecol' spacing={2} justifyContent='center' alignItems='center'>
+          <p>Home</p>
+          <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+            <Placer txt={matches.onenil} data={matches} pick={'onenil'} />
+            <Placer txt={matches.twonil} data={matches} pick={'twonil'} />
+            <Placer txt={matches.threenil} data={matches} pick={'threenil'} />
+          </Stack>
+          <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+            <Placer txt={matches.twoone} data={matches} pick={'twoone'} />
+            <Placer txt={matches.threeone} data={matches} pick={'threeone'} />
+            <Placer txt={matches.threetwo} data={matches} pick={'threetwo'} />
+          </Stack>
         </Stack>
-        <div className="countdown-container">
-          <span id="hours">{hours} : </span>
-          <span id="minutes">{minutes} : </span>
-          <span id="seconds"> {seconds}</span>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
-        </div>
-      </div>
+
+        <Stack direction="column" className='awaycol' spacing={2} justifyContent='center' alignItems='center'>
+          <p>Away</p>
+          <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+            <Placer txt={matches.nilone} data={matches} pick={'nilone'} />
+            <Placer txt={matches.niltwo} data={matches} pick={'niltwo'} />
+            <Placer txt={matches.nilthree} data={matches} pick={'nilthree'} />
+          </Stack>
+
+          <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+            <Placer txt={matches.onetwo} data={matches} pick={'onetwo'} />
+            <Placer txt={matches.onethree} data={matches} pick={'onethree'} />
+            <Placer txt={matches.twothree} data={matches} pick={'twothree'} />
+          </Stack>
+        </Stack>
+
+        <Stack direction="column" className='drawcol' spacing={2} justifyContent='center' alignItems='center'>
+          <p>Draw and Others</p>
+          <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+            <Placer txt={matches.oneone} data={matches} pick={'oneone'} />
+            <Placer txt={matches.twotwo} data={matches} pick={'twotwo'} />
+            <Placer txt={matches.threethree} data={matches} pick={'threethree'} />
+          </Stack>
+          <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+            <Placer txt={matches.others} data={matches} pick={'others'} />
+          </Stack>
+        </Stack>
+      </Stack>
+
     )
   }
   return (
-    <div className='backgrounds'>
-      <Stack alignItems='center'>
-
+    <div className="backgrounds">
+      <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-          <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
-            router.push('/dashboard')
-          }} />
-          <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Events</p>
+          <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { }} />
         </Stack>
-        <CountDown />
-        <MatchRow />
-        <HomeBottom />
+        <Stack direction="column" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+          <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='space-between'>
+            <p>{matches.home}</p>
+            <p>VS</p>
+            <p>{matches.away}</p>
+          </Stack>
+          <OddArrange />
+        </Stack>
       </Stack>
     </div>
-
   )
 }
-export async function getServerSideProps(context) {
-  try {
-    const { data, error } = await supabase
-      .from('bets')
-      .select('*')
-      .order('id', { ascending: false });
-    let footDat = data;
-    console.log(data);
-    console.log(error)
-    return {
-      props: { footDat }, // will be passed to the page component as props
-    }
-  } catch (e) {
-    console.log(e);
-    let err = [];
-    return {
-      props: { err }, // will be passed to the page component as props
-    }
-  }
+export async function getStaticPaths() {
+  const { data, error } = await supabase
+    .from('bets')
+    .select()
+  const paths = data.map((ref) => ({
+    params: { id: ref.match_id },
+  }))
 
+
+
+  return { paths, fallback: true }
+}
+
+// This also gets called at build time
+export async function getStaticProps({ params }) {
+  // params contains the post `id`.
+  // If the route is like /posts/1, then params.id is 1
+  const { data, error } = await supabase
+    .from('bets')
+    .select()
+    .eq('match_id', params.id)
+  let matchDat = data;
+
+  // Pass post data to the page via props
+  return { props: { matchDat } }
 }

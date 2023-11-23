@@ -159,7 +159,7 @@ export default function Home() {
       {
         footDat.map((data)=>{ 
           return(
-          <Link href={`/dashboard/match/${data.id}`} key={data.match_id}>
+          <Link href={`/dashboard/matchs/${data.id}`} key={data.match_id}>
             <Stack direction="column" sx={{ minWidth:'87vw',maxWidth:'310px'}} className='rowsofdata' justifyContent='center' spacing={1}>
         <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
         <Stack direction="row" alignItems='center'> 
