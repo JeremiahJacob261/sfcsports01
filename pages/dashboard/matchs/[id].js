@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { supabase } from '@/pages/api/supabase';
 import { Icon } from '@iconify/react';
 import { Stack } from '@mui/material';
@@ -7,8 +7,11 @@ import { motion } from 'framer-motion';
 import { Drawer, TextField } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
 import { Button } from '@mui/material';
+import ball from '@/public/ball.png';
+import Image from 'next/image'
 import React from 'react';
 export default function Matchs({ matchDat }) {
+  const router = useRouter();
   const [matches, setMatches] = useState(matchDat[0]);
   const [user, setUser] = useState({});
   console.log(matches)
@@ -57,43 +60,54 @@ export default function Matchs({ matchDat }) {
     "otherscores": "Other"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
-    if (stake < 1) {
-      alert('Minimum stake is 1 USDT')
+    if(user.gcount > 2){
+      alert('You have exceeded the number of games you can play today')
       return;
-    } else if (stake > user.balance) {
-      alert('Insufficient Balance')
-      return;
-
-    } else {
-      try {
-        const { error } = await supabase
-          .from('placed')
-          .upsert({
-            'match_id': matches.match_id,
-            'market': market,
-            'username': username,
-            'started': false,
-            'stake': Number(stake),
-            'profit': Number(((odd * stake) / 100)).toFixed(2),
-            'aim': profit,
-            "home": matches.home,
-            "away": matches.away,
-            "time": matches.time,
-            "date": matches.date,
-            "odd": odd,
-            "ihome": matches.ihome,
-            "iaway": matches.iaway
-          })
-
-      } catch (e) {
-        console.log(e)
+    }else{
+      if (stake < 1) {
+        alert('Minimum stake is 1 USDT')
+        return;
+      } else if (stake > user.balance) {
+        alert('Insufficient Balance')
+        return;
+  
+      } else {
+        try {
+          const { error } = await supabase
+            .from('placed')
+            .upsert({
+              'match_id': matches.match_id,
+              'market': market,
+              'username': username,
+              'started': false,
+              'stake': Number(stake),
+              'profit': Number(((odd * stake) / 100)).toFixed(2),
+              'aim': profit,
+              "home": matches.home,
+              "away": matches.away,
+              "time": matches.time,
+              "date": matches.date,
+              "odd": odd,
+              "ihome": matches.ihome,
+              "iaway": matches.iaway
+            })
+            const { error : err } = await supabase
+            .from('users')
+            .update({
+              'gcount':user.gcount+1,
+            })
+            .eq('username',user.username)
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
 
   function Placer({ txt, data, pick }) {
     const [amountInput, setAmountInput] = useState('');
-    console.log(txt)
+    console.log(matches.onenil)
+    console.log(pick)
     let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
     console.log((parseFloat(parseFloat(amountInput).toFixed(3))) + parseFloat((parseFloat(txt) / 100).toFixed(3)))
@@ -214,7 +228,7 @@ export default function Matchs({ matchDat }) {
         <Stack direction="column" className='homecol' spacing={2} justifyContent='center' alignItems='center'>
           <p>Home</p>
           <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-            <Placer txt={matches.onenil} data={matches} pick={'onenil'} />
+            <Placer txt={matches.onenil} data={matches} pick='onenil' />
             <Placer txt={matches.twonil} data={matches} pick={'twonil'} />
             <Placer txt={matches.threenil} data={matches} pick={'threenil'} />
           </Stack>
@@ -248,24 +262,87 @@ export default function Matchs({ matchDat }) {
             <Placer txt={matches.threethree} data={matches} pick={'threethree'} />
           </Stack>
           <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-            <Placer txt={matches.others} data={matches} pick={'others'} />
+            <Placer txt={matches.otherscores} data={matches} pick={'otherscores'} />
           </Stack>
         </Stack>
       </Stack>
 
     )
   }
+
+  function CountDown() {
+    const [hours, setHours] = useState('')
+    const [minutes, setMinutes] = useState('')
+    const [seconds, setSeconds] = useState('')
+    let playable = {
+      0: 3,
+      1: 2,
+      2: 1,
+      3: 0
+    }
+    function calculateTimeRemaining() {
+      const currentDate = new Date();
+      const targetDate = new Date();
+      targetDate.setHours(23);
+      targetDate.setMinutes(0);
+      targetDate.setSeconds(0);
+      targetDate.setMilliseconds(0);
+      const timeRemaining = targetDate - currentDate;
+      return timeRemaining;
+    }
+    useEffect(() => {
+      const timer = setInterval(() => {
+        try {
+          const timeRemaining = calculateTimeRemaining();
+          setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
+          setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
+          setSeconds(Math.floor((timeRemaining / 1000) % 60));
+
+        } catch (e) {
+          console.log(e)
+        }
+
+
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }, []);
+
+    return (
+      <div>
+        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
+          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
+          <p style={{ color: 'greenyellow' }}>{playable[user.gcount]}</p>
+        </Stack>
+        <div className="countdown-container">
+          <span id="hours">{hours} : </span>
+          <span id="minutes">{minutes} : </span>
+          <span id="seconds"> {seconds}</span>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="backgrounds">
+    <div className="backgrounds" style={{ minHeight:'97vh'}}>
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-          <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { }} />
+          <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { router.push('/dashboard/event')}} />
+          <p style={{ color:'wheat',fontSize:'24px',fontWeight:'bold',textAlign:'center',width:'100%' }}>{matches.league}</p>
         </Stack>
+        <CountDown/>
         <Stack direction="column" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-          <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='space-between'>
+          <Stack direction="row" sx={{ width: '50%', height: '100%',padding:'8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
+            <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
+              <Image src={matches.ihome ?? ball} style={{ color:'whitesmoke'}} alt='home image' width={35} height={35}/>
             <p>{matches.home}</p>
+            </Stack>
             <p>VS</p>
+            <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
+              <Image src={matches.iaway ?? ball} style={{ color:'whitesmoke'}} alt='away image' width={35} height={35}/>
             <p>{matches.away}</p>
+            </Stack>
           </Stack>
           <OddArrange />
         </Stack>
