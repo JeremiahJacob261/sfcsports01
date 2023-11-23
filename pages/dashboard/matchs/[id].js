@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { supabase } from '@/api/supabase';
+import { supabase } from '@/pages/api/supabase';
 import { Icon } from '@iconify/react';
 import { Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
