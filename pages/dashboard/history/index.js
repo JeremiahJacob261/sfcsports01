@@ -56,14 +56,14 @@ export default function History() {
                         </Stack>
                     </Stack>
                             )
-                          } else {
+                          } else if(item.code === 'bet-cancellation'){
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
-                            <p className='ungradtext' style={{ fontSize: '16px' }}>{item.type ?? 'none'}</p>
-                            <p style={{ color: 'white' }}>{item.amount ?? 0}</p>
-                            <p style={{ color: 'white' }}>{item.code ?? 'More'}</p>
+                            <p className='ungradtext' style={{ fontSize: '16px' }}>Your Bet with betid of {item.type}</p>
+                            <p style={{ color: 'white' }}>Amount {item.amount ?? 0}</p>
                             <p style={{ color: 'white' }}>{fullDay}</p>
+                            <p style={{ color: 'white',fontSize:'11px' }}>If you did not Request for this Bet Cancellation, please contact Customer Care</p>
                         </Stack>
                         <Stack justifyContent='center' alignItems="center">
                             <HistoryDx />

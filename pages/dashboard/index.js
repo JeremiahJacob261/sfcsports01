@@ -63,6 +63,7 @@ export default function Home() {
       //     })
       //     console.log(test)
     }
+    
   useEffect(() => {
     const checkAuth = async () => {
       const signedIn = localStorage.getItem('signedIns');
@@ -92,6 +93,61 @@ export default function Home() {
     
     
   }, [authed]);
+
+  function CountDown() {
+    const [hours, setHours] = useState('')
+    const [minutes, setMinutes] = useState('')
+    const [seconds, setSeconds] = useState('')
+    let playable = {
+      0: 3,
+      1: 2,
+      2: 1,
+      3: 0
+    }
+    function calculateTimeRemaining() {
+      const currentDate = new Date();
+      const targetDate = new Date();
+      targetDate.setHours(23);
+      targetDate.setMinutes(0);
+      targetDate.setSeconds(0);
+      targetDate.setMilliseconds(0);
+      const timeRemaining = targetDate - currentDate;
+      return timeRemaining;
+    }
+    useEffect(() => {
+      const timer = setInterval(() => {
+        try {
+          const timeRemaining = calculateTimeRemaining();
+          setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
+          setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
+          setSeconds(Math.floor((timeRemaining / 1000) % 60));
+
+        } catch (e) {
+          console.log(e)
+        }
+
+
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }, []);
+
+    return (
+      <div>
+        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
+          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
+          <p style={{ color: 'greenyellow' }}>{playable[user.gcount]}</p>
+        </Stack>
+        <div className="countdown-container">
+          <span id="hours">{hours} : </span>
+          <span id="minutes">{minutes} : </span>
+          <span id="seconds"> {seconds}</span>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
+        </div>
+      </div>
+    )
+  }
+
   function NavbAR() {
     if (authed) {
       return (
@@ -206,6 +262,7 @@ export default function Home() {
       <Stack alignItems='center' justifyContent='center' sx={{ height: '100px', width: '100%', background: 'grey' }}>
         <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>Image Banners go here</p>
       </Stack>
+      <CountDown/>
       <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px',width:'100%' }}>
         {/* fans favourite */}
         <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)',width:'30%' }}>

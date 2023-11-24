@@ -12,7 +12,7 @@ import Image from 'next/image'
 import React from 'react';
 export default function Matchs({ matchDat }) {
   const router = useRouter();
-  const [matches, setMatches] = useState(matchDat[0]);
+  const [matches, setMatches] = useState(matchDat);
   const [user, setUser] = useState({});
   console.log(matches)
   const [parentopen, setParentOpen] = useState(false);
@@ -20,6 +20,7 @@ export default function Matchs({ matchDat }) {
     if (!localStorage.getItem('signedIns')) {
       router.push('/login')
     }
+
     const getRef = async () => {
       try {
         const { data: refer, error: errref } = await supabase
@@ -105,7 +106,6 @@ export default function Matchs({ matchDat }) {
               'amount':Number(stake),
               'type':'bet'
             })
-            .eq('username',user.username)
         } catch (e) {
           console.log(e)
         }
@@ -166,7 +166,7 @@ export default function Matchs({ matchDat }) {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
+              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league ?? 'league'}</p>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{data.home}</p>
                 <p>VS</p>
@@ -321,7 +321,7 @@ export default function Matchs({ matchDat }) {
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
           <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
-          <p style={{ color: 'greenyellow' }}>{playable[user.gcount]}</p>
+          <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
@@ -380,7 +380,7 @@ export async function getStaticProps({ params }) {
     .from('bets')
     .select()
     .eq('match_id', params.id)
-  let matchDat = data;
+  let matchDat = data[0];
 
   // Pass post data to the page via props
   return { props: { matchDat } }
