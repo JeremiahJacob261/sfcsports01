@@ -176,6 +176,25 @@ export default function Register({ refer }) {
             lvlb: lvlb,
             email: email,
           })
+          const testRoute = async (ref,newname) => {
+            try{
+let test = await fetch('/api/regnotice', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ newname:newname,ref:ref })
+            }).then(data => {
+                return data.json();
+            })
+            console.log(test);
+            }catch(e){
+              console.log(e)
+            }
+            
+    
+        }
+        testRoute(refer,username)
         console.log(error);
         console.log(data);
         localStorage.setItem('signedIns', true);

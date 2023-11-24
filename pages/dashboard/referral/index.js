@@ -3,6 +3,7 @@ import { Stack, TextField, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { supabase } from '@/pages/api/supabase';
 import { useState } from 'react';
+import Avatar from '@/public/avatar.png'
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -15,19 +16,21 @@ export default function Referral() {
     const [refers, setRefer] = useState([]);
     const [selected, setSelected] = useState(0);
     const [user, setUser] = useState({});
-    useEffect(() => {
-        if (!localStorage.getItem('signedIns')) {
-            router.push('/login')
-        }
-        setUser(localStorage.getItem('userinfo'));
-    }, [])
+    
     const betSelectLogic = (index) => {
         setSelected(index);
         //return referral desired data
         let tofill = (index === 0) ? 'all' : (index === 1) ? 'refer' : (index === 2) ? 'lvla' : 'lvlb'
         try{
-            const fill = reforigin.filter(i => i[tofill] === user.newrefer);
+
+            if(tofill === 'all'){
+                setRefer(reforigin);
+            }else{
+                const fill = reforigin.filter(i => i[tofill] === user.newrefer);
+                setRefer(fill);
             console.log(fill)
+            }
+            
         }catch(e){
             console.log(e)
         }
@@ -37,18 +40,42 @@ export default function Referral() {
         if (!localStorage.getItem('signedIns')) {
             router.push('/login')
         }
-        const getRef = async () => {
-            const { data: refer, error: errref } = await supabase
-                .from('users')
-                .select('*')
-                .or(`refer.eq.${user.newrefer},lvla.eq.${user.newrefer},lvlb.eq.${user.newrefer}`)
-            setRefOrigin(refer);
-            setRefer(refer);
+        const testRoute = async () => {
+            let users = localStorage.getItem('signNames')
+            console.log(users);
+            let test = await fetch('/api/referral', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: users })
+            }).then(data => {
+                return data.json();
+            })
+            console.log(test);
+            setUser(test.user)
+            setRefOrigin(test.refdata);
+            setRefer(test.refdata);
+    
         }
-        getRef();
-    })
+        testRoute();
+    },[])
     function RefData() {
         if(refers && refers.length > 0){
+            let months = {
+                0:'Jan',
+                1:'Feb',
+                2:'March',
+                3:'April',
+                4:'May',
+                5:'June',
+                6:'July',
+                7:'Aug',
+                8:'Sept',
+                9:'Oct',
+                10:'Nov',
+                11:'Dec'
+            }
             return(
                 <Stack direction='column' alignItems='center' sx={{ minHeight: '90vh', padding: '12px' }} spacing={2}>
                 {
@@ -60,20 +87,20 @@ export default function Referral() {
                         let balance = t.balance.toFixed(2);
                         return (
                             <Stack direction="row" spacing={2} justifyContent="space-between" alignItems='center' sx={{ padding: '8px' }} key={t.keyf}>
-                                <Image src={Rd} width={40} height={40} alt='rounds' />
+                                <Image src={t.profile ?? Avatar} width={40} height={40} alt='rounds' />
                                 <Stack direction='column' alignItems='start' sx={{ width: '196px' }}>
                                     <Stack direction='row' alignItems='center' spacing={1} justifyContent='stretch'>
-                                        <Typography style={{ color: 'black', fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: '500' }}>{t.username}
+                                        <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: '500' }}>{t.username}
                                         </Typography>
                                         <Typography sx={{ color: '#808080' }}>•</Typography>
                                         <Typography style={{ color: (user.newrefer === t.refer) ? '#793D20' : (user.newrefer === t.lvla) ? '#5E6172' : '#BE6D07', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '300' }}>
                                             {(user.newrefer === t.refer) ? 'Level 1' : (user.newrefer === t.lvla) ? 'Level 2' : 'Level 3'}
                                         </Typography>
                                     </Stack>
-                                    <Typography style={{ color: 'black', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
+                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
 
                                 </Stack>
-                                <Typography style={{ color: 'black', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {balance}</Typography>
+                                <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {balance}</Typography>
                             </Stack>
                         )
                     })
@@ -100,10 +127,10 @@ export default function Referral() {
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>Referral</p>
             </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>All Referral</p>
-                <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Level One</p>
-                <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>Level Two</p>
-                <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(3) }}>Level Three</p>
+                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>All Referral ({reforigin.length ?? 0})</p>
+                <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Level One {(selected === 1) ? `(${refers.length ?? 0})` : ''}</p>
+                <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>Level Two {(selected === 2) ? `(${refers.length ?? 0})` : ''}</p>
+                <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(3) }}>Level Three {(selected === 3) ? `(${refers.length ?? 0})` : ''}</p>
             </Stack>
             <RefData/>
         </div>

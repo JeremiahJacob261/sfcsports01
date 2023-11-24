@@ -97,6 +97,15 @@ export default function Matchs({ matchDat }) {
               'gcount':user.gcount+1,
             })
             .eq('username',user.username)
+            const { error : arr } = await supabase
+            .from('activa')
+            .insert({
+              'code':'bet-placed',
+              'username':user.username,
+              'amount':Number(stake),
+              'type':'bet'
+            })
+            .eq('username',user.username)
         } catch (e) {
           console.log(e)
         }

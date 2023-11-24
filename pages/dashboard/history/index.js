@@ -11,7 +11,7 @@ export default function History() {
     useEffect(()=>{
         const getNoti = async () =>{
             const { data,error } = await supabase
-            .from('notification')
+            .from('activa')
             .select('*')
             .eq('username',localStorage.getItem('signNames'))
             setNoti(data);
@@ -26,10 +26,37 @@ export default function History() {
                 <Stack spacing={2}>
                     {
                          noti.map((item) => {
-                            let date = new Date(item.time);
+                            let months = {
+                                0:'Jan',
+                                1:'Feb',
+                                2:'March',
+                                3:'April',
+                                4:'May',
+                                5:'June',
+                                6:'July',
+                                7:'Aug',
+                                8:'Sept',
+                                9:'Oct',
+                                10:'Nov',
+                                11:'Dec'
+                            }
+                            let date = new Date(item.created_at);
                             let day = date.getDate();
-                            let month = date.getMonth() + 1;
+                            let month = months[date.getMonth()];
                             let fullDay = day + '/' + month
+                          if (item.code === 'refer') {
+                            return(
+                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                        <Stack>
+                            <p><p style={{ fontWeight:'bold',color:'greenyellow'}}>{item.type}</p> has just signed up with your Referral Link</p>
+                            <p style={{ color: 'white' }}>{fullDay}</p>
+                        </Stack>
+                        <Stack justifyContent='center' alignItems="center">
+                            <HistoryDx />
+                        </Stack>
+                    </Stack>
+                            )
+                          } else {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
@@ -43,6 +70,7 @@ export default function History() {
                         </Stack>
                     </Stack>
                             )
+                          }
                         })
                     }
                 </Stack>
@@ -56,7 +84,7 @@ export default function History() {
         }
     }
     return (
-        <div className='backgrounds' style={{ width: '100vw', height: '100vh' }}>
+        <div className='backgrounds' style={{ width: '100vw', minHeight: '100vh' }}>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px' }} spacing={1}>
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard')
