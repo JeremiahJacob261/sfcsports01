@@ -120,15 +120,13 @@ export default function Matchs() {
 
   function Placer({ txt, data, pick }) {
     const [amountInput, setAmountInput] = useState('');
-    console.log(matches.onenil)
-    console.log(pick)
+   
     let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
-    console.log((parseFloat(parseFloat(amountInput).toFixed(3))) + parseFloat((parseFloat(txt) / 100).toFixed(3)))
     const click = (number) => {
       if (number === 'X') {
         const newVal = amountInput.substring(0, amountInput.length - 1);
-        console.log(newVal)
+  
         setAmountInput(newVal);
       } else {
         if (number === '.') {

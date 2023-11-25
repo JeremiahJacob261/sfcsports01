@@ -7,8 +7,14 @@ import { supabase } from '../api/supabase';
 import { useRouter } from 'next/router';
 import Logo from "@/public/Sheffield_FC.svg.png";
 import Head from 'next/head';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 import Ball from '@/public/ball.png';
 import Image from 'next/image'
+import cara01 from '@/public/cara01.jpg';
+import cara02 from '@/public/cara02.jpg';
+import cara03 from '@/public/cara03.jpg';
+import cara04 from '@/public/cara04.jpg';
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
@@ -101,6 +107,9 @@ export default function Home() {
     
     
   }, [authed]);
+
+
+
 
   function CountDown() {
     const [hours, setHours] = useState('')
@@ -267,9 +276,28 @@ export default function Home() {
         <NavbAR />
       </Stack>
       <marquee>Welcome to SFSPORTSO1</marquee>
-      <Stack alignItems='center' justifyContent='center' sx={{ height: '100px', width: '100%', background: 'grey' }}>
-        <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>Image Banners go here</p>
-      </Stack>
+      <div style={{ width: '300px', height: 'auto', background: 'rgba(27,3,0,1)', padding: '2px' }}>
+      <Carousel interval={1500} autoPlay={true} >
+      <div >
+      <Image src={cara02} width={144} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+
+      </div>
+      <div>
+      <Image src={cara03} width={344} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+
+      </div>
+      <div>
+      <Image src={cara04} width={344} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+
+      </div>
+      <div>
+      <Image src={cara01} width={344} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+
+      </div>
+   </Carousel>
+        </div>
+   
+   
       <CountDown/>
       <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px',width:'100%' }}>
         {/* fans favourite */}
