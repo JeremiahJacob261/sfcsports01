@@ -162,20 +162,36 @@ export default function Register({ refer }) {
 
       try {
         console.log(nRef)
-        const { data, error } = await supabase
-          .from('users')
-          .insert({
-            userId: user.id,
-            password: values.password,
-            phone: phone,
-            refer: refer,
-            username: username,
-            countrycode: age,
-            newrefer: nRef,
-            lvla: lvla,
-            lvlb: lvlb,
-            email: email,
+        const regRoute = async (uidl,password,phone,refer,username,age,nref,lvla,lvlb,email) => {
+          try{
+let test = await fetch('/api/regapi', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ 
+                uidl:uidl,
+                password:password,
+                phone:phone,
+                refer:refer,
+                username:username,
+                age:age,
+                nref:nref,
+                lvla:lvla,
+                lvlb:lvlb,
+                email:email
+               })
+          }).then(data => {
+              return data.json();
           })
+          console.log(test);
+          }catch(e){
+            console.log(e)
+          }
+          
+  
+      }
+      regRoute(user.id,values.password,phone,refer,username,age,nRef,lvla,lvlb,email);
           const testRoute = async (ref,newname) => {
             try{
 let test = await fetch('/api/regnotice', {

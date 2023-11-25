@@ -129,6 +129,10 @@ export default function BindWallet() {
                     
                 </Stack>
                 </form>
+                <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+               <Icon icon="ph:info-light" color="#ad1c39" />
+                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>The Password Used for logging is required above</p>
+                </Stack>
                <motion.p onClick={() => {
                     //   router.push('/dashboard/fund/success')
                     checkValid();

@@ -57,19 +57,19 @@ export default function Home() {
   //     console.log(e.code)
   //   }
   // };
-    const testRoute = async ()=>{
-      // let test = await fetch('/api/test', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify({ name: usernam,type:'all' })
-      //   }).then(data => {
-      //     return data.json();
-      //     })
-      //     console.log(test)
-    }
-    
+  const testRoute = async () => {
+    // let test = await fetch('/api/test', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ name: usernam,type:'all' })
+    //   }).then(data => {
+    //     return data.json();
+    //     })
+    //     console.log(test)
+  }
+
   useEffect(() => {
     const checkAuth = async () => {
       const signedIn = localStorage.getItem('signedIns');
@@ -79,10 +79,10 @@ export default function Home() {
         const getUser = async () => {
           try {
             const { data, error } = await supabase
-            .from('bets')
-            .select()
-            .limit(10)
-            .order('id', { ascending: false });
+              .from('bets')
+              .select()
+              .limit(10)
+              .order('id', { ascending: false });
             setFootDat(data);
           } catch (error) {
             console.log(error)
@@ -90,13 +90,18 @@ export default function Home() {
 
         }
         getUser();
-        const getData = async () => { 
-          const { data, error } = await supabase
-          .from('users')
-          .select()
-          .eq('username', localStorage.getItem('signNames'))
-          setUser(data[0])
-          setGCount(data[0].gcount ?? 0);
+        const getData = async () => {
+          try {
+            const { data, error } = await supabase
+              .from('users')
+              .select()
+              .eq('username', localStorage.getItem('signNames'))
+            setUser(data[0])
+            setGCount(data[0].gcount ?? 0);
+          } catch (e) {
+            console.log(e)
+          }
+
         }
         getData();
       } else {
@@ -104,8 +109,8 @@ export default function Home() {
       }
     };
     checkAuth();
-    
-    
+
+
   }, [authed]);
 
 
@@ -180,12 +185,12 @@ export default function Home() {
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
             <motion.div whileHover={{ color: '#C61F41' }}>
-              <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={()=>{
-                const { data,error } = supabase.auth.signOut();
+              <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
+                const { data, error } = supabase.auth.signOut();
                 localStorage.clear();
                 console.log('sign out')
                 router.push('/login')
-              }}/>
+              }} />
             </motion.div>
             <motion.div whileHover={{ color: '#C61F41' }} onClick={testRoute}>
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
@@ -207,12 +212,12 @@ export default function Home() {
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
             <motion.div whileHover={{ color: '#C61F41' }}>
-              <Icon icon="iconamoon:link-bold" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={()=>{
-                const { data,error } = supabase.auth.signOut();
+              <Icon icon="iconamoon:link-bold" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
+                const { data, error } = supabase.auth.signOut();
                 localStorage.clear();
                 console.log('signout')
                 router.push('/login')
-              }}/>
+              }} />
             </motion.div>
 
             <motion.div whileHover={{ color: '#C61F41' }}>
@@ -226,42 +231,42 @@ export default function Home() {
   function MatchRow() {
     if (footDat && footDat.length > 0) {
       console.log(footDat)
-      return(
-        <Stack direction='column' spacing={1} alignItems='center' style={{ padding:'4px', marginBottom:'100px',width:'100vw'}}>
-      {/* container for all matches i sabove */}
-      {
-        footDat.map((data)=>{ 
-          return(
-          <Link href={`/dashboard/matchs/${data.id}`} key={data.match_id}>
-            <Stack direction="column" sx={{ minWidth:'87vw',maxWidth:'310px'}} className='rowsofdata' justifyContent='center' spacing={1}>
-        <Stack direction="row" style={{ color:'grey'}}>{data.time} ID {data.match_id} {data.league}</Stack>
-        <Stack direction="row" alignItems='center'> 
-  
-        <Stack direction='column' sx={{ width:'50%'}} spacing={1}>
-          <Stack direction='row' spacing={1}><Image src={data.ihome ?? Ball} alt='home' width={20} height={20}/><p>{data.home}</p></Stack>
-          <Stack direction='row' spacing={1}><Image src={data.iaway ?? Ball} alt="away" width={20} height={20}/><p>{data.away}</p></Stack>
+      return (
+        <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100vw' }}>
+          {/* container for all matches i sabove */}
+          {
+            footDat.map((data) => {
+              return (
+                <Link href={`/dashboard/matchs/${data.id}`} key={data.match_id}>
+                  <Stack direction="column" sx={{ minWidth: '87vw', maxWidth: '310px', background: 'rgba(77, 3, 3, 0.2);' }} className='rowsofdata' justifyContent='center' spacing={1}>
+                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
+                    <Stack direction="row" alignItems='center'>
+
+                      <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
+                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? Ball} alt='home' width={20} height={20} /><p>{data.home}</p></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? Ball} alt="away" width={20} height={20} /><p>{data.away}</p></Stack>
+                      </Stack>
+
+                      <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+                        <p className='odds'>{data.onenil}</p>
+                        <p className='odds'>{data.nilnil}</p>
+                        <p className='odds'>{data.nilone}</p>
+                      </Stack>
+                    </Stack>
+                    <Stack direction="row"></Stack>
+                  </Stack>
+                </Link>
+              )
+            })
+          }
         </Stack>
-  
-        <Stack direction="row" sx={{ width:'50%',height:'100%'}} spacing={2} alignItems='center' justifyContent='center'>
-          <p className='odds'>{data.onenil}</p>
-          <p className='odds'>{data.nilnil}</p>
-          <p className='odds'>{data.nilone}</p>
-        </Stack>
-        </Stack>
-        <Stack direction="row"></Stack>
-          </Stack>
-            </Link>
-          )
-         })
-      }
-       </Stack>
       )
     } else {
-      return(
-      <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'55vh'}}>
-        <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
-        <p style={{ color:'grey'}}>Please Check your internet connection</p>
-      </Stack>)
+      return (
+        <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', height: '55vh' }}>
+          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
+          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
+        </Stack>)
     }
   }
   return (
@@ -277,52 +282,52 @@ export default function Home() {
       </Stack>
       <marquee>Welcome to SFSPORTSO1</marquee>
       <div style={{ width: '300px', height: 'auto', background: 'rgba(27,3,0,1)', padding: '2px' }}>
-      <Carousel interval={1500} autoPlay={true} >
-      <div >
-      <Image src={cara02} width={144} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+        <Carousel interval={1500} autoPlay={true} >
+          <div >
+            <Image src={cara02} width={144} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
 
-      </div>
-      <div>
-      <Image src={cara03} width={344} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+          </div>
+          <div>
+            <Image src={cara03} width={344} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
 
-      </div>
-      <div>
-      <Image src={cara04} width={344} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+          </div>
+          <div>
+            <Image src={cara04} width={344} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
 
-      </div>
-      <div>
-      <Image src={cara01} width={344} height={137} alt='invitation bonus' sx={{borderRadius:'15px'}}/>
+          </div>
+          <div>
+            <Image src={cara01} width={344} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
 
+          </div>
+        </Carousel>
       </div>
-   </Carousel>
-        </div>
-   
-   
-      <CountDown/>
-      <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px',width:'100%' }}>
+
+
+      <CountDown />
+      <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px', width: '100%' }}>
         {/* fans favourite */}
-        <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)',width:'30%' }}>
+        <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)', width: '30%' }}>
           <Box sx={{ width: '100%', height: '5px', backgroundColor: '#C61F41' }}>
           </Box>
           <p style={{ textAlign: 'center', fontSize: '13px' }}>People  Favourites</p>
         </Stack>
 
         {/* today games */}
-        <Stack sx={{ background: 'rgb(27,3,0)',width:'30%' }} alignItems='center' spacing={1}>
-          <Box sx={{ height: '5px', width: '100%',backgroundColor: 'green' }}>
+        <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
+          <Box sx={{ height: '5px', width: '100%', backgroundColor: 'green' }}>
           </Box>
           <p style={{ textAlign: 'center', fontSize: '13px' }}>Today Matches</p>
         </Stack>
 
         {/* tomorrow games */}
-        <Stack sx={{ background: 'rgb(27,3,0)' ,width:'30%'}} alignItems='center' spacing={1}>
-          <Box sx={{ height: '5px', width: '100%',  backgroundColor: 'rgba(194,127,8,1)' }}>
+        <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
+          <Box sx={{ height: '5px', width: '100%', backgroundColor: 'rgba(194,127,8,1)' }}>
           </Box>
           <p style={{ textAlign: 'center', fontSize: '13px' }}>Tomorrow Matches</p>
         </Stack>
 
       </Stack>
-     <MatchRow/>
+      <MatchRow />
       <HomeBottom />
     </Stack>
   )

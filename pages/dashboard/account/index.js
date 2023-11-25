@@ -25,23 +25,32 @@ export default function Account() {
         }
         const GET = async () => {
             console.log('hello world')
-
+            try{
             const { data, error } = await supabase
                 .from('users')
                 .select('*')
                 .eq('username', localStorage.getItem('signNames'))
             setUser(data[0] ?? localStorage.getItem('userinfo'))
             console.log(data)
+            }catch(e){
+console.log(e)
+            }
+
         }
         GET();
         const Plc = async () => {
-            const { data: place, error: perr } = await supabase
+            try{
+const { data: place, error: perr } = await supabase
                 .from('placed')
                 .select()
                 .eq('username', localStorage.getItem('signNames'))
                 .limit(10)
                 .order('id', { ascending: false });
             setPlaced(place);
+            }catch(e){
+console.log(e)
+            }
+            
         }
         Plc();
     }, [])
@@ -498,7 +507,17 @@ export default function Account() {
                     <Stack justifyContent='center' className='acctext'>
                         <p style={{ fontWeight: '500', color: 'white' }}>{users.username}</p>
                         <p style={{ fontWeight: '200', color: 'white' }}>{users.email}</p>
-                        <p style={{ fontWeight: '200', color: 'white' }}>{users.userId}</p>
+                        <Stack direction='row' spacing={1} alignItems='center'>
+                        <p style={{ fontWeight: '200', color: 'white' }}>{users.uid}</p>
+                        <motion.div
+                            whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
+                        >
+                            <Icon icon="solar:copy-bold-duotone" width={15} height={15} onClick={() => {
+                                navigator.clipboard.writeText(users.uid);
+                                toast.success('UID copied to clipboard');
+                            }} />
+                        </motion.div>
+                        </Stack>
                     </Stack>
                     <Stack>
                         <Swapic image={users.profile ?? Avatar} name={users.username} />

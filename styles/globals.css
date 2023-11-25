@@ -93,13 +93,13 @@ padding: 12px;
   font-family:var(--font-pops);
 }
 .rowsofdata{
-  background-color: #573b41;
+  background-color: rgba(77, 3, 3, 0.2);;
   height: auto;
   font-family:var(--font-lilpops);
   font-size: 12px;
   padding: 8px;
   font-weight: 200;
-  border: 1px solid gray;
+  border: 1px solid rgb(102, 27, 27);
   border-radius: 3px;
 }
 .odds{
@@ -239,4 +239,10 @@ font-family:var(--font-lilpops);
   padding: 8px;
   border-radius: 12px;
   width: 100%;
+}
+.transactionrow{
+  padding: 8px;
+  color:whitesmoke;
+  border-radius: 5px;
+  background-color: rgb(114, 9, 30);
 }

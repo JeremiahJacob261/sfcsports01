@@ -9,14 +9,18 @@ import { motion } from 'framer-motion'
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect } from 'react';
 import local from 'next/font/local';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 export default function Upload() {
     const router = useRouter();
     const [file, setfile] = useState([]);
     const [modified, setModified] = useState('');
+    const [drop, setDrop] = useState(false);
     //from stackoverflow
     const inputFile = useRef(null);
     //end
     const uploadData = async (address) => {    
+        
         try {
             let amount = localStorage.getItem('deposit-amount');
             let name = localStorage.getItem('signNames');
@@ -30,7 +34,9 @@ export default function Upload() {
             'address':address
     })
     localStorage.removeItem('deposit-amount');
+    setDrop(false);
 } catch (error) {
+    setDrop(false);
 console.log(error)
 }
     }
@@ -41,6 +47,7 @@ console.log(error)
      setModified(modifieds);
     }
     const getURL = async () => {
+
         try{
      const { data, error } = supabase
  .storage
@@ -49,12 +56,14 @@ console.log(error)
 uploadData(data.publicUrl);
 console.log(data.publicUrl);
         }catch(error){
+            setDrop(false);
         console.log(error)    
         }
    
 
     }
     const uploadImage = async () => {
+        setDrop(true);
         try {
             const { data, error } = await supabase
         .storage
@@ -64,6 +73,8 @@ console.log(data.publicUrl);
         getURL();
  if (error) {
     alert('Error uploading file.');
+    setDrop(false);
+    console.log(error)
     return;
   }
         } catch (error) {
@@ -107,6 +118,12 @@ console.log(data.publicUrl);
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>Upload receipt</p>
             </Stack>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={drop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <Stack direction='column' justifyContent='center' alignItems="center" sx={{ height: '90vh' }} spacing={2}>
                 <motion.div
                     whileTap={{ scale: 1.09 }}

@@ -20,11 +20,16 @@ export default function Withdraw() {
     const [method, setMethod] = useState(1);
     useEffect(() => { 
         const getRef = async () => { 
-            const { data, error } = await supabase
+            try{
+ const { data, error } = await supabase
             .from('wallets')
             .select('*')
             .eq('username', localStorage.getItem('signNames'))
-            setUsers(data[0]);
+            setUsers(data);
+            }catch(e){
+console.log(e)
+            }
+           
         }
         getRef();
     }, [users])
@@ -34,7 +39,7 @@ export default function Withdraw() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users.username, pass: password, wallet: wallet, amount: amount })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: amount })
         }).then(data => {
             return data.json();
         })
