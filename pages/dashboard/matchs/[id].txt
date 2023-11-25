@@ -344,12 +344,12 @@ export default function Matchs({ matches }) {
         <Stack direction="column" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
           <Stack direction="row" sx={{ width: '50%', height: '100%',padding:'8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
             <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
-              <Image src={matches.ihome ?? ball} style={{ color:'whitesmoke'}} alt='home image' width={35} height={35}/>
+              <Image src={ ball} style={{ color:'whitesmoke'}} alt='home image' width={35} height={35}/>
             <p>{matches.home}</p>
             </Stack>
             <p>VS</p>
             <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
-              <Image src={matches.iaway ?? ball} style={{ color:'whitesmoke'}} alt='away image' width={35} height={35}/>
+              <Image src={ ball} style={{ color:'whitesmoke'}} alt='away image' width={35} height={35}/>
             <p>{matches.away}</p>
             </Stack>
           </Stack>
