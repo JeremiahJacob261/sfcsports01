@@ -15,7 +15,7 @@ import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
 export default function Home() {
   const [addresst, setAddress] = useState('');
-  const [amount, setAmount] = useState(0);
+  const [gcount, setGCount] = useState(0);
   const [reciept, setReciept] = useState('');
   const [balance, setBalance] = useState(0);
   const [authed, setAuthed] = useState(false);
@@ -68,7 +68,6 @@ export default function Home() {
     const checkAuth = async () => {
       const signedIn = localStorage.getItem('signedIns');
       const uid = localStorage.getItem('signUids');
-      setUser(localStorage.getItem('signNames'))
       if (signedIn) {
         setAuthed(true)
         const getUser = async () => {
@@ -85,6 +84,15 @@ export default function Home() {
 
         }
         getUser();
+        const getData = async () => { 
+          const { data, error } = await supabase
+          .from('users')
+          .select()
+          .eq('username', localStorage.getItem('signNames'))
+          setUser(data[0])
+          setGCount(data[0].gcount ?? 0);
+        }
+        getData();
       } else {
         router.push('/login')
       }
@@ -136,7 +144,7 @@ export default function Home() {
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
           <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
-          <p style={{ color: 'greenyellow' }}>{playable[user.gcount]}</p>
+          <p style={{ color: 'greenyellow' }}>{playable[gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
@@ -158,7 +166,7 @@ export default function Home() {
             </div>
             <Stack>
               <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning!</p>
-              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user : 'Loading name ...'}</p>
+              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user.username : 'Loading name ...'}</p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>

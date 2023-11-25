@@ -291,7 +291,7 @@ export default function Event({ footDat }) {
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
           <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
-          <p style={{ color: 'greenyellow' }}>{playable[user.gcount]}</p>
+          <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>

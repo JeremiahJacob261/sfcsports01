@@ -12,7 +12,7 @@ import Image from 'next/image'
 import React from 'react';
 export default function Matchs({ matchDat }) {
   const router = useRouter();
-  const [matches, setMatches] = useState(matchDat);
+  const [matches, setMatches] = useState();
   const [user, setUser] = useState({});
   console.log(matches)
   const [parentopen, setParentOpen] = useState(false);
@@ -20,7 +20,6 @@ export default function Matchs({ matchDat }) {
     if (!localStorage.getItem('signedIns')) {
       router.push('/login')
     }
-
     const getRef = async () => {
       try {
         const { data: refer, error: errref } = await supabase
@@ -28,12 +27,17 @@ export default function Matchs({ matchDat }) {
           .select('*')
           .eq('username', localStorage.getItem('signNames'))
         setUser(refer[0]);
+        user.gcount = user.gcount ?? 0;
       } catch (e) {
         console.log(e)
       }
 
     }
     getRef();
+    matchDat.map((m)=>{
+      setMatches(m)
+    
+    })
   }, [])
   const [state, setState] = React.useState({
     top: false,
@@ -166,7 +170,7 @@ export default function Matchs({ matchDat }) {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league ?? 'league'}</p>
+              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{'league'}</p>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{data.home}</p>
                 <p>VS</p>
@@ -338,7 +342,7 @@ export default function Matchs({ matchDat }) {
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
           <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { router.push('/dashboard/event')}} />
-          <p style={{ color:'wheat',fontSize:'24px',fontWeight:'bold',textAlign:'center',width:'100%' }}>{matches.league}</p>
+          <p style={{ color:'wheat',fontSize:'24px',fontWeight:'bold',textAlign:'center',width:'100%' }}>{'league'}</p>
         </Stack>
         <CountDown/>
         <Stack direction="column" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
