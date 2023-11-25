@@ -10,10 +10,11 @@ import { Button } from '@mui/material';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
 import React from 'react';
-export default function Matchs({ matches }) {
+export default function Matchs() {
   const router = useRouter();
   const [user, setUser] = useState({});
-  console.log(matches)
+ const [matches, setMatches] = useState({});//[router.query.id
+  console.log(router.query.id)
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem('signedIns')) {
@@ -26,14 +27,18 @@ export default function Matchs({ matches }) {
           .select('*')
           .eq('username', localStorage.getItem('signNames'))
         setUser(refer[0]);
-        user.gcount = user.gcount ?? 0;
+        const { data:match, error:errmatch } = await supabase
+        .from('bets')
+        .select('*')
+        .eq('match_id', router.query.id)
+        setMatches(match[0]);
       } catch (e) {
         console.log(e)
       }
 
     }
     getRef();
-   
+
   }, [])
   const [state, setState] = React.useState({
     top: false,
@@ -61,17 +66,17 @@ export default function Matchs({ matches }) {
     "otherscores": "Other"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
-    if(user.gcount > 2){
+    if (user.gcount > 2) {
       alert('You have exceeded the number of games you can play today')
       return;
-    }else{
+    } else {
       if (stake < 1) {
         alert('Minimum stake is 1 USDT')
         return;
       } else if (stake > user.balance) {
         alert('Insufficient Balance')
         return;
-  
+
       } else {
         try {
           const { error } = await supabase
@@ -92,19 +97,19 @@ export default function Matchs({ matches }) {
               "ihome": matches.ihome ?? ball,
               "iaway": matches.iaway ?? ball,
             })
-            const { error : err } = await supabase
+          const { error: err } = await supabase
             .from('users')
             .update({
-              'gcount':user.gcount+1,
+              'gcount': user.gcount + 1,
             })
-            .eq('username',user.username)
-            const { error : arr } = await supabase
+            .eq('username', user.username)
+          const { error: arr } = await supabase
             .from('activa')
             .insert({
-              'code':'bet-placed',
-              'username':user.username,
-              'amount':Number(stake),
-              'type':'bet'
+              'code': 'bet-placed',
+              'username': user.username,
+              'amount': Number(stake),
+              'type': 'bet'
             })
         } catch (e) {
           console.log(e)
@@ -150,10 +155,10 @@ export default function Matchs({ matches }) {
           setParentOpen(true)
         }}>
           <Stack direction='row' spacing={1} justifyContent='center' alignItems='center'>
-             <p style={{ color: 'black' }}>{markets[pick]}</p>
-          <p style={{ color: '#e4264c' }}>{txt}</p>
+            <p style={{ color: 'black' }}>{markets[pick]}</p>
+            <p style={{ color: '#e4264c' }}>{txt}</p>
           </Stack>
-         
+
         </div>
 
         <Drawer
@@ -166,7 +171,7 @@ export default function Matchs({ matches }) {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>league</p>
+              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{data.home}</p>
                 <p>VS</p>
@@ -334,23 +339,23 @@ export default function Matchs({ matches }) {
   }
 
   return (
-    <div className="backgrounds" style={{ minHeight:'97vh'}}>
+    <div className="backgrounds" style={{ minHeight: '99vh' }}>
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-          <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { router.push('/dashboard/event')}} />
-          <p style={{ color:'wheat',fontSize:'24px',fontWeight:'bold',textAlign:'center',width:'100%' }}>league</p>
+          <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { router.push('/dashboard/event') }} />
+          <p style={{ color: 'wheat', fontSize: '24px', fontWeight: 'bold', textAlign: 'center', width: '100%' }}>{matches.league}</p>
         </Stack>
-        <CountDown/>
-        <Stack direction="column" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-          <Stack direction="row" sx={{ width: '50%', height: '100%',padding:'8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
+        <CountDown />
+        <Stack direction="column" sx={{ width: '100%', height: '100%',padding:'12px' }} spacing={2} alignItems='center' justifyContent='center'>
+          <Stack direction="row" sx={{ width: '50%', height: '100%', padding: '8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
             <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
-              <Image src={ ball} style={{ color:'whitesmoke'}} alt='home image' width={35} height={35}/>
-            <p>{matches.home}</p>
+              <Image src={matches.ihome ?? ball} style={{ color: 'whitesmoke' }} alt='home image' width={35} height={35} />
+              <p>{matches.home}</p>
             </Stack>
             <p>VS</p>
             <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
-              <Image src={ ball} style={{ color:'whitesmoke'}} alt='away image' width={35} height={35}/>
-            <p>{matches.away}</p>
+              <Image src={matches.iaway ?? ball} style={{ color: 'whitesmoke' }} alt='away image' width={35} height={35} />
+              <p>{matches.away}</p>
             </Stack>
           </Stack>
           <OddArrange />
@@ -359,36 +364,42 @@ export default function Matchs({ matches }) {
     </div>
   )
 }
-export async function getStaticPaths() {
-  const { data, error } = await supabase
-    .from('bets')
-    .select()
-  const paths = data.map((ref) => ({
-    params: { id: ref.match_id },
-  }))
+// export async function getStaticPaths() {
+//   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+//     return {
+//       paths: [],
+//       fallback: 'blocking',
+//     }
+//   }
+//   const { data, error } = await supabase
+//     .from('bets')
+//     .select()
+//   const paths = data.map((ref) => ({
+//     params: { id: ref.match_id },
+//   }))
 
+// console.log(paths)
 
-
-  return { paths, fallback: true }
-}
+//   return { paths, fallback: true }
+// }
 
 // This also gets called at build time
-export async function getStaticProps({ params }) {
-  // params contains the post `id`.
-  // If the route is like /posts/1, then params.id is 1
-  try{
-    const { data, error } = await supabase
-    .from('bets')
-    .select()
-    .eq('match_id', params.id)
-  let matches = data[0];
+// export async function getStaticProps({ params }) {
+//   // params contains the post `id`.
+//   // If the route is like /posts/1, then params.id is 1
+//   try {
+//     const { data, error } = await supabase
+//       .from('bets')
+//       .select()
+//       .eq('match_id', params.id)
+//     let matches = data[0];
 
-  // Pass post data to the page via props
-  return { props: { matches } }
-  }catch(e){
-    let matches = {};
-    console.log(e)
-    return { props: { matches } }
-  }
+//     // Pass post data to the page via props
+//     return { props: { matches } }
+//   } catch (e) {
+//     let matches = {};
+//     console.log(e)
+//     return { props: { matches } }
+//   }
 
-}
+// }
