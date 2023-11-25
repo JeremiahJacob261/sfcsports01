@@ -12,6 +12,7 @@ import Image from 'next/image'
 import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
 import { useEffect } from 'react';
+import Link from 'next/link';
 export default function BindWallet() {
     const router = useRouter();
     const [users,setUsers] = useState([])
@@ -41,7 +42,7 @@ export default function BindWallet() {
           })
           console.log(test);
           if(test[0].status === 'Failed'){
-            alert('Wrong Password !')
+            alert(test[0].message)
           }else{
             
             router.push('/dashboard/bind/success')
@@ -118,20 +119,20 @@ export default function BindWallet() {
                         </div>
                         
                         <div className='arrange-label'>
-                            <label className='standard-label'>Password</label>
-                <input className='standard-input' placeholder='Password' type='password' value={password} onChange={(e)=>{ setPassword(e.target.value)}}/>
+                            <label className='standard-label'>Transaction Password</label>
+                <input className='standard-input' placeholder='Transaction Password' type='password' value={password} onChange={(e)=>{ setPassword(e.target.value)}}/>
                         </div>
                         
                         <div className='arrange-label'>
-    <label className='standard-label'>Confirm Password</label>
-                <input className='standard-input' placeholder='Confirm Password' type='password' value={confirmPassword} onChange={(e)=>{ setConfirmPassword(e.target.value)}}/>
+    <label className='standard-label'>Confirm Transaction Password</label>
+                <input className='standard-input' placeholder='Confirm Transaction Password' type='password' value={confirmPassword} onChange={(e)=>{ setConfirmPassword(e.target.value)}}/>
                         </div>
                     
                 </Stack>
                 </form>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                <Icon icon="ph:info-light" color="#ad1c39" />
-                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>The Password Used for logging is required above</p>
+                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>Transaction :The Password used for withdraws is required</p>
                 </Stack>
                <motion.p onClick={() => {
                     //   router.push('/dashboard/fund/success')
@@ -141,7 +142,12 @@ export default function BindWallet() {
                         whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#C61F41',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                     Bind Wallet</motion.p>
+                    <Link href='/dashboard/codesetting'>
+                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</p>
+
+                </Link>
                 </Stack>
+                
               </Stack>
             </div>
     )
