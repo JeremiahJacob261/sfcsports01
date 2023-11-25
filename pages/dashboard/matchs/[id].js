@@ -10,9 +10,8 @@ import { Button } from '@mui/material';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
 import React from 'react';
-export default function Matchs({ matchDat }) {
+export default function Matchs({ matches }) {
   const router = useRouter();
-  const [matches, setMatches] = useState();
   const [user, setUser] = useState({});
   console.log(matches)
   const [parentopen, setParentOpen] = useState(false);
@@ -34,10 +33,7 @@ export default function Matchs({ matchDat }) {
 
     }
     getRef();
-    matchDat.map((m)=>{
-      setMatches(m)
-    
-    })
+   
   }, [])
   const [state, setState] = React.useState({
     top: false,
@@ -93,8 +89,8 @@ export default function Matchs({ matchDat }) {
               "time": matches.time,
               "date": matches.date,
               "odd": odd,
-              "ihome": matches.ihome,
-              "iaway": matches.iaway
+              "ihome": matches.ihome ?? ball,
+              "iaway": matches.iaway ?? ball,
             })
             const { error : err } = await supabase
             .from('users')
@@ -170,7 +166,7 @@ export default function Matchs({ matchDat }) {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{'league'}</p>
+              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>league</p>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{data.home}</p>
                 <p>VS</p>
@@ -342,7 +338,7 @@ export default function Matchs({ matchDat }) {
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
           <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { router.push('/dashboard/event')}} />
-          <p style={{ color:'wheat',fontSize:'24px',fontWeight:'bold',textAlign:'center',width:'100%' }}>{'league'}</p>
+          <p style={{ color:'wheat',fontSize:'24px',fontWeight:'bold',textAlign:'center',width:'100%' }}>league</p>
         </Stack>
         <CountDown/>
         <Stack direction="column" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
@@ -380,12 +376,19 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-  const { data, error } = await supabase
+  try{
+    const { data, error } = await supabase
     .from('bets')
     .select()
     .eq('match_id', params.id)
-  let matchDat = data[0];
+  let matches = data[0];
 
   // Pass post data to the page via props
-  return { props: { matchDat } }
+  return { props: { matches } }
+  }catch(e){
+    let matches = {};
+    console.log(e)
+    return { props: { matches } }
+  }
+
 }
