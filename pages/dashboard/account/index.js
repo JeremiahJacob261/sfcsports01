@@ -30,7 +30,7 @@ export default function Account() {
                 .from('users')
                 .select('*')
                 .eq('username', localStorage.getItem('signNames'))
-            setUser(data[0] ?? localStorage.getItem('userinfo'))
+            setUser(data[0] ?? {});
             console.log(data)
             }catch(e){
 console.log(e)
@@ -50,7 +50,6 @@ const { data: place, error: perr } = await supabase
             }catch(e){
 console.log(e)
             }
-            
         }
         Plc();
     }, [])

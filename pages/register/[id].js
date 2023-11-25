@@ -211,8 +211,6 @@ let test = await fetch('/api/regnotice', {
     
         }
         testRoute(refer,username)
-        console.log(error);
-        console.log(data);
         localStorage.setItem('signedIns', true);
         localStorage.setItem('signUids', user.id);
         localStorage.setItem('signNames', username);
