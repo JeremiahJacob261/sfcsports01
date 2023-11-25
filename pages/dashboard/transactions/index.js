@@ -30,16 +30,22 @@ export default function Transaction({ transaction }) {
     function ListedTransactions() {
         if (content) {
             return (
-                <Stack>
+                <Stack alignItems='center'>
                     {
                         content.map((m) => {
+                            let time = new Date(m.time);
+                            let date = time.toLocaleDateString();
+                            let hour = time.getHours();
+                            let minute = time.getMinutes();
+                            let sent = date + ' ' + hour + ':' + minute ;
                             return (
-                                <Stack direction='row' spacing={3} key={m.uid} className='transactionrow'>
-                                    <Icon/>
+                                <Stack direction='row' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
+                                    <Icon width={45} height={45} icon={(m.type === 'deposit') ? "solar:arrow-down-broken" :'solar:arrow-up-broken'} style={{color:(m.type === 'deposit') ? "green" :'red'}}/>
                                     <Stack direction='column'>
                                         <p>{m.type ?? 'unknown type'}</p>
                                         <p>{m.amount ?? '0'} USDT</p>
-                                        <p>{m.status ?? 'pending'}</p>
+                                        <p>{m.sent ?? 'pending'}</p>
+                                        <p style={{color:'grey'}}>{sent}</p>
                                     </Stack>
                                 </Stack>
                             )
