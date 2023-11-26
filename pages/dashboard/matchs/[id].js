@@ -209,6 +209,7 @@ export default function Matchs() {
                 </Stack>
 
                 <Stack sx={{ width: '200px' }} spacing={2}>
+                <p>Current Balance : {user.balance ?? 0} USDT</p>
                   <p>Stake: {amountInput}</p>
                   <p>Profit: {profit}</p>
                   <p>Total Winnings: {total}</p>
