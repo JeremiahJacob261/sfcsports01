@@ -347,7 +347,7 @@ export default function Matchs() {
         <CountDown />
         <Stack direction="column" sx={{ width: '100%', height: '100%',padding:'12px' }} spacing={2} alignItems='center' justifyContent='center'>
           <Stack direction="row" sx={{ width: '50%', height: '100%', padding: '8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
-            <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
+            <Stack direction="row" spacing={2} justifyContent='space-between' alignItems='center' sx={{ width:'100vw'}}>
               <Image src={matches.ihome ?? ball} style={{ color: 'whitesmoke' }} alt='home image' width={35} height={35} />
               <p>{matches.home}</p>
             </Stack>

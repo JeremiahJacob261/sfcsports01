@@ -9,7 +9,7 @@ import Logo from "@/public/Sheffield_FC.svg.png";
 import Head from 'next/head';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import Ball from '@/public/ball.png';
+import ball from '@/public/ball.png';
 import Image from 'next/image'
 import cara01 from '@/public/cara01.jpg';
 import cara02 from '@/public/cara02.jpg';
@@ -210,17 +210,13 @@ export default function Home() {
               <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}></p>
             </Stack>
           </Stack>
-          <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
-            <motion.div whileHover={{ color: '#C61F41' }}>
-              <Icon icon="iconamoon:link-bold" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
-                const { data, error } = supabase.auth.signOut();
-                localStorage.clear();
-                console.log('signout')
-                router.push('/login')
-              }} />
-            </motion.div>
+          <Stack direction='row' spacing={2} justifyContent='center' alignItems='center' 
+         
+          >
 
-            <motion.div whileHover={{ color: '#C61F41' }}>
+            <motion.div whileHover={{ color: '#C61F41' }} onClick={()=>{
+            router.push('/dashboard/history')
+          }} >
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
             </motion.div>
           </Stack>
@@ -237,24 +233,27 @@ export default function Home() {
           {
             footDat.map((data) => {
               return (
-                <Link href={`/dashboard/matchs/${data.id}`} key={data.match_id}>
-                  <Stack direction="column" sx={{ minWidth: '87vw', maxWidth: '310px', background: 'rgba(77, 3, 3, 0.2);' }} className='rowsofdata' justifyContent='center' spacing={1}>
-                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
-                    <Stack direction="row" alignItems='center'>
+                <Link href={'/dashboard/matchs/'+data.match_id} key={data.match_id}>
+                <Stack direction="column" sx={{ minWidth: '90vw', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
+                  onClick={() => {
 
-                      <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? Ball} alt='home' width={20} height={20} /><p>{data.home}</p></Stack>
-                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? Ball} alt="away" width={20} height={20} /><p>{data.away}</p></Stack>
-                      </Stack>
+                  }}>
+                  <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
+                  <Stack direction="row" alignItems='center'>
 
-                      <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-                        <p className='odds'>{data.onenil}</p>
-                        <p className='odds'>{data.nilnil}</p>
-                        <p className='odds'>{data.nilone}</p>
-                      </Stack>
+                    <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
+                      <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
+                      <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
                     </Stack>
-                    <Stack direction="row"></Stack>
+
+                    <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+                      <Placer txt={data.onenil} data={data} pick={'onenil'} />
+                      <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
+                      <Placer txt={data.nilone} data={data} pick={'nilone'} />
+                    </Stack>
                   </Stack>
+                  <Stack direction="row"></Stack>
+                </Stack>
                 </Link>
               )
             })
@@ -263,12 +262,13 @@ export default function Home() {
       )
     } else {
       return (
-        <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', height: '55vh' }}>
+        <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
           <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
           <p style={{ color: 'grey' }}>Please Check your internet connection</p>
         </Stack>)
     }
   }
+  
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '98vh' }} className='backgrounds' spacing={1}>
       <Head>
