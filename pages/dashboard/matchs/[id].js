@@ -323,7 +323,7 @@ export default function Matchs() {
 
     return (
       <div>
-        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
+        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '98vw', textAlign: 'center' }}>
           <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
           <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
         </Stack>
@@ -346,8 +346,8 @@ export default function Matchs() {
         </Stack>
         <CountDown />
         <Stack direction="column" sx={{ width: '100%', height: '100%',padding:'12px' }} spacing={2} alignItems='center' justifyContent='center'>
-          <Stack direction="row" sx={{ width: '50%', height: '100%', padding: '8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
-            <Stack direction="row" spacing={2} justifyContent='space-between' alignItems='center' sx={{ width:'100vw'}}>
+          <Stack direction="row" sx={{ width: '100%', height: '100%', padding: '8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
+            <Stack direction="row" spacing={2} justifyContent='center' alignItems='center' sx={{ }}>
               <Image src={matches.ihome ?? ball} style={{ color: 'whitesmoke' }} alt='home image' width={35} height={35} />
               <p>{matches.home}</p>
             </Stack>

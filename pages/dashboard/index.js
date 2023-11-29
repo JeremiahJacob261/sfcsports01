@@ -210,13 +210,13 @@ export default function Home() {
               <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}></p>
             </Stack>
           </Stack>
-          <Stack direction='row' spacing={2} justifyContent='center' alignItems='center' 
-         
+          <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
+
           >
 
-            <motion.div whileHover={{ color: '#C61F41' }} onClick={()=>{
-            router.push('/dashboard/history')
-          }} >
+            <motion.div whileHover={{ color: '#C61F41' }} onClick={() => {
+              router.push('/dashboard/history')
+            }} >
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
             </motion.div>
           </Stack>
@@ -233,27 +233,39 @@ export default function Home() {
           {
             footDat.map((data) => {
               return (
-                <Link href={'/dashboard/matchs/'+data.match_id} key={data.match_id}>
-                <Stack direction="column" sx={{ minWidth: '90vw', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
-                  onClick={() => {
+                <Link href={'/dashboard/matchs/' + data.match_id} key={data.match_id}>
+                  <Stack direction="column" sx={{ minWidth: '90vw', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
+                    onClick={() => {
 
-                  }}>
-                  <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
-                  <Stack direction="row" alignItems='center'>
+                    }}>
+                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
+                    <Stack direction="row" alignItems='center'>
 
-                    <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                      <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
-                      <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
+                      <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
+                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
+                      </Stack>
+
+                      <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+                        <div className='odds' onClick={() => {
+
+                        }}>
+                          <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.onenil}</p>
+                        </div>
+                        <div className='odds' onClick={() => {
+
+                        }}>
+                          <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilnil}</p>
+                        </div>
+                        <div className='odds' onClick={() => {
+
+                        }}>
+                          <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilone}</p>
+                        </div>
+                      </Stack>
                     </Stack>
-
-                    <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-                      <Placer txt={data.onenil} data={data} pick={'onenil'} />
-                      <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
-                      <Placer txt={data.nilone} data={data} pick={'nilone'} />
-                    </Stack>
+                    <Stack direction="row"></Stack>
                   </Stack>
-                  <Stack direction="row"></Stack>
-                </Stack>
                 </Link>
               )
             })
@@ -268,7 +280,7 @@ export default function Home() {
         </Stack>)
     }
   }
-  
+
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '98vh' }} className='backgrounds' spacing={1}>
       <Head>
