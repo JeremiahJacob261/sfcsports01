@@ -111,6 +111,14 @@ export default function Matchs() {
               'amount': Number(stake),
               'type': 'bet'
             })
+            const { error: errr } = await supabase
+            .rpc('withdrawer', {
+              names: user.username,
+              amount: stake
+            })
+            alert('Bet Placed Successfully')
+            setParentOpen(false)
+            console.log(error, err, arr,errr)
         } catch (e) {
           console.log(e)
         }
