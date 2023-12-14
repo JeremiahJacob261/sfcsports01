@@ -17,8 +17,11 @@ export default async  function handler(req, res) {
         console.log('Wrong Password')
     res.status(200).json([{'status':'Failed','message':'Wrong Password'}]);
 
-    }else{
+    }else if(!users[0].claim){
+        console.log('Reward Already Claimed')
+        res.status(200).json([{'status':'Failed','message':'Reward Already Claimed'}]);
 
+    }else{
     const { data, error } = await supabase
                     .from('claim')
                     .select('*')

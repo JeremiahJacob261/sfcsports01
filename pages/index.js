@@ -5,6 +5,8 @@ import { Stack, Typography } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import {Drawer} from '@mui/material';
+import { motion } from 'framer-motion'
 import Cup2 from '@/public/team_connect.png'
 import Cup1 from '@/public/cup1.png'
 import Cup3 from '@/public/cup3.png'
@@ -15,6 +17,7 @@ import { supabase } from './api/supabase';
 export default function Home() {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
+  const [parentopen, setParentOpen] = useState(false);
 //   const WalletConnect = async () => {
 //     try{
 //  // connect
@@ -78,7 +81,7 @@ export default function Home() {
             console.log(e);
           }
         }}>
-          <Icon icon="ic:round-menu" width={39} height={33} style={{ color: '#545454', background: '#D03151', opacity: '0.7' }} />
+          <Icon icon="ic:round-menu" width={39} height={33} style={{ color: '#545454', background: '#D03151', opacity: '0.7' }} onClick={()=>{ setParentOpen(true) }}/>
         </Stack>
       </Stack>
       {/* end of top nav bar */}
@@ -118,6 +121,21 @@ export default function Home() {
           <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Successful Transactions</p>
         </Stack>
         
+        <Drawer
+          anchor={'left'}
+          open={parentopen}
+          onClose={() => { setParentOpen(false) }}
+          style={{ backgroundColor: 'transparent' }}
+        >
+          <Stack style={{ background: '#C61F41', width: '70vw', height: '100%', padding: '8px', position: 'fixed' }} direction='column' alignItems='start' justifyContent='left' spacing={3}>
+            <motion.p className='drawopstop'>SFCSPORTS01        </motion.p>
+
+            <Link href='/login'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>LOGIN              </motion.p></Link>
+            <Link href='/register/0'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>SIGN UP            </motion.p></Link>
+            <Link href='/'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>CONTACT US         </motion.p></Link>
+            <Link href='/'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>JOIN TELEGRAM GROUP</motion.p></Link>
+            </Stack>
+        </Drawer>
       </Stack>
     </Stack>
   )

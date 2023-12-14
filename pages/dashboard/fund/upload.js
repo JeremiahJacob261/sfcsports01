@@ -49,6 +49,7 @@ console.log(error)
     const getURL = async () => {
 
         try{
+            console.log(modified)
      const { data, error } = supabase
  .storage
  .from('trcreceipt/public')
@@ -83,6 +84,7 @@ console.log(data.publicUrl);
         
  
   alert('File uploaded successfully!');
+  router.push('/dashboard/fund/success');
     }
     const checkParams = () => {
         if(file.name){

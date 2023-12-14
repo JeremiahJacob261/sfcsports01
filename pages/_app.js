@@ -43,16 +43,16 @@ export default function App({ Component, pageProps }) {
 <meta name="msapplication-tap-highlight" content="no" />
 <meta name="theme-color" content="#000000" />
 
-<link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="/icons/touch-icon-ipad.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/touch-icon-iphone-retina.png" />
-<link rel="apple-touch-icon" sizes="167x167" href="/icons/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" href="/Sheffield_FC.svg.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/Sheffield_FC.svg.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/Sheffield_FC.svg.png" />
+<link rel="apple-touch-icon" sizes="167x167" href="/Sheffield_FC.svg.png" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="/Sheffield_FC.svg.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/Sheffield_FC.svg.png" />
 <link rel="manifest" href="/manifest.json" />
-<link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5" />
-<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="mask-icon" href="/Sheffield_FC.svg.png" color="#5bbad5" />
+<link rel="shortcut icon" href="/Sheffield_FC.svg.png" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 
 <meta name="twitter:card" content="summary" />
@@ -60,13 +60,13 @@ export default function App({ Component, pageProps }) {
 <meta name="twitter:title" content="SFCSPORTS01" />
 <meta name="twitter:description" content="Number One Investment Bet Platform" />
 <meta name="twitter:image" content="https://sfcsports01.com/icons/android-chrome-192x192.png" />
-<meta name="twitter:creator" content="@DavidWShadow" />
+<meta name="twitter:creator" content="@SFCSPORTS01" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="PWA App" />
 <meta property="og:description" content="Best PWA App in the world" />
 <meta property="og:site_name" content="PWA App" />
 <meta property="og:url" content="https://sfcsports01.com" />
-<meta property="og:image" content="https://sfcsports01.com/icons/apple-touch-icon.png" />
+<meta property="og:image" content="https://sfcsports01.com//Sheffield_FC.svg.png" />
 
       </Head>
   <Component {...pageProps} />

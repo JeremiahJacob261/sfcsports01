@@ -9,6 +9,26 @@ export default function Transaction({ transaction }) {
     const betSelectLogic = (index) => {
         setSelected(index);
         //return bet desired data
+        let typer = {
+            0: 'all',
+            1: 'deposit',
+            2: 'withdraw'
+        };
+        let usernam = localStorage.getItem('signNames');
+        const testRoute = async () => {
+            let test = await fetch('/api/test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: usernam, type: typer[selected], key: 'akpomoshi18+' })
+            }).then(data => {
+                return data.json();
+            })
+            console.log(test)
+            setContent(test);
+        }
+        testRoute();
     }
     useEffect(() => {
         let usernam = localStorage.getItem('signNames');
@@ -28,7 +48,7 @@ export default function Transaction({ transaction }) {
         testRoute();
     }, [])
     function ListedTransactions() {
-        if (content) {
+        if (content && content.length < 1) {
             return (
                 <Stack alignItems='center'>
                     {
@@ -42,9 +62,9 @@ export default function Transaction({ transaction }) {
                                 <Stack direction='row' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
                                     <Icon width={45} height={45} icon={(m.type === 'deposit') ? "solar:arrow-down-broken" :'solar:arrow-up-broken'} style={{color:(m.type === 'deposit') ? "green" :'red'}}/>
                                     <Stack direction='column'>
+                                        <p style={{ color:'goldenrod',fontWeight:'500'}}>Staus: {m.sent ?? 'pending'}</p>
                                         <p>{m.type ?? 'unknown type'}</p>
                                         <p>{m.amount ?? '0'} USDT</p>
-                                        <p>{m.sent ?? 'pending'}</p>
                                         <p style={{color:'grey'}}>{sent}</p>
                                     </Stack>
                                 </Stack>

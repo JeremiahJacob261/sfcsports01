@@ -6,12 +6,23 @@ export default async  function handler(req, res) {
     const body = req.body;
     if(body.key !== apiKey){
         return res.status(401).json({message:'unauthorized'})
-    }else{
+    }else if(body.type === 'all'){
     const { data, error } = await supabase
                     .from('notification')
                     .select('*')
                     .match({ 'username': body.name })
-                    .limit(10);
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log(data);
+
+                res.status(200).json(data);
+            }else{
+                const { data, error } = await supabase
+                .from('notification')
+                .select('*')
+                .match({ 'username': body.name,'type':body.type })
                 if (error) {
                     console.log(error);
                     return;

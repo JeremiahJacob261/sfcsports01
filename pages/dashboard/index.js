@@ -186,14 +186,13 @@ export default function Home() {
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
             <motion.div whileHover={{ color: '#C61F41' }}>
               <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
-                const { data, error } = supabase.auth.signOut();
-                localStorage.clear();
-                console.log('sign out')
-                router.push('/login')
+                alert('Chat is not available yet')
               }} />
             </motion.div>
             <motion.div whileHover={{ color: '#C61F41' }} onClick={testRoute}>
-              <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
+              <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={()=>{
+                router.push('/dashboard/history')
+              }}/>
             </motion.div>
           </Stack>
         </Stack>
@@ -292,7 +291,7 @@ export default function Home() {
       <Stack sx={{ height: '50px', width: '100%' }}>
         <NavbAR />
       </Stack>
-      <marquee>Welcome to SFSPORTSO1</marquee>
+      <marquee><p style={{color:'whitesmoke'}}>Welcome to SFSPORTSO1</p></marquee>
       <div style={{ width: '300px', height: 'auto', background: 'rgba(27,3,0,1)', padding: '2px' }}>
         <Carousel interval={1500} autoPlay={true} >
           <div >

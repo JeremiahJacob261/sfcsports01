@@ -2,12 +2,13 @@ import { Icon } from '@iconify/react';
 import { Stack, TextField, Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion'
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { supabase } from '@/pages/api/supabase';
 import Modal from '@mui/material/Modal';
 import { Divider } from '@mui/material';
+import LoadingBar from 'react-top-loading-bar'
 import Image from 'next/image'
 import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
@@ -20,6 +21,7 @@ export default function BindWallet() {
     const [address , setAddress] = useState('')
     const [password , setPassword] = useState('')
     const [confirmPassword , setConfirmPassword] = useState('');
+    const ref = useRef(null);
     //alerts
     const [ale, setAle] = useState('')
     const [open, setOpen] = useState(false)
@@ -31,6 +33,7 @@ export default function BindWallet() {
     }
     //end of alerts
     const testRoute = async ()=>{
+      ref.current.continuousStart();
       let test = await fetch('/api/bind', {
           method: 'POST',
           headers: {
@@ -42,7 +45,9 @@ export default function BindWallet() {
           })
           console.log(test);
           if(test[0].status === 'Failed'){
-            alert(test[0].message)
+            alert(test[0].message);
+            
+          ref.current.complete();
           }else{
             
             router.push('/dashboard/bind/success')
@@ -64,11 +69,17 @@ export default function BindWallet() {
     }
     useEffect(()=>{ 
       const check = async () => { 
+      
+      try {
         const { data,error } = await supabase
       .from('wallet')
       .select('*')
       .eq('username', localStorage.getItem('signNames'))
       setUsers(data[0])
+      } catch (error) {
+        console.log(error);
+      }
+        
       }
       check()
       setName(localStorage.getItem('signNames'))
@@ -76,6 +87,7 @@ export default function BindWallet() {
     return(
         <div className="backgrounds" style={{ minHeight:'99vh',width:'100%'}}>
             <Alerteds />
+            <LoadingBar color="#f11946" ref={ref} />
            <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')

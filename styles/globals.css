@@ -17,7 +17,7 @@
   }
 }
 body {
-  color: rgb(var(--foreground-rgb));
+  color:whitesmoke;
   background: linear-gradient(
       to bottom,
       transparent,
@@ -248,4 +248,16 @@ font-family:var(--font-lilpops);
   color:whitesmoke;
   border-radius: 5px;
   background-color: rgb(114, 9, 30);
+}
+.drawops{
+  color: aliceblue;
+  font-size: larger;
+  font-weight: 600;
+  font-family:var(--font-lilpops);
+}
+.drawopstop{
+  color: goldenrod;
+  font-size: larger;
+  font-weight: 600;
+  font-family:var(--font-lilpops); 
 }
