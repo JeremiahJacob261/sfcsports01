@@ -9,6 +9,7 @@ export default function History() {
     const router = useRouter();
     const [noti, setNoti] = useState(false);
     useEffect(()=>{
+            console.log('started')
         const getNoti = async () =>{
             const { data,error } = await supabase
             .from('activa')
@@ -45,6 +46,15 @@ export default function History() {
                             let month = months[date.getMonth()];
                             let fullDay = day + '/' + month
                           if (item.code === 'refer') {
+                            let infos = {
+                                type:'New Refferal',
+                                amount:'no payment',
+                                time:fullDay,
+                                username:item.username,
+                                description:`${item.type} +  just signed up with your referral link` ,
+                                status:'Success',
+                                payment:'...'
+                            }
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
@@ -52,11 +62,20 @@ export default function History() {
                             <p style={{ color: 'white' }}>{fullDay}</p>
                         </Stack>
                         <Stack justifyContent='center' alignItems="center">
-                            <HistoryDx />
+                            <HistoryDx data={infos}/>
                         </Stack>
                     </Stack>
                             )
                           } else if(item.code === 'bet-cancellation'){
+                            let infos = {
+                                type:'bet-cancellation',
+                                amount:item.amount,
+                                time:fullDay,
+                                username:item.username,
+                                description:'Bet was cancelled. Contact support if you did not request for this',
+                                status:'Success',
+                                payment:'USDT(TRC20)'
+                            }
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
@@ -66,9 +85,98 @@ export default function History() {
                             <p style={{ color: 'white',fontSize:'11px' }}>If you did not Request for this Bet Cancellation, please contact Customer Care</p>
                         </Stack>
                         <Stack justifyContent='center' alignItems="center">
-                            <HistoryDx />
+                            <HistoryDx data={infos}/>
                         </Stack>
                     </Stack>
+                            )
+                          }else if(item.type === 'bonus'){
+                            let infos = {
+                                type:'bonus',
+                                amount:item.amount,
+                                time:fullDay,
+                                username:item.username,
+                                description:'Sign Up Bonus',
+                                status:'Success',
+                                payment:'USDT(TRC20)'
+                            }
+                            return(
+                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                        <Stack>
+                            <p style={{ fontWeight:'bold',color:'greenyellow'}}>You just recieved a {item.type}</p>
+                            <p>{item.amount} USDT</p>
+                            <p style={{ color: 'white' }}>{fullDay}</p>
+                        </Stack>
+                        <Stack justifyContent='center' alignItems="center">
+                            <HistoryDx data={infos}/>
+                        </Stack>
+                    </Stack>
+                            )
+                          } else if(item.code === 'usdtdepositsuccess'){
+                            let infos = {
+                                type:'deposit',
+                                amount:item.amount,
+                                time:fullDay,
+                                username:item.username,
+                                description:'Deposit',
+                                status:'Success',
+                                payment:'USDT(TRC20)'
+                            }
+                            return(
+                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit was Successful</p>
+                                    <p>{item.amount} USDT</p>
+                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                </Stack>
+                                <Stack justifyContent='center' alignItems="center">
+                                    <HistoryDx data={infos}/>
+                                </Stack>
+                            </Stack>
+                            )
+                          }else if(item.code === 'bet-placed'){
+                            let infos = {
+                                type:'Bet Placed',
+                                amount:item.amount,
+                                time:fullDay,
+                                username:item.username,
+                                description:`Bet Placed Successfully. Match Info: ${item.type}`,
+                                status:'Success',
+                                payment:'USDT(TRC20)'
+                            }
+                            return(
+                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully</p>
+                                    <p>{item.amount} USDT</p>
+                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                </Stack>
+                                <Stack justifyContent='center' alignItems="center">
+                                    <HistoryDx data={infos}/>
+                                </Stack>
+                            </Stack>
+                            )
+
+                          }else if(item.code === 'usdtdepositfailed'){
+                            let infos = {
+                                type:'Deposit',
+                                amount:item.amount,
+                                time:fullDay,
+                                username:item.username,
+                                description:'USDT Deposit Failed. Contact Customer Care for any Complaints',
+                                status:'Failed',
+                                payment:'USDT(TRC20)'
+                            }
+                            return(
+                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</p>
+                                    <p>{item.amount} USDT</p>
+                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                </Stack>
+                                <Stack justifyContent='center' alignItems="center">
+                                    <HistoryDx data={infos}/>
+                                </Stack>
+                            </Stack>
                             )
                           }
                         })

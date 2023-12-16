@@ -9,23 +9,52 @@ import Head from 'next/head'
 import { useEffect } from 'react';
 export default function Bets() {
   const router = useRouter();
-  const [betDta,setBetDta] = useState([]);
+  const [betDta, setBetDta] = useState([]);
   const [selected, setSelected] = useState(0);
+  const betObj = {
+    0:'all',
+    1:'settled'
+  }
   const betSelectLogic = (index) => {
     setSelected(index);
     //return bet desired data
-  }
-  useEffect(() => { 
-    const getRef = async () => { 
-      const { data, error } = await supabase
-    .from('placed')
-    .select()
-    .eq('username', localStorage.getItem('signNames'))
-    .limit(10)
-    .order('id', { ascending: false });
+    console.log(betObj[index]  )
+    const getFilter = async () => {
+      try{
+        let test = await fetch('/api/bet', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username:localStorage.getItem('signNames'),type:betObj[index]  })
+      }).then(data => {
+          return data.json();
+      })
+      setBetDta(test.message)
+      }catch(e){
+
+      }
+    }
+    getFilter();
+   }
+  useEffect(() => {
+    const getRef = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('placed')
+          .select()
+          .eq('username', localStorage.getItem('signNames'))
+          .limit(10)
+          .order('id', { ascending: false });
+        setBetDta(data)
+        console.log(data)
+      } catch (e) {
+        console.log(e)
+      }
+
     }
     getRef();
-   }, [betDta])
+  }, [])
   function MatchRow() {
 
     if (betDta && betDta.length > 0) {
@@ -39,7 +68,7 @@ export default function Bets() {
 
                 <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }} key={bet.betid} spacing={1}>
                   {/* statusOfBet */}
-                  <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : 'grey', borderRadius: '6px' }}><p>Status</p>    <p>{(bet.won === 'true') ? 'Won' : 'Lost'}</p> </Stack>
+                  <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : 'grey', borderRadius: '6px' }}><p>Status</p>    <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : 'Ongoing'}</p> </Stack>
                   {/* team data */}
                   <Stack direction='row'>
                     {/* team names and logo */}
@@ -72,10 +101,11 @@ export default function Bets() {
       )
     } else {
       return (
-        <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
+        <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '80vh' }}>
           <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
           <p style={{ color: 'grey' }}>Please Check your internet connection</p>
-        </Stack>)
+        </Stack>
+        )
     }
 
   }

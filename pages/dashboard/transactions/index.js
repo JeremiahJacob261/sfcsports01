@@ -21,7 +21,7 @@ export default function Transaction({ transaction }) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name: usernam, type: typer[selected], key: 'akpomoshi18+' })
+                body: JSON.stringify({ name: usernam, type: typer[index], key: 'akpomoshi18+' })
             }).then(data => {
                 return data.json();
             })
@@ -48,9 +48,9 @@ export default function Transaction({ transaction }) {
         testRoute();
     }, [])
     function ListedTransactions() {
-        if (content && content.length < 1) {
+        if (content && content.length > 0) {
             return (
-                <Stack alignItems='center'>
+                <Stack alignItems='center' sx={{ minHeight:'80vh'}}>
                     {
                         content.map((m) => {
                             let time = new Date(m.time);
@@ -62,7 +62,7 @@ export default function Transaction({ transaction }) {
                                 <Stack direction='row' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
                                     <Icon width={45} height={45} icon={(m.type === 'deposit') ? "solar:arrow-down-broken" :'solar:arrow-up-broken'} style={{color:(m.type === 'deposit') ? "green" :'red'}}/>
                                     <Stack direction='column'>
-                                        <p style={{ color:'goldenrod',fontWeight:'500'}}>Staus: {m.sent ?? 'pending'}</p>
+                                        <p style={{ color:'goldenrod',fontWeight:'500'}}>Status: {m.sent ?? 'pending'}</p>
                                         <p>{m.type ?? 'unknown type'}</p>
                                         <p>{m.amount ?? '0'} USDT</p>
                                         <p style={{color:'grey'}}>{sent}</p>

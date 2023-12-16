@@ -9,7 +9,7 @@ import { Icon, InlineIcon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import Stack from '@mui/material/Stack';
 
-export default function HistoryDx() {
+export default function HistoryDx({data}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -41,25 +41,28 @@ export default function HistoryDx() {
            
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
    <p style={{ color:'rgba(245,186,79,1)'}}>Transaction Type</p>
-<p>deposit</p>
+<p>{data.type}</p>
               </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
   <p style={{ color:'rgba(245,186,79,1)'}}> Status</p>
-<p>Success</p>
+<p>{data.status}</p>
               </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
   <p style={{ color:'rgba(245,186,79,1)'}}>Amount</p>
-<p>30 USDT</p>
+<p>{data.amount} USDT</p>
               </Stack>
-
+              <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
+  <p style={{ color:'rgba(245,186,79,1)'}}> Description</p>
+<p>{data.description}</p>
+              </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
   <p style={{ color:'rgba(245,186,79,1)'}}>Payment Method</p>
-<p>USDT(TRC20)</p>
+<p>{data.payment}</p>
               </Stack>
 
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
   <p style={{ color:'rgba(245,186,79,1)'}}>Time</p>
-<p>23:30</p>
+<p>{data.time}</p>
               </Stack>
             </Stack>
 

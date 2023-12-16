@@ -109,7 +109,7 @@ export default function Matchs() {
               'code': 'bet-placed',
               'username': user.username,
               'amount': Number(stake),
-              'type': 'bet'
+              'type': matches.home + ' vs ' + matches.away,
             })
             const { error: errr } = await supabase
             .rpc('withdrawer', {
