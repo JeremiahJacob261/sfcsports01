@@ -6,15 +6,16 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Drawer, TextField } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
+import  Head  from 'next/head';
 import { Button } from '@mui/material';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
 import React from 'react';
-export default function Matchs() {
+export default function Matchs({matc}) {
   const router = useRouter();
-  const [user, setUser] = useState({});
- const [matches, setMatches] = useState({});//[router.query.id
+ const [matches, setMatches] = useState(matc);//[router.query.id
   console.log(router.query.id)
+  const [user, setUser] = useState({});
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem('signedIns')) {
@@ -27,11 +28,11 @@ export default function Matchs() {
           .select('*')
           .eq('username', localStorage.getItem('signNames'))
         setUser(refer[0]);
-        const { data:match, error:errmatch } = await supabase
-        .from('bets')
-        .select('*')
-        .eq('match_id', router.query.id)
-        setMatches(match[0]);
+        // const { data:match, error:errmatch } = await supabase
+        // .from('bets')
+        // .select('*')
+        // .eq('match_id', router.query.id)
+        // setMatches(match[0]);
       } catch (e) {
         console.log(e)
       }
@@ -154,18 +155,22 @@ export default function Matchs() {
         }
       }
     }
-
+console.log(pick)
     return (
       <React.Fragment key={'bottom'} >
-        <div className='odds' onClick={() => {
+        <motion.div className='odds' onClick={() => {
           setParentOpen(true)
-        }}>
-          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center'>
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        style={{border:(matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #C61F41',borderRadius:'5px',padding:'8px',width:'100%',textAlign:'center',cursor:'pointer',color:'white',fontWeight:'500',fontSize:'12px',boxShadow:'0px 0px 5px rgba(0,0,0,0.5)',textShadow:'0px 0px 5px rgba(0,0,0,0.5)'}}
+        >
+          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{cursor:'pointer'}}>
             <p style={{ color: 'black' }}>{markets[pick]}</p>
             <p style={{ color: '#e4264c' }}>{txt}</p>
           </Stack>
 
-        </div>
+        </motion.div>
 
         <Drawer
           anchor={'bottom'}
@@ -190,29 +195,30 @@ export default function Matchs() {
 
               <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
                 <Stack direction="column" spacing={2}>
+                {/* whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} */}
                   {/* calculator sizes stack */}
                   <Stack direction="row" spacing={1}>
-                    <motion.p onClick={() => click('0')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">0</motion.p>
-                    <motion.p onClick={() => click('1')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">1</motion.p>
-                    <motion.p onClick={() => click('2')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">2</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('0')}  className="figures">0</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('1')}  className="figures">1</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('2')}  className="figures">2</motion.p>
                   </Stack>
 
                   <Stack direction="row" spacing={1}>
-                    <motion.p onClick={() => click('3')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">3</motion.p>
-                    <motion.p onClick={() => click('4')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">4</motion.p>
-                    <motion.p onClick={() => click('5')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">5</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('3')}  className="figures">3</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('4')}  className="figures">4</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('5')}  className="figures">5</motion.p>
                   </Stack>
 
                   <Stack direction="row" spacing={1}>
-                    <motion.p onClick={() => click('6')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">6</motion.p>
-                    <motion.p onClick={() => click('7')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">7</motion.p>
-                    <motion.p onClick={() => click('8')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">8</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('6')}  className="figures">6</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('7')}  className="figures">7</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('8')}  className="figures">8</motion.p>
                   </Stack>
 
                   <Stack direction="row" spacing={1}>
-                    <motion.p onClick={() => click('9')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">9</motion.p>
-                    <motion.p onClick={() => click('.')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">.</motion.p>
-                    <motion.p onClick={() => click('X')} whileTap={{ backgroundColor: '#585656', scale: 0.9 }} className="figures">X</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('9')}  className="figures">9</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('.')}  className="figures">.</motion.p>
+                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('X')}  className="figures">X</motion.p>
                   </Stack>
                 </Stack>
 
@@ -231,7 +237,7 @@ export default function Matchs() {
                 placebet(data, parseFloat(parseFloat(amountInput).toFixed(3)), parseFloat(profit), localStorage.getItem('signNames'), markets[pick], data[pick]);
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
-                whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
+                whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}
                 style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '90vw', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                 Place Bet</motion.p>
             </Stack>
@@ -291,10 +297,79 @@ export default function Matchs() {
     )
   }
 
+  //match-countdown
+//match countdown
+
+function MatchCountDown() {
+  const [hours, setHours] = useState('')
+  const [minutes, setMinutes] = useState('')
+  const [seconds, setSeconds] = useState('')
+  let data = matches;
+  console.log(data.time)
+  function extractTime(timeString) {
+    try {
+      const [hour, minute, second] = timeString.split(':');
+      return { hour, minute, second };
+    } catch (e) {
+      console.log(e)
+      return { hour: 0, minute: 0, second: 0 };
+    }
+ }
+ 
+ const time = extractTime(data.time);
+  let playable = {
+    0: 3,
+    1: 2,
+    2: 1,
+    3: 0
+  }
+  function calculateTimeRemaining() {
+    const currentDate = new Date();
+    const targetDate = new Date();
+    targetDate.setHours(time.hour);
+    targetDate.setMinutes(time.minute);
+    targetDate.setSeconds(time.second);
+    targetDate.setMilliseconds(0);
+    const timeRemaining = targetDate - currentDate;
+    return timeRemaining;
+  }
+  useEffect(() => {
+    const timer = setInterval(() => {
+      try {
+        const timeRemaining = calculateTimeRemaining();
+        setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
+        setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
+        setSeconds(Math.floor((timeRemaining / 1000) % 60));
+
+      } catch (e) {
+        console.log(e)
+      }
+
+
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div>
+      <p>Match Countdown</p>
+      <div className="match-countdown-container">
+        <span id="hours">{hours} : </span>
+        <span id="minutes">{minutes} : </span>
+        <span id="seconds"> {seconds}</span>
+      </div>
+    </div>
+  )
+}
+//end of match countdown
+  //end-of-match-countdown
+//countdown
   function CountDown() {
     const [hours, setHours] = useState('')
     const [minutes, setMinutes] = useState('')
     const [seconds, setSeconds] = useState('')
+    
     let playable = {
       0: 3,
       1: 2,
@@ -347,6 +422,12 @@ export default function Matchs() {
 
   return (
     <div className="backgrounds" style={{ minHeight: '99vh' }}>
+      <Head>
+        <title>{matches.home} VS {matches.away}</title>
+        <meta name="description" content="Get Started With us to get the latest betting market and fantantic Bonus" />
+        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
           <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { router.push('/dashboard/event') }} />
@@ -365,48 +446,30 @@ export default function Matchs() {
               <p>{matches.away}</p>
             </Stack>
           </Stack>
+          <MatchCountDown/>
           <OddArrange />
         </Stack>
       </Stack>
     </div>
   )
 }
-// export async function getStaticPaths() {
-//   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-//     return {
-//       paths: [],
-//       fallback: 'blocking',
-//     }
-//   }
-//   const { data, error } = await supabase
-//     .from('bets')
-//     .select()
-//   const paths = data.map((ref) => ({
-//     params: { id: ref.match_id },
-//   }))
-
-// console.log(paths)
-
-//   return { paths, fallback: true }
-// }
-
-// This also gets called at build time
-// export async function getStaticProps({ params }) {
-//   // params contains the post `id`.
-//   // If the route is like /posts/1, then params.id is 1
-//   try {
-//     const { data, error } = await supabase
-//       .from('bets')
-//       .select()
-//       .eq('match_id', params.id)
-//     let matches = data[0];
-
-//     // Pass post data to the page via props
-//     return { props: { matches } }
-//   } catch (e) {
-//     let matches = {};
-//     console.log(e)
-//     return { props: { matches } }
-//   }
-
-// }
+export async function getServerSideProps(context) { 
+  console.log(context.query.id)
+try{
+  
+const { data:match, error:errmatch } = await supabase
+.from('bets')
+.select('*')
+.eq('match_id', context.query.id);
+let matc = match[0];
+return {
+  props: {matc}, // will be passed to the page component as props
+}
+}catch(e){
+  let matc = {};
+  return {
+    props: {matc}, // will be passed to the page component as props
+  }
+}
+  
+}

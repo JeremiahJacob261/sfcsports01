@@ -213,13 +213,76 @@ export default function Event({ footDat }) {
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
+              //match countdown
+
+              function MatchCountDown() {
+                const [hours, setHours] = useState('')
+                const [minutes, setMinutes] = useState('')
+                const [seconds, setSeconds] = useState('')
+                console.log(data.time)
+                function extractTime(timeString) {
+                  try {
+                    const [hour, minute, second] = timeString.split(':');
+                    return { hour, minute, second };
+                  } catch (e) {
+                    console.log(e)
+                    return { hour: 0, minute: 0, second: 0 };
+                  }
+               }
+               
+               const time = extractTime(data.time);
+                let playable = {
+                  0: 3,
+                  1: 2,
+                  2: 1,
+                  3: 0
+                }
+                function calculateTimeRemaining() {
+                  const currentDate = new Date();
+                  const targetDate = new Date();
+                  targetDate.setHours(time.hour);
+                  targetDate.setMinutes(time.minute);
+                  targetDate.setSeconds(time.second);
+                  targetDate.setMilliseconds(0);
+                  const timeRemaining = targetDate - currentDate;
+                  return timeRemaining;
+                }
+                useEffect(() => {
+                  const timer = setInterval(() => {
+                    try {
+                      const timeRemaining = calculateTimeRemaining();
+                      setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
+                      setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
+                      setSeconds(Math.floor((timeRemaining / 1000) % 60));
+            
+                    } catch (e) {
+                      console.log(e)
+                    }
+            
+            
+                  }, 1000);
+            
+                  return () => clearInterval(timer);
+                }, []);
+            
+                return (
+                  <div>
+                    <div className="match-countdown-container">
+                      <span id="hours">{hours} : </span>
+                      <span id="minutes">{minutes} : </span>
+                      <span id="seconds"> {seconds}</span>
+                    </div>
+                  </div>
+                )
+              }
+              //end of match countdown
               return (
                 <Link href={'/dashboard/matchs/'+data.match_id} key={data.match_id}>
                 <Stack direction="column" sx={{ minWidth: '90vw', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
                   onClick={() => {
 
                   }}>
-                  <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
+                  <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league} <MatchCountDown/></Stack>
                   <Stack direction="row" alignItems='center'>
 
                     <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
