@@ -23,7 +23,7 @@ export default async  function handler(req, res) {
                     }else{
                         const { error } = await supabase
             .from('notification')
-            .insert({ address: body.codeset, username: body.name, amount: body.amount, sent: 'pending', type: "withdraw", method: 'usdt' })
+            .insert({ address: body.wallet, username: body.name, amount: body.amount, sent: 'pending', type: "withdraw", method: 'usdt' })
           try{
 
                         const { data, error } = await supabase

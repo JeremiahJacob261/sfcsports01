@@ -1,13 +1,86 @@
 import { Stack } from '@mui/material';
 import HomeBottom from '../../UIComponents/bottomNav';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+import { Box, Typography, Modal, Fade, Backdrop } from '@mui/material';
 import { Icon, InlineIcon } from '@iconify/react';
-import HistoryDx from '@/pages/UIComponents/dialogs/historydx.js'
 import { useEffect,useState } from 'react';
 import { supabase } from '@/pages/api/supabase';
 export default function History() {
     const router = useRouter();
+    const [data, setData] = useState({});
     const [noti, setNoti] = useState(false);
+    //hisstory-dx
+
+    function HistoryDx() {
+        const [open, setOpen] = useState(false);
+        const handleOpen = () => setOpen(true);
+        const handleClose = () => setOpen(false);
+      
+        return (
+          <div >
+            <Icon icon="fa6-solid:expand" width={24} height={24} className='iconbtn' style={{ color: 'white' }}
+              onClick={handleOpen}
+            />
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              slots={{ backdrop: Backdrop }}
+              slotProps={{
+                backdrop: {
+                  timeout: 500,
+                },
+              }}
+            >
+              <Fade in={open}>
+                <Box className='history'>
+                  <Typography id="transition-modal-title" variant="h6" component="h2" sx={{ width:"100%",textAlign:'center',color:"#e4264c"}}>
+                    Transaction History
+                  </Typography>
+                  <Stack spacing={2} sx={{ width: '100%' }} direction="column" justifyContent='center'>
+                 
+                    <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
+         <p style={{ color:'rgba(245,186,79,1)'}}>Transaction Type</p>
+      <p>{data.type ?? ''}</p>
+                    </Stack>
+                    <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
+        <p style={{ color:'rgba(245,186,79,1)'}}> Status</p>
+      <p>{data.status}</p>
+                    </Stack>
+                    <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
+        <p style={{ color:'rgba(245,186,79,1)'}}>Amount</p>
+      <p>{data.amount} USDT</p>
+                    </Stack>
+                    <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
+        <p style={{ color:'rgba(245,186,79,1)'}}> Description</p>
+      <p>{data.description}</p>
+                    </Stack>
+                    <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
+        <p style={{ color:'rgba(245,186,79,1)'}}>Payment Method</p>
+      <p>{data.payment}</p>
+                    </Stack>
+      
+                    <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
+        <p style={{ color:'rgba(245,186,79,1)'}}>Time</p>
+      <p>{data.time}</p>
+                    </Stack>
+                  </Stack>
+      
+                  <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} className='cancelbrn'>
+                    <Icon icon="iconoir:cancel" onClick={handleClose} width={24} height={24} style={{ color: 'white' }} />
+      
+                  </motion.div>
+                </Box>
+              </Fade>
+            </Modal>
+          </div>
+        );
+      }
+
+    //history-dx
     useEffect(()=>{
             console.log('started')
         const getNoti = async () =>{
@@ -15,6 +88,7 @@ export default function History() {
             .from('activa')
             .select('*')
             .eq('username',localStorage.getItem('signNames'))
+            .order('id', { ascending: false })
             setNoti(data);
             console.log(data)
         }
@@ -56,13 +130,16 @@ export default function History() {
                                 payment:'...'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
                             <p><p style={{ fontWeight:'bold',color:'greenyellow'}}>{item.type}</p> has just signed up with your Referral Link</p>
                             <p style={{ color: 'white' }}>{fullDay}</p>
                         </Stack>
                         <Stack justifyContent='center' alignItems="center">
-                            <HistoryDx data={infos}/>
+                            <HistoryDx onClick={()=>{
+                                setData(infos)
+                            
+                            }}/>
                         </Stack>
                     </Stack>
                             )
@@ -77,7 +154,7 @@ export default function History() {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
                             <p className='ungradtext' style={{ fontSize: '16px' }}>Your Bet with betid of {item.type}</p>
                             <p style={{ color: 'white' }}>Amount {item.amount ?? 0}</p>
@@ -85,7 +162,10 @@ export default function History() {
                             <p style={{ color: 'white',fontSize:'11px' }}>If you did not Request for this Bet Cancellation, please contact Customer Care</p>
                         </Stack>
                         <Stack justifyContent='center' alignItems="center">
-                            <HistoryDx data={infos}/>
+                            <HistoryDx onClick={()=>{
+                                setData(infos)
+                            
+                            }}/>
                         </Stack>
                     </Stack>
                             )
@@ -100,14 +180,17 @@ export default function History() {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
                             <p style={{ fontWeight:'bold',color:'greenyellow'}}>You just recieved a {item.type}</p>
                             <p>{item.amount} USDT</p>
                             <p style={{ color: 'white' }}>{fullDay}</p>
                         </Stack>
                         <Stack justifyContent='center' alignItems="center">
-                            <HistoryDx data={infos}/>
+                            <HistoryDx onClick={()=>{
+                                setData(infos)
+                            
+                            }}/>
                         </Stack>
                     </Stack>
                             )
@@ -122,14 +205,17 @@ export default function History() {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
                                     <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit was Successful</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
                                 </Stack>
                                 <Stack justifyContent='center' alignItems="center">
-                                    <HistoryDx data={infos}/>
+                                    <HistoryDx onClick={()=>{
+                                setData(infos)
+                            
+                            }}/>
                                 </Stack>
                             </Stack>
                             )
@@ -144,14 +230,17 @@ export default function History() {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
                                     <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
                                 </Stack>
                                 <Stack justifyContent='center' alignItems="center">
-                                    <HistoryDx data={infos}/>
+                                    <HistoryDx onClick={()=>{
+                                setData(infos)
+                            
+                            }}/>
                                 </Stack>
                             </Stack>
                             )
@@ -167,14 +256,42 @@ export default function History() {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.time} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
                                     <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
                                 </Stack>
                                 <Stack justifyContent='center' alignItems="center">
-                                    <HistoryDx data={infos}/>
+                                    <HistoryDx onClick={()=>{
+                                setData(infos)
+                            
+                            }}/>
+                                </Stack>
+                            </Stack>
+                            )
+                          }else{
+                            let infos = {
+                                type:'Broadcast',
+                                amount:'',
+                                time:fullDay,
+                                username:'admin',
+                                description:item.username,
+                                status:'Success',
+                                payment:'none'
+                            }
+                            return(
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</p>
+                                    <p>{item.amount} USDT</p>
+                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                </Stack>
+                                <Stack justifyContent='center' alignItems="center">
+                                    <HistoryDx onClick={()=>{
+                                setData(infos)
+                            
+                            }}/>
                                 </Stack>
                             </Stack>
                             )

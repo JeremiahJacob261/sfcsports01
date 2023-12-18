@@ -40,20 +40,13 @@ export default function Upload() {
 console.log(error)
 }
     }
-    const fileNameMod = () => {
-        const uuid = uuidv4();
-        const modifieds = uuid + file.name;
-        console.log(modifieds)
-     setModified(modifieds);
-    }
-    const getURL = async () => {
+    const getURL = async (modifiede) => {
 
         try{
-            console.log(modified)
      const { data, error } = supabase
  .storage
  .from('trcreceipt/public')
- .getPublicUrl(modified);
+ .getPublicUrl(modifiede);
 uploadData(data.publicUrl);
 console.log(data.publicUrl);
         }catch(error){
@@ -63,15 +56,22 @@ console.log(data.publicUrl);
    
 
     }
-    const uploadImage = async () => {
+    const fileNameMod = () => {
+        const uuid = uuidv4();
+        const modifieds = uuid + file.name;
+        console.log(modifieds)
+     setModified(modifieds);
+     return modifieds;
+    }
+    const uploadImage = async (modifiede) => {
         setDrop(true);
         try {
             const { data, error } = await supabase
         .storage
         .from('trcreceipt/public')
-        .upload(modified, file);
+        .upload(modifiede, file);
         console.log(data)
-        getURL();
+        getURL(modifiede);
  if (error) {
     alert('Error uploading file.');
     setDrop(false);
@@ -88,8 +88,8 @@ console.log(data.publicUrl);
     }
     const checkParams = () => {
         if(file.name){
-            fileNameMod();
-                    uploadImage();
+           
+                    uploadImage(fileNameMod());
         }else{
             alert('Please select a file')
         }
@@ -136,13 +136,14 @@ console.log(data.publicUrl);
                             inputFile.current.click();
                         }}>
                         <InsertDriveFileIcon sx={{ color: '#C61F41', fontFamily: 'Poppins,sans-serif' }} />
-                        <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
+                        <input type='file' id='file'
+                         ref={inputFile} style={{ display: 'none' }}
                             accept="image/*" onChange={(e) => {
                                 setfile(e.target.files[0]);
                                 console.log(e.target.files[0]);
                             }} />
                         <p sx={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '500', color: 'white' }} onClick={() => {
-                            inputFile.current.click();
+                            // inputFile.current.click();
                         }}>Browse</p>
                     </Stack>
                 </motion.div>

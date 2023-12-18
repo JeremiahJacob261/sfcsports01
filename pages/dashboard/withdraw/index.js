@@ -147,7 +147,7 @@ console.log(e)
                                 users.map((data) => {
                                     if (data.wallet !== '' && data.wallet !== null) {
                                         return (
-                                            <MenuItem key={data.id} value={data.id + 2}>{data.wallet}</MenuItem>
+                                            <MenuItem key={data.id} value={data.wallet}>{data.wallet}</MenuItem>
 
                                         )
                                     }

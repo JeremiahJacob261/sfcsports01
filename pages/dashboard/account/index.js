@@ -25,30 +25,30 @@ export default function Account() {
         }
         const GET = async () => {
             console.log('hello world')
-            try{
-            const { data, error } = await supabase
-                .from('users')
-                .select('*')
-                .eq('username', localStorage.getItem('signNames'))
-            setUser(data[0] ?? {});
-            console.log(data)
-            }catch(e){
-console.log(e)
+            try {
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('*')
+                    .eq('username', localStorage.getItem('signNames'))
+                setUser(data[0] ?? {});
+                console.log(data)
+            } catch (e) {
+                console.log(e)
             }
 
         }
         GET();
         const Plc = async () => {
-            try{
-const { data: place, error: perr } = await supabase
-                .from('placed')
-                .select()
-                .eq('username', localStorage.getItem('signNames'))
-                .limit(10)
-                .order('id', { ascending: false });
-            setPlaced(place);
-            }catch(e){
-console.log(e)
+            try {
+                const { data: place, error: perr } = await supabase
+                    .from('placed')
+                    .select()
+                    .eq('username', localStorage.getItem('signNames'))
+                    .limit(10)
+                    .order('id', { ascending: false });
+                setPlaced(place);
+            } catch (e) {
+                console.log(e)
             }
         }
         Plc();
@@ -200,6 +200,26 @@ console.log(e)
 
     //start of bets
     function Bets() {
+        const [betcount, setBetCount] = useState({});
+        useEffect(() => {
+            const betting = async () => {
+                let test = await fetch('/api/bount', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: localStorage.getItem('signNames') })
+                }).then(data => {
+                    return data.json();
+                })
+                if (test.status === 'success') {
+                    setBetCount(test)
+                } else {
+                    console.log(test.message)
+                }
+            }
+            betting();
+        }, []);
         return (
             <Stack style={{ width: '100%' }} justifyContent='start' alignItems='center'>
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
@@ -214,28 +234,28 @@ console.log(e)
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:receipt-text-pending" style={{ color: 'white' }} />
                             <p>Pending Bets</p></Stack>
-                        <p style={{ color: 'rgba(245,186,79,1)' }}>0</p>
+                        <p style={{ color: 'rgba(245,186,79,1)' }}>{betcount.pending ?? 0}</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:store-complete-outline" style={{ color: 'white' }} />
                             <p>Settled Bets</p></Stack>
-                        <p style={{ color: 'green' }}>0</p>
+                        <p style={{ color: 'green' }}>{betcount.settled ?? 0}</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:cup-full" style={{ color: 'white' }} />
                             <p>Total Bets</p></Stack>
-                        <p style={{ color: 'grey' }}>0</p>
+                        <p style={{ color: 'grey' }}>{betcount.all ?? 0}</p>
                     </Stack>
                     <Divider sx={{ background: 'rgba(245,186,79,1)', color: 'rgba(245,186,79,1)' }} />
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <p>Total Wins</p>
-                        <p style={{ color: 'blue' }}>0</p>
+                        <p style={{ color: 'blue' }}>{betcount.wins ?? 0}</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <p>Total Lost</p>
-                        <p style={{ color: 'red' }}>0</p>
+                        <p style={{ color: 'red' }}>{betcount.lost ?? 0}</p>
                     </Stack>
                 </Stack>
             </Stack>
@@ -302,14 +322,14 @@ console.log(e)
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
                 <Stack className='accountinfo'>
-                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }} 
-                    onClick={() => { 
-                        router.push('/dashboard/changepassword')
-                    }}
+                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
+                        onClick={() => {
+                            router.push('/dashboard/changepassword')
+                        }}
                     >
-                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}   onClick={() => { 
-                        router.push('/dashboard/changepassword')
-                    }}>
+                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1} onClick={() => {
+                            router.push('/dashboard/changepassword')
+                        }}>
                             <Icon icon="ic:baseline-password" style={{ color: 'white' }} />
                             <p>Change Password</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
@@ -333,6 +353,28 @@ console.log(e)
 
     //start of vip
     function Vip() {
+
+        const [vipcount, setVipcount] = useState({});
+        useEffect(() => {
+            const betting = async () => {
+                let test = await fetch('/api/vip', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: localStorage.getItem('signNames') })
+                }).then(data => {
+                    return data.json();
+                })
+                if (test.status === 'success') {
+                    setVipcount(test)
+                } else {
+                    console.log(test.message)
+                }
+            }
+            betting();
+        }, []);
+
         return (
             <Stack style={{ width: '100%' }} justifyContent='center' alignItems='center'>
                 <Stack sx={{ width: '100%', padding: '8px' }}>
@@ -345,31 +387,31 @@ console.log(e)
                 <Stack className='accountinfo' justifyContent='center' alignItems='center' spacing={1}>
                     <Stack justifyContent='center' alignItems='center' direction='column' sx={{ minHeight: 'auto', padding: '8px' }}>
 
-                        <DiamondIcon sx={{ width: '200px', height: '200px', color: viproyal[viplevel], backdropFilter: 'blur(10px)' }} />
-                        <p variant='h3' sx={{ fontFamily: 'Poppins,sans-serif', color: viproyal[viplevel], opacity: 0.7 }}>VIP {viplevel}</p >
+                        <DiamondIcon sx={{ width: '200px', height: '200px', color: viproyal[vipcount.viplevel], backdropFilter: 'blur(10px)' }} />
+                        <p variant='h3' sx={{ fontFamily: 'Poppins,sans-serif', color: viproyal[vipcount.viplevel], opacity: 0.7 }}>VIP {vipcount.viplevel}</p >
 
                         <Stack justifyContent='left' alignItems='left'>
                             <Stack>
                                 <p style={{ fontFamily: 'Poppins,sans-serif' }}>Total Deposit</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
-                                    <BorderLinearProgress variant="determinate" value={(Number(rprogress.toFixed(2)) > 100) ? 100 : Number(rprogress.toFixed(2))} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(rprogress.toFixed(2)) > 100) ? 100 : Number(rprogress.toFixed(2))}%</p >
+                                    <BorderLinearProgress variant="determinate" value={(Number(vipcount.rprogress) > 100) ? 100 : Number(vipcount.rprogress ?? 0)} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.rprogress) > 100) ? 100 : Number(vipcount.rprogress ?? 0)}%</p >
                                 </Stack>
                             </Stack>
 
                             <Stack>
                                 <p style={{ fontFamily: 'Poppins,sans-serif' }}>Referrals</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
-                                    <BorderLinearProgress variant="determinate" value={(Number(cprogress.toFixed(2)) > 100) ? 100 : Number(cprogress.toFixed(2))} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(cprogress.toFixed(2)) > 100) ? 100 : Number(cprogress.toFixed(2))}%</p >
+                                    <BorderLinearProgress variant="determinate" value={(Number(vipcount.cprogress) > 100) ? 100 : Number(vipcount.cprogress)} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.cprogress)) > 100 ? 100 : Number(vipcount.cprogress)}%</p >
                                 </Stack>
                             </Stack>
 
                             <Stack>
                                 <p style={{ fontFamily: 'Poppins,sans-serif' }}>Total</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
-                                    <BorderLinearProgress variant="determinate" value={(r1 + c1) / 2} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(r1 + c1) / 2}%</p >
+                                    <BorderLinearProgress variant="determinate" value={(vipcount.r1 + vipcount.c1) / 2} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(vipcount.r1 + vipcount.c1) / 2}%</p >
                                 </Stack>
                             </Stack>
                         </Stack>
@@ -409,11 +451,11 @@ console.log(e)
                     </Stack>
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
-                       onClick={() => {
-                        router.push('/dashboard/promotion')
-                    }}>
+                        onClick={() => {
+                            router.push('/dashboard/promotion')
+                        }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}
-                            >
+                        >
                             <Icon icon="icons8:advertising" style={{ color: 'white' }} />
                             <p>Promotions</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
@@ -507,15 +549,15 @@ console.log(e)
                         <p style={{ fontWeight: '500', color: 'white' }}>{users.username}</p>
                         <p style={{ fontWeight: '200', color: 'white' }}>{users.email}</p>
                         <Stack direction='row' spacing={1} alignItems='center'>
-                        <p style={{ fontWeight: '200', color: 'white' }}>{users.uid}</p>
-                        <motion.div
-                            whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
-                        >
-                            <Icon icon="solar:copy-bold-duotone" width={15} height={15} onClick={() => {
-                                navigator.clipboard.writeText(users.uid);
-                                toast.success('UID copied to clipboard');
-                            }} />
-                        </motion.div>
+                            <p style={{ fontWeight: '200', color: 'white' }}>{users.uid}</p>
+                            <motion.div
+                                whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
+                            >
+                                <Icon icon="solar:copy-bold-duotone" width={15} height={15} onClick={() => {
+                                    navigator.clipboard.writeText(users.uid);
+                                    toast.success('UID copied to clipboard');
+                                }} />
+                            </motion.div>
                         </Stack>
                     </Stack>
                     <Stack>
