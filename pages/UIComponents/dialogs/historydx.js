@@ -41,7 +41,7 @@ export default function HistoryDx({data}) {
            
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
    <p style={{ color:'rgba(245,186,79,1)'}}>Transaction Type</p>
-<p>{data.type}</p>
+<p>{data.type ?? ''}</p>
               </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
   <p style={{ color:'rgba(245,186,79,1)'}}> Status</p>
