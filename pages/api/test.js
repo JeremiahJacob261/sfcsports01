@@ -11,6 +11,8 @@ export default async  function handler(req, res) {
                     .from('notification')
                     .select('*')
                     .match({ 'username': body.name })
+                    .order('id', { ascending: false });
+
                 if (error) {
                     console.log(error);
                     return;
@@ -23,6 +25,7 @@ export default async  function handler(req, res) {
                 .from('notification')
                 .select('*')
                 .match({ 'username': body.name,'type':body.type })
+                .order('id', { ascending: false });
                 if (error) {
                     console.log(error);
                     return;

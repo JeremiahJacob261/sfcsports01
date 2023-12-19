@@ -54,7 +54,7 @@ export default function Transaction({ transaction }) {
                     {
                         content.map((m) => {
                             let time = new Date(m.time);
-                            let date = time.toLocaleDateString();
+                            let date = time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear();
                             let hour = time.getHours();
                             let minute = time.getMinutes();
                             let sent = date + ' ' + hour + ':' + minute ;

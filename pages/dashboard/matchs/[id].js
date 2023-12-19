@@ -421,7 +421,7 @@ function MatchCountDown() {
   }
 
   return (
-    <div className="backgrounds" style={{ minHeight: '99vh' }}>
+    <div className="backgrounds" style={{ minHeight: '100vh' }}>
       <Head>
         <title>{matches.home} VS {matches.away}</title>
         <meta name="description" content="Get Started With us to get the latest betting market and fantantic Bonus" />

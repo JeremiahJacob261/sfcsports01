@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { supabase } from '@/pages/api/supabase';
 import Head from 'next/head'
+import Link from 'next/link';
 import { useEffect } from 'react';
 export default function Bets() {
   const router = useRouter();
@@ -66,7 +67,8 @@ export default function Bets() {
               {/* bet data according to betTabSelected */ }
               return (
 
-                <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }} key={bet.betid} spacing={1}>
+                <Link href={'/dashboard/betdetails?id='+bet.betid} key={bet.betid}>
+                <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }}  spacing={1}>
                   {/* statusOfBet */}
                   <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : 'grey', borderRadius: '6px' }}><p>Status</p>    <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : 'Ongoing'}</p> </Stack>
                   {/* team data */}
@@ -91,6 +93,7 @@ export default function Bets() {
                   {/* end of team data */}
                   <Stack><p>Stake: {bet.stake} USDT</p></Stack>
                 </Stack>
+                </Link>
 
               )
               {/*end of  bet data according to betTabSelected */ }

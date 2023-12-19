@@ -125,11 +125,12 @@ export default function Event({ footDat }) {
 
     return (
       <React.Fragment key={'bottom'} >
-        <div className='odds' onClick={() => {
+        <Stack direction='column' sx={{ padding: 0 }} justifyContent='center' alignItems="center" className='odds-fix' onClick={() => {
           setParentOpen(true)
         }}>
-          <p style={{ color: '#e4264c',fontSize:'14px' }}>{txt}</p>
-        </div>
+          <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
+          <p style={{ color: '#e4264c', verticalAlign: 'center', fontSize: '12px', margin: 0, padding: 0 }}>{txt}</p>
+        </Stack>
 
         <Drawer
           anchor={'bottom'}
@@ -219,7 +220,6 @@ export default function Event({ footDat }) {
                 const [hours, setHours] = useState('')
                 const [minutes, setMinutes] = useState('')
                 const [seconds, setSeconds] = useState('')
-                console.log(data.time)
                 function extractTime(timeString) {
                   try {
                     const [hour, minute, second] = timeString.split(':');
@@ -228,9 +228,9 @@ export default function Event({ footDat }) {
                     console.log(e)
                     return { hour: 0, minute: 0, second: 0 };
                   }
-               }
-               
-               const time = extractTime(data.time);
+                }
+
+                const time = extractTime(data.time);
                 let playable = {
                   0: 3,
                   1: 2,
@@ -240,7 +240,12 @@ export default function Event({ footDat }) {
                 function calculateTimeRemaining() {
                   const currentDate = new Date();
                   const targetDate = new Date();
-                  targetDate.setHours(time.hour);
+                  if (new Date().getDate(data.date) > currentDate.getDate()) {
+                    targetDate.setHours(time.hour + 24);
+                  } else {
+                    targetDate.setHours(time.hour);
+                  }
+
                   targetDate.setMinutes(time.minute);
                   targetDate.setSeconds(time.second);
                   targetDate.setMilliseconds(0);
@@ -254,17 +259,17 @@ export default function Event({ footDat }) {
                       setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
                       setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
                       setSeconds(Math.floor((timeRemaining / 1000) % 60));
-            
+
                     } catch (e) {
                       console.log(e)
                     }
-            
-            
+
+
                   }, 1000);
-            
+
                   return () => clearInterval(timer);
                 }, []);
-            
+
                 return (
                   <div>
                     <div className="match-countdown-container">
@@ -277,27 +282,27 @@ export default function Event({ footDat }) {
               }
               //end of match countdown
               return (
-                <Link href={'/dashboard/matchs/'+data.match_id} key={data.match_id}>
-                <Stack direction="column" sx={{ minWidth: '90vw', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
-                  onClick={() => {
+                <Link href={'/dashboard/matchs/' + data.match_id} key={data.match_id}>
+                  <Stack direction="column" sx={{ minWidth: '96vw', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
+                    onClick={() => {
 
-                  }}>
-                  <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league} <MatchCountDown/></Stack>
-                  <Stack direction="row" alignItems='center'>
+                    }}>
+                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league} <MatchCountDown /></Stack>
+                    <Stack direction="row" alignItems='center'>
 
-                    <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                      <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
-                      <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
+                      <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
+                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
+                      </Stack>
+
+                      <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+                        <Placer txt={data.onenil} data={data} pick={'onenil'} />
+                        <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
+                        <Placer txt={data.nilone} data={data} pick={'nilone'} />
+                      </Stack>
                     </Stack>
-
-                    <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-                      <Placer txt={data.onenil} data={data} pick={'onenil'} />
-                      <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
-                      <Placer txt={data.nilone} data={data} pick={'nilone'} />
-                    </Stack>
+                    <Stack direction="row"></Stack>
                   </Stack>
-                  <Stack direction="row"></Stack>
-                </Stack>
                 </Link>
               )
             })
@@ -388,7 +393,9 @@ export async function getServerSideProps(context) {
     const { data, error } = await supabase
       .from('bets')
       .select('*')
+      .eq('verified', false)
       .order('id', { ascending: false });
+
     let footDat = data;
     console.log(data);
     console.log(error)
@@ -402,5 +409,4 @@ export async function getServerSideProps(context) {
       props: { err }, // will be passed to the page component as props
     }
   }
-
 }
