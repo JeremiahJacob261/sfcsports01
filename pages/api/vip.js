@@ -51,7 +51,7 @@ export default async function handler(req, res) {
             let c1 = (Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
             let r1 = (Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
             console.log(rprogress, cprogress, refCount, viplevel)
-        res.status(200).json({ status: 'success',refCount:refCount,viplevel:viplevel,rprogress:rprogress.toFixed(2),cprogress:cprogress.toFixed(2),c1:c1,r1:r1 })
+        res.status(200).json({ status: 'success',refCount:refCount,viplevel:viplevel,rprogress:rprogress.toFixed(2),cprogress:cprogress.toFixed(2),c1:parseFloat(c1.toFixed(2)),r1:parseFloat(r1.toFixed(2)) })
    
         } catch (e) {
             console.log(e)
