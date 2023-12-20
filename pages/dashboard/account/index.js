@@ -410,8 +410,8 @@ export default function Account() {
                             <Stack>
                                 <p style={{ fontFamily: 'Poppins,sans-serif' }}>Total</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
-                                    <BorderLinearProgress variant="determinate" value={(vipcount.r1 + vipcount.c1) / 2} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(vipcount.r1 + vipcount.c1) / 2}%</p >
+                                    <BorderLinearProgress variant="determinate" value={parseFloat((vipcount.r1 + vipcount.c1).toFixed(2)) / 2} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{parseFloat((vipcount.r1 + vipcount.c1).toFixed(2)) / 2}%</p >
                                 </Stack>
                             </Stack>
                         </Stack>
