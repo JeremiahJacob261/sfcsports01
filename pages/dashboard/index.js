@@ -78,12 +78,16 @@ export default function Home() {
         setAuthed(true)
         const getUser = async () => {
           try {
-            const { data, error } = await supabase
-              .from('bets')
-              .select()
-              .limit(10)
-              .order('id', { ascending: false });
-            setFootDat(data);
+            let test = await fetch('/api/match', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({  })
+            }).then(data => {
+              return data.json();
+              })
+            setFootDat(test.data);
           } catch (error) {
             console.log(error)
           }

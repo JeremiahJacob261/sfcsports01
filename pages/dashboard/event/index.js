@@ -207,87 +207,71 @@ export default function Event({ footDat }) {
     )
   }
   function MatchRow() {
+ 
+
     if (footDat && footDat.length > 0) {
-      console.log(footDat)
+  
       return (
         <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100vw' }}>
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
-              //match countdown
-
-              function MatchCountDown() {
-                const [hours, setHours] = useState('')
-                const [minutes, setMinutes] = useState('')
-                const [seconds, setSeconds] = useState('')
-                function extractTime(timeString) {
-                  try {
-                    const [hour, minute, second] = timeString.split(':');
-                    return { hour, minute, second };
-                  } catch (e) {
-                    console.log(e)
-                    return { hour: 0, minute: 0, second: 0 };
-                  }
+                //match countdown
+                const defTime = () => {
+                  let dateString = data.date;
+                  let timeString = data.time;
+                  let dateParts = dateString.split("-");
+                  let timeParts = timeString.split(":");
+              
+                  // Create a new Date object
+                  let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
+                  console.log(date)
+                  // Get the timestamp
+                  let timestamp = date.getTime();
+                  return timestamp;
                 }
+  function MatchCountDown() {
+  
 
-                const time = extractTime(data.time);
-                let playable = {
-                  0: 3,
-                  1: 2,
-                  2: 1,
-                  3: 0
-                }
-                function calculateTimeRemaining() {
-                  const currentDate = new Date();
-                  const targetDate = new Date();
-                  if (new Date().getDate(data.date) > currentDate.getDate()) {
-                    targetDate.setHours(time.hour + 24);
-                  } else {
-                    targetDate.setHours(time.hour);
-                  }
+    function calculateTimeLeft() {
+      let difference = +new Date( defTime() * 1000) - +new Date();
+      let timeLeft = {};
+      if (difference > 0) {
+        timeLeft = {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        };
+      }
+      return timeLeft;
+     }
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setTimeLeft(calculateTimeLeft());
+      }, 1000);
+      return () => clearTimeout(timer);
+    });
+    return (
+      <div>
+        <div className="match-countdown-container">
+          <span id="hours">{timeLeft.hours + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
+        </div>
+      </div>
+    )
+  }
+  //end of match countdown
 
-                  targetDate.setMinutes(time.minute);
-                  targetDate.setSeconds(time.second);
-                  targetDate.setMilliseconds(0);
-                  const timeRemaining = targetDate - currentDate;
-                  return timeRemaining;
-                }
-                useEffect(() => {
-                  const timer = setInterval(() => {
-                    try {
-                      const timeRemaining = calculateTimeRemaining();
-                      setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
-                      setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
-                      setSeconds(Math.floor((timeRemaining / 1000) % 60));
-
-                    } catch (e) {
-                      console.log(e)
-                    }
-
-
-                  }, 1000);
-
-                  return () => clearInterval(timer);
-                }, []);
-
-                return (
-                  <div>
-                    <div className="match-countdown-container">
-                      <span id="hours">{hours} : </span>
-                      <span id="minutes">{minutes} : </span>
-                      <span id="seconds"> {seconds}</span>
-                    </div>
-                  </div>
-                )
-              }
-              //end of match countdown
               return (
                 <Link href={'/dashboard/matchs/' + data.match_id} key={data.match_id}>
                   <Stack direction="column" sx={{ minWidth: '96vw', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
                     onClick={() => {
 
                     }}>
-                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league} <MatchCountDown /></Stack>
+                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league} 
+                    <MatchCountDown/>
+                    </Stack>
                     <Stack direction="row" alignItems='center'>
 
                       <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
@@ -390,15 +374,21 @@ export default function Event({ footDat }) {
 }
 export async function getServerSideProps(context) {
   try {
-    const { data, error } = await supabase
-      .from('bets')
-      .select('*')
-      .eq('verified', false)
-      .order('id', { ascending: false });
-
-    let footDat = data;
-    console.log(data);
-    console.log(error)
+    // const { data, error } = await supabase
+    //   .from('bets')
+    //   .select('*')
+    //   .eq('verified', false)
+    //   .order('id', { ascending: false });
+ let test = await fetch('http://localhost:3000/api/match', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({  })
+      }).then(data => {
+        return data.json();
+        })
+    let footDat = test.data;
     return {
       props: { footDat }, // will be passed to the page component as props
     }

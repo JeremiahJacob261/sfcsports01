@@ -97,6 +97,7 @@ export default function Matchs({matc}) {
               "odd": odd,
               "ihome": matches.ihome ?? ball,
               "iaway": matches.iaway ?? ball,
+              "league": matches.league,
             })
           const { error: err } = await supabase
             .from('users')
