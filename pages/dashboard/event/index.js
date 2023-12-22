@@ -379,7 +379,7 @@ export async function getServerSideProps(context) {
     //   .select('*')
     //   .eq('verified', false)
     //   .order('id', { ascending: false });
- let test = await fetch('http://localhost:3000/api/match', {
+ let test = await fetch('https://sfcsports01.com/api/match', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
