@@ -39,7 +39,7 @@ console.log(e)
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: amount })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.05).toFixed(3)) })
         }).then(data => {
             return data.json();
         })

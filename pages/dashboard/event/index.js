@@ -255,8 +255,6 @@ export default function Event() {
                   return timestamp;
                 }
   function MatchCountDown() {
-  console.log(defTime())
-
     function calculateTimeLeft() {
       let difference = +new Date( defTime()) - +new Date();
       let timeLeft = {};
@@ -294,7 +292,7 @@ export default function Event() {
                     onClick={() => {
 
                     }}>
-                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league} 
+                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} {data.date} ID {data.match_id} {data.league} 
                     <MatchCountDown/>
                     </Stack>
                     <Stack direction="row" alignItems='center'>

@@ -246,13 +246,13 @@ font-family:var(--font-lilpops);
   color: #c2a4a4;
 }
 .match-countdown-container{
-  width:100px;
+  width:auto;
   height:50px;
   padding:4px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: lighter;
   text-align: center;
-  color:rgba(245,186,79,1);
+  color:rgb(248, 163, 53);
 }
 .homecol, .awaycol, .drawcol{
   background-color: #ad1c39;

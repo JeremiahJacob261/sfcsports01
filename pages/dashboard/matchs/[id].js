@@ -6,15 +6,15 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Drawer, TextField } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
-import  Head  from 'next/head';
+import Head from 'next/head';
 import { Button } from '@mui/material';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
 import React from 'react';
-export default function Matchs({matc}) {
+export default function Matchs({ matc }) {
   const router = useRouter();
- const [matches, setMatches] = useState(matc);//[router.query.id
-  console.log(router.query.id)
+  const [matches, setMatches] = useState(matc);//[router.query.id
+ 
   const [user, setUser] = useState({});
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
@@ -113,14 +113,14 @@ export default function Matchs({matc}) {
               'amount': Number(stake),
               'type': matches.home + ' vs ' + matches.away,
             })
-            const { error: errr } = await supabase
+          const { error: errr } = await supabase
             .rpc('withdrawer', {
               names: user.username,
               amount: stake
             })
-            alert('Bet Placed Successfully')
-            setParentOpen(false)
-            console.log(error, err, arr,errr)
+          alert('Bet Placed Successfully')
+          setParentOpen(false)
+          console.log(error, err, arr, errr)
         } catch (e) {
           console.log(e)
         }
@@ -130,13 +130,13 @@ export default function Matchs({matc}) {
 
   function Placer({ txt, data, pick }) {
     const [amountInput, setAmountInput] = useState('');
-   
+
     let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
     const click = (number) => {
       if (number === 'X') {
         const newVal = amountInput.substring(0, amountInput.length - 1);
-  
+
         setAmountInput(newVal);
       } else {
         if (number === '.') {
@@ -156,17 +156,16 @@ export default function Matchs({matc}) {
         }
       }
     }
-console.log(pick)
     return (
       <React.Fragment key={'bottom'} >
         <motion.div className='odds' onClick={() => {
           setParentOpen(true)
         }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        style={{border:(matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #C61F41',borderRadius:'5px',padding:'8px',width:'100%',textAlign:'center',cursor:'pointer',color:'white',fontWeight:'500',fontSize:'12px',boxShadow:'0px 0px 5px rgba(0,0,0,0.5)',textShadow:'0px 0px 5px rgba(0,0,0,0.5)'}}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #C61F41', borderRadius: '5px', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
         >
-          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{cursor:'pointer'}}>
+          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer' }}>
             <p style={{ color: 'black' }}>{markets[pick]}</p>
             <p style={{ color: '#e4264c' }}>{txt}</p>
           </Stack>
@@ -196,35 +195,35 @@ console.log(pick)
 
               <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
                 <Stack direction="column" spacing={2}>
-                {/* whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} */}
+                  {/* whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} */}
                   {/* calculator sizes stack */}
                   <Stack direction="row" spacing={1}>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('0')}  className="figures">0</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('1')}  className="figures">1</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('2')}  className="figures">2</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('0')} className="figures">0</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('1')} className="figures">1</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('2')} className="figures">2</motion.p>
                   </Stack>
 
                   <Stack direction="row" spacing={1}>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('3')}  className="figures">3</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('4')}  className="figures">4</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('5')}  className="figures">5</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('3')} className="figures">3</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('4')} className="figures">4</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('5')} className="figures">5</motion.p>
                   </Stack>
 
                   <Stack direction="row" spacing={1}>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('6')}  className="figures">6</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('7')}  className="figures">7</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('8')}  className="figures">8</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('6')} className="figures">6</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('7')} className="figures">7</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('8')} className="figures">8</motion.p>
                   </Stack>
 
                   <Stack direction="row" spacing={1}>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('9')}  className="figures">9</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('.')}  className="figures">.</motion.p>
-                    <motion.p  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('X')}  className="figures">X</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('9')} className="figures">9</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('.')} className="figures">.</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('X')} className="figures">X</motion.p>
                   </Stack>
                 </Stack>
 
                 <Stack sx={{ width: '200px' }} spacing={2}>
-                <p>Current Balance : {user.balance ?? 0} USDT</p>
+                  <p>Current Balance : {user.balance ?? 0} USDT</p>
                   <p>Stake: {amountInput}</p>
                   <p>Profit: {profit}</p>
                   <p>Total Winnings: {total}</p>
@@ -299,78 +298,56 @@ console.log(pick)
   }
 
   //match-countdown
-//match countdown
+  //match countdown
+  const defTime = () => {
+    let dateString = matches.date;
+    let timeString = matches.time;
+    let dateParts = dateString.split("-");
+    let timeParts = timeString.split(":");
 
-function MatchCountDown() {
-  const [hours, setHours] = useState('')
-  const [minutes, setMinutes] = useState('')
-  const [seconds, setSeconds] = useState('')
-  let data = matches;
-  console.log(data.time)
-  function extractTime(timeString) {
-    try {
-      const [hour, minute, second] = timeString.split(':');
-      return { hour, minute, second };
-    } catch (e) {
-      console.log(e)
-      return { hour: 0, minute: 0, second: 0 };
-    }
- }
- 
- const time = extractTime(data.time);
-  let playable = {
-    0: 3,
-    1: 2,
-    2: 1,
-    3: 0
+    // Create a new Date object
+    let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
+    // Get the timestamp
+    let timestamp = date.getTime();
+    return timestamp;
   }
-  function calculateTimeRemaining() {
-    const currentDate = new Date();
-    const targetDate = new Date();
-    targetDate.setHours(time.hour);
-    targetDate.setMinutes(time.minute);
-    targetDate.setSeconds(time.second);
-    targetDate.setMilliseconds(0);
-    const timeRemaining = targetDate - currentDate;
-    return timeRemaining;
-  }
-  useEffect(() => {
-    const timer = setInterval(() => {
-      try {
-        const timeRemaining = calculateTimeRemaining();
-        setHours(Math.floor((timeRemaining / (1000 * 60 * 60)) % 24));
-        setMinutes(Math.floor((timeRemaining / 1000 / 60) % 60));
-        setSeconds(Math.floor((timeRemaining / 1000) % 60));
-
-      } catch (e) {
-        console.log(e)
+  function MatchCountDown() {
+    function calculateTimeLeft() {
+      let difference = +new Date(defTime()) - +new Date();
+      let timeLeft = {};
+      if (difference > 0) {
+        timeLeft = {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        };
       }
-
-
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div>
-      <p>Match Countdown</p>
-      <div className="match-countdown-container">
-        <span id="hours">{hours} : </span>
-        <span id="minutes">{minutes} : </span>
-        <span id="seconds"> {seconds}</span>
+      return timeLeft;
+    }
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setTimeLeft(calculateTimeLeft());
+      }, 1000);
+      return () => clearTimeout(timer);
+    });
+    let hourz = (parseFloat(timeLeft.days) > 0) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
+    return (
+      <div>
+        <Stack className="match-countdown-container" direction='row'>
+          <span id="hours">Time Before Match Starts : {hourz + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
+        </Stack>
       </div>
-    </div>
-  )
-}
-//end of match countdown
-  //end-of-match-countdown
-//countdown
+    )
+  }
+  //end of match countdown
+  //countdown
   function CountDown() {
     const [hours, setHours] = useState('')
     const [minutes, setMinutes] = useState('')
     const [seconds, setSeconds] = useState('')
-    
+
     let playable = {
       0: 3,
       1: 2,
@@ -431,13 +408,13 @@ function MatchCountDown() {
       </Head>
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-          <Icon icon="basil:cancel-outline" width={24} height={24} onClick={() => { router.push('/dashboard/event') }} />
-          <p style={{ color: 'wheat', fontSize: '24px', fontWeight: 'bold', textAlign: 'center', width: '100%' }}>{matches.league}</p>
+          <Icon icon="basil:cancel-outline" width={30} height={30} onClick={() => { router.push('/dashboard/event') }} />
+          <p style={{ color: 'wheat', fontSize: '20px', fontWeight: 'bold', textAlign: 'center', width: '100%' }}>{matches.league}</p>
         </Stack>
         <CountDown />
-        <Stack direction="column" sx={{ width: '100%', height: '100%',padding:'12px' }} spacing={2} alignItems='center' justifyContent='center'>
+        <Stack direction="column" sx={{ width: '100%', height: '100%', padding: '12px' }} spacing={2} alignItems='center' justifyContent='center'>
           <Stack direction="row" sx={{ width: '100%', height: '100%', padding: '8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
-            <Stack direction="row" spacing={2} justifyContent='center' alignItems='center' sx={{ }}>
+            <Stack direction="row" spacing={2} justifyContent='center' alignItems='center' sx={{}}>
               <Image src={matches.ihome ?? ball} style={{ color: 'whitesmoke' }} alt='home image' width={35} height={35} />
               <p>{matches.home}</p>
             </Stack>
@@ -447,30 +424,30 @@ function MatchCountDown() {
               <p>{matches.away}</p>
             </Stack>
           </Stack>
-          <MatchCountDown/>
+          <MatchCountDown />
           <OddArrange />
         </Stack>
       </Stack>
     </div>
   )
 }
-export async function getServerSideProps(context) { 
+export async function getServerSideProps(context) {
   console.log(context.query.id)
-try{
-  
-const { data:match, error:errmatch } = await supabase
-.from('bets')
-.select('*')
-.eq('match_id', context.query.id);
-let matc = match[0];
-return {
-  props: {matc}, // will be passed to the page component as props
-}
-}catch(e){
-  let matc = {};
-  return {
-    props: {matc}, // will be passed to the page component as props
+  try {
+
+    const { data: match, error: errmatch } = await supabase
+      .from('bets')
+      .select('*')
+      .eq('match_id', context.query.id);
+    let matc = match[0];
+    return {
+      props: { matc }, // will be passed to the page component as props
+    }
+  } catch (e) {
+    let matc = {};
+    return {
+      props: { matc }, // will be passed to the page component as props
+    }
   }
-}
-  
+
 }

@@ -229,19 +229,64 @@ export default function Home() {
   }
   function MatchRow() {
     if (footDat && footDat.length > 0) {
-      console.log(footDat)
       return (
         <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100vw' }}>
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
+              //match countdown
+              const defTime = () => {
+                let dateString = data.date;
+                let timeString = data.time;
+                let dateParts = dateString.split("-");
+                let timeParts = timeString.split(":");
+            
+                // Create a new Date object
+                let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
+                // Get the timestamp
+                let timestamp = date.getTime();
+                return timestamp;
+              }
+function MatchCountDown() {
+  function calculateTimeLeft() {
+    let difference = +new Date( defTime()) - +new Date();
+    let timeLeft = {};
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+    return timeLeft;
+   }
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+    return () => clearTimeout(timer);
+  });
+  let hourz = (parseFloat(timeLeft.days) > 0 ) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
+  return (
+    <div>
+      <div className="match-countdown-container">
+        <span id="hours">{ hourz  + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
+      </div>
+    </div>
+  )
+}
+//end of match countdown
               return (
                 <Link href={'/dashboard/matchs/' + data.match_id} key={data.match_id}>
                   <Stack direction="column" sx={{ minWidth: '96vw', maxWidth: '310px',border:data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow:data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
                     onClick={() => {
 
                     }}>
-                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} ID {data.match_id} {data.league}</Stack>
+                     <Stack direction="row" style={{ color: 'grey' }}>{data.time} {data.date} ID {data.match_id} {data.league} 
+                    <MatchCountDown/>
+                    </Stack>
                     <Stack direction="row" alignItems='center'>
                       <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
                         <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
