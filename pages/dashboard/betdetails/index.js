@@ -6,6 +6,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 export default function BetDetails({ datas }) {
+    const [resulta, setResulta] = useState('');
     const router = useRouter();
     const markets = {
         "nilnil": "0 - 0",
@@ -25,17 +26,34 @@ export default function BetDetails({ datas }) {
         "threetwo": "3 - 2",
         "threethree": "3 - 3",
         "otherscores": "Other"
-      }
-      let timers = datas.created_at;
-      let date = new Date(timers);
-        let day = date.getDate();
-        let month = date.getMonth();
-        let year = date.getFullYear();
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let time = `${hours}:${minutes}`;
-        let dates = `${day}/${month}/${year}`;
-        let fulltime = `${dates} ${time}`;
+    }
+    let timers = datas.created_at;
+    let date = new Date(timers);
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let time = `${hours}:${minutes}`;
+    let dates = `${day}/${month}/${year}`;
+    let fulltime = `${dates} ${time}`;
+    useEffect(() => {
+        if (!localStorage.getItem('signNames')) {
+            router.push('/login')
+        }
+        const getRef = async () => { 
+            try {
+                const { data, error } = await supabase
+                    .from('bets')
+                    .select('results')
+                    .eq('match_id', datas.match_id)
+                setResulta(data[0].results)
+            }catch(e){
+                console.log(e)
+            }
+        }
+        getRef();   
+    }, [])
     return (
         <div className='backgrounds' sx={{ minHeight: '100vh', marginBottom: 0 }}>
             <Head>
@@ -50,29 +68,29 @@ export default function BetDetails({ datas }) {
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Bets Details</p>
             </Stack>
-            <Stack direction="row" justifyContent="center" alignItems='center' sx={{ width:'100vw',padding:'8px'}} spacing={3}>
+            <Stack direction="row" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
                 <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
-                    <Image src={datas.ihome} alt={datas.home} width={50} height={50}/>
+                    <Image src={datas.ihome} alt={datas.home} width={50} height={50} />
                     <p className="betd-text">{datas.home}</p>
                 </Stack>
                 <p>VS</p>
                 <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
-                    <Image src={datas.iaway} alt={datas.away} width={50} height={50}/>
+                    <Image src={datas.iaway} alt={datas.away} width={50} height={50} />
                     <p className="betd-text">{datas.away}</p>
                 </Stack>
             </Stack>
-            <p className="betd-text">Time: {fulltime}</p>
-            <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width:'100vw',padding:'8px'}} spacing={3}>
-                <p className="betd-text">Bet ID: {datas.betid}</p>
+            <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
+                <p className="betd-text">Time: {fulltime}</p>
                 <p className="betd-text">Stake: {datas.stake} USDT</p>
                 <p className="betd-text">Odds: {datas.odd}</p>
                 <p className="betd-text">Bet market: {datas.market}</p>
                 <p className="betd-text">Status: {(datas.won === 'true') ? 'WON' : (datas.won === 'false') ? 'LOST' : 'ONGOING'}</p>
                 <p className="betd-text">Match ID: {datas.match_id}</p>
-                <p className="betd-text">Return: {datas.aim + datas.stake}</p>
+                <p className="betd-text">Return: {datas.aim + datas.stake} USDT</p>
                 <p className="betd-text">Profit: {datas.profit}</p>
+                <p className="betd-text">Match Result: {resulta}</p>
                 <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
-                </Stack>
+            </Stack>
         </div>
     )
 }

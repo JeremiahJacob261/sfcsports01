@@ -12,6 +12,8 @@ export default async function handler(req, res) {
         .from('placed')
         .select('*')
         .eq('username',username)
+        .eq('won', 'null')
+        .order('id', { ascending: false });
         console.log(data)
         res.status(200).json({ status: 'success',message:data })
     }else{
@@ -20,7 +22,8 @@ export default async function handler(req, res) {
     .from('placed')
     .select('*')
     .eq('username', username)
-    .neq('type', 'null')
+    .neq('won', 'null')
+    .order('id', { ascending: false });
     console.log(data)
     res.status(200).json({ status: 'success',message:data })
     }

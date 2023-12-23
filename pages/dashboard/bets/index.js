@@ -16,6 +16,19 @@ export default function Bets() {
     0:'all',
     1:'settled'
   }
+  //match countdown
+  const defTime = (dates,time) => {
+    let dateString = dates;
+    let timeString = time;
+    let dateParts = dateString.split("-");
+    let timeParts = timeString.split(":");
+
+    // Create a new Date object
+    let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
+    // Get the timestamp
+    let timestamp = date.getTime()/1000;
+    return timestamp;
+  }
   const betSelectLogic = (index) => {
     setSelected(index);
     //return bet desired data
@@ -45,7 +58,7 @@ export default function Bets() {
           .from('placed')
           .select()
           .eq('username', localStorage.getItem('signNames'))
-          .limit(10)
+          .eq('won', 'null')
           .order('id', { ascending: false });
         setBetDta(data)
         console.log(data)
@@ -70,7 +83,7 @@ export default function Bets() {
                 <Link href={'/dashboard/betdetails?id='+bet.betid} key={bet.betid}>
                 <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }}  spacing={1}>
                   {/* statusOfBet */}
-                  <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : 'grey', borderRadius: '6px' }}><p>Status</p>    <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : 'Ongoing'}</p> </Stack>
+                  <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (defTime(bet.date,bet.time) < defTime( new Date().getFullYear() + "-" + new Date().getMonth()+1 + "-" + new Date().getDate(), new Date().getHours() + ":" + new Date().getMinutes() )) ? 'grey' : 'goldenrod', borderRadius: '6px' }}><p>Status</p>    <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : 'Ongoing'}</p> </Stack>
                   {/* team data */}
                   <Stack direction='row'>
                     {/* team names and logo */}

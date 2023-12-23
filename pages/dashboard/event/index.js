@@ -250,16 +250,15 @@ export default function Event() {
               
                   // Create a new Date object
                   let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
-                  console.log(date)
                   // Get the timestamp
                   let timestamp = date.getTime();
                   return timestamp;
                 }
   function MatchCountDown() {
-  
+  console.log(defTime())
 
     function calculateTimeLeft() {
-      let difference = +new Date( defTime() * 1000) - +new Date();
+      let difference = +new Date( defTime()) - +new Date();
       let timeLeft = {};
       if (difference > 0) {
         timeLeft = {
@@ -278,10 +277,11 @@ export default function Event() {
       }, 1000);
       return () => clearTimeout(timer);
     });
+    let hourz = (parseFloat(timeLeft.days) > 0 ) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
     return (
       <div>
         <div className="match-countdown-container">
-          <span id="hours">{timeLeft.hours + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
+          <span id="hours">{ hourz  + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
         </div>
       </div>
     )
