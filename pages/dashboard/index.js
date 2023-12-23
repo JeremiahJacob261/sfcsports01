@@ -252,16 +252,19 @@ export default function Home() {
                         <div className='odds-fix' onClick={() => {
 
                         }}>
+                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
                           <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.onenil}</p>
                         </div>
                         <div className='odds-fix' onClick={() => {
 
                         }}>
+                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
                           <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilnil}</p>
                         </div>
                         <div className='odds-fix' onClick={() => {
 
                         }}>
+                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
                           <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilone}</p>
                         </div>
                       </Stack>

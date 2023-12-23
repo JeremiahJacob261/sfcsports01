@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import { supabase } from '../../pages/api/supabase';
 let apiKey = 'akpomoshi18+'; // your api key
 export default async  function handler(req, res) {
-    const body = req.body;
     const defTime = (data) => {
         let dateString = data.date;
         let timeString = data.time;

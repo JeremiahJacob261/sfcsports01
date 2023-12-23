@@ -12,12 +12,37 @@ import { supabase } from '../../api/supabase';
 import { useEffect } from 'react';
 import { Button, Drawer } from '@mui/material';
 import { useState } from 'react';
-export default function Event({ footDat }) {
+export default function Event() {
+  const [footDat, setFootDat] = useState([]);
   const [selected, setSelected] = React.useState(null);
   const router = useRouter();
   const [user, setUser] = useState({});
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
+    const getMatch = async () => { 
+      try {
+        // const { data, error } = await supabase
+        //   .from('bets')
+        //   .select('*')
+        //   .eq('verified', false)
+        //   .order('id', { ascending: false });
+     let test = await fetch('/api/match', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          }).then(data => {
+            return data.json();
+            })
+       setFootDat(test.data);
+       
+      } catch (e) {
+        console.log(e);
+        let err = [];
+        setFootDat([]);
+      }
+    }
+    getMatch();
     if (!localStorage.getItem('signedIns')) {
       router.push('/login')
     }
@@ -372,31 +397,6 @@ export default function Event({ footDat }) {
 
   )
 }
-export async function getServerSideProps(context) {
-  try {
-    // const { data, error } = await supabase
-    //   .from('bets')
-    //   .select('*')
-    //   .eq('verified', false)
-    //   .order('id', { ascending: false });
- let test = await fetch('https://sfcsports01.com/api/match', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({  })
-      }).then(data => {
-        return data.json();
-        })
-    let footDat = test.data;
-    return {
-      props: { footDat }, // will be passed to the page component as props
-    }
-  } catch (e) {
-    console.log(e);
-    let err = [];
-    return {
-      props: { err }, // will be passed to the page component as props
-    }
-  }
-}
+// export async function getServerSideProps(context) {
+ 
+// }
