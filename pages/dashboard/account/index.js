@@ -280,7 +280,7 @@ export default function Account() {
                             <Icon icon="tdesign:link" style={{ color: 'white' }} />
                             <Stack direction='column'>
                                 <p>Referral Link</p>
-                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://sfcsports01.com/register/{users.newrefer}</p>
+                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://sfcsports01.com/?refer={users.newrefer}</p>
                                 <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>copy the above link and share to get more rewards</p>
                             </Stack>
                         </Stack>
@@ -288,7 +288,7 @@ export default function Account() {
                             whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
                         >
                             <Icon icon="solar:copy-bold-duotone" width={24} height={24} onClick={() => {
-                                navigator.clipboard.writeText('https://sfcsports01.com/register/' + users.newrefer);
+                                navigator.clipboard.writeText('https://sfcsports01.com/?refer=' + users.newrefer);
                                 toast.success('Referral link copied to clipboard');
                             }} />
                         </motion.div>

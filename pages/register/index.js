@@ -523,24 +523,10 @@ let test = await fetch('/api/regnotice', {
       </Modal>)
   }
 }
-export async function getStaticPaths() {
-  const { data, error } = await supabase
-    .from('users')
-    .select()
-    console.log(data);
-    console.log(error);
-  const paths = data.map((ref) => ({
-    params: { id: ref.newrefer },
-  }))
-  return { paths, fallback: false }
-}
-
-// This also gets called at build time
-export async function getStaticProps({ params }) {
-  // params contains the post `id`.
-  // If the route is like /posts/1, then params.id is 1
-  let refer = params.id;
-
-  // Pass post data to the page via props
-  return { props: { refer } }
+export async function getServerSideProps(context) {
+  const { refer } = context.query;
+  console.log(refer)
+  return {
+    props: { refer },
+  }
 }
