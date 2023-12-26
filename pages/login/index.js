@@ -26,16 +26,16 @@ export default function Login() {
   const [drop, setDrop] = useState(false)
   const router = useRouter();
   const [email, setEmail] = useState('')
-   //alerts
-   const [ale, setAle] = useState('')
-   const [open, setOpen] = useState(false)
-   const [aleT, setAleT] = useState(false)
-   const Alerts = (m, t) => {
-     setAle(m)
-     setAleT(t)
-     setOpen(true)
-   }
-   //end of alerts
+  //alerts
+  const [ale, setAle] = useState('')
+  const [open, setOpen] = useState(false)
+  const [aleT, setAleT] = useState(false)
+  const Alerts = (m, t) => {
+    setAle(m)
+    setAleT(t)
+    setOpen(true)
+  }
+  //end of alerts
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -72,7 +72,7 @@ export default function Login() {
               .select()
               .eq('username', user.user_metadata.displayName);
             localStorage.setItem('signRef', data[0].newrefer);
-            
+
             localStorage.setItem('userinfo', data[0]);
             console.log(data);
           } catch (e) {
@@ -97,7 +97,7 @@ export default function Login() {
     }
     getSe();
 
-    
+
   }, [])
   const supabaseMigrate = async (username, uid) => {
     const { data, error } = await supabase.auth.signUp({
@@ -110,69 +110,69 @@ export default function Login() {
       }
     })
     //update email after migration
-    const uidch = async () =>{
+    const uidch = async () => {
 
-const { error } = await supabase
-.from('users')
-.update({ userId: data.user.id })
-.eq('email', email);
+      const { error } = await supabase
+        .from('users')
+        .update({ userId: data.user.id })
+        .eq('email', email);
     }
     uidch();
     router.push('/dashboard')
 
   }
- 
+
   const login = async () => {
 
-        
-          //end of firebase
+
+    //end of firebase
     async function findemail() {
       const { data, error } = await supabase
         .from('users')
         .select('email')
         .eq('username', email)
 
-        async function sign(emailer) {
+      async function sign(emailer) {
 
-          const { data, error } = await supabase.auth.signInWithPassword({
-            email: emailer,
-            password: values.password,
-          })
-          if (error) {
-            // Handle authentication error
-            console.error(error);
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(error.message)
-            if(error.message === 'Invalid login credentials'){
-             Alerts("Please Ensure your Email and Password is correct",false)
-            }else{
-              console.log(error.message)
-            }
-            setDrop(false)
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: emailer,
+          password: values.password,
+        })
+        if (error) {
+          // Handle authentication error
+          console.error(error);
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(error.message)
+          if (error.message === 'Invalid login credentials') {
+            Alerts("Please Ensure your Email and Password is correct", false)
           } else {
-            // User successfully signed in
-            let user = data.user;
-            const { data:users,error:uerr} = await supabase
+            console.log(error.message)
+          }
+          setDrop(false)
+        } else {
+          // User successfully signed in
+          let user = data.user;
+          const { data: users, error: uerr } = await supabase
             .from('users')
             .select('*')
-            .eq('username',user.user_metadata.displayName)
-            let usersinfo = users[0];
-            localStorage.setItem('userinfo', usersinfo);
-            Alerts('You are logged in',true);
-            console.log(user)
-            // localStorage.setItem('signRef', data[0].newrefer);
-            localStorage.setItem('signedIns', true);
-            localStorage.setItem('signUids', user.id);
-            localStorage.setItem('signNames', user.user_metadata.displayName);
-            console.log(user.user_metadata.displayName)
-            setDrop(false)
-            router.push('/dashboard')
-          }
+            .eq('username', user.user_metadata.displayName)
+          let usersinfo = users[0];
+          localStorage.setItem('userinfo', usersinfo);
+          Alerts('You are logged in', true);
+          console.log(user)
+          // localStorage.setItem('signRef', data[0].newrefer);
+          localStorage.setItem('signedIns', true);
+          localStorage.setItem('signUids', user.id);
+          localStorage.setItem('signNames', user.user_metadata.displayName);
+          console.log(user.user_metadata.displayName)
+          setDrop(false)
+          router.push('/dashboard')
         }
-       sign(data[0].email);
+      }
+      sign(data[0].email);
       //end of supabase sgn in
-  
+
       // signInWithEmailAndPassword(auth, data[0].email, values.password)
       //   .then((userCredential) => {
       //     // Signed in 
@@ -208,7 +208,7 @@ const { error } = await supabase
 
         findemail()
       } else {
-        Alerts('username does not exist or check your internet connection',false)
+        Alerts('username does not exist or check your internet connection', false)
         setDrop(false)
       }
     } else {
@@ -224,16 +224,16 @@ const { error } = await supabase
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(error.message)
-          if(error.message === 'Invalid login credentials'){
-           Alerts("Please Ensure your Email and Password is correct",false)
-          }else{
+          if (error.message === 'Invalid login credentials') {
+            Alerts("Please Ensure your Email and Password is correct", false)
+          } else {
             console.log(error.message)
           }
           setDrop(false)
         } else {
           // User successfully signed in
           let user = data.user;
-          Alerts('you are logged in',true);
+          Alerts('you are logged in', true);
           console.log(user)
           // localStorage.setItem('signRef', data[0].newrefer);
           localStorage.setItem('signedIns', true);
@@ -242,7 +242,7 @@ const { error } = await supabase
           setDrop(false)
         }
       }
-     sign(email);
+      sign(email);
     }
 
 
@@ -262,7 +262,7 @@ const { error } = await supabase
         background: 'black'
         , position: 'relative'
       }}>
-        <Alertz/>
+      <Alertz />
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={drop}
@@ -277,7 +277,7 @@ const { error } = await supabase
       </Head>
       <Stack direction='column' spacing={3}>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
-        <Image src={LOGO} width={100} height={120} alt='logo sfcsports'/>
+          <Image src={LOGO} width={100} height={120} alt='logo sfcsports' />
           <Link href="/" style={{ textDecoration: "none" }}>
             <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </Typography>
           </Link>
@@ -324,15 +324,15 @@ const { error } = await supabase
       </Stack>
       <Stack direction="column" spacing={2} justifyContent='center' alignItems='center' sx={{ width: '343px', marginTop: '200px' }}>
         <Button variant="contained" className="authactionbtn"
-        onKeyDown={(event)=>{
-          if(
-            event.key === "Enter" ||
-            event.key === "Space"
-            ){
+          onKeyDown={(event) => {
+            if (
+              event.key === "Enter" ||
+              event.key === "Space"
+            ) {
               login()
             }
-        }}
-        sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', fontWeight: '400' }}
+          }}
+          sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', fontWeight: '400' }}
           onClick={login}>
           <Typography sx={{ fontFamily: 'Poppins, sans-serif', marginLeft: "3px", color: "#E5E7EB" }}>Login</Typography>
         </Button>
@@ -340,7 +340,7 @@ const { error } = await supabase
           <Typography style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '200', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>Forgotten Password ?</Typography>
           <Divider sx={{ background: '#E5E7EB' }} />
         </Link>
-        <Link href="/?register0" style={{ width: '100%', textAlign: 'center', textDecoration: "none", color: "#E5E7EB", fontSize: '15px', fontWeight: '400', fontFamily: 'Poppins,sans-serif' }}>Dont have an Account ?
+        <Link href="/register?refer=0" style={{ width: '100%', textAlign: 'center', textDecoration: "none", color: "#E5E7EB", fontSize: '15px', fontWeight: '400', fontFamily: 'Poppins,sans-serif' }}>Dont have an Account ?
           Create Account
 
         </Link>
@@ -371,15 +371,15 @@ const { error } = await supabase
           padding: '12px'
         }}>
           <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
+          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'black' }}>
 
             {aleT ? 'Success' : 'Sorry!'}
           </p>
-          <p id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
+          <p id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
             {ale}
           </p>
-          <Divider sx={{ borderBottomWidth: '45px'}} />
-          <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+          <Divider sx={{ borderBottomWidth: '45px' }} />
+          <p style={{ color: '#D8B16B', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               router.push('/dashboard')

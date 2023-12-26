@@ -93,7 +93,7 @@ export default function Home() {
           <p style={{ width: '300px', color: 'white', fontSize: '17px', fontWeight: '300' }}>Build Your Team To  Get Multiple Bonuses and Unlimited Priviledges</p>
         
             <Stack onClick={()=>{
-              router.push('/?register=0');
+              router.push('/register?refer=0');
             }} sx={{ background: "linear-gradient(#C61F41, #D13655);", padding: '16px', borderRadius: '10px', width: '191px' }} justifyContent='center' alignItems='center' >
               <p style={{ color: 'white', fontSize: '16px', fontWeight: '300' }}>GET STARTED NOW!</p>
             </Stack>
@@ -131,7 +131,7 @@ export default function Home() {
             <motion.p className='drawopstop'>SFCSPORTS01        </motion.p>
 
             <Link href='/login'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>LOGIN              </motion.p></Link>
-            <Link href='/?register0'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>SIGN UP            </motion.p></Link>
+            <Link href='/register?refer=0'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>SIGN UP            </motion.p></Link>
             <Link href='/'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>CONTACT US         </motion.p></Link>
             <Link href='/'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>JOIN TELEGRAM GROUP</motion.p></Link>
             </Stack>

@@ -280,7 +280,7 @@ export default function Account() {
                             <Icon icon="tdesign:link" style={{ color: 'white' }} />
                             <Stack direction='column'>
                                 <p>Referral Link</p>
-                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://sfcsports01.com/?register{users.newrefer}</p>
+                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://sfcsports01.com/register?refer={users.newrefer}</p>
                                 <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>copy the above link and share to get more rewards</p>
                             </Stack>
                         </Stack>
