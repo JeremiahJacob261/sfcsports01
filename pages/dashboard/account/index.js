@@ -288,7 +288,7 @@ export default function Account() {
                             whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
                         >
                             <Icon icon="solar:copy-bold-duotone" width={24} height={24} onClick={() => {
-                                navigator.clipboard.writeText('https://sfcsports01.com/?register' + users.newrefer);
+                                navigator.clipboard.writeText('https://sfcsports01.com/register?refer=' + users.newrefer);
                                 toast.success('Referral link copied to clipboard');
                             }} />
                         </motion.div>
