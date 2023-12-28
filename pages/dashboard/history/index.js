@@ -91,7 +91,7 @@ export default function History() {
                         </Stack>
                     </Stack>
                             )
-                          }else if(item.type === 'bonus'){
+                          }else if(item.type === 'bonus' && item.code === ''){
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
@@ -162,7 +162,7 @@ export default function History() {
                             </Stack>
                             )
                           }else{
-                           if(item.code === 'usdtdepositfailed'){
+                           if(item.code === localStorage.getItem('signRef') && item.type === 'depbonus'){
                             let infos = {
                                 type:'Broadcast',
                                 amount:'',
@@ -175,12 +175,24 @@ export default function History() {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</p>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>You recieved first deposit bonus from {item.username}</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
                                 </Stack>
                             </Stack>
                             )
+                           }else{
+                            if(item.type === 'affbonus' && item.code === localStorage.getItem('signRef')){
+                                return(
+                                    <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                    <Stack>
+                                        <p style={{ fontWeight:'bold',color:'greenyellow'}}>You have recieved rebate bonus bonus from {item.username}</p>
+                                        <p>{item.amount} USDT</p>
+                                        <p style={{ color: 'white' }}>{fullDay}</p>
+                                    </Stack>
+                                </Stack>
+                                )
+                            }
                            }
                           }
                         })
