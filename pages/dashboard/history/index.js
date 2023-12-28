@@ -6,7 +6,7 @@ import { Box, Typography, Modal, Fade, Backdrop } from '@mui/material';
 import { Icon, InlineIcon } from '@iconify/react';
 import { useEffect,useState } from 'react';
 import { supabase } from '@/pages/api/supabase';
-export default function History() {
+export default function History({credent}) {
     const router = useRouter();
     const [data, setData] = useState({});
     const [ref,setRef] = useState('')
@@ -14,13 +14,13 @@ export default function History() {
     //hisstory-dx
 
     useEffect(()=>{
-            console.log('started');
-            setRef(localStorage.getItem('signRef'));
+            console.log('started',credent.newrefer);
+            setRef(credent.newrefer);
         const getNoti = async () =>{
             const { data,error } = await supabase
             .from('activa')
             .select('*')
-            .or(`username.eq.${localStorage.getItem('signNames')},code.eq.${localStorage.getItem('signRef')}`)
+            .or(`username.eq.${localStorage.getItem('signNames')},code.eq.${credent.newrefer}`)
             .order('id', { ascending: false })
             setNoti(data);
             console.log(data)
@@ -162,7 +162,7 @@ export default function History() {
                             </Stack>
                             )
                           }else{
-                           if(item.code === localStorage.getItem('signRef') && item.type === 'depbonus'){
+                           if(item.code === credent.newrefer && item.type === 'depbonus'){
                             let infos = {
                                 type:'Broadcast',
                                 amount:'',
@@ -182,7 +182,7 @@ export default function History() {
                             </Stack>
                             )
                            }else{
-                            if(item.type === 'affbonus' && item.code === localStorage.getItem('signRef')){
+                            if(item.type === 'affbonus' && item.code === credent.newrefer){
                                 return(
                                     <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                     <Stack>
@@ -222,4 +222,22 @@ export default function History() {
             <HomeBottom />
         </div>
     )
+}
+export async function getServerSideProps(context) { 
+    const id = context.query.id;
+    try{
+        const { data,error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('username',id)
+        return {
+            props: {credent:data[0]}, // will be passed to the page component as props
+        }
+    }catch(err){
+        console.log(err);
+        let credent = {};
+        return {
+            props: {credent:credent}, // will be passed to the page component as props
+        }
+    }
 }

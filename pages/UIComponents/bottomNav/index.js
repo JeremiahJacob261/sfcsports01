@@ -4,13 +4,14 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 export default function HomeBottom() {
+  const [name,setNames] = useState();
   const router = useRouter();
   const selectPage = {
       0: '/dashboard',
       1:'/dashboard/event',
       2:'/dashboard/bets',
       3:'/dashboard/account',
-      4:'/dashboard/history'
+      4:`/dashboard/history?id=${name}`
     }
   const [selected, setSelected] = useState(0);
   const selectLogic = (index) => {
@@ -24,6 +25,7 @@ export default function HomeBottom() {
     let selecteds = localStorage.getItem("selected");
     let page = selectPage[selecteds];
     setSelected(selecteds);
+    setNames(localStorage.getItem("signNames"));
   }, [selected]);
     return (
         <Stack direction='row' className='bottomnav' sx={{ width:'100vw',position:'fixed',bottom:0}} justifyContent='space-around'>
