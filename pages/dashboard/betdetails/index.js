@@ -90,6 +90,7 @@ export default function BetDetails({ datas }) {
                 <p className="betd-text">Profit: {datas.profit}</p>
                 <p className="betd-text">Match Result: {resulta}</p>
                 <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
+                <p className="betd-text" style={{ color:'goldenrod'}}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
             </Stack>
         </div>
     )

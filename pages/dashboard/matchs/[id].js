@@ -14,7 +14,7 @@ import React from 'react';
 export default function Matchs({ matc }) {
   const router = useRouter();
   const [matches, setMatches] = useState(matc);//[router.query.id
- 
+  const [placee,setPlacee] = useState({});
   const [user, setUser] = useState({});
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
@@ -130,8 +130,10 @@ export default function Matchs({ matc }) {
 
   function Placer({ txt, data, pick }) {
     const [amountInput, setAmountInput] = useState('');
-
-    let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(txt) / 100).toFixed(3))).toFixed(3);
+    // console.log(txt)
+    // console.log(pick)
+    // console.log(markets[pick])
+    let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(placee.txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
     const click = (number) => {
       if (number === 'X') {
@@ -160,6 +162,7 @@ export default function Matchs({ matc }) {
       <React.Fragment key={'bottom'} >
         <motion.div className='odds' onClick={() => {
           setParentOpen(true)
+          setPlacee({'txt':txt,'pick':pick,'market':markets[pick]})
         }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -190,7 +193,7 @@ export default function Matchs({ matc }) {
               </Stack>
 
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
-                <p>{markets[pick]}</p> <p>{data[pick]}</p>
+                <p>{placee.market}</p> <p>{placee.txt}</p>
               </Stack>
 
               <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
@@ -234,7 +237,7 @@ export default function Matchs({ matc }) {
               <motion.p onClick={() => {
                 //   router.push('/dashboard/fund/success')
                 // (matches, stake, profit, username, market, odd)
-                placebet(data, parseFloat(parseFloat(amountInput).toFixed(3)), parseFloat(profit), localStorage.getItem('signNames'), markets[pick], data[pick]);
+                placebet(data, parseFloat(parseFloat(amountInput).toFixed(3)), parseFloat(profit), localStorage.getItem('signNames'), placee.market, placee.txt);
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}

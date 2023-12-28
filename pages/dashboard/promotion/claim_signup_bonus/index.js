@@ -34,9 +34,7 @@ export default function Claim() {
             alert(test[0].message);
             router.push('/dashboard/promotion')
         }
-
     }
-
     const ClaimFunc = async () => {
         if (bonus === '') {
             alert('Please enter bonus code');
