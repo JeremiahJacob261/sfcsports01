@@ -50,7 +50,7 @@ export default function GoogleTranslate() {
         <>
 
             <div id="google_translate_element" style={{ width: '50px', height: '100px', position: 'relative',display:dis }}></div>
-            {/* <SelectPicker
+            <SelectPicker
                 data={languages}
                 style={{ width: 100 }}
                 placement="bottomEnd"
@@ -59,8 +59,8 @@ export default function GoogleTranslate() {
                 searchable={false}
                 className={'notranslate'}
                 menuClassName={'notranslate'}
-                onSelect={(e, m, evt) => }
-                placeholder="Lang" /> */}
+                onSelect={(e, m, evt) => langChange(e,m,evt)}
+                placeholder="Lang" />
         <Icon icon="tabler:language" color="green" width="24" height="24" onClick={()=>{ setDis('visible')}}/>
         </>
 

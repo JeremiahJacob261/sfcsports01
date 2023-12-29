@@ -17,6 +17,18 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 export default function Account({vips}) {
+
+    //prompt the user to install pwa
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallPromotion();
+    });
+  
+
+    //
     const [users, setUser] = useState({});
     const [placed, setPlaced] = useState([]);
     useEffect(() => {
@@ -472,6 +484,21 @@ export default function Account({vips}) {
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
+                    <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
+                        onClick={async() => {
+                            if (!deferredPrompt) {
+                                return;
+                            }
+                            const result = await deferredPrompt.prompt();
+                            console.log(`Install prompt was: ${result.outcome}`);
+                            deferredPrompt = null;
+                          
+                        }}>
+                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+                            <Icon icon="mdi:faq" style={{ color: 'white' }} />
+                            <p>Install</p></Stack>
+                            <Icon icon="material-symbols:install-mobile" color="wheat" width="24" height="24" />
+                    </Stack>
 
                 </Stack>
             </Stack>
