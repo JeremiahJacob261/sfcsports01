@@ -18,20 +18,11 @@ import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeft
 
 export default function Account({vips}) {
 
-    //prompt the user to install pwa
-    let deferredPrompt;
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        showInstallPromotion();
-    });
-  
-
-    //
+    
     const [users, setUser] = useState({});
     const [placed, setPlaced] = useState([]);
     useEffect(() => {
+        
         if (!localStorage.getItem('signedIns')) {
             router.push('/login')
         }
@@ -486,6 +477,16 @@ export default function Account({vips}) {
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
                         onClick={async() => {
+                            //prompt the user to install pwa
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallPromotion();
+    });
+  
+    //
                             if (!deferredPrompt) {
                                 return;
                             }
@@ -495,9 +496,9 @@ export default function Account({vips}) {
                           
                         }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                            <Icon icon="mdi:faq" style={{ color: 'white' }} />
-                            <p>Install</p></Stack>
                             <Icon icon="material-symbols:install-mobile" color="wheat" width="24" height="24" />
+                            <p>Install</p></Stack>
+                             <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
                 </Stack>
