@@ -8,7 +8,7 @@ export default function GoogleTranslate() {
         { label: 'English', value: '/auto/en' },
         { label: `Русский`, value: '/auto/ru' },
         { label: 'Polski', value: '/auto/pl' }];
-
+    const [dis,setDis] = useState('none')        
     const [selected, setSelected] = useState(null)
     const googleTranslateElementInit = () => {
 
@@ -49,7 +49,7 @@ export default function GoogleTranslate() {
     return (
         <>
 
-            <div id="google_translate_element" style={{ width: '50px', height: '100px', position: 'relative',display:'none' }}></div>
+            <div id="google_translate_element" style={{ width: '50px', height: '100px', position: 'relative',display:dis }}></div>
             {/* <SelectPicker
                 data={languages}
                 style={{ width: 100 }}
@@ -61,7 +61,7 @@ export default function GoogleTranslate() {
                 menuClassName={'notranslate'}
                 onSelect={(e, m, evt) => }
                 placeholder="Lang" /> */}
-        <Icon icon="tabler:language" color="green" width="24" height="24" />
+        <Icon icon="tabler:language" color="green" width="24" height="24" onClick={()=>{ setDis('visible')}}/>
         </>
 
     )
