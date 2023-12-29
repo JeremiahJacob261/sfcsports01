@@ -10,7 +10,7 @@ export default function HomeBottom() {
       0: '/dashboard',
       1:'/dashboard/event',
       2:'/dashboard/bets',
-      3:'/dashboard/account',
+      3:`/dashboard/account?id=${name}`,
       4:`/dashboard/history?id=${name}`
     }
   const [selected, setSelected] = useState(0);

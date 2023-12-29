@@ -20,6 +20,7 @@
     "@tronweb3/tronwallet-adapter-walletconnect": "^1.0.4",
     "@tronweb3/walletconnect-tron": "^2.0.0",
     "axios": "^1.6.0",
+    "cookies-next": "^4.1.0",
     "framer-motion": "^10.16.4",
     "next": "13.5.6",
     "next-pwa": "^5.6.0",
@@ -29,6 +30,7 @@
     "react-hot-toast": "^2.4.1",
     "react-responsive-carousel": "^3.2.23",
     "react-top-loading-bar": "^2.3.1",
+    "rsuite": "^5.49.0",
     "tronweb": "^5.3.1",
     "uuid": "^9.0.1"
   },

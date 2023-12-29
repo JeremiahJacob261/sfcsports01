@@ -63,6 +63,7 @@ p{
 .backgrounds{
   min-height: 90vh;
   margin-bottom: 80px;
+  padding-bottom: 100px;
   background: rgb(27,3,0);
 background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
 background: -webkit-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);

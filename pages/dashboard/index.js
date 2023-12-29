@@ -19,6 +19,7 @@ import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
+import GoogleTranslate from '@/GoogleTranslate';
 export default function Home() {
   const [addresst, setAddress] = useState('');
   const [gcount, setGCount] = useState(0);
@@ -188,6 +189,7 @@ export default function Home() {
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
+            <GoogleTranslate />
             <motion.div whileHover={{ color: '#C61F41' }}>
               <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
                 alert('Chat is not available yet')
@@ -195,7 +197,7 @@ export default function Home() {
             </motion.div>
             <motion.div whileHover={{ color: '#C61F41' }} onClick={testRoute}>
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={()=>{
-                router.push('/dashboard/history')
+                router.push(`/dashboard/history?id=${user.username}`)
               }}/>
             </motion.div>
           </Stack>

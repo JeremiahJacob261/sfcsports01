@@ -16,7 +16,7 @@ import DiamondIcon from '@mui/icons-material/Diamond';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
-export default function Account() {
+export default function Account({vips}) {
     const [users, setUser] = useState({});
     const [placed, setPlaced] = useState([]);
     useEffect(() => {
@@ -354,26 +354,27 @@ export default function Account() {
     //start of vip
     function Vip() {
 
-        const [vipcount, setVipcount] = useState({});
-        useEffect(() => {
-            const betting = async () => {
-                let test = await fetch('/api/vip', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username: localStorage.getItem('signNames') })
-                }).then(data => {
-                    return data.json();
-                })
-                if (test.status === 'success') {
-                    setVipcount(test)
-                } else {
-                    console.log(test.message)
-                }
-            }
-            betting();
-        }, []);
+        // const [vipcount, setVipcount] = useState({});
+        let vipcount = vips;
+        // useEffect(() => {
+        //     const betting = async () => {
+        //         let test = await fetch('/api/vip', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify({ username: localStorage.getItem('signNames') })
+        //         }).then(data => {
+        //             return data.json();
+        //         })
+        //         if (test.status === 'success') {
+        //             setVipcount(test)
+        //         } else {
+        //             console.log(test.message)
+        //         }
+        //     }
+        //     betting();
+        // }, []);
 
         return (
             <Stack style={{ width: '100%' }} justifyContent='center' alignItems='center'>
@@ -402,8 +403,8 @@ export default function Account() {
                             <Stack>
                                 <p style={{ fontFamily: 'Poppins,sans-serif' }}>Referrals</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
-                                    <BorderLinearProgress variant="determinate" value={(Number(vipcount.cprogress) > 100) ? 100 : Number(vipcount.cprogress)} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.cprogress)) > 100 ? 100 : Number(vipcount.cprogress)}%</p >
+                                    <BorderLinearProgress variant="determinate" value={(Number(vipcount.cprogress) > 100) ? 100 : Number(vipcount.cprogress) ?? 0} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.cprogress)) > 100 ? 100 : Number(vipcount.cprogress) ?? 0}%</p >
                                 </Stack>
                             </Stack>
 
@@ -575,4 +576,30 @@ export default function Account() {
             <HomeBottom />
         </div>
     )
+}
+export async function getServerSideProps(context) { 
+    const id = context.query.id;
+    try{
+        let test = await fetch('https://sfcsports01.com/api/vip', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: id })
+        }).then(data => {
+            return data.json();
+        })
+       return {
+           props:{
+               vips:test,
+           }
+       }
+    }catch(e){
+        console.log(e)
+        return {
+            props:{
+                vips:{},
+            }
+        }
+    }
 }
