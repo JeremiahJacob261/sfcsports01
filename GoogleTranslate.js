@@ -22,6 +22,7 @@ export default function GoogleTranslate() {
     }
 
     const langChange = (e, m, evt) => {
+        console.log(e,m,evt)
         evt.preventDefault()
         if (hasCookie('googtrans')) {
             setCookie('googtrans', decodeURI(e))
@@ -49,8 +50,8 @@ export default function GoogleTranslate() {
     return (
         <>
 
-            <div id="google_translate_element" style={{ width: '50px', height: '100px', position: 'relative',display:dis }}></div>
-            <SelectPicker
+<div id="google_translate_element" style={{width:'0px',height:'0px',position:'absolute',left:'50%',zIndex:-99999}}></div>
+ <SelectPicker
                 data={languages}
                 style={{ width: 100 }}
                 placement="bottomEnd"
@@ -61,7 +62,6 @@ export default function GoogleTranslate() {
                 menuClassName={'notranslate'}
                 onSelect={(e, m, evt) => langChange(e,m,evt)}
                 placeholder="Lang" />
-        <Icon icon="tabler:language" color="green" width="24" height="24" onClick={()=>{ setDis('visible')}}/>
         </>
 
     )

@@ -5,11 +5,15 @@ import { Stack, Typography } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import GoogleTranslate from '@/GoogleTranslate';
 import {Drawer} from '@mui/material';
 import { motion } from 'framer-motion'
 import Cup2 from '@/public/team_connect.png'
 import Cup1 from '@/public/cup1.png'
 import Cup3 from '@/public/cup3.png'
+import Cert1 from '@/public/cert (1).jpg'
+import Cert2 from '@/public/cert (2).jpg'
+import Cert3 from '@/public/cert (3).jpg'
 import Head from 'next/head';
 import { adapter,tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
@@ -71,6 +75,8 @@ export default function Home() {
           <Image src={Logo} width={41} height={36} alt="sfclogo" />
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>SFCSPORTS01</p>
         </Stack>
+        <Stack direction='row' alignItems='center' spacing={2}>
+        <GoogleTranslate/>
         <Stack onClick={async()=>{
           try{
             const { data,error } = supabase.auth.signOut();
@@ -83,6 +89,8 @@ export default function Home() {
         }}>
           <Icon icon="ic:round-menu" width={39} height={33} style={{ color: '#545454', background: '#D03151', opacity: '0.7' }} onClick={()=>{ setParentOpen(true) }}/>
         </Stack>
+
+          </Stack>
       </Stack>
       {/* end of top nav bar */}
       <Stack style={{ minWidth: '100%', minHeight: '100vh',padding:'8px' }} justifyContent='center' alignItems='center' spacing={3}>
@@ -120,7 +128,10 @@ export default function Home() {
           <p style={{ fontWeight:'600',fontSize:'20px' }}>200 000 +</p>
           <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Successful Transactions</p>
         </Stack>
-        
+         <motion.p whileTap={{ color:'grey',scale:1.05 }} style={{ color: '#D8B16B', fontSize: '21px', fontWeight: '700' }}>Our Certificates</motion.p>
+        <Image src={Cert1} width={254} height={230} alt="cert1" style={{}}/>
+        <Image src={Cert2} width={254} height={230} alt="cert2" style={{}}/>
+        <Image src={Cert3} width={254} height={230} alt="cert3" style={{}}/>
         <Drawer
           anchor={'left'}
           open={parentopen}

@@ -16,13 +16,13 @@ import DiamondIcon from '@mui/icons-material/Diamond';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
-export default function Account({vips}) {
+export default function Account({ vips }) {
 
-    
+
     const [users, setUser] = useState({});
     const [placed, setPlaced] = useState([]);
     useEffect(() => {
-        
+
         if (!localStorage.getItem('signedIns')) {
             router.push('/login')
         }
@@ -476,29 +476,29 @@ export default function Account({vips}) {
                     </Stack>
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
-                        onClick={async() => {
+                        onClick={async () => {
                             //prompt the user to install pwa
-    let deferredPrompt;
+                            let deferredPrompt;
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        showInstallPromotion();
-    });
-  
-    //
+                            window.addEventListener('beforeinstallprompt', (e) => {
+                                e.preventDefault();
+                                deferredPrompt = e;
+                                showInstallPromotion();
+                            });
+
+                            //
                             if (!deferredPrompt) {
                                 return;
                             }
                             const result = await deferredPrompt.prompt();
                             console.log(`Install prompt was: ${result.outcome}`);
                             deferredPrompt = null;
-                          
+
                         }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="material-symbols:install-mobile" color="wheat" width="24" height="24" />
                             <p>Install</p></Stack>
-                             <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
+                        <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
                 </Stack>
@@ -605,9 +605,9 @@ export default function Account({vips}) {
         </div>
     )
 }
-export async function getServerSideProps(context) { 
+export async function getServerSideProps(context) {
     const id = context.query.id;
-    try{
+    try {
         let test = await fetch('https://sfcsports01.com/api/vip', {
             method: 'POST',
             headers: {
@@ -617,16 +617,16 @@ export async function getServerSideProps(context) {
         }).then(data => {
             return data.json();
         })
-       return {
-           props:{
-               vips:test,
-           }
-       }
-    }catch(e){
+        return {
+            props: {
+                vips: test,
+            }
+        }
+    } catch (e) {
         console.log(e)
         return {
-            props:{
-                vips:{},
+            props: {
+                vips: {},
             }
         }
     }
