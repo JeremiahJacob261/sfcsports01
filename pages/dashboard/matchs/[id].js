@@ -2,7 +2,7 @@ import { Router, useRouter } from 'next/router';
 import { supabase } from '@/pages/api/supabase';
 import { Icon } from '@iconify/react';
 import { Stack } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Drawer, TextField } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
@@ -67,14 +67,18 @@ export default function Matchs({ matc }) {
     "otherscores": "Other"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
+    const { data:mini,error } = await supabase
+    .from('users')
+    .select('balance,gcount')
+    .eq('username', username)
     if (user.gcount > 2) {
       alert('You have exceeded the number of games you can play today')
       return;
     } else {
-      if (stake < 1) {
-        alert('Minimum stake is 1 USDT')
+      if (stake < 2) {
+        alert('Minimum stake is 2 USDT')
         return;
-      } else if (stake > user.balance) {
+      } else if (stake > mini[0].balance) {
         alert('Insufficient Balance')
         return;
 
@@ -133,6 +137,7 @@ export default function Matchs({ matc }) {
     // console.log(txt)
     // console.log(pick)
     // console.log(markets[pick])
+    const [use,setUse] = useState({});
     let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(placee.txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
     const click = (number) => {
@@ -158,6 +163,26 @@ export default function Matchs({ matc }) {
         }
       }
     }
+    useEffect(() => { 
+      const getRef = async () => {
+        try {
+          const { data: refer, error: errref } = await supabase
+            .from('users')
+            .select('*')
+            .eq('username', localStorage.getItem('signNames'))
+          setUse(refer[0]);
+          // const { data:match, error:errmatch } = await supabase
+          // .from('bets')
+          // .select('*')
+          // .eq('match_id', router.query.id)
+          // setMatches(match[0]);
+        } catch (e) {
+          console.log(e)
+        }
+  
+      }
+      getRef();
+    }, [use])
     return (
       <React.Fragment key={'bottom'} >
         <motion.div className='odds' onClick={() => {
@@ -226,7 +251,7 @@ export default function Matchs({ matc }) {
                 </Stack>
 
                 <Stack sx={{ width: '200px' }} spacing={2}>
-                  <p>Current Balance : {user.balance ?? 0} USDT</p>
+                  <p>Current Balance : {use.balance ?? 0} USDT</p>
                   <p>Stake: {amountInput}</p>
                   <p>Profit: {profit}</p>
                   <p>Total Winnings: {total}</p>

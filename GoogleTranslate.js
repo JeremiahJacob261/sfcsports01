@@ -50,7 +50,7 @@ export default function GoogleTranslate() {
     return (
         <>
 
-<div id="google_translate_element" style={{width:'0px',height:'0px',position:'absolute',left:'50%',zIndex:-99999}}></div>
+<div id="google_translate_element" style={{width:'0px',height:'0px',position:'absolute',right:'50',zIndex:-99999}}></div>
  <SelectPicker
                 data={languages}
                 style={{ width: 100 }}
