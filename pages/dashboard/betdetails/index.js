@@ -27,6 +27,7 @@ export default function BetDetails({ datas }) {
         "threethree": "3 - 3",
         "otherscores": "Other"
     }
+    let s = datas;
     let timers = datas.created_at;
     let date = new Date(timers);
     let day = date.getDate();
@@ -35,24 +36,27 @@ export default function BetDetails({ datas }) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     let time = `${hours}:${minutes}`;
-    let dates = `${day}/${month}/${year}`;
+    let dates = `${day}/${month + 1}/${year}`;
     let fulltime = `${dates} ${time}`;
+    let stams = Date.parse(s.date + " " + s.time) / 1000;
+    let curren = new Date().getTime() / 1000;
+    console.log(datas.won)
     useEffect(() => {
         if (!localStorage.getItem('signNames')) {
             router.push('/login')
         }
-        const getRef = async () => { 
+        const getRef = async () => {
             try {
                 const { data, error } = await supabase
                     .from('bets')
                     .select('results')
                     .eq('match_id', datas.match_id)
                 setResulta(data[0].results)
-            }catch(e){
+            } catch (e) {
                 console.log(e)
             }
         }
-        getRef();   
+        getRef();
     }, [])
     return (
         <div className='backgrounds' sx={{ minHeight: '100vh', marginBottom: 0 }}>
@@ -88,9 +92,10 @@ export default function BetDetails({ datas }) {
                 <p className="betd-text">Match ID: {datas.match_id}</p>
                 <p className="betd-text">Return: {datas.aim + datas.stake} USDT</p>
                 <p className="betd-text">Profit: {datas.profit}</p>
+                <p className="betd-text">Status: {(datas.won != null) ? 'Finished' : (stams > curren) ? 'Ongoing' : 'Not Started'}</p>
                 <p className="betd-text">Match Result: {resulta}</p>
                 <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
-                <p className="betd-text" style={{ color:'goldenrod'}}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
+                <p className="betd-text" style={{ color: 'goldenrod' }}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
             </Stack>
         </div>
     )

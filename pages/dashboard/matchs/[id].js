@@ -71,7 +71,7 @@ export default function Matchs({ matc }) {
     .from('users')
     .select('balance,gcount')
     .eq('username', username)
-    if (user.gcount > 2) {
+    if (user.gcount > 1) {
       alert('You have exceeded the number of games you can play today')
       return;
     } else {
@@ -377,10 +377,9 @@ export default function Matchs({ matc }) {
     const [seconds, setSeconds] = useState('')
 
     let playable = {
-      0: 3,
-      1: 2,
-      2: 1,
-      3: 0
+      0: 2,
+      1: 1,
+      2: 0,
     }
     function calculateTimeRemaining() {
       const currentDate = new Date();
