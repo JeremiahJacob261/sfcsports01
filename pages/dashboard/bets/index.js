@@ -81,15 +81,20 @@ export default function Bets() {
               let s = bet;
               let stams = Date.parse(s.date + " " + s.time) / 1000;
               let curren = new Date().getTime() / 1000;
+              // 17041 836 89
+              // 17041 764 89
+              // 17041 908 89
+              // 17041 836 89 + 7200
+              console.log(bet.won)
               return (
 
                 <Link href={'/dashboard/betdetails?id=' + bet.betid} key={bet.betid}>
                   <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }} spacing={1}>
                     {/* statusOfBet */}
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
-                      sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (defTime(bet.date, bet.time) < defTime(new Date().getFullYear() + "-" + new Date().getMonth() + 1 + "-" + new Date().getDate(), new Date().getHours() + ":" + new Date().getMinutes())) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
+                      sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
                       <p>Status</p>
-                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams > curren) ? 'Ongoing' : 'Not Started'}</p> </Stack>
+                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams + 7200 < curren) ? 'Processing' :  (stams > curren) ? 'Ongoing' : 'Not Started'}</p> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
