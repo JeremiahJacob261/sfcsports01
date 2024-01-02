@@ -91,10 +91,11 @@ export default function BetDetails({ datas }) {
                 <p className="betd-text">Bet market: {datas.market}</p><p className="betd-text">Match ID: {datas.match_id}</p>
                 <p className="betd-text">Return: {datas.aim + datas.stake} USDT</p>
                 <p className="betd-text">Profit: {datas.profit}</p>
-                <p className="betd-text">Status: {(datas.won != 'null') ? 'Finished' : (stams+7200 < curren) ? 'Processing' :  (stams > curren) ? 'Ongoing' : 'Not Started'}</p>
+                <p className="betd-text">Status: {(datas.won != 'null') ? 'Finished' : (stams+7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
                 <p className="betd-text">Match Result: {resulta}</p>
                 <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
                 <p className="betd-text" style={{ color: 'goldenrod' }}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
+                
             </Stack>
         </div>
     )

@@ -94,7 +94,7 @@ export default function Bets() {
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
                       sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
                       <p>Status</p>
-                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams + 7200 < curren) ? 'Processing' :  (stams > curren) ? 'Ongoing' : 'Not Started'}</p> </Stack>
+                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams + 7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
