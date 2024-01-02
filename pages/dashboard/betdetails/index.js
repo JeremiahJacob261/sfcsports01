@@ -87,9 +87,7 @@ export default function BetDetails({ datas }) {
                 <p className="betd-text">Time: {fulltime}</p>
                 <p className="betd-text">Stake: {datas.stake} USDT</p>
                 <p className="betd-text">Odds: {datas.odd}</p>
-                <p className="betd-text">Bet market: {datas.market}</p>
-                <p className="betd-text">Status: {(datas.won === 'true') ? 'WON' : (datas.won === 'false') ? 'LOST' : 'ONGOING'}</p>
-                <p className="betd-text">Match ID: {datas.match_id}</p>
+                <p className="betd-text">Bet market: {datas.market}</p><p className="betd-text">Match ID: {datas.match_id}</p>
                 <p className="betd-text">Return: {datas.aim + datas.stake} USDT</p>
                 <p className="betd-text">Profit: {datas.profit}</p>
                 <p className="betd-text">Status: {(datas.won != null) ? 'Finished' : (stams > curren) ? 'Ongoing' : 'Not Started'}</p>

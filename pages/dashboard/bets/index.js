@@ -13,11 +13,11 @@ export default function Bets() {
   const [betDta, setBetDta] = useState([]);
   const [selected, setSelected] = useState(0);
   const betObj = {
-    0:'all',
-    1:'settled'
+    0: 'all',
+    1: 'settled'
   }
   //match countdown
-  const defTime = (dates,time) => {
+  const defTime = (dates, time) => {
     let dateString = dates;
     let timeString = time;
     let dateParts = dateString.split("-");
@@ -26,31 +26,31 @@ export default function Bets() {
     // Create a new Date object
     let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
     // Get the timestamp
-    let timestamp = date.getTime()/1000;
+    let timestamp = date.getTime() / 1000;
     return timestamp;
   }
   const betSelectLogic = (index) => {
     setSelected(index);
     //return bet desired data
-    console.log(betObj[index]  )
+    console.log(betObj[index])
     const getFilter = async () => {
-      try{
+      try {
         let test = await fetch('/api/bet', {
           method: 'POST',
           headers: {
-              'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ username:localStorage.getItem('signNames'),type:betObj[index]  })
-      }).then(data => {
+          body: JSON.stringify({ username: localStorage.getItem('signNames'), type: betObj[index] })
+        }).then(data => {
           return data.json();
-      })
-      setBetDta(test.message)
-      }catch(e){
+        })
+        setBetDta(test.message)
+      } catch (e) {
 
       }
     }
     getFilter();
-   }
+  }
   useEffect(() => {
     const getRef = async () => {
       try {
@@ -80,38 +80,38 @@ export default function Bets() {
               {/* bet data according to betTabSelected */ }
               let s = bet;
               let stams = Date.parse(s.date + " " + s.time) / 1000;
-            let curren = new Date().getTime() / 1000;
+              let curren = new Date().getTime() / 1000;
               return (
 
-                <Link href={'/dashboard/betdetails?id='+bet.betid} key={bet.betid}>
-                <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }}  spacing={1}>
-                  {/* statusOfBet */}
-                  <Stack direction='row' alignItems='center' justifyContent='space-between' 
-                  sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (defTime(bet.date,bet.time) < defTime( new Date().getFullYear() + "-" + new Date().getMonth()+1 + "-" + new Date().getDate(), new Date().getHours() + ":" + new Date().getMinutes() )) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
-                    <p>Status</p>   
-                     <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (curren > stams) ? 'Not Started' : 'Ongoing'}</p> </Stack>
-                  {/* team data */}
-                  <Stack direction='row'>
-                    {/* team names and logo */}
-                    <Stack spacing={1}>
-                      {/* home team */}
-                      <Stack direction='row' spacing={1}>
-                        <Image src={bet.ihome ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png'} width={20} height={20} alt="home logo" />
-                        <p>{bet.home}</p>
+                <Link href={'/dashboard/betdetails?id=' + bet.betid} key={bet.betid}>
+                  <Stack direction='column' className='rowsofdata' sx={{ width: '305px' }} spacing={1}>
+                    {/* statusOfBet */}
+                    <Stack direction='row' alignItems='center' justifyContent='space-between'
+                      sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (defTime(bet.date, bet.time) < defTime(new Date().getFullYear() + "-" + new Date().getMonth() + 1 + "-" + new Date().getDate(), new Date().getHours() + ":" + new Date().getMinutes())) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
+                      <p>Status</p>
+                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams > curren) ? 'Ongoing' : 'Not Started'}</p> </Stack>
+                    {/* team data */}
+                    <Stack direction='row'>
+                      {/* team names and logo */}
+                      <Stack spacing={1}>
+                        {/* home team */}
+                        <Stack direction='row' spacing={1}>
+                          <Image src={bet.ihome ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png'} width={20} height={20} alt="home logo" />
+                          <p>{bet.home}</p>
+                        </Stack>
+                        {/* end of home team */}
+                        {/* away team */}
+                        <Stack direction='row' spacing={1}>
+                          <Image src={bet.iaway ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png'} width={20} height={20} alt='away logo' />
+                          <p>{bet.away}</p>
+                        </Stack>
+                        {/* end of away team */}
                       </Stack>
-                      {/* end of home team */}
-                      {/* away team */}
-                      <Stack direction='row' spacing={1}>
-                        <Image src={bet.iaway ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png'} width={20} height={20} alt='away logo' />
-                        <p>{bet.away}</p>
-                      </Stack>
-                      {/* end of away team */}
+                      {/* end of team name and logo */}
                     </Stack>
-                    {/* end of team name and logo */}
+                    {/* end of team data */}
+                    <Stack><p>Stake: {bet.stake} USDT</p></Stack>
                   </Stack>
-                  {/* end of team data */}
-                  <Stack><p>Stake: {bet.stake} USDT</p></Stack>
-                </Stack>
                 </Link>
 
               )
@@ -127,7 +127,7 @@ export default function Bets() {
           <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
           <p style={{ color: 'grey' }}>Please Check your internet connection</p>
         </Stack>
-        )
+      )
     }
 
   }
