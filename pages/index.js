@@ -5,7 +5,6 @@ import { Stack, Typography } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import GoogleTranslate from '@/GoogleTranslate';
 import {Drawer} from '@mui/material';
 import { motion } from 'framer-motion'
 import Cup2 from '@/public/team_connect.png'
@@ -15,13 +14,28 @@ import Cert1 from '@/public/cert (1).jpg'
 import Cert2 from '@/public/cert (2).jpg'
 import Cert3 from '@/public/cert (3).jpg'
 import Head from 'next/head';
+import { useTranslation } from 'next-i18next'
 import { adapter,tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
 import { supabase } from './api/supabase';
-export default function Home() {
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'home',
+      ])),
+      // Will be passed to the page component as props
+    },
+  }
+}
+
+export default function Home(props) {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
   const [parentopen, setParentOpen] = useState(false);
+const { t } = useTranslation()
 //   const WalletConnect = async () => {
 //     try{
 //  // connect
@@ -75,8 +89,8 @@ export default function Home() {
           <Image src={Logo} width={41} height={36} alt="sfclogo" />
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>SFCSPORTS01</p>
         </Stack>
+        <p>{t('home:GETUPTO100BONUSDAILY')}</p>
         <Stack direction='row' alignItems='center' spacing={2}>
-        <GoogleTranslate/>
         <Stack onClick={async()=>{
           try{
             const { data,error } = supabase.auth.signOut();

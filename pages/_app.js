@@ -3,11 +3,12 @@ import { Piedra, Poppins } from '@next/font/google'
 import { supabase } from './api/supabase'
 import localFont from 'next/font/local'
 import { useEffect } from 'react';
+import { appWithTranslation } from 'next-i18next'
 import Head from 'next/head';
 const poppins = Poppins({ weight: ['300','400','600'],subsets: ['latin']});
 const pops = localFont({ src: '../public/font/poppins.woff2' });
 const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
-export default function App({ Component, pageProps }) {
+ function App({ Component, pageProps }) {
   useEffect(()=>{
     // supabase.auth.onAuthStateChange((event, session) => {
     //   if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
@@ -73,3 +74,4 @@ export default function App({ Component, pageProps }) {
     </main>
   )
 }
+export default appWithTranslation(App);
