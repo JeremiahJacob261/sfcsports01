@@ -3,7 +3,7 @@ import { supabase } from "@/pages/api/supabase"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useContext } from "react"; 
-import Casing from '@/pages/i18ncasing';
+ 
 import Head from 'next/head';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -221,7 +221,7 @@ const { data, error } = await supabase
                     </Stack>
                     <Stack direction='row' justifyContent='center' alignItems='center' spacing={1}>
                         <Typography sx={{ textAlign: 'center', fontFamily: 'Poppins,sans-serif', color: 'black', fontSize: '14px', fontWeight: '100' }}>{time}</Typography>
-                        <Casing>|</Casing>
+                        <p>|</p>
                         <Typography sx={{ textAlign: 'center', fontFamily: 'Poppins,sans-serif', color: 'black', fontSize: '14px', fontWeight: '100' }}>{date}/{day}</Typography>
                     </Stack>
                     <Stack direction='column' justifyContent='center' alignItems='center' spacing={1}>
@@ -433,7 +433,7 @@ const { data, error } = await supabase
                         </Stack>
                         <Stack direction='row' justifyContent='center' alignItems='center' spacing={1}>
                             <Typography sx={{ textAlign: 'center', fontFamily: 'Poppins,sans-serif', color: 'black', fontSize: '14px', fontWeight: '100' }}>{time}</Typography>
-                            <Casing>|</Casing>
+                            <p>|</p>
                             <Typography sx={{ textAlign: 'center', fontFamily: 'Poppins,sans-serif', color: 'black', fontSize: '14px', fontWeight: '100' }}>{date}/{day}</Typography>
                         </Stack>
                         <Stack direction='column' justifyContent='center' alignItems='center' spacing={1}>

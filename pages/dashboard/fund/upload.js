@@ -118,7 +118,7 @@ console.log(data.publicUrl);
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/fund/address')
                 }} />
-                <Casing style={{ fontSize: '16px', fontWeight: '600' }}>Upload receipt</Casing>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>Upload receipt</p>
             </Stack>
             <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -142,9 +142,9 @@ console.log(data.publicUrl);
                                 setfile(e.target.files[0]);
                                 console.log(e.target.files[0]);
                             }} />
-                        <Casing sx={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '500', color: 'white' }} onClick={() => {
+                        <p sx={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '500', color: 'white' }} onClick={() => {
                             // inputFile.current.click();
-                        }}>Browse</Casing>
+                        }}>Browse</p>
                     </Stack>
                 </motion.div>
 
@@ -155,8 +155,8 @@ console.log(data.publicUrl);
                      <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ height: '58px', background: '#ad1c39', borderRadius: '5px', padding: '16px' }} spacing={2}>
                     <InsertDriveFileIcon sx={{ color: 'white', fontFamily: 'Poppins,sans-serif' }} />
                     <Stack alignItems='start' justifyContent='start'>
-                        <Casing style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.name ? file.name : 'No File Selected'}</Casing>
-                        <Casing style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.size ? file.size : '0.0mb'}</Casing>
+                        <p style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.name ? file.name : 'No File Selected'}</p>
+                        <p style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.size ? file.size : '0.0mb'}</p>
 
                     </Stack>
                     <ClearIcon sx={{ width: '24px', height: '24px', color: '#573b41' }} onClick={() => {

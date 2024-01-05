@@ -62,10 +62,10 @@ export default function Transaction({ transaction }) {
                                 <Stack direction='row' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
                                     <Icon width={45} height={45} icon={(m.type === 'deposit') ? "solar:arrow-down-broken" :'solar:arrow-up-broken'} style={{color:(m.type === 'deposit') ? "green" :'red'}}/>
                                     <Stack direction='column'>
-                                        <Casing style={{ color:'goldenrod',fontWeight:'500'}}>Status: {m.sent ?? 'pending'}</Casing>
-                                        <Casing>{m.type ?? 'unknown type'}</Casing>
-                                        <Casing>{m.amount ?? '0'} USDT</Casing>
-                                        <Casing style={{color:'grey'}}>{sent}</Casing>
+                                        <p style={{ color:'goldenrod',fontWeight:'500'}}>Status: {m.sent ?? 'pending'}</p>
+                                        <p>{m.type ?? 'unknown type'}</p>
+                                        <p>{m.amount ?? '0'} USDT</p>
+                                        <p style={{color:'grey'}}>{sent}</p>
                                     </Stack>
                                 </Stack>
                             )
@@ -76,8 +76,8 @@ export default function Transaction({ transaction }) {
         } else {
             return (
                 <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '80vh' }}>
-                    <Casing style={{ fontSize: '20px' }}>No Data Avaliable</Casing>
-                    <Casing style={{ color: 'grey' }}>Please Check your internet connection</Casing>
+                    <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
+                    <p style={{ color: 'grey' }}>Please Check your internet connection</p>
                 </Stack>
             )
         }
@@ -88,12 +88,12 @@ export default function Transaction({ transaction }) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <Casing style={{ fontSize: '16px', fontWeight: '600' }}>Transactions</Casing>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>Transactions</p>
             </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-                <Casing className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>All</Casing>
-                <Casing className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Deposits</Casing>
-                <Casing className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>Withdrawals</Casing>
+                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>All</p>
+                <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Deposits</p>
+                <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>Withdrawals</p>
             </Stack>
             <ListedTransactions />
         </div>

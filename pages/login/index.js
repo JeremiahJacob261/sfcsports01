@@ -19,10 +19,23 @@ import Backdrop from '@mui/material/Backdrop';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from "react"; 
-import Casing from '@/pages/i18ncasing';
 import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
-export default function Login() {
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all','login'
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
+export default function Login(props) {
+  const { t } = useTranslation()
+  console.log(t("all:Enterthecorrectinformationprovidedtocreateanaccount"))
   const [username, setUsername] = useState("")
   const [drop, setDrop] = useState(false)
   const router = useRouter();
@@ -338,7 +351,7 @@ export default function Login() {
           <Typography sx={{ fontFamily: 'Poppins, sans-serif', marginLeft: "3px", color: "#E5E7EB" }}>Login</Typography>
         </Button>
         <Link href="/passwordreset" style={{ textDecoration: '#E5E7EB' }}>
-          <Typography style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '200', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>Forgotten Password ?</Typography>
+          <Typography style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '200', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>{t('login:ForgottenPassword')}</Typography>
           <Divider sx={{ background: '#E5E7EB' }} />
         </Link>
         <Link href="/register?refer=0" style={{ width: '100%', textAlign: 'center', textDecoration: "none", color: "#E5E7EB", fontSize: '15px', fontWeight: '400', fontFamily: 'Poppins,sans-serif' }}>Dont have an Account ?
@@ -372,15 +385,15 @@ export default function Login() {
           padding: '12px'
         }}>
           <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-          <Casing id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'black' }}>
+          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'black' }}>
 
             {aleT ? 'Success' : 'Sorry!'}
-          </Casing>
-          <Casing id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
+          </p>
+          <p id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
             {ale}
-          </Casing>
+          </p>
           <Divider sx={{ borderBottomWidth: '45px' }} />
-          <Casing style={{ color: '#D8B16B', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
+          <p style={{ color: '#D8B16B', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               router.push('/dashboard')
@@ -388,7 +401,7 @@ export default function Login() {
 
               setOpen(false)
             }
-          }}>OKAY</Casing>
+          }}>OKAY</p>
         </Stack>
 
       </Modal>)

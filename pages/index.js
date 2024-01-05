@@ -19,19 +19,18 @@ import { adapter,tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
 import { supabase } from './api/supabase';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Casing from '@/pages/i18ncasing';
 export async function getStaticProps({ locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
-        'common',
+        'common','all'
       ])),
       // Will be passed to the page component as props
     },
   }
 }
 
-export default function Home(props) {
+export default function Home(locale) {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
   const [parentopen, setParentOpen] = useState(false);
@@ -87,7 +86,7 @@ const { t } = useTranslation()
       <Stack style={{ background: '#C61F41', width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
         <Stack direction='row' alignItems='center' spacing={2}>
           <Image src={Logo} width={41} height={36} alt="sfclogo" />
-          <Casing style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>{t('common:SFCSPORTS01')}</Casing>
+          <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>{t('all:SFCSPORTS01')}</p>
         </Stack>
         <Stack direction='row' alignItems='center' spacing={2}>
         <Stack onClick={async()=>{
@@ -109,39 +108,39 @@ const { t } = useTranslation()
       <Stack style={{ minWidth: '100%', minHeight: '100vh',padding:'8px' }} justifyContent='center' alignItems='center' spacing={3}>
         
         <Stack direction="column" justifyContent='center' alignItems='center' spacing={3} style={{ padding: '12px', width: '100%', height: '100vh' }}>
-          <Casing style={{ color: '#D8B16B', fontSize: '20px', fontWeight: '700' }}>{t('common:GETUPTO100BONUSDAILY')}</Casing>
-          <Casing style={{ width: '300px', color: 'white', fontSize: '32px', fontWeight: '700' }}>BET On Football Games & Win Upto $1 Million</Casing>
-          <Casing style={{ width: '300px', color: 'white', fontSize: '17px', fontWeight: '300' }}>Build Your Team To  Get Multiple Bonuses and Unlimited Priviledges</Casing>
+          <p style={{ color: '#D8B16B', fontSize: '20px', fontWeight: '700' }}>{t('all:GETUPTO100BONUSDAILY')}</p>
+          <p style={{ width: '300px', color: 'white', fontSize: '32px', fontWeight: '700' }}>{t('all:BETOnFootballGames&WinUpto$1Million')}</p>
+          <p style={{ width: '300px', color: 'white', fontSize: '17px', fontWeight: '300' }}>{t('all:BuildYourTeamToGetMultipleBonusesandUnlimitedPriviledges')}</p>
         
             <Stack onClick={()=>{
               router.push('/register?refer=0');
             }} sx={{ background: "linear-gradient(#C61F41, #D13655);", padding: '16px', borderRadius: '10px', width: '191px' }} justifyContent='center' alignItems='center' >
-              <Casing style={{ color: 'white', fontSize: '16px', fontWeight: '300' }}>GET STARTED NOW!</Casing>
+              <p style={{ color: 'white', fontSize: '16px', fontWeight: '300' }}>{t('all:GETSTARTEDNOW')}</p>
             </Stack>
         </Stack>
         <Stack spacing={5} justifyContent='center' alignItems='center'>
-          <Casing style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '700' }}>Trusted by millions of players</Casing>
-          <Casing style={{ color: 'white', fontSize: '24px', fontWeight: '600' }}>Why play money winning games</Casing>
-          <Casing style={{ color: 'white', fontSize: '13px', fontWeight: '400' }}>Register Today to Play and Start Winning Daily Cash Prizes</Casing>
+          <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '700' }}>{t('all:Trustedbymillionsofplayers')}</p>
+          <p style={{ color: 'white', fontSize: '24px', fontWeight: '600' }}>{t('all:Whyplaymoneywinninggames')}</p>
+          <p style={{ color: 'white', fontSize: '13px', fontWeight: '400' }}>{t('all:RegisterTodaytoPlayandStartWinningDailyCashPrizes')}</p>
         </Stack>
         <Stack spacing={3} sx={{padding:'12px',borderRadius:'15px',border:'2px solid #D03151',width:'335px'}} justifyContent='center' alignItems='center'>
           <Image src={Cup1} width={154} height={149} alt="trophy1" style={{borderRadius:'100px'}}/>
-          <Casing style={{ fontWeight:'600',fontSize:'20px' }}>500 +</Casing>
-          <Casing style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Daily Matches</Casing>
+          <p style={{ fontWeight:'600',fontSize:'20px' }}>500 +</p>
+          <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>{t('all:DailyMatches')}</p>
         </Stack>
 
         <Stack spacing={3} sx={{padding:'12px',borderRadius:'15px',border:'2px solid #D03151',width:'335px'}} justifyContent='center' alignItems='center'>
           <Image src={Cup2} width={154} height={149} alt="trophy2" style={{borderRadius:'100px'}}/>
-          <Casing style={{ fontWeight:'600',fontSize:'20px' }}>10 000 +</Casing>
-          <Casing style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Active Users</Casing>
+          <p style={{ fontWeight:'600',fontSize:'20px' }}>10 000 +</p>
+          < p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>{t('all:ActiveUsers')}</ p>
         </Stack>
 
         <Stack spacing={3} sx={{padding:'12px',borderRadius:'15px',border:'2px solid #D03151',width:'335px'}} justifyContent='center' alignItems='center'>
           <Image src={Cup3} width={154} height={150} alt="trophy3" style={{borderRadius:'100px'}}/>
-          <Casing style={{ fontWeight:'600',fontSize:'20px' }}>200 000 +</Casing>
-          <Casing style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>Successful Transactions</Casing>
+          <p style={{ fontWeight:'600',fontSize:'20px' }}>200 000 +</p>
+          <p style={{ fontWeight:'600',fontSize:'16px',color:'#D8B16B',textAlign:'center'}}>{t('all:SuccessfulTransactions')}</p>
         </Stack>
-         <motion.p whileTap={{ color:'grey',scale:1.05 }} style={{ color: '#D8B16B', fontSize: '21px', fontWeight: '700' }}>Our Certificates</motion.p>
+         <motion.p whileTap={{ color:'grey',scale:1.05 }} style={{ color: '#D8B16B', fontSize: '21px', fontWeight: '700' }}>{t('all:OurCertificates')}</motion.p>
         <Image src={Cert1} width={254} height={230} alt="cert1" style={{}}/>
         <Image src={Cert2} width={254} height={230} alt="cert2" style={{}}/>
         <Image src={Cert3} width={254} height={230} alt="cert3" style={{}}/>

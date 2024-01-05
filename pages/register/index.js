@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react"; 
-import Casing from '@/pages/i18ncasing';
 import Head from "next/head";
 import Link from 'next/link'
 import { Modal, Box, Stack, OutlinedInput, Button, Typography, Divider } from "@mui/material";
@@ -24,8 +23,13 @@ import Wig from '../../public/icon/wig.png'
 import Big from '../../public/icon/badge.png'
 import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
+import Casing from '@/pages/i18ncasing'
 import codes from '../api/codeswithflag.json'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 export default function Register({ refer }) {
+  const { t } = useTranslation("all")
   const [password, setPassword] = useState("")
   const [cpassword, setcPassword] = useState("")
   const route = useRouter();
@@ -280,10 +284,10 @@ let test = await fetch('/api/regnotice', {
         background: "black", width: '100%', minHeight: '100vh'
       }}>
       <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        style={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={drop}
       >
-        <SportsSoccerIcon id='balls' sx={{ marginLeft: '8px' }} />
+        <SportsSoccerIcon id='balls' style={{ marginLeft: '8px' }} />
       </Backdrop>
       <Alertz />
       <Head>
@@ -294,37 +298,37 @@ let test = await fetch('/api/regnotice', {
       </Head>
       <Box >
 
-        <Stack spacing={5} sx={{ padding: '8px' }}>
+        <Stack spacing={5} style={{ padding: '8px' }}>
           <Stack direction="column"
             justifyContent="center"
             alignItems="center"
             spacing={2}
             className="glass"
-            sx={{ height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
+            style={{ height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
             <Stack direction="column" spacing={4} justifyContent="center" alignItems="center">
               <Link href='/'>
               <Image src={LOGO} width={100} height={120} alt='logo sfcsports' />
               </Link>
               <Link href="/" style={{ textDecoration: "none" }}>
-                <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </Typography>
+                <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </p>
               </Link>
-              <Typography style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
-                Sign up now and get a welcome bonus!
-              </Typography>
-              <Typography style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
-                Enter the correct information provided to create an account
-              </Typography>
+              <Casing style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
+                {t("Signupnowandgetawelcomebonus")}
+              </Casing>
+              <p style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
+              {t("Enterthecorrectinformationprovidedtocreateanaccount")}
+              </p>
             </Stack>
 
             <TextField id="outlined-basic" label="Username" variant="outlined"
-              sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB', } }}
+              style={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB', } }}
               value={username}
               onChange={(e) => {
                 setUsername((e.target.value).trim())
               }}
             />
             <TextField id="outlined-basic" label="Email" variant="outlined"
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
               value={email}
               type='email'
               onChange={(e) => {
@@ -334,7 +338,7 @@ let test = await fetch('/api/regnotice', {
             <TextField id="outlined-basic" label="Invite Code" variant="outlined"
               value={idR}
               disabled
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%",color: '#E5E7EB', background: '#D8B16B', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%",color: '#E5E7EB', background: '#D8B16B', input: { color: '#E5E7EB' } }}
               onChange={(e) => {
                 setidR(e.target.value)
               }} />
@@ -345,7 +349,7 @@ let test = await fetch('/api/regnotice', {
                 id="demo-simple-select"
                 value={age}
                 label="+84"
-                sx={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+                style={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
                 onChange={(e) => {
                   setAge(e.target.value);
                 }}
@@ -354,10 +358,10 @@ let test = await fetch('/api/regnotice', {
                 {
                   codes.countries.map((c) => {
                     return (
-                      <MenuItem value={c.code} key={c.name} sx={{ color: '#E5E7EB', background: '#D8B16B' }}>
+                      <MenuItem value={c.code} key={c.name} style={{ color: '#E5E7EB', background: '#D8B16B' }}>
                         <Stack direction='row' spacing={1}>
                           <Image src={c.flag_image_link} alt={c.name} width={25} height={22}/>
-                        <Typography sx={{fontFamily: 'Poppins, sans-serif'}}> {c.code} {c.name}</Typography>
+                        <p style={{fontFamily: 'Poppins, sans-serif'}}> {c.code} {c.name}</p>
                         </Stack>
                        </MenuItem>
                     )
@@ -377,20 +381,20 @@ let test = await fetch('/api/regnotice', {
             <TextField id="outlined-basic" label="Phone"
               type="number"
               variant="outlined"
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
               value={phone}
               onChange={(e) => {
                 setPhone(e.target.value);
               }} />
 
-            <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
+            <FormControl style={{ m: 1, width: '100%' }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={handleChange('password')}
-                sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+                style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -399,7 +403,7 @@ let test = await fetch('/api/regnotice', {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      {values.showPassword ? <VisibilityOff sx={{ color: '#E5E7EBsmoke' }} /> : <Visibility sx={{ color: '#E5E7EB' }} />}
+                      {values.showPassword ? <VisibilityOff style={{ color: '#E5E7EBsmoke' }} /> : <Visibility style={{ color: '#E5E7EB' }} />}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -411,26 +415,26 @@ let test = await fetch('/api/regnotice', {
               id="outlined-required"
               label="Confirm Password"
               type="password"
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#FFFFFF' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#FFFFFF' } }}
               value={cpassword}
               onChange={(e) => {
                 setcPassword((e.target.value).trim());
               }}
             />
           </Stack>
-          <Stack spacing={3} sx={{ margin: '8px', padding: '8px' }}>
+          <Stack spacing={3} style={{ margin: '8px', padding: '8px' }}>
             <Farm.Check
               type="checkbox"
               label=" Accept our Terms and Conditions"
               id="age"
-              sx={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif' }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif' }}
               value={agecheck}
               onChange={(a) => {
                 setAgecheck(a.target.value)
               }}
-              style={{ color: "#E5E7EB" }}
+              sx={{ color: "#E5E7EB" }}
             />
-            <Button variant="contained" className="authactionbtn" sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%' }}
+            <Button variant="contained" className="authactionbtn" style={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%' }}
               onClick={() => {
                 if (phone.length >= 9) {
 
@@ -463,12 +467,12 @@ let test = await fetch('/api/regnotice', {
                   Alerts('Please Input a Complete Phone Number! at least 9 digits', false)
                 }
               }}>
-              <Casing style={{  marginLeft: "3px", color: '#D8B16B', fontSize: '14px',fontWeight:'400'}}>Register</Casing>
+              <p style={{  marginLeft: "3px", color: '#D8B16B', fontSize: '14px',fontWeight:'400'}}>{t("Register")}</p>
             </Button>
-            <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: '22px' }} spacing={1}>
-              <Typography sx={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '100', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>Already have an Account ? </Typography>
-              <Typography>
-                <Link href="/login" style={{ textDecoration: "none", fontSize: '14px', fontWeight: '100', color: "#E5E7EB", opacity: '1.0', fontFamily: 'Poppins,sans-serif' }}>Login</Link></Typography>
+            <Stack direction="row" alignItems="center" justifyContent="center" style={{ height: '22px' }} spacing={1}>
+              <p style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '100', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>{t("AlreadyhaveanAccount")}</p>
+              <p>
+                <Link href="/login" style={{ textDecoration: "none", fontSize: '14px', fontWeight: '100', color: "#E5E7EB", opacity: '1.0', fontFamily: 'Poppins,sans-serif' }}>Login</Link></p>
 
             </Stack>
           </Stack>
@@ -493,7 +497,7 @@ let test = await fetch('/api/regnotice', {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Stack alignItems='center' justifyContent='space-evenly' sx={{
+        <Stack alignItems='center' justifyContent='space-evenly' style={{
           background: '#E5E7EB', width: '290px', height: '330px', borderRadius: '20px',
           position: 'absolute',
           top: '50%',
@@ -502,15 +506,15 @@ let test = await fetch('/api/regnotice', {
           padding: '12px'
         }}>
           <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-          <Casing id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
+          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
 
             {aleT ? 'Success' : 'Sorry!'}
-          </Casing>
-          <Casing id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
+          </p>
+          <p id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
             {ale}
-          </Casing>
-          <Divider sx={{ borderBottomWidth: '45px'}} />
-          <Casing style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+          </p>
+          <Divider style={{ borderBottomWidth: '45px'}} />
+          <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               route.push('/dashboard')
@@ -518,7 +522,7 @@ let test = await fetch('/api/regnotice', {
 
               setOpen(false)
             }
-          }}>OKAY</Casing>
+          }}>OKAY</p>
         </Stack>
 
       </Modal>)
@@ -527,7 +531,11 @@ let test = await fetch('/api/regnotice', {
 export async function getServerSideProps(context) {
   const { refer } = context.query;
   console.log(refer)
+  const { locale } = context;
   return {
-    props: { refer },
+    props: { refer: refer,...(await serverSideTranslations(locale, [
+      'common','all'
+    ])),
+   },
   }
 }

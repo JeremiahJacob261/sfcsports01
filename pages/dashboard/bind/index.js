@@ -92,12 +92,12 @@ export default function BindWallet() {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <Casing className="text-sm text-gray-500">BIND WALLET</Casing>
+                <p className="text-sm text-gray-500">BIND WALLET</p>
             </Stack>
             <Stack direction='column' justifyContent='center' alignItems='center' spacing={2} sx={{ padding: '8px', width: '100%' }}>
              
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ background:'#573b41',padding:'12px',borderRadius:'8px',margin:'8px',maxWidth:'310px'}}>
-              <Casing style={{ color:'rgba(194,127,8,1)' ,fontSize:'18px'}} >Existing Wallets</Casing>
+              <p style={{ color:'rgba(194,127,8,1)' ,fontSize:'18px'}} >Existing Wallets</p>
                 {
                   users.map((m)=>{
                     let date = new Date(m.created_at);
@@ -111,8 +111,8 @@ export default function BindWallet() {
                     return(
                       <Stack key={m.id} direction='row' alignItems='center' spacing={2}>
                         <Stack direction='column'>
-                           <Casing style={{ fontSize:'15px',color:'#C61F41',fontWeight:'600' }}>{m.wallet}</Casing>
-                        <Casing style={{ fontSize:'12px',color:'#FFFFFF' }}>{created_at}</Casing>
+                           <p style={{ fontSize:'15px',color:'#C61F41',fontWeight:'600' }}>{m.wallet}</p>
+                        <p style={{ fontSize:'12px',color:'#FFFFFF' }}>{created_at}</p>
                         </Stack>
                        <Icon icon="akar-icons:edit" width={24} height={24} onClick={()=>{
                           router.push('/dashboard/bind')}}/>
@@ -122,7 +122,7 @@ export default function BindWallet() {
                 }
             </Stack>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={2} sx={{ padding:'12px'}}>
-                <Casing>BIND WALLET</Casing>
+                <p>BIND WALLET</p>
                 <form>
                     <Stack direction='column' spacing={3}>
                         <div className='arrange-label'>
@@ -144,7 +144,7 @@ export default function BindWallet() {
                 </form>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                <Icon icon="ph:info-light" color="#ad1c39" />
-                <Casing style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>Transaction :The Password used for withdraws is required</Casing>
+                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>Transaction :The Password used for withdraws is required</p>
                 </Stack>
                <motion.p onClick={() => {
                     //   router.push('/dashboard/fund/success')
@@ -155,7 +155,7 @@ export default function BindWallet() {
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#C61F41',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                     Bind Wallet</motion.p>
                     <Link href='/dashboard/codesetting'>
-                    <Casing style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</Casing>
+                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</p>
 
                 </Link>
                 </Stack>
@@ -186,15 +186,15 @@ export default function BindWallet() {
               padding: '12px'
             }}>
               <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-              <Casing id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
+              <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
     
                 {aleT ? 'Success' : 'Sorry!'}
-              </Casing>
-              <Casing id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
+              </p>
+              <p id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
                 {ale}
-              </Casing>
+              </p>
               <Divider sx={{ borderBottomWidth: '45px'}} />
-              <Casing style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+              <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
                 if (aleT) {
                   setOpen(false)
                   router.push('/dashboard')
@@ -202,7 +202,7 @@ export default function BindWallet() {
     
                   setOpen(false)
                 }
-              }}>OKAY</Casing>
+              }}>OKAY</p>
             </Stack>
     
           </Modal>

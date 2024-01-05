@@ -102,7 +102,7 @@ export default function MatchDx({ data }) {
                         </Stack>
                         <Stack direction='row' justifyContent='center' alignItems='center' spacing={1}>
                             <Typography sx={{ textAlign: 'center', fontFamily: 'Poppins,sans-serif', color: 'black', fontSize: '14px', fontWeight: '100' }}>{time}</Typography>
-                            <Casing>|</Casing>
+                            <p>|</p>
                             <Typography sx={{ textAlign: 'center', fontFamily: 'Poppins,sans-serif', color: 'black', fontSize: '14px', fontWeight: '100' }}>{fullDate}</Typography>
                         </Stack>
                         <Stack direction='column' justifyContent='center' alignItems='center' spacing={1}>
@@ -231,14 +231,14 @@ export default function MatchDx({ data }) {
                 <Stack direction="row" alignItems='center'>
 
                     <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><Casing style={{ color: 'white' }} >{data.home}</Casing></Stack>
-                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><Casing style={{ color: 'white' }}>{data.away}</Casing></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
                     </Stack>
 
                     <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-                        <Casing className='odds'>{data.onenil}</Casing>
-                        <Casing className='odds'>{data.nilnil}</Casing>
-                        <Casing className='odds'>{data.nilone}</Casing>
+                        <p className='odds'>{data.onenil}</p>
+                        <p className='odds'>{data.nilnil}</p>
+                        <p className='odds'>{data.nilone}</p>
                     </Stack>
                 </Stack>
                 <Stack direction="row"></Stack>
@@ -261,21 +261,21 @@ export default function MatchDx({ data }) {
                         <Draw />
                         <Stack direction="column" sx={{ width: '100vw', padding: '12px' }} justifyContent='center' alignItems="center">
                             {/* start of information stack */}
-                            <Casing style={{ width: '100%', textAlign: 'center', color: 'greenyellow', background: 'grey' }}>{data.league}</Casing>
+                            <p style={{ width: '100%', textAlign: 'center', color: 'greenyellow', background: 'grey' }}>{data.league}</p>
                             <Stack direction="row" spacing={2} sx={{ background: 'white', width: '100%', padding: '12px', color: 'black', borderRadius: '10px' }}>
                                 <Stack direction="column" sx={{ width: '30%' }} spacing={1} className="homecolumn" justifyContent='center' alignItems="center">
                                     <Image src={data.ihome ?? ball} width={70} height={70} alt="home" />
-                                    <Casing style={{ textAlign: 'center', color: 'black' }}>{data.home}</Casing>
+                                    <p style={{ textAlign: 'center', color: 'black' }}>{data.home}</p>
                                 </Stack>
 
                                 <Stack direction="column" spacing={2} sx={{ width: '30%' }} className="timedisplaycolumn" justifyContent='center' alignItems="center">
-                                    <Casing style={{ textAlign: 'center', color: 'black' }}>{time}</Casing>
-                                    <Casing style={{ textAlign: 'center', color: 'black' }}>{fullDate}</Casing>
+                                    <p style={{ textAlign: 'center', color: 'black' }}>{time}</p>
+                                    <p style={{ textAlign: 'center', color: 'black' }}>{fullDate}</p>
                                 </Stack>
 
                                 <Stack direction="column" sx={{ width: '30%' }} spacing={1} className="awaycolumn" justifyContent='center' alignItems="center">
                                     <Image src={data.iaway ?? ball} width={70} height={70} alt="away" />
-                                    <Casing style={{ textAlign: 'center', color: 'black' }}>{data.away}</Casing>
+                                    <p style={{ textAlign: 'center', color: 'black' }}>{data.away}</p>
                                 </Stack>
                             </Stack>
                             {/* /end of information stack */}

@@ -40,29 +40,29 @@ export default function HistoryDx({data}) {
             <Stack spacing={2} sx={{ width: '100%' }} direction="column" justifyContent='center'>
            
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
-   <Casing style={{ color:'rgba(245,186,79,1)'}}>Transaction Type</Casing>
-<Casing>{data.type ?? ''}</Casing>
+   <p style={{ color:'rgba(245,186,79,1)'}}>Transaction Type</p>
+<p>{data.type ?? ''}</p>
               </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
-  <Casing style={{ color:'rgba(245,186,79,1)'}}> Status</Casing>
-<Casing>{data.status}</Casing>
+  <p style={{ color:'rgba(245,186,79,1)'}}> Status</p>
+<p>{data.status}</p>
               </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
-  <Casing style={{ color:'rgba(245,186,79,1)'}}>Amount</Casing>
-<Casing>{data.amount} USDT</Casing>
+  <p style={{ color:'rgba(245,186,79,1)'}}>Amount</p>
+<p>{data.amount} USDT</p>
               </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
-  <Casing style={{ color:'rgba(245,186,79,1)'}}> Description</Casing>
-<Casing>{data.description}</Casing>
+  <p style={{ color:'rgba(245,186,79,1)'}}> Description</p>
+<p>{data.description}</p>
               </Stack>
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
-  <Casing style={{ color:'rgba(245,186,79,1)'}}>Payment Method</Casing>
-<Casing>{data.payment}</Casing>
+  <p style={{ color:'rgba(245,186,79,1)'}}>Payment Method</p>
+<p>{data.payment}</p>
               </Stack>
 
               <Stack direction="row" justifyContent='space-between' alignItems='center' sx={{ padding:'8px'}}> 
-  <Casing style={{ color:'rgba(245,186,79,1)'}}>Time</Casing>
-<Casing>{data.time}</Casing>
+  <p style={{ color:'rgba(245,186,79,1)'}}>Time</p>
+<p>{data.time}</p>
               </Stack>
             </Stack>
 

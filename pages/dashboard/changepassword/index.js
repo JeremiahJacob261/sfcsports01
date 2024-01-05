@@ -88,10 +88,10 @@ if(data.user){
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <Casing className="text-sm text-gray-500">ChangePassword</Casing>
+                <p className="text-sm text-gray-500">ChangePassword</p>
             </Stack>
             <Stack sx={{ width:'99vw',height:'100%'}} spacing={3} direction="column" justifyContent='center' alignItems='center'>
-                <Casing>Change Password</Casing>
+                <p>Change Password</p>
                 {/* input pass components */}
                 <div className='arrange-label'>
                             <label className='standard-label'>Old Password</label>

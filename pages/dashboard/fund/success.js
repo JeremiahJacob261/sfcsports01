@@ -11,8 +11,8 @@ export default function BindWalletSuccess() {
         <div className="backgrounds" >
             <Stack justifyContent='center' alignItems="center" direction="column" spacing={2} sx={{ minHeight:'98vh',width:'100%'}}>
                 <Image src={Logo} width={100} height={100} alt="logo"/>
-                <Casing className='text-md text-sheffield-red-deep'>Deposit Claim Success</Casing>
-                <Casing className='text-sm text-grey-500'>Your Deposit Claim has been sent successfully</Casing>
+                <p className='text-md text-sheffield-red-deep'>Deposit Claim Success</p>
+                <p className='text-sm text-grey-500'>Your Deposit Claim has been sent successfully</p>
             <motion.p onClick={() => {
                       router.push('/dashboard/account')
                     

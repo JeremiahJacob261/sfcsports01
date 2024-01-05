@@ -15,7 +15,7 @@ import cara01 from '@/public/cara01.jpg';
 import cara02 from '@/public/cara02.jpg';
 import cara03 from '@/public/cara03.jpg';
 
-import Casing from '@/pages/i18ncasing';
+ 
 import cara04 from '@/public/cara04.jpg';
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
@@ -164,14 +164,14 @@ export default function Home() {
     return (
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
-          <Casing style={{ color: 'whitesmoke' }}>Games Playable Today: </Casing>
-          <Casing style={{ color: 'greenyellow' }}>{playable[gcount ?? 0]}</Casing>
+          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
+          <p style={{ color: 'greenyellow' }}>{playable[gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
           <span id="minutes">{minutes} : </span>
           <span id="seconds"> {seconds}</span>
-          <Casing style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</Casing>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
         </div>
       </div>
     )
@@ -186,8 +186,8 @@ export default function Home() {
               <Image src={Avatar} width={40} height={29} alt="sfclogo" />
             </div>
             <Stack>
-              <Casing className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning!</Casing>
-              <Casing className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user.username : 'Loading name ...'}</Casing>
+              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning!</p>
+              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user.username : 'Loading name ...'}</p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
@@ -213,8 +213,8 @@ export default function Home() {
               <Image src={Avatar} width={40} height={29} alt="sfclogo" />
             </div>
             <Stack>
-              <Casing className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning</Casing>
-              <Casing className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}></Casing>
+              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning</p>
+              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}></p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
@@ -293,28 +293,28 @@ function MatchCountDown() {
                     </Stack>
                     <Stack direction="row" alignItems='center'>
                       <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><Casing style={{ color: 'white' }} >{data.home}</Casing></Stack>
-                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><Casing style={{ color: 'white' }}>{data.away}</Casing></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
                       </Stack>
 
                       <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
                         <div className='odds-fix' onClick={() => {
 
                         }}>
-                        <Casing style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</Casing>
-                          <Casing style={{ color: '#e4264c', fontSize: '14px' }}>{data.onenil}</Casing>
+                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
+                          <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.onenil}</p>
                         </div>
                         <div className='odds-fix' onClick={() => {
 
                         }}>
-                        <Casing style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</Casing>
-                          <Casing style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilnil}</Casing>
+                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
+                          <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilnil}</p>
                         </div>
                         <div className='odds-fix' onClick={() => {
 
                         }}>
-                        <Casing style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</Casing>
-                          <Casing style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilone}</Casing>
+                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
+                          <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilone}</p>
                         </div>
                       </Stack>
                     </Stack>
@@ -329,8 +329,8 @@ function MatchCountDown() {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
-          <Casing style={{ fontSize: '20px' }}>No Data Avaliable</Casing>
-          <Casing style={{ color: 'grey' }}>Please Check your internet connection</Casing>
+          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
+          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
         </Stack>)
     }
   }
@@ -346,7 +346,7 @@ function MatchCountDown() {
       <Stack sx={{ height: '50px', width: '100%' }}>
         <NavbAR />
       </Stack>
-      <marquee><Casing style={{color:'whitesmoke'}}>Welcome to SFSPORTSO1</Casing></marquee>
+      <marquee><p style={{color:'whitesmoke'}}>Welcome to SFSPORTSO1</p></marquee>
       <div style={{ width: '300px', height: 'auto', background: 'rgba(27,3,0,1)', padding: '2px' }}>
         <Carousel interval={1500} autoPlay={true} >
           <div >
@@ -375,21 +375,21 @@ function MatchCountDown() {
         <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)', width: '30%' }}>
           <Box sx={{ width: '100%', height: '5px', backgroundColor: '#C61F41' }}>
           </Box>
-          <Casing style={{ textAlign: 'center', fontSize: '13px' }}>People  Favourites</Casing>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>People  Favourites</p>
         </Stack>
 
         {/* today games */}
         <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
           <Box sx={{ height: '5px', width: '100%', backgroundColor: 'green' }}>
           </Box>
-          <Casing style={{ textAlign: 'center', fontSize: '13px' }}>Today Matches</Casing>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>Today Matches</p>
         </Stack>
 
         {/* tomorrow games */}
         <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
           <Box sx={{ height: '5px', width: '100%', backgroundColor: 'rgba(194,127,8,1)' }}>
           </Box>
-          <Casing style={{ textAlign: 'center', fontSize: '13px' }}>Tomorrow Matches</Casing>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>Tomorrow Matches</p>
         </Stack>
 
       </Stack>

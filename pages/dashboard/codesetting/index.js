@@ -61,7 +61,7 @@ testRoute();
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <Casing style={{ fontSize: '16px', fontWeight: '600' }}>Set Transaction Pin</Casing>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>Set Transaction Pin</p>
             </Stack>
             <Stack direction='column' alignItems='center' sx={{minHeight:'90vh',padding:'12px'}} spacing={2}>
             <Stack direction='row' justifyContent='center' alignItems='center' sx={{ height: '58px', background: '#FBEFEF', borderRadius: '5px', padding: '16px', maxWidth: '344px' }} spacing={2}>
