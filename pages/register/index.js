@@ -23,7 +23,6 @@ import Wig from '../../public/icon/wig.png'
 import Big from '../../public/icon/badge.png'
 import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
-import Casing from '@/pages/i18ncasing'
 import codes from '../api/codeswithflag.json'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -312,9 +311,9 @@ let test = await fetch('/api/regnotice', {
               <Link href="/" style={{ textDecoration: "none" }}>
                 <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </p>
               </Link>
-              <Casing style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
+              <p style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
                 {t("Signupnowandgetawelcomebonus")}
-              </Casing>
+              </p>
               <p style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
               {t("Enterthecorrectinformationprovidedtocreateanaccount")}
               </p>
