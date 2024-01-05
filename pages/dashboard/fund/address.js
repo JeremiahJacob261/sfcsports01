@@ -30,7 +30,7 @@ export default function Address(){
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={()=>{
                     router.push('/dashboard/fund')
                 }}/>
-           <p style={{ fontSize:'16px',fontWeight:'600'}}>Input Address</p>
+           <Casing style={{ fontSize:'16px',fontWeight:'600'}}>Input Address</Casing>
             </Stack>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ width:'100%',height:'100vh'}}>
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.8 }} onClick={()=>{}}>
@@ -38,7 +38,7 @@ export default function Address(){
                 <Image src={Barcode} alt='barcode' width={300} height={300}/>
                 </motion.div>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-                    <p style={{ fontSize:'14px',fontWeight:'400px',color:'rgba(194,127,8,1)'}}>TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z</p>
+                    <Casing style={{ fontSize:'14px',fontWeight:'400px',color:'rgba(194,127,8,1)'}}>TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z</Casing>
                     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <Icon icon="solar:copy-bold-duotone" color="#ad1c39" width={30} height={30} onClick={()=>{
         navigator.clipboard.writeText('TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z');
@@ -46,10 +46,10 @@ export default function Address(){
                 }}/>
                         </motion.div>
                 </Stack>
-                <p style={{ color:'green',fontSize:'13px',fontWeight:'200',maxWidth:'70vw'}}>Network: USDT (TRC20)</p>
+                <Casing style={{ color:'green',fontSize:'13px',fontWeight:'200',maxWidth:'70vw'}}>Network: USDT (TRC20)</Casing>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                 <Icon icon="ph:info-light" color="#ad1c39" />
-                <p style={{ color:'grey',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!</p>
+                <Casing style={{ color:'grey',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!</Casing>
                 </Stack>
                     <motion.p onClick={() => {
                       router.push('/dashboard/fund/upload')

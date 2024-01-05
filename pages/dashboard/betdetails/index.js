@@ -4,7 +4,8 @@ import { Stack } from "@mui/material";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import Casing from '@/pages/i18ncasing';
+import { useEffect, useState } from "react"; 
 export default function BetDetails({ datas }) {
     const [resulta, setResulta] = useState('');
     const router = useRouter();
@@ -71,30 +72,30 @@ export default function BetDetails({ datas }) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/bets')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Bets Details</p>
+                <Casing style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Bets Details</Casing>
             </Stack>
             <Stack direction="row" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
                 <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
                     <Image src={datas.ihome} alt={datas.home} width={50} height={50} />
-                    <p className="betd-text">{datas.home}</p>
+                    <Casing className="betd-text">{datas.home}</Casing>
                 </Stack>
-                <p>VS</p>
+                <Casing>VS</Casing>
                 <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
                     <Image src={datas.iaway} alt={datas.away} width={50} height={50} />
-                    <p className="betd-text">{datas.away}</p>
+                    <Casing className="betd-text">{datas.away}</Casing>
                 </Stack>
             </Stack>
             <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
-                <p className="betd-text">Time: {fulltime}</p>
-                <p className="betd-text">Stake: {datas.stake} USDT</p>
-                <p className="betd-text">Odds: {datas.odd}</p>
-                <p className="betd-text">Bet market: {datas.market}</p><p className="betd-text">Match ID: {datas.match_id}</p>
-                <p className="betd-text">Return: {datas.aim + datas.stake} USDT</p>
-                <p className="betd-text">Profit: {datas.profit}</p>
-                <p className="betd-text">Status: {(datas.won != 'null') ? 'Finished' : (stams+7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
-                <p className="betd-text">Match Result: {resulta}</p>
-                <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
-                <p className="betd-text" style={{ color: 'goldenrod' }}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
+                <Casing className="betd-text">Time: {fulltime}</Casing>
+                <Casing className="betd-text">Stake: {datas.stake} USDT</Casing>
+                <Casing className="betd-text">Odds: {datas.odd}</Casing>
+                <Casing className="betd-text">Bet market: {datas.market}</Casing><Casing className="betd-text">Match ID: {datas.match_id}</Casing>
+                <Casing className="betd-text">Return: {datas.aim + datas.stake} USDT</Casing>
+                <Casing className="betd-text">Profit: {datas.profit}</Casing>
+                <Casing className="betd-text">Status: {(datas.won != 'null') ? 'Finished' : (stams+7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</Casing>
+                <Casing className="betd-text">Match Result: {resulta}</Casing>
+                <Casing className="betd-text">Event Date and Time: {datas.date} {datas.time}</Casing>
+                <Casing className="betd-text" style={{ color: 'goldenrod' }}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</Casing>
                 
             </Stack>
         </div>

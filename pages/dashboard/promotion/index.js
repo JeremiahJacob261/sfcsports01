@@ -24,18 +24,18 @@ export default function Promotion(){
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <p className="text-sm text-gray-500">Promotion</p>
+                <Casing className="text-sm text-gray-500">Promotion</Casing>
             </Stack>
             <Stack direction="column" sx={{ padding:'8px'}}>
-                <p style={{ fontSize:'24px',color:'whitesmoke',width:'99vw',textAlign:'center' }}>PROMOTIONs</p>
-                <p style={{ fontSize:'12px',color:'grey',padding:'4px'}}>Below are a list of ongoing promotions on our platform</p>
+                <Casing style={{ fontSize:'24px',color:'whitesmoke',width:'99vw',textAlign:'center' }}>PROMOTIONs</Casing>
+                <Casing style={{ fontSize:'12px',color:'grey',padding:'4px'}}>Below are a list of ongoing promotions on our platform</Casing>
                 
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.9 }} style={{ cursor:'pointer'}}>
                 <Link href={user.claim ? "/dashboard/promotion" : "/dashboard/promotion/claim_signup_bonus"}>
                         
             <Stack direction="row" justifyContent='space-between' alignItems="center" sx={{ padding:'12px',borderRadius:'10px',background:' rgb(122, 12, 32)'}}>
-                <p>Claim Sign Up Bonus</p>
-                <p style={{ color:'greenyellow'}}>{user.claim ? 'Claimed' : 'Not Claimed'}</p>
+                <Casing>Claim Sign Up Bonus</Casing>
+                <Casing style={{ color:'greenyellow'}}>{user.claim ? 'Claimed' : 'Not Claimed'}</Casing>
             </Stack>
                 </Link>
                     </motion.div>

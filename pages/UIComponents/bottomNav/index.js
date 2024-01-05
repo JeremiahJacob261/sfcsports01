@@ -2,7 +2,8 @@ import { Stack } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
+import Casing from '@/pages/i18ncasing';
 export default function HomeBottom() {
   const [name,setNames] = useState();
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function HomeBottom() {
             <motion.div whileTap={{ color:'#f0e7e9'}} >
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(0)}}>
               <Icon icon="majesticons:home" width={24} height={24} className={(selected != 0) ? 'homebtn' : 'homebtnselected'}  />
-            <p style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>Home</p>
+            <Casing style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>Home</Casing>
             </Stack>
             </motion.div>
             {/* /* home end */}
@@ -42,7 +43,7 @@ export default function HomeBottom() {
             <motion.div whileTap={{ color:'#f0e7e9'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(1)}}>
               <Icon icon="uis:chart" width={24} height={24} className={(selected != 1) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>Event</p>
+            <Casing style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>Event</Casing>
             </Stack>
             </motion.div>
             {/* /* event end */}
@@ -51,7 +52,7 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(2)}}>
               <Icon icon="bxs:gift" width={24} height={24} className={(selected != 2) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>Bets</p>
+            <Casing style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>Bets</Casing>
             </Stack>
             </motion.div>
             {/* /* search end */}
@@ -60,7 +61,7 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>
               <Icon icon="mingcute:wallet-fill" width={24} height={24} className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>Account</p>
+            <Casing style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>Account</Casing>
             </Stack>
             </motion.div>
             {/* /* account end */}
@@ -69,7 +70,7 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(4)}}>
               <Icon icon="solar:clipboard-bold" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>History</p>
+            <Casing style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>History</Casing>
             </Stack>
             </motion.div>
             {/* /* history end */}

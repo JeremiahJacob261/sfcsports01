@@ -1,16 +1,1 @@
-{
-    "BetsDetails": "Bets Details",
-    "": "",
-    "VS": "VS",
-    "Time:NaN/NaN/NaNNaN:NaN": "Time: NaN/NaN/NaN NaN:NaN",
-    "Stake:USDT": "Stake:  USDT",
-    "Odds:": "Odds: ",
-    "Betmarket:": "Bet market: ",
-    "MatchID:": "Match ID: ",
-    "Return:NaNUSDT": "Return: NaN USDT",
-    "Profit:": "Profit: ",
-    "Status:Finished": "Status: Finished",
-    "MatchResult:": "Match Result: ",
-    "EventDateandTime:": "Event Date and Time:  ",
-    "BetCancellationiscurrentlyunavailable:ContactCustomerCareToCancelyourBets": "Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets"
-}
+{"BetsDetails": "Bets Details", "": "", "VS": "VS", "Time:NaN/NaN/NaNNaN:NaN": "Time: NaN/NaN/NaN NaN:NaN", "Stake:USDT": "Stake:  USDT", "Odds:": "Odds: ", "Betmarket:": "Bet market: ", "MatchID:": "Match ID: ", "Return:NaNUSDT": "Return: NaN USDT", "Profit:": "Profit: ", "Status:Finished": "Status: Finished", "MatchResult:": "Match Result: ", "EventDateandTime:": "Event Date and Time:  ", "BetCancellationiscurrentlyunavailable:ContactCustomerCareToCancelyourBets": "Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets"}

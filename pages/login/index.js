@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense } from "react"; 
 import Head from "next/head";
 import { Modal, Box, Stack, OutlinedInput, Button, Typography, Divider } from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import { supabase } from '../api/supabase'
-import { useContext } from "react";
+import { useContext } from "react"; 
 import Link from "next/link";
 import { useRouter } from 'next/router'
 import LOGO from '../../public/Sheffield_FC.svg.png'
@@ -18,7 +18,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Backdrop from '@mui/material/Backdrop';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useEffect } from "react";
+import { useEffect } from "react"; 
+import Casing from '@/pages/i18ncasing';
 import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
 export default function Login() {
@@ -371,15 +372,15 @@ export default function Login() {
           padding: '12px'
         }}>
           <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'black' }}>
+          <Casing id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'black' }}>
 
             {aleT ? 'Success' : 'Sorry!'}
-          </p>
-          <p id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
+          </Casing>
+          <Casing id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
             {ale}
-          </p>
+          </Casing>
           <Divider sx={{ borderBottomWidth: '45px' }} />
-          <p style={{ color: '#D8B16B', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
+          <Casing style={{ color: '#D8B16B', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               router.push('/dashboard')
@@ -387,7 +388,7 @@ export default function Login() {
 
               setOpen(false)
             }
-          }}>OKAY</p>
+          }}>OKAY</Casing>
         </Stack>
 
       </Modal>)

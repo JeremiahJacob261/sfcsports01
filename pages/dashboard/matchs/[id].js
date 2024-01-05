@@ -194,8 +194,8 @@ export default function Matchs({ matc }) {
           style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #C61F41', borderRadius: '5px', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
         >
           <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer' }}>
-            <p style={{ color: 'black' }}>{markets[pick]}</p>
-            <p style={{ color: '#e4264c' }}>{txt}</p>
+            <Casing style={{ color: 'black' }}>{markets[pick]}</Casing>
+            <Casing style={{ color: '#e4264c' }}>{txt}</Casing>
           </Stack>
 
         </motion.div>
@@ -210,15 +210,15 @@ export default function Matchs({ matc }) {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
+              <Casing style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</Casing>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
-                <p>{data.home}</p>
-                <p>VS</p>
-                <p>{data.away}</p>
+                <Casing>{data.home}</Casing>
+                <Casing>VS</Casing>
+                <Casing>{data.away}</Casing>
               </Stack>
 
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
-                <p>{placee.market}</p> <p>{placee.txt}</p>
+                <Casing>{placee.market}</Casing> <Casing>{placee.txt}</Casing>
               </Stack>
 
               <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
@@ -251,11 +251,11 @@ export default function Matchs({ matc }) {
                 </Stack>
 
                 <Stack sx={{ width: '200px' }} spacing={2}>
-                  <p>Current Balance : {use.balance ?? 0} USDT</p>
-                  <p>Stake: {amountInput}</p>
-                  <p>Profit: {profit}</p>
-                  <p>Total Winnings: {total}</p>
-                  <p style={{ color: 'black', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '50px', borderRadius: '5px' }}>{amountInput}</p>
+                  <Casing>Current Balance : {use.balance ?? 0} USDT</Casing>
+                  <Casing>Stake: {amountInput}</Casing>
+                  <Casing>Profit: {profit}</Casing>
+                  <Casing>Total Winnings: {total}</Casing>
+                  <Casing style={{ color: 'black', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '50px', borderRadius: '5px' }}>{amountInput}</Casing>
                 </Stack>
               </Stack>
 
@@ -281,7 +281,7 @@ export default function Matchs({ matc }) {
       <Stack direction='column' spacing={3} alignItems='center'>
 
         <Stack direction="column" className='homecol' spacing={2} justifyContent='center' alignItems='center'>
-          <p>Home</p>
+          <Casing>Home</Casing>
           <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
             <Placer txt={matches.onenil} data={matches} pick='onenil' />
             <Placer txt={matches.twonil} data={matches} pick={'twonil'} />
@@ -295,7 +295,7 @@ export default function Matchs({ matc }) {
         </Stack>
 
         <Stack direction="column" className='awaycol' spacing={2} justifyContent='center' alignItems='center'>
-          <p>Away</p>
+          <Casing>Away</Casing>
           <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
             <Placer txt={matches.nilone} data={matches} pick={'nilone'} />
             <Placer txt={matches.niltwo} data={matches} pick={'niltwo'} />
@@ -310,7 +310,7 @@ export default function Matchs({ matc }) {
         </Stack>
 
         <Stack direction="column" className='drawcol' spacing={2} justifyContent='center' alignItems='center'>
-          <p>Draw and Others</p>
+          <Casing>Draw and Others</Casing>
           <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
             <Placer txt={matches.oneone} data={matches} pick={'oneone'} />
             <Placer txt={matches.twotwo} data={matches} pick={'twotwo'} />
@@ -412,14 +412,14 @@ export default function Matchs({ matc }) {
     return (
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '98vw', textAlign: 'center' }}>
-          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
-          <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
+          <Casing style={{ color: 'whitesmoke' }}>Games Playable Today: </Casing>
+          <Casing style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</Casing>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
           <span id="minutes">{minutes} : </span>
           <span id="seconds"> {seconds}</span>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
+          <Casing style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</Casing>
         </div>
       </div>
     )
@@ -436,19 +436,19 @@ export default function Matchs({ matc }) {
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
           <Icon icon="basil:cancel-outline" width={30} height={30} onClick={() => { router.push('/dashboard/event') }} />
-          <p style={{ color: 'wheat', fontSize: '20px', fontWeight: 'bold', textAlign: 'center', width: '100%' }}>{matches.league}</p>
+          <Casing style={{ color: 'wheat', fontSize: '20px', fontWeight: 'bold', textAlign: 'center', width: '100%' }}>{matches.league}</Casing>
         </Stack>
         <CountDown />
         <Stack direction="column" sx={{ width: '100%', height: '100%', padding: '12px' }} spacing={2} alignItems='center' justifyContent='center'>
           <Stack direction="row" sx={{ width: '100%', height: '100%', padding: '8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
             <Stack direction="row" spacing={2} justifyContent='center' alignItems='center' sx={{}}>
               <Image src={matches.ihome ?? ball} style={{ color: 'whitesmoke' }} alt='home image' width={35} height={35} />
-              <p>{matches.home}</p>
+              <Casing>{matches.home}</Casing>
             </Stack>
-            <p>VS</p>
+            <Casing>VS</Casing>
             <Stack direction="row" spacing={2} justifyContent='center' alignItems='center'>
               <Image src={matches.iaway ?? ball} style={{ color: 'whitesmoke' }} alt='away image' width={35} height={35} />
-              <p>{matches.away}</p>
+              <Casing>{matches.away}</Casing>
             </Stack>
           </Stack>
           <MatchCountDown />

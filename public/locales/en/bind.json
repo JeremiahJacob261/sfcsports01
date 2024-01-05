@@ -1,7 +1,1 @@
-{
-    "BINDWALLET": "BIND WALLET",
-    "ExistingWallets": "Existing Wallets",
-    "Transaction:ThePasswordusedforwithdrawsisrequired": "Transaction :The Password used for withdraws is required",
-    "BindWallet": "Bind Wallet",
-    "Setatransactionpin": "Set a transaction pin"
-}
+{"BINDWALLET": "BIND WALLET", "ExistingWallets": "Existing Wallets", "Transaction:ThePasswordusedforwithdrawsisrequired": "Transaction :The Password used for withdraws is required", "BindWallet": "Bind Wallet", "Setatransactionpin": "Set a transaction pin"}

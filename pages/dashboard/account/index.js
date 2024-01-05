@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Icon, InlineIcon } from '@iconify/react';
 import { Divider, Stack, p } from '@mui/material';
 import Image from 'next/image'
+import Casing from '@/pages/i18ncasing';
 import Avatar from '@/public/avatar.png'
 import { styled } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
@@ -148,14 +149,14 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="mdi:cash" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Wallet</p>
+                        <Casing style={{ fontWeight: '500', fontSize: '15px' }}>Wallet</Casing>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
                 {/* accountinfoandBalance */}
                 <Stack className='accountinfo' justifyContent='center' alignItems='center' spacing={1}>
-                    <p style={{ fontWeight: '600', fontSize: '24px', color: '#ac915fd2' }}>$ {balanace.toFixed(2)}</p>
-                    <p style={{ fontWeight: '300', fontSize: '12px' }}>Account Balance</p>
+                    <Casing style={{ fontWeight: '600', fontSize: '24px', color: '#ac915fd2' }}>$ {balanace.toFixed(2)}</Casing>
+                    <Casing style={{ fontWeight: '300', fontSize: '12px' }}>Account Balance</Casing>
                     <motion.p onClick={() => {
                         router.push('/dashboard/fund')
                     }}
@@ -186,12 +187,12 @@ export default function Account({ vips }) {
                         BIND WALLETS</motion.p>
                     <Stack direction='row' justifyContent='stretch' alignItems='center'>
                         <Stack sx={{ padding: '8px' }} justifyContent='center' alignItems='center'>
-                            <p style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totald}</p>
-                            <p style={{ fontWeight: '300', fontSize: '10px' }}>Total DEPOSITS</p>
+                            <Casing style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totald}</Casing>
+                            <Casing style={{ fontWeight: '300', fontSize: '10px' }}>Total DEPOSITS</Casing>
                         </Stack>
                         <Stack sx={{ padding: '8px' }} justifyContent='center' alignItems='center'>
-                            <p style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totalw}</p>
-                            <p style={{ fontWeight: '300', fontSize: '10px' }}>Total WITHDRAWN</p>
+                            <Casing style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totalw}</Casing>
+                            <Casing style={{ fontWeight: '300', fontSize: '10px' }}>Total WITHDRAWN</Casing>
                         </Stack>
                     </Stack>
 
@@ -228,7 +229,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="material-symbols:casino-outline-sharp" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px', color: '#C61F41' }}>Bets</p>
+                        <Casing style={{ fontWeight: '500', fontSize: '15px', color: '#C61F41' }}>Bets</Casing>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -236,29 +237,29 @@ export default function Account({ vips }) {
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:receipt-text-pending" style={{ color: 'white' }} />
-                            <p>Pending Bets</p></Stack>
-                        <p style={{ color: 'rgba(245,186,79,1)' }}>{betcount.pending ?? 0}</p>
+                            <Casing>Pending Bets</Casing></Stack>
+                        <Casing style={{ color: 'rgba(245,186,79,1)' }}>{betcount.pending ?? 0}</Casing>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:store-complete-outline" style={{ color: 'white' }} />
-                            <p>Settled Bets</p></Stack>
-                        <p style={{ color: 'green' }}>{betcount.settled ?? 0}</p>
+                            <Casing>Settled Bets</Casing></Stack>
+                        <Casing style={{ color: 'green' }}>{betcount.settled ?? 0}</Casing>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:cup-full" style={{ color: 'white' }} />
-                            <p>Total Bets</p></Stack>
-                        <p style={{ color: 'grey' }}>{betcount.all ?? 0}</p>
+                            <Casing>Total Bets</Casing></Stack>
+                        <Casing style={{ color: 'grey' }}>{betcount.all ?? 0}</Casing>
                     </Stack>
                     <Divider sx={{ background: 'rgba(245,186,79,1)', color: 'rgba(245,186,79,1)' }} />
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
-                        <p>Total Wins</p>
-                        <p style={{ color: 'blue' }}>{betcount.wins ?? 0}</p>
+                        <Casing>Total Wins</Casing>
+                        <Casing style={{ color: 'blue' }}>{betcount.wins ?? 0}</Casing>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
-                        <p>Total Lost</p>
-                        <p style={{ color: 'red' }}>{betcount.lost ?? 0}</p>
+                        <Casing>Total Lost</Casing>
+                        <Casing style={{ color: 'red' }}>{betcount.lost ?? 0}</Casing>
                     </Stack>
                 </Stack>
             </Stack>
@@ -273,7 +274,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="mdi:invite" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Referrals</p>
+                        <Casing style={{ fontWeight: '500', fontSize: '15px' }}>Referrals</Casing>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -282,9 +283,9 @@ export default function Account({ vips }) {
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="tdesign:link" style={{ color: 'white' }} />
                             <Stack direction='column'>
-                                <p>Referral Link</p>
-                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://sfcsports01.com/register?refer={users.newrefer}</p>
-                                <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>copy the above link and share to get more rewards</p>
+                                <Casing>Referral Link</Casing>
+                                <Casing style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://sfcsports01.com/register?refer={users.newrefer}</Casing>
+                                <Casing style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>copy the above link and share to get more rewards</Casing>
                             </Stack>
                         </Stack>
                         <motion.div
@@ -301,7 +302,7 @@ export default function Account({ vips }) {
                         >
                             <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                                 <Icon icon="mingcute:celebrate-line" style={{ color: 'white' }} />
-                                <p>See All Referrals</p></Stack>
+                                <Casing>See All Referrals</Casing></Stack>
                             <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                         </Stack>
                     </Link>
@@ -320,7 +321,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="mdi:security" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Security</p>
+                        <Casing style={{ fontWeight: '500', fontSize: '15px' }}>Security</Casing>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -334,7 +335,7 @@ export default function Account({ vips }) {
                             router.push('/dashboard/changepassword')
                         }}>
                             <Icon icon="ic:baseline-password" style={{ color: 'white' }} />
-                            <p>Change Password</p></Stack>
+                            <Casing>Change Password</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
@@ -344,7 +345,7 @@ export default function Account({ vips }) {
                         }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="solar:key-broken" style={{ color: 'white' }} />
-                            <p>Change Transaction Password</p></Stack>
+                            <Casing>Change Transaction Password</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
                 </Stack>
@@ -384,7 +385,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="tabler:vip" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>VIP</p>
+                        <Casing style={{ fontWeight: '500', fontSize: '15px' }}>VIP</Casing>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -392,30 +393,30 @@ export default function Account({ vips }) {
                     <Stack justifyContent='center' alignItems='center' direction='column' sx={{ minHeight: 'auto', padding: '8px' }}>
 
                         <DiamondIcon sx={{ width: '200px', height: '200px', color: viproyal[vipcount.viplevel], backdropFilter: 'blur(10px)' }} />
-                        <p variant='h3' sx={{ fontFamily: 'Poppins,sans-serif', color: viproyal[vipcount.viplevel], opacity: 0.7 }}>VIP {vipcount.viplevel}</p >
+                        <Casing variant='h3' sx={{ fontFamily: 'Poppins,sans-serif', color: viproyal[vipcount.viplevel], opacity: 0.7 }}>VIP {vipcount.viplevel}</Casing >
 
                         <Stack justifyContent='left' alignItems='left'>
                             <Stack>
-                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>Total Deposit</p >
+                                <Casing style={{ fontFamily: 'Poppins,sans-serif' }}>Total Deposit</Casing >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
                                     <BorderLinearProgress variant="determinate" value={(Number(vipcount.rprogress) > 100) ? 100 : Number(vipcount.rprogress ?? 0)} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.rprogress) > 100) ? 100 : Number(vipcount.rprogress ?? 0)}%</p >
+                                    <Casing style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.rprogress) > 100) ? 100 : Number(vipcount.rprogress ?? 0)}%</Casing >
                                 </Stack>
                             </Stack>
 
                             <Stack>
-                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>Referrals</p >
+                                <Casing style={{ fontFamily: 'Poppins,sans-serif' }}>Referrals</Casing >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
                                     <BorderLinearProgress variant="determinate" value={(Number(vipcount.cprogress) > 100) ? 100 : Number(vipcount.cprogress) ?? 0} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.cprogress)) > 100 ? 100 : Number(vipcount.cprogress) ?? 0}%</p >
+                                    <Casing style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.cprogress)) > 100 ? 100 : Number(vipcount.cprogress) ?? 0}%</Casing >
                                 </Stack>
                             </Stack>
 
                             <Stack>
-                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>Total</p >
+                                <Casing style={{ fontFamily: 'Poppins,sans-serif' }}>Total</Casing >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
                                     <BorderLinearProgress variant="determinate" value={parseFloat((vipcount.r1 + vipcount.c1).toFixed(2)) / 2} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{parseFloat((vipcount.r1 + vipcount.c1).toFixed(2)) / 2}%</p >
+                                    <Casing style={{ fontFamily: 'Poppins,sans-serif' }}>{parseFloat((vipcount.r1 + vipcount.c1).toFixed(2)) / 2}%</Casing >
                                 </Stack>
                             </Stack>
                         </Stack>
@@ -435,7 +436,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="mdi:security" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Socials & Support</p>
+                        <Casing style={{ fontWeight: '500', fontSize: '15px' }}>Socials & Support</Casing>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -443,14 +444,14 @@ export default function Account({ vips }) {
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="ph:telegram-logo-light" style={{ color: 'white' }} />
-                            <p>Telegram Group</p></Stack>
+                            <Casing>Telegram Group</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:customer-service" style={{ color: 'white' }} />
-                            <p> Customer Care</p></Stack>
+                            <Casing> Customer Care</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
@@ -461,7 +462,7 @@ export default function Account({ vips }) {
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}
                         >
                             <Icon icon="icons8:advertising" style={{ color: 'white' }} />
-                            <p>Promotions</p></Stack>
+                            <Casing>Promotions</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
@@ -471,7 +472,7 @@ export default function Account({ vips }) {
                         }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:faq" style={{ color: 'white' }} />
-                            <p>FAQ</p></Stack>
+                            <Casing>FAQ</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
@@ -497,7 +498,7 @@ export default function Account({ vips }) {
                         }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="material-symbols:install-mobile" color="wheat" width="24" height="24" />
-                            <p>Install</p></Stack>
+                            <Casing>Install</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
@@ -514,7 +515,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="mdi:security" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Exit</p>
+                        <Casing style={{ fontWeight: '500', fontSize: '15px' }}>Exit</Casing>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -532,7 +533,7 @@ export default function Account({ vips }) {
                             router.push('/login')
                         }}>
                             <Icon icon="solar:exit-bold-duotone" style={{ color: 'white' }} />
-                            <p>LOG OUT</p></Stack>
+                            <Casing>LOG OUT</Casing></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
                 </Stack>
@@ -566,7 +567,7 @@ export default function Account({ vips }) {
                 }}
             />
             <Stack direction="row" alignItems='center' sx={{ padding: '12px' }} spacing={1}>
-                <p style={{ fontSize: '18px', fontWeight: '600', width: '100%', textAlign: 'center' }}>Account</p>
+                <Casing style={{ fontSize: '18px', fontWeight: '600', width: '100%', textAlign: 'center' }}>Account</Casing>
             </Stack>
             <Stack direction='column' alignItems='center'>
                 <Stack className='accountinfo' direction='row' alignItems='center' spacing={2} style={{ padding: '8px' }}>
@@ -575,10 +576,10 @@ export default function Account({ vips }) {
                     </div>
                     {/* textedUserInfo */}
                     <Stack justifyContent='center' className='acctext'>
-                        <p style={{ fontWeight: '500', color: 'white' }}>{users.username}</p>
-                        <p style={{ fontWeight: '200', color: 'white' }}>{users.email}</p>
+                        <Casing style={{ fontWeight: '500', color: 'white' }}>{users.username}</Casing>
+                        <Casing style={{ fontWeight: '200', color: 'white' }}>{users.email}</Casing>
                         <Stack direction='row' spacing={1} alignItems='center'>
-                            <p style={{ fontWeight: '200', color: 'white' }}>{users.uid}</p>
+                            <Casing style={{ fontWeight: '200', color: 'white' }}>{users.uid}</Casing>
                             <motion.div
                                 whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
                             >

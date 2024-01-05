@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react"; 
+import Casing from '@/pages/i18ncasing';
 import Head from "next/head";
 import Link from 'next/link'
 import { Modal, Box, Stack, OutlinedInput, Button, Typography, Divider } from "@mui/material";
@@ -462,7 +463,7 @@ let test = await fetch('/api/regnotice', {
                   Alerts('Please Input a Complete Phone Number! at least 9 digits', false)
                 }
               }}>
-              <p style={{  marginLeft: "3px", color: '#D8B16B', fontSize: '14px',fontWeight:'400'}}>Register</p>
+              <Casing style={{  marginLeft: "3px", color: '#D8B16B', fontSize: '14px',fontWeight:'400'}}>Register</Casing>
             </Button>
             <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: '22px' }} spacing={1}>
               <Typography sx={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '100', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>Already have an Account ? </Typography>
@@ -501,15 +502,15 @@ let test = await fetch('/api/regnotice', {
           padding: '12px'
         }}>
           <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
+          <Casing id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
 
             {aleT ? 'Success' : 'Sorry!'}
-          </p>
-          <p id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
+          </Casing>
+          <Casing id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
             {ale}
-          </p>
+          </Casing>
           <Divider sx={{ borderBottomWidth: '45px'}} />
-          <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+          <Casing style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               route.push('/dashboard')
@@ -517,7 +518,7 @@ let test = await fetch('/api/regnotice', {
 
               setOpen(false)
             }
-          }}>OKAY</p>
+          }}>OKAY</Casing>
         </Stack>
 
       </Modal>)

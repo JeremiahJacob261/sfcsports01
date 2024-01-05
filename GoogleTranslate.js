@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
+import Casing from '@/pages/i18ncasing';
 import { SelectPicker } from "rsuite";
 import { getCookie, hasCookie, setCookie } from 'cookies-next';
 import { Icon } from "@iconify/react";
@@ -48,21 +49,7 @@ export default function GoogleTranslate() {
         }
     }, []);
     return (
-        <>
-
-<div id="google_translate_element" style={{width:'0px',height:'0px',position:'absolute',right:'50',zIndex:-99999}}></div>
- <SelectPicker
-                data={languages}
-                style={{ width: 100 }}
-                placement="bottomEnd"
-                cleanable={false}
-                value={selected}
-                searchable={false}
-                className={'notranslate'}
-                menuClassName={'notranslate'}
-                onSelect={(e, m, evt) => langChange(e,m,evt)}
-                placeholder="Lang" />
-        </>
-
+    
+<div></div>
     )
 }

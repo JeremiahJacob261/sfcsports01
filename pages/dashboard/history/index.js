@@ -65,8 +65,8 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
-                            <p><p style={{ fontWeight:'bold',color:'greenyellow'}}>{item.type}</p> has just signed up with your Referral Link</p>
-                            <p style={{ color: 'white' }}>{fullDay}</p>
+                            <Casing><Casing style={{ fontWeight:'bold',color:'greenyellow'}}>{item.type}</Casing> has just signed up with your Referral Link</Casing>
+                            <Casing style={{ color: 'white' }}>{fullDay}</Casing>
                         </Stack>
                        
                     </Stack>
@@ -84,10 +84,10 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
-                            <p className='ungradtext' style={{ fontSize: '16px' }}>Your Bet with betid of {item.type}</p>
-                            <p style={{ color: 'white' }}>Amount {item.amount ?? 0}</p>
-                            <p style={{ color: 'white' }}>{fullDay}</p>
-                            <p style={{ color: 'white',fontSize:'11px' }}>If you did not Request for this Bet Cancellation, please contact Customer Care</p>
+                            <Casing className='ungradtext' style={{ fontSize: '16px' }}>Your Bet with betid of {item.type}</Casing>
+                            <Casing style={{ color: 'white' }}>Amount {item.amount ?? 0}</Casing>
+                            <Casing style={{ color: 'white' }}>{fullDay}</Casing>
+                            <Casing style={{ color: 'white',fontSize:'11px' }}>If you did not Request for this Bet Cancellation, please contact Customer Care</Casing>
                         </Stack>
                     </Stack>
                             )
@@ -95,9 +95,9 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
-                            <p style={{ fontWeight:'bold',color:'greenyellow'}}>You just recieved a {item.type}</p>
-                            <p>{item.amount} USDT</p>
-                            <p style={{ color: 'white' }}>{fullDay}</p>
+                            <Casing style={{ fontWeight:'bold',color:'greenyellow'}}>You just recieved a {item.type}</Casing>
+                            <Casing>{item.amount} USDT</Casing>
+                            <Casing style={{ color: 'white' }}>{fullDay}</Casing>
                         </Stack>
                        
                     </Stack>
@@ -115,9 +115,9 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit was Successful</p>
-                                    <p>{item.amount} USDT</p>
-                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                    <Casing style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit was Successful</Casing>
+                                    <Casing>{item.amount} USDT</Casing>
+                                    <Casing style={{ color: 'white' }}>{fullDay}</Casing>
                                 </Stack>
                             </Stack>
                             )
@@ -134,10 +134,10 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully</p>
-                                    <p>{item.type}</p>
-                                    <p>{item.amount} USDT</p>
-                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                    <Casing style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully</Casing>
+                                    <Casing>{item.type}</Casing>
+                                    <Casing>{item.amount} USDT</Casing>
+                                    <Casing style={{ color: 'white' }}>{fullDay}</Casing>
                                 </Stack>
                             </Stack>
                             )
@@ -155,9 +155,9 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</p>
-                                    <p>{item.amount} USDT</p>
-                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                    <Casing style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</Casing>
+                                    <Casing>{item.amount} USDT</Casing>
+                                    <Casing style={{ color: 'white' }}>{fullDay}</Casing>
                                 </Stack>
                             </Stack>
                             )
@@ -175,9 +175,9 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>You recieved first deposit bonus from {item.username}</p>
-                                    <p>{item.amount} USDT</p>
-                                    <p style={{ color: 'white' }}>{fullDay}</p>
+                                    <Casing style={{ fontWeight:'bold',color:'greenyellow'}}>You recieved first deposit bonus from {item.username}</Casing>
+                                    <Casing>{item.amount} USDT</Casing>
+                                    <Casing style={{ color: 'white' }}>{fullDay}</Casing>
                                 </Stack>
                             </Stack>
                             )
@@ -186,9 +186,9 @@ export default function History({credent}) {
                                 return(
                                     <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                     <Stack>
-                                        <p style={{ fontWeight:'bold',color:'greenyellow'}}>You have recieved rebate bonus bonus from {item.username}</p>
-                                        <p>{item.amount} USDT</p>
-                                        <p style={{ color: 'white' }}>{fullDay}</p>
+                                        <Casing style={{ fontWeight:'bold',color:'greenyellow'}}>You have recieved rebate bonus bonus from {item.username}</Casing>
+                                        <Casing>{item.amount} USDT</Casing>
+                                        <Casing style={{ color: 'white' }}>{fullDay}</Casing>
                                     </Stack>
                                 </Stack>
                                 )
@@ -202,8 +202,8 @@ export default function History({credent}) {
         }else{
             return(
             <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'55vh'}}>
-        <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
-        <p style={{ color:'grey'}}>Please Check your internet connection</p>
+        <Casing style={{ fontSize:'20px'}}>No Data Avaliable</Casing>
+        <Casing style={{ color:'grey'}}>Please Check your internet connection</Casing>
       </Stack>)
         }
     }
@@ -213,10 +213,10 @@ export default function History({credent}) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>History</p>
+                <Casing style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>History</Casing>
             </Stack>
             <Stack sx={{ minHeight: '100vh', padding: '8px' }} direction='column' alignItems='center'>
-                <p style={{ color: '#C61F41', fontSize: '24px' }}>History</p>
+                <Casing style={{ color: '#C61F41', fontSize: '24px' }}>History</Casing>
                 <NotiFunc/>
             </Stack>
             <HomeBottom />

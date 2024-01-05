@@ -19,12 +19,12 @@ const [met,setMet] = useState('none');
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}>Fund Account</p>
+                <Casing style={{ fontSize: '16px', fontWeight: '600' }}>Fund Account</Casing>
             </Stack>
 
             <Stack direction='column' alignItems='center' justifyContent='center' spacing={2} sx={{ padding: '12px', margin: '8px', width: '100%', height: '100%' }}>
                 <Stack direction='column' alignItems='center' justifyContent='center'>
-                    <p style={{ fontSize: '18px', fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>Select Payment Method</p>
+                    <Casing style={{ fontSize: '18px', fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>Select Payment Method</Casing>
 
                     <motion.div
                         whileTap={{ scale: 0.9 }}
@@ -36,12 +36,12 @@ const [met,setMet] = useState('none');
                     </motion.div>
                 </Stack>
                 <Stack direction='column' spacing={2} alignItems='center' justifyContent='center' sx={{ display:met}}>
-                    <p style={{ fontSize: '18px',display:met, fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>Amount</p>
+                    <Casing style={{ fontSize: '18px',display:met, fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>Amount</Casing>
                     <Stack direction='row' alignItems='center' justifyContent='center' sx={{ display:met}}>
                         <TextField variant='standard' type='number' placeholder='Amount' sx={{ display:met,color: 'white', background: '#ad1c39', padding: '8px', borderRadius: '5px', letterSpacing: '1px', input: { color: 'white', } }} value={amount} onChange={(e) => {
                             setAmount(e.target.value);
                         }} />
-                        <p sx={{ display:met}}>USDT</p>
+                        <Casing sx={{ display:met}}>USDT</Casing>
                     </Stack>
 
                     <Alertz amount={amount} sx={{ display:met}}/>

@@ -93,8 +93,8 @@ export default function Bets() {
                     {/* statusOfBet */}
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
                       sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
-                      <p>Status</p>
-                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams + 7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p> </Stack>
+                      <Casing>Status</Casing>
+                      <Casing>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams + 7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</Casing> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
@@ -102,20 +102,20 @@ export default function Bets() {
                         {/* home team */}
                         <Stack direction='row' spacing={1}>
                           <Image src={bet.ihome ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png'} width={20} height={20} alt="home logo" />
-                          <p>{bet.home}</p>
+                          <Casing>{bet.home}</Casing>
                         </Stack>
                         {/* end of home team */}
                         {/* away team */}
                         <Stack direction='row' spacing={1}>
                           <Image src={bet.iaway ?? 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Soccer_ball.svg/2048px-Soccer_ball.svg.png'} width={20} height={20} alt='away logo' />
-                          <p>{bet.away}</p>
+                          <Casing>{bet.away}</Casing>
                         </Stack>
                         {/* end of away team */}
                       </Stack>
                       {/* end of team name and logo */}
                     </Stack>
                     {/* end of team data */}
-                    <Stack><p>Stake: {bet.stake} USDT</p></Stack>
+                    <Stack><Casing>Stake: {bet.stake} USDT</Casing></Stack>
                   </Stack>
                 </Link>
 
@@ -129,8 +129,8 @@ export default function Bets() {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '80vh' }}>
-          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
-          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
+          <Casing style={{ fontSize: '20px' }}>No Data Avaliable</Casing>
+          <Casing style={{ color: 'grey' }}>Please Check your internet connection</Casing>
         </Stack>
       )
     }
@@ -148,11 +148,11 @@ export default function Bets() {
         <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
           router.push('/dashboard')
         }} />
-        <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Bets</p>
+        <Casing style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Bets</Casing>
       </Stack>
       <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>Open Bets</p>
-        <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Settled Bets</p>
+        <Casing className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>Open Bets</Casing>
+        <Casing className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Settled Bets</Casing>
       </Stack>
       <MatchRow />
       <HomeBottom />

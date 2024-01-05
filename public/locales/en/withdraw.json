@@ -1,17 +1,1 @@
-{
-    "Withdraw": " Withdraw",
-    "Method": " Method",
-    "USDT(TRC20)": "USDT(TRC20)",
-    "Amount": " Amount",
-    "USDT": "  USDT",
-    "Charge": " Charge ",
-    "0.000USDT": " 0.000 USDT",
-    "Total": " Total ",
-    "SelectPaymentMethod": "Select Payment Method",
-    "SelectWalletAddress": "Select Wallet Address",
-    "Amount(USDT)": "Amount(USDT)",
-    "TransactionPassword": "Transaction Password",
-    "ConfirmTransactionPassword": "Confirm Transaction Password",
-    "WITHDRAW!": "WITHDRAW!",
-    "Setatransactionpin": "Set a transaction pin"
-}
+{"Withdraw": " Withdraw", "Method": " Method", "USDT(TRC20)": "USDT(TRC20)", "Amount": " Amount", "USDT": "  USDT", "Charge": " Charge ", "0.000USDT": " 0.000 USDT", "Total": " Total ", "SelectPaymentMethod": "Select Payment Method", "SelectWalletAddress": "Select Wallet Address", "Amount(USDT)": "Amount(USDT)", "TransactionPassword": "Transaction Password", "ConfirmTransactionPassword": "Confirm Transaction Password", "WITHDRAW!": "WITHDRAW!", "Setatransactionpin": "Set a transaction pin"}

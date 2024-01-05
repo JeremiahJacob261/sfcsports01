@@ -1,11 +1,1 @@
-{
-    "Bets": "Bets",
-    "OpenBets": "Open Bets",
-    "SettledBets": "Settled Bets",
-    "NoDataAvaliable": "No Data Avaliable",
-    "PleaseCheckyourinternetconnection": "Please Check your internet connection",
-    "Home": "Home",
-    "Event": "Event",
-    "Account": "Account",
-    "History": "History"
-}
+{"Bets": "Bets", "OpenBets": "Open Bets", "SettledBets": "Settled Bets", "NoDataAvaliable": "No Data Avaliable", "PleaseCheckyourinternetconnection": "Please Check your internet connection", "Home": "Home", "Event": "Event", "Account": "Account", "History": "History"}

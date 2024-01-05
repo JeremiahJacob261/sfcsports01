@@ -84,29 +84,29 @@ console.log(e)
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}> Withdraw</p>
+                <Casing style={{ fontSize: '16px', fontWeight: '600' }}> Withdraw</Casing>
             </Stack>
             <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ padding: '12px', width: '100%', height: '100%' }}>
                 <Stack direction='column' sx={{ width:'320px'}} spacing={2}>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Method</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}>USDT(TRC20)</p>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}> Method</Casing>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}>USDT(TRC20)</Casing>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Amount</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {amount ?? 0} USDT</p>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}> Amount</Casing>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}> {amount ?? 0} USDT</Casing>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Charge </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.05).toFixed(3) ?? 0} USDT</p>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}> Charge </Casing>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.05).toFixed(3) ?? 0} USDT</Casing>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Total </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.05).toFixed(3) ?? 0} USDT</p>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}> Total </Casing>
+                        <Casing style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.05).toFixed(3) ?? 0} USDT</Casing>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
-                    <p>Select Payment Method</p>
+                    <Casing>Select Payment Method</Casing>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Payment Method</InputLabel>
                         <Select
@@ -125,7 +125,7 @@ console.log(e)
                 </Stack>
 
                 <Stack spacing={2} sx={{ width: '310px' }}>
-                    <p>Select Wallet Address</p>
+                    <Casing>Select Wallet Address</Casing>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Payment Address</InputLabel>
                         <Select
@@ -159,7 +159,7 @@ console.log(e)
                     </FormControl>
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>Amount(USDT)</p>
+                    <Casing>Amount(USDT)</Casing>
                     <TextField variant='standard' type='number' placeholder='Amount(USDT)' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={amount}
                         onChange={(e) => {
@@ -168,7 +168,7 @@ console.log(e)
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>Transaction Password</p>
+                    <Casing>Transaction Password</Casing>
                     <TextField variant='standard' type='password' placeholder='Password' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={password}
                         onChange={(e) => {
@@ -177,7 +177,7 @@ console.log(e)
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>Confirm Transaction Password</p>
+                    <Casing>Confirm Transaction Password</Casing>
                     <TextField variant='standard' type='password' placeholder='Confirm Password' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={cpassword}
                         onChange={(e) => {
@@ -194,7 +194,7 @@ console.log(e)
                     style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                     WITHDRAW!</motion.p>
                 <Link href='/dashboard/codesetting'>
-                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</p>
+                    <Casing style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</Casing>
 
                 </Link>
             </Stack>

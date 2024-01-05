@@ -55,25 +55,25 @@ export default function Claim() {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/promotion')
                 }} />
-                <p className="text-sm text-gray-500">Claim Sign Up Bonus</p>
+                <Casing className="text-sm text-gray-500">Claim Sign Up Bonus</Casing>
             </Stack>
             <Stack direction="column" justifyContent='center' alignItems="center" sx={{ padding: '8px', minWidth: '90vw' }} spacing={3}>
                 <Stack direction="column">
-                    <p>Bonus Claim Code</p>
+                    <Casing>Bonus Claim Code</Casing>
                     <TextField placeholder="claim code" sx={{ background: 'white', minWidth: '90vw' }} value={bonus} onChange={(event) => {
                         setBonus(event.target.value);
                     }} />
-                    <p style={{ fontSize: '10px', color: 'greenyellow' }}>Contact Customer Care to get Bonus  claim code</p>
+                    <Casing style={{ fontSize: '10px', color: 'greenyellow' }}>Contact Customer Care to get Bonus  claim code</Casing>
                 </Stack>
                 <Stack >
-                    <p>Password</p>
+                    <Casing>Password</Casing>
                     <TextField placeholder="password" sx={{ background: 'white', minWidth: '90vw' }}
                         value={password} onChange={(event) => {
                             setPassword(event.target.value);
                         }} />
                 </Stack>
                 <Stack>
-                    <p>Confirm Password</p>
+                    <Casing>Confirm Password</Casing>
                     <TextField placeholder="confirm password" sx={{ background: 'white', minWidth: '90vw' }} value={confirmPassword} onChange={(event) => {
                         setConfirmPassword(event.target.value);
                     }} />

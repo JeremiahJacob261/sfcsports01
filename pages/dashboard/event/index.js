@@ -153,8 +153,8 @@ export default function Event() {
         <Stack direction='column' sx={{ padding: 0 }} justifyContent='center' alignItems="center" className='odds-fix' onClick={() => {
           setParentOpen(true)
         }}>
-          <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
-          <p style={{ color: '#e4264c', verticalAlign: 'center', fontSize: '12px', margin: 0, padding: 0 }}>{txt}</p>
+          <Casing style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</Casing>
+          <Casing style={{ color: '#e4264c', verticalAlign: 'center', fontSize: '12px', margin: 0, padding: 0 }}>{txt}</Casing>
         </Stack>
 
         <Drawer
@@ -167,15 +167,15 @@ export default function Event() {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
+              <Casing style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</Casing>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
-                <p>{data.home}</p>
-                <p>VS</p>
-                <p>{data.away}</p>
+                <Casing>{data.home}</Casing>
+                <Casing>VS</Casing>
+                <Casing>{data.away}</Casing>
               </Stack>
 
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
-                <p>{markets[pick]}</p> <p>{data[pick]}</p>
+                <Casing>{markets[pick]}</Casing> <Casing>{data[pick]}</Casing>
               </Stack>
 
               <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
@@ -207,10 +207,10 @@ export default function Event() {
                 </Stack>
 
                 <Stack sx={{ width: '200px' }} spacing={2}>
-                  <p>Stake: {amountInput}</p>
-                  <p>Profit: {(profit == NaN) ? 0 : profit}</p>
-                  <p>Total Winnings: {total}</p>
-                  <p style={{ color: 'black', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '50px', borderRadius: '5px' }}>{amountInput}</p>
+                  <Casing>Stake: {amountInput}</Casing>
+                  <Casing>Profit: {(profit == NaN) ? 0 : profit}</Casing>
+                  <Casing>Total Winnings: {total}</Casing>
+                  <Casing style={{ color: 'black', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '50px', borderRadius: '5px' }}>{amountInput}</Casing>
                 </Stack>
               </Stack>
 
@@ -298,8 +298,8 @@ export default function Event() {
                     <Stack direction="row" alignItems='center'>
 
                       <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
-                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><Casing style={{ color: 'white' }} >{data.home}</Casing></Stack>
+                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><Casing style={{ color: 'white' }}>{data.away}</Casing></Stack>
                       </Stack>
 
                       <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
@@ -319,8 +319,8 @@ export default function Event() {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
-          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
-          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
+          <Casing style={{ fontSize: '20px' }}>No Data Avaliable</Casing>
+          <Casing style={{ color: 'grey' }}>Please Check your internet connection</Casing>
         </Stack>)
     }
   }
@@ -365,14 +365,14 @@ export default function Event() {
     return (
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
-          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
-          <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
+          <Casing style={{ color: 'whitesmoke' }}>Games Playable Today: </Casing>
+          <Casing style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</Casing>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
           <span id="minutes">{minutes} : </span>
           <span id="seconds"> {seconds}</span>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
+          <Casing style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</Casing>
         </div>
       </div>
     )
@@ -385,7 +385,7 @@ export default function Event() {
           <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
             router.push('/dashboard')
           }} />
-          <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Events</p>
+          <Casing style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Events</Casing>
         </Stack>
         <CountDown />
         <MatchRow />
