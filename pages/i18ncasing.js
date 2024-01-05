@@ -11,7 +11,7 @@ export async function getStaticProps({ locale }) {
     }
   }
 
-  export default function p({children}) { 
+  export default function Casing({children}) { 
     const { t } = useTranslation()
     console.log(t('all:SeeAllReferrals'))
     let modchild;
