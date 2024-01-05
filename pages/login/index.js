@@ -34,8 +34,7 @@ export async function getStaticProps({ locale }) {
     }
   }
 export default function Login(props) {
-  const { t } = useTranslation()
-  console.log(t("all:Enterthecorrectinformationprovidedtocreateanaccount"))
+  const { t } = useTranslation("all")
   const [username, setUsername] = useState("")
   const [drop, setDrop] = useState(false)
   const router = useRouter();
@@ -296,10 +295,10 @@ export default function Login(props) {
             <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </Typography>
           </Link>
           <Typography style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
-            Dont miss a minute of the action! Sign in
+            {t("DontmissaminuteoftheactionSignin")}
           </Typography>
           <Typography style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
-            Enter the correct information provided to Login to your  account
+            {t("EnterthecorrectinformationprovidedtoLogintoyouraccount")}
           </Typography>
         </Stack>
         <Stack direction="column" spacing={4} sx={{ width: '343px' }}>
@@ -313,7 +312,7 @@ export default function Login(props) {
           <FormControl
             sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB', } }}
             variant="filled">
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password">{t("Password")}</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               type={values.showPassword ? 'text' : 'password'}
@@ -348,14 +347,14 @@ export default function Login(props) {
           }}
           sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', fontWeight: '400' }}
           onClick={login}>
-          <Typography sx={{ fontFamily: 'Poppins, sans-serif', marginLeft: "3px", color: "#E5E7EB" }}>Login</Typography>
+          <Typography sx={{ fontFamily: 'Poppins, sans-serif', marginLeft: "3px", color: "#E5E7EB" }}>{t("Login")}</Typography>
         </Button>
         <Link href="/passwordreset" style={{ textDecoration: '#E5E7EB' }}>
           <Typography style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '200', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>{t('login:ForgottenPassword')}</Typography>
           <Divider sx={{ background: '#E5E7EB' }} />
         </Link>
-        <Link href="/register?refer=0" style={{ width: '100%', textAlign: 'center', textDecoration: "none", color: "#E5E7EB", fontSize: '15px', fontWeight: '400', fontFamily: 'Poppins,sans-serif' }}>Dont have an Account ?
-          Create Account
+        <Link href="/register?refer=0" style={{ width: '100%', textAlign: 'center', textDecoration: "none", color: "#E5E7EB", fontSize: '15px', fontWeight: '400', fontFamily: 'Poppins,sans-serif' }}>
+          {t("DonthaveanAccountCreateAccount")}
 
         </Link>
       </Stack>

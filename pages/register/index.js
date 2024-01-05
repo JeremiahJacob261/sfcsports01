@@ -424,7 +424,7 @@ let test = await fetch('/api/regnotice', {
           <Stack spacing={3} style={{ margin: '8px', padding: '8px' }}>
             <Farm.Check
               type="checkbox"
-              label=" Accept our Terms and Conditions"
+              label={t("AcceptourTermsandConditions")}
               id="age"
               style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif' }}
               value={agecheck}
