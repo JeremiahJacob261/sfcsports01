@@ -21,6 +21,7 @@ import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Translate from '@/pages/translator';
 export async function getStaticProps({ locale }) {
     return {
       props: {
@@ -201,6 +202,7 @@ export default function Home(props) {
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
+          <Translate />
             <motion.div whileHover={{ color: '#C61F41' }}>
               <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
                 alert('Chat is not available yet')
@@ -227,9 +229,8 @@ export default function Home(props) {
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
-
           >
-
+          <Translate />
             <motion.div whileHover={{ color: '#C61F41' }} onClick={() => {
               router.push('/dashboard/history')
             }} >

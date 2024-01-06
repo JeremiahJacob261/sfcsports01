@@ -17,6 +17,7 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Translate from '@/pages/translator';
 
 export default function Account({ vips }) {
     const { t } = useTranslation('all')
@@ -591,6 +592,7 @@ export default function Account({ vips }) {
                             </motion.div>
                         </Stack>
                     </Stack>
+                    <Translate/>
                     <Stack>
                         <Swapic image={users.profile ?? Avatar} name={users.username} />
                     </Stack>

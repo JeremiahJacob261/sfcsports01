@@ -14,6 +14,7 @@ import Cert1 from '@/public/cert (1).jpg'
 import Cert2 from '@/public/cert (2).jpg'
 import Cert3 from '@/public/cert (3).jpg'
 import Head from 'next/head';
+import Translate from '@/pages/translator';
 import { useTranslation } from 'next-i18next'
 import { adapter,tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
@@ -89,6 +90,7 @@ const { t } = useTranslation()
           <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>{t('all:SFCSPORTS01')}</p>
         </Stack>
         <Stack direction='row' alignItems='center' spacing={2}>
+          <Translate/>
         <Stack onClick={async()=>{
           try{
             const { data,error } = supabase.auth.signOut();
