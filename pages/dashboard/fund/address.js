@@ -6,7 +6,20 @@ import { useState } from 'react';
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import toast, { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all',
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
 export default function Address(){
+    const { t } = useTranslation('all')
     const router = useRouter();
     return(
         <div className="backgrounds">
@@ -30,7 +43,7 @@ export default function Address(){
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={()=>{
                     router.push('/dashboard/fund')
                 }}/>
-           <p style={{ fontSize:'16px',fontWeight:'600'}}>Input Address</p>
+           <p style={{ fontSize:'16px',fontWeight:'600'}}>{t("InputAddress")}</p>
             </Stack>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ width:'100%',height:'100vh'}}>
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.8 }} onClick={()=>{}}>
@@ -49,7 +62,7 @@ export default function Address(){
                 <p style={{ color:'green',fontSize:'13px',fontWeight:'200',maxWidth:'70vw'}}>Network: USDT (TRC20)</p>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                 <Icon icon="ph:info-light" color="#ad1c39" />
-                <p style={{ color:'grey',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!</p>
+                <p style={{ color:'grey',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
                 </Stack>
                     <motion.p onClick={() => {
                       router.push('/dashboard/fund/upload')

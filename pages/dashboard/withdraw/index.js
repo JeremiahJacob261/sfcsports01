@@ -9,8 +9,21 @@ import { supabase } from '@/pages/api/supabase';
 import { useState } from 'react';
 import { motion } from 'framer-motion'
 import { useEffect } from 'react';
-import Link from 'next/link';
+import Link from 'next/link';import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all',
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
+
 export default function Withdraw() {
+    const { t } = useTranslation('all')
     const router = useRouter();
     const [wallet, setWallet] = useState('');
     const [users, setUsers] = useState([]);
@@ -84,31 +97,31 @@ console.log(e)
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}> Withdraw</p>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}> {t("Withdraw")}</p>
             </Stack>
             <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ padding: '12px', width: '100%', height: '100%' }}>
                 <Stack direction='column' sx={{ width:'320px'}} spacing={2}>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Method</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Method")}</p>
                         <p style={{ fontSize: '12px', fontWeight: '600' }}>USDT(TRC20)</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Amount</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Amount")}</p>
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {amount ?? 0} USDT</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Charge </p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Charge")} </p>
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.05).toFixed(3) ?? 0} USDT</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Total </p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Total")} </p>
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.05).toFixed(3) ?? 0} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
-                    <p>Select Payment Method</p>
+                    <p>{t("SelectPaymentMethod")}</p>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Payment Method</InputLabel>
+                        <InputLabel id="demo-simple-select-label">{t("PaymentMethod")}</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -125,9 +138,9 @@ console.log(e)
                 </Stack>
 
                 <Stack spacing={2} sx={{ width: '310px' }}>
-                    <p>Select Wallet Address</p>
+                    <p>{t("SelectWalletAddress")}</p>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Payment Address</InputLabel>
+                        <InputLabel id="demo-simple-select-label">{t("PaymentAddress")}</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -142,7 +155,7 @@ console.log(e)
                             }}
                             sx={{ color: 'black', backgroundColor: 'white' }}
                         >
-                            <MenuItem value={1}>Select Wallet Address</MenuItem>
+                            <MenuItem value={1}>{t("SelectWalletAddress")}</MenuItem>
                             {
                                 users.map((data) => {
                                     if (data.wallet !== '' && data.wallet !== null) {
@@ -159,7 +172,7 @@ console.log(e)
                     </FormControl>
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>Amount(USDT)</p>
+                    <p>{t("Amount")}(USDT)</p>
                     <TextField variant='standard' type='number' placeholder='Amount(USDT)' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={amount}
                         onChange={(e) => {
@@ -168,7 +181,7 @@ console.log(e)
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>Transaction Password</p>
+                    <p>{t("TransactionPassword")}</p>
                     <TextField variant='standard' type='password' placeholder='Password' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={password}
                         onChange={(e) => {
@@ -177,7 +190,7 @@ console.log(e)
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>Confirm Transaction Password</p>
+                    <p>{t("ConfirmTransactionPassword")}</p>
                     <TextField variant='standard' type='password' placeholder='Confirm Password' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={cpassword}
                         onChange={(e) => {
@@ -192,9 +205,9 @@ console.log(e)
                     whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
                     style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
-                    WITHDRAW!</motion.p>
+                    {t("WITHDRAW")}!</motion.p>
                 <Link href='/dashboard/codesetting'>
-                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</p>
+                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>{t("Setatransactionpin")}</p>
 
                 </Link>
             </Stack>

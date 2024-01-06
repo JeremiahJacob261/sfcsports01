@@ -9,7 +9,20 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'  
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all',
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
 export default function Alertz({amount}) {
+    const { t } = useTranslation('all')
   const checkCredible =  () => {
     if (amount < 10) {
         Alerts('Minimum amount to fund is $10', false);
@@ -39,7 +52,7 @@ export default function Alertz({amount}) {
                     whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 1.09 }}
                     whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
-                        DEPOSIT</motion.p>
+                        {t("DEPOSIT")}</motion.p>
       <Modal
         open={open}
         onClose={() => {

@@ -3,7 +3,6 @@ import { supabase } from '../../pages/api/supabase';
 export default async function handler(req, res) {
   const body = req.body;
   let username = body.username;
-  
    try{
         //all
         const { data:dall, count:all } = await supabase
