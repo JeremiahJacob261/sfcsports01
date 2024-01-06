@@ -3,8 +3,20 @@ import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react"; 
- 
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all','login'
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
 export default function HomeBottom() {
+  const { t } = useTranslation('all')
   const [name,setNames] = useState();
   const router = useRouter();
   const selectPage = {
@@ -34,7 +46,7 @@ export default function HomeBottom() {
             <motion.div whileTap={{ color:'#f0e7e9'}} >
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(0)}}>
               <Icon icon="majesticons:home" width={24} height={24} className={(selected != 0) ? 'homebtn' : 'homebtnselected'}  />
-            <p style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>Home</p>
+            <p style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>{t("Home")}</p>
             </Stack>
             </motion.div>
             {/* /* home end */}
@@ -43,7 +55,7 @@ export default function HomeBottom() {
             <motion.div whileTap={{ color:'#f0e7e9'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(1)}}>
               <Icon icon="uis:chart" width={24} height={24} className={(selected != 1) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>Event</p>
+            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>{t("Event")}</p>
             </Stack>
             </motion.div>
             {/* /* event end */}
@@ -52,7 +64,7 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(2)}}>
               <Icon icon="bxs:gift" width={24} height={24} className={(selected != 2) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>Bets</p>
+            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>{t("Bets")}</p>
             </Stack>
             </motion.div>
             {/* /* search end */}
@@ -61,7 +73,7 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>
               <Icon icon="mingcute:wallet-fill" width={24} height={24} className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>Account</p>
+            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Account")}</p>
             </Stack>
             </motion.div>
             {/* /* account end */}
@@ -70,7 +82,7 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(4)}}>
               <Icon icon="solar:clipboard-bold" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>History</p>
+            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>{t("History")}</p>
             </Stack>
             </motion.div>
             {/* /* history end */}

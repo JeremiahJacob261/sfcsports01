@@ -13,7 +13,20 @@ import { supabase } from '../../api/supabase';
 import { useEffect } from 'react';
 import { Button, Drawer } from '@mui/material';
 import { useState } from 'react';
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all',
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
 export default function Event() {
+  const { t } = useTranslation('all')
   const [footDat, setFootDat] = useState([]);
   const [selected, setSelected] = React.useState(null);
   const router = useRouter();
@@ -366,14 +379,14 @@ export default function Event() {
     return (
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
-          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
+          <p style={{ color: 'whitesmoke' }}>{t("GamesPlayableToday")}</p>
           <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
           <span id="minutes">{minutes} : </span>
           <span id="seconds"> {seconds}</span>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>{t("TimebeforeGamesPlayableResets")}</p>
         </div>
       </div>
     )
@@ -386,7 +399,7 @@ export default function Event() {
           <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
             router.push('/dashboard')
           }} />
-          <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Events</p>
+          <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>{t("Events")}</p>
         </Stack>
         <CountDown />
         <MatchRow />

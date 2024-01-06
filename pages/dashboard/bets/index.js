@@ -7,8 +7,20 @@ import Image from 'next/image';
 import { supabase } from '@/pages/api/supabase';
 import Head from 'next/head'
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect } from 'react';import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all','login'
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
 export default function Bets() {
+  const { t } = useTranslation('all')
   const router = useRouter();
   const [betDta, setBetDta] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -93,8 +105,8 @@ export default function Bets() {
                     {/* statusOfBet */}
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
                       sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
-                      <p>Status</p>
-                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams + 7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p> </Stack>
+                      <p>{t("Status")}</p>
+                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 7200 < curren) ? t('Processing') :  (stams < curren) ? t('Ongoing') : t('NotStarted')}</p> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
@@ -115,7 +127,7 @@ export default function Bets() {
                       {/* end of team name and logo */}
                     </Stack>
                     {/* end of team data */}
-                    <Stack><p>Stake: {bet.stake} USDT</p></Stack>
+                    <Stack><p>{t("Stake")}: {bet.stake} USDT</p></Stack>
                   </Stack>
                 </Link>
 
@@ -129,8 +141,8 @@ export default function Bets() {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '80vh' }}>
-          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
-          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
+          <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
+          <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
         </Stack>
       )
     }
@@ -148,11 +160,11 @@ export default function Bets() {
         <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
           router.push('/dashboard')
         }} />
-        <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Bets</p>
+        <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>{t("Bets")}</p>
       </Stack>
       <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>Open Bets</p>
-        <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Settled Bets</p>
+        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("OpenBets")}</p>
+        <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>{t("SettledBets")}</p>
       </Stack>
       <MatchRow />
       <HomeBottom />

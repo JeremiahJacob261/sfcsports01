@@ -14,15 +14,25 @@ import Image from 'next/image'
 import cara01 from '@/public/cara01.jpg';
 import cara02 from '@/public/cara02.jpg';
 import cara03 from '@/public/cara03.jpg';
-
- 
 import cara04 from '@/public/cara04.jpg';
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
-import GoogleTranslate from '@/GoogleTranslate';
-export default function Home() {
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all',
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
+export default function Home(props) {
+  const { t } = useTranslation('all')
   const [addresst, setAddress] = useState('');
   const [gcount, setGCount] = useState(0);
   const [reciept, setReciept] = useState('');
@@ -164,14 +174,14 @@ export default function Home() {
     return (
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
-          <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
+          <p style={{ color: 'whitesmoke' }}>{t("GamesPlayableToday")} </p>
           <p style={{ color: 'greenyellow' }}>{playable[gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
           <span id="minutes">{minutes} : </span>
           <span id="seconds"> {seconds}</span>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>{t("TimebeforeGamesPlayableResets")}</p>
         </div>
       </div>
     )
@@ -186,12 +196,11 @@ export default function Home() {
               <Image src={Avatar} width={40} height={29} alt="sfclogo" />
             </div>
             <Stack>
-              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning!</p>
+              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>{t("GoodMorning")}</p>
               <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user.username : 'Loading name ...'}</p>
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
-            <GoogleTranslate />
             <motion.div whileHover={{ color: '#C61F41' }}>
               <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
                 alert('Chat is not available yet')
@@ -213,7 +222,7 @@ export default function Home() {
               <Image src={Avatar} width={40} height={29} alt="sfclogo" />
             </div>
             <Stack>
-              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>Good Morning</p>
+              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>{t("GoodMorning")}</p>
               <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}></p>
             </Stack>
           </Stack>
@@ -329,8 +338,8 @@ function MatchCountDown() {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
-          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
-          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
+          <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
+          <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
         </Stack>)
     }
   }
@@ -346,7 +355,7 @@ function MatchCountDown() {
       <Stack sx={{ height: '50px', width: '100%' }}>
         <NavbAR />
       </Stack>
-      <marquee><p style={{color:'whitesmoke'}}>Welcome to SFSPORTSO1</p></marquee>
+      <marquee><p style={{color:'whitesmoke'}}>{t("WelcometoSFSPORTSO1")}</p></marquee>
       <div style={{ width: '300px', height: 'auto', background: 'rgba(27,3,0,1)', padding: '2px' }}>
         <Carousel interval={1500} autoPlay={true} >
           <div >
@@ -375,21 +384,21 @@ function MatchCountDown() {
         <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)', width: '30%' }}>
           <Box sx={{ width: '100%', height: '5px', backgroundColor: '#C61F41' }}>
           </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>People  Favourites</p>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>{t("PeopleFavourites")}</p>
         </Stack>
 
         {/* today games */}
         <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
           <Box sx={{ height: '5px', width: '100%', backgroundColor: 'green' }}>
           </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>Today Matches</p>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>{t("TodayMatches")}</p>
         </Stack>
 
         {/* tomorrow games */}
         <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
           <Box sx={{ height: '5px', width: '100%', backgroundColor: 'rgba(194,127,8,1)' }}>
           </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>Tomorrow Matches</p>
+          <p style={{ textAlign: 'center', fontSize: '13px' }}>{t("TomorrowMatches")}</p>
         </Stack>
 
       </Stack>

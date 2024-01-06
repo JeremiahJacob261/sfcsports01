@@ -4,9 +4,12 @@ import { Stack } from "@mui/material";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Head from "next/head";
- 
 import { useEffect, useState } from "react"; 
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 export default function BetDetails({ datas }) {
+    const { t } = useTranslation('betdetails')
     const [resulta, setResulta] = useState('');
     const router = useRouter();
     const markets = {
@@ -63,7 +66,7 @@ export default function BetDetails({ datas }) {
     return (
         <div className='backgrounds' sx={{ minHeight: '100vh', marginBottom: 0 }}>
             <Head>
-                <title>Bets Details: {datas.home} vs {datas.away}</title>
+                <title>{t("BetsDetails")}: {datas.home} vs {datas.away}</title>
                 <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
                 <link rel="icon" href="/Sheffield_FC.svg.png" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -72,7 +75,7 @@ export default function BetDetails({ datas }) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/bets')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>Bets Details</p>
+                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>{t("BetsDetails")}</p>
             </Stack>
             <Stack direction="row" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
                 <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
@@ -86,15 +89,15 @@ export default function BetDetails({ datas }) {
                 </Stack>
             </Stack>
             <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
-                <p className="betd-text">Time: {fulltime}</p>
-                <p className="betd-text">Stake: {datas.stake} USDT</p>
-                <p className="betd-text">Odds: {datas.odd}</p>
-                <p className="betd-text">Bet market: {datas.market}</p><p className="betd-text">Match ID: {datas.match_id}</p>
-                <p className="betd-text">Return: {datas.aim + datas.stake} USDT</p>
-                <p className="betd-text">Profit: {datas.profit}</p>
-                <p className="betd-text">Status: {(datas.won != 'null') ? 'Finished' : (stams+7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
-                <p className="betd-text">Match Result: {resulta}</p>
-                <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
+                <p className="betd-text">{t("Time")}: {fulltime}</p>
+                <p className="betd-text">{t("Stake")}: {datas.stake} USDT</p>
+                <p className="betd-text">{t("Odds")}: {datas.odd}</p>
+                <p className="betd-text">{t("Betmarket")}: {datas.market}</p><p className="betd-text">Match ID: {datas.match_id}</p>
+                <p className="betd-text">{t("Return")}: {datas.aim + datas.stake} USDT</p>
+                <p className="betd-text">{t("Profit")}: {datas.profit}</p>
+                <p className="betd-text">{t("Status")}: {(datas.won != 'null') ? 'Finished' : (stams+7200 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
+                <p className="betd-text">{t("MatchResult")}: {resulta}</p>
+                <p className="betd-text">{t("EventDateandTime")}: {datas.date} {datas.time}</p>
                 <p className="betd-text" style={{ color: 'goldenrod' }}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
                 
             </Stack>
@@ -102,6 +105,8 @@ export default function BetDetails({ datas }) {
     )
 }
 export async function getServerSideProps(context) {
+    
+    const { locale } = context;
     try {
         const id = context.query.id;
         const { data, error } = await supabase
@@ -110,12 +115,16 @@ export async function getServerSideProps(context) {
             .eq('betid', id)
         let datas = data[0];
         return {
-            props: { datas }, // will be passed to the page component as props
+            props: { datas,...(await serverSideTranslations(locale, [
+                'all','betdetails'
+              ])), }, // will be passed to the page component as props
         }
     } catch (error) {
         let datas = {};
         return {
-            props: { datas }, // will be passed to the page component as props
+            props: { datas,...(await serverSideTranslations(locale, [
+                'all',
+              ])), }, // will be passed to the page component as props
         }
     }
 }
