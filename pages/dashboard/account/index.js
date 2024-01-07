@@ -613,7 +613,7 @@ export async function getServerSideProps(context) {
     const id = context.query.id;
     const { locale } = context;
     try {
-        let test = await fetch('http://localhost:3000/api/vip', {
+        let test = await fetch('https://sfcsports01.com/api/vip', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
