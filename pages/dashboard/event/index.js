@@ -255,22 +255,24 @@ export default function Event() {
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
-                //match countdown
-                const defTime = () => {
-                  let dateString = data.date;
-                  let timeString = data.time;
-                  let dateParts = dateString.split("-");
-                  let timeParts = timeString.split(":");
-              
-                  // Create a new Date object
-                  let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
-                  // Get the timestamp
-                  let timestamp = date.getTime();
-                  return timestamp;
-                }
+                //match-countdown
+  //match countdown
+  const defTime = () => {
+    let matches = data;
+    let dateString = matches.date;
+    let timeString = matches.time;
+    let dateParts = dateString.split("-");
+    let timeParts = timeString.split(":");
+
+    // Create a new Date object
+    let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
+    // Get the timestamp
+    let timestamp = date.getTime();
+    return timestamp;
+  }
   function MatchCountDown() {
     function calculateTimeLeft() {
-      let difference = +new Date( defTime()) - +new Date();
+      let difference = +new Date(defTime()) - +new Date();
       let timeLeft = {};
       if (difference > 0) {
         timeLeft = {
@@ -281,7 +283,7 @@ export default function Event() {
         };
       }
       return timeLeft;
-     }
+    }
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
     useEffect(() => {
       const timer = setTimeout(() => {
@@ -289,12 +291,15 @@ export default function Event() {
       }, 1000);
       return () => clearTimeout(timer);
     });
-    let hourz = (parseFloat(timeLeft.days) > 0 ) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
+    let hourz = (parseFloat(timeLeft.days) > 0) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
+    let min = timeLeft.minutes ?? 0;
+    let sec = timeLeft.seconds ?? 0;
+    console.log(hourz + min + sec)
     return (
       <div>
-        <div className="match-countdown-container">
-          <span id="hours">{ hourz  + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
-        </div>
+        <Stack className="match-countdown-container" direction='row'>
+          <span id="hours">{(hourz + min + sec > 0) ? hourz + " : " + min + " : " + sec : "Match Has Started"}</span>
+        </Stack>
       </div>
     )
   }

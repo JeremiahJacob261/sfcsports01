@@ -30,8 +30,12 @@ export default async  function handler(req, res) {
 //     }else{
 //         console.log('no')
 //     }
-//   });
-let bts = data.filter(i => defTime(i)/1000.0 > Math.floor(new Date().getTime()/1000.0));
+// //   });
+// let bts = data.filter(i => defTime(i)/1000.0 > Math.floor(new Date().getTime()/1000.0));
+// let s = data[0];
+// let stams = Date.parse(s.date + " " + s.time) / 1000;
+// let curren = new Date().getTime() / 1000;
+let bts = data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
                 res.status(200).json({
                     status: 'success',
                     data: bts

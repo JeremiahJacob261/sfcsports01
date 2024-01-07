@@ -362,10 +362,13 @@ export default function Matchs({ matc }) {
       return () => clearTimeout(timer);
     });
     let hourz = (parseFloat(timeLeft.days) > 0) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
+    let min = timeLeft.minutes ?? 0;
+    let sec = timeLeft.seconds ?? 0;
+    console.log(hourz + min + sec)
     return (
       <div>
         <Stack className="match-countdown-container" direction='row'>
-          <span id="hours">Time Before Match Starts : {hourz + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
+          <span id="hours">Time Before Match Starts : {(hourz + min + sec > 0) ? hourz + " : " + min + " : " + sec : "Match Has Started"}</span>
         </Stack>
       </div>
     )
