@@ -452,12 +452,14 @@ export default function Account({ vips }) {
                     </Stack>
                     </Link>
 
+                    <Link href='https://t.me/@sfc_customerservice'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:customer-service" style={{ color: 'white' }} />
                             <p> {t("CustomerCare")}</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
+                    </Link>
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
                         onClick={() => {
