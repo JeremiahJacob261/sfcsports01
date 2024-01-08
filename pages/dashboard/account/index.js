@@ -443,12 +443,14 @@ export default function Account({ vips }) {
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
                 <Stack className='accountinfo'>
+                    <Link href='https://t.me/+zuEJOr2THctiMzQ1'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="ph:telegram-logo-light" style={{ color: 'white' }} />
                             <p>{t("TelegramGroup")}</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
+                    </Link>
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
