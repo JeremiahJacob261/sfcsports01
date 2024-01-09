@@ -133,5 +133,18 @@
   "Transactions": "Transacciones",
   "All": "Todo",
   "Deposits": "Dep\u00f3sitos",
-  "Withdrawals": "Retiros"
+  "Withdrawals": "Retiros",
+  "Claimed":"Reclamado",
+  "BonusClaimCode":"C\u00f3digo de reclamo de bonificaci\u00f3n",
+  "CLAIMBONUS":"RECLAMAR BONO",
+  "ContactCustomerCaretogetBonusclaimcode":"P\u00f3ngase en contacto con el servicio de atenci\u00f3n al cliente para obtener el c\u00f3digo de reclamo de bonificaci\u00f3n",
+  "confirmpassword":"Confirmar Contraseña",
+  "password":"contraseña",
+  "Pleaseenterbonuscode":"Por favor ingresa el código de bono",
+  "Pleaseenterpassword":"Por favor, ingrese contraseña",
+  "Passworddoesnotmatch":"Las contraseñas no coinciden",
+  "AllReferral":"Todas las referencias",
+  "LevelOne":"Nivel uno",
+  "LevelTwo":"Nivel dos",
+  "LevelThree":"Nivel tres"
 }

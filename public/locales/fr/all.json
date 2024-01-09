@@ -127,5 +127,18 @@
   "Transactions": "Transactions",
   "All": "Tout",
   "Deposits": "D\u00e9p\u00f4ts",
-  "Withdrawals": "Retraits"
+  "Withdrawals": "Retraits",
+  "Claimed":"Revendiqu\u00e9",
+  "BonusClaimCode":"Code de r\u00e9clamation de bonus",
+  "CLAIMBONUS":"R\u00c9CLAMER LE BONUS",
+  "ContactCustomerCaretogetBonusclaimcode":"Contactez le service client\u00e8le pour obtenir le code de r\u00e9clamation de bonus",
+  "confirmpassword":"Confirmez le mot de passe",
+  "password":"Mot de passe",
+  "Pleaseenterbonuscode":"Veuillez entrer le code bonus",
+  "Pleaseenterpassword":"Veuillez entrer le mot de passe",
+  "Passworddoesnotmatch":"Le mot de passe ne correspond pas",
+  "AllReferral":"Toutes les r\u00e9f\u00e9rences",
+  "LevelOne":"Niveau un",
+  "LevelTwo":"Niveau deux",
+  "LevelThree":"Niveau trois"
 }

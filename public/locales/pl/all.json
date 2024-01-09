@@ -116,5 +116,18 @@
   "Transactions": "Transakcji",
   "All": "Ca\u0142y",
   "Deposits": "Depozyt\u00f3w",
-  "Withdrawals": "Wyp\u0142aty"
+  "Withdrawals": "Wyp\u0142aty",
+  "Claimed":"Zg\u0142oszone",
+  "BonusClaimCode":"Kod zg\u0142oszenia bonusu",
+  "CLAIMBONUS":"ZG\u0141O\u015a BONUS",
+  "ContactCustomerCaretogetBonusclaimcode":"Skontaktuj si\u0119 z obs\u0142ug\u0105 klienta, aby uzyska\u0107 kod zg\u0142oszenia bonusu",
+  "confirmpassword":"Potwierd\u017a has\u0142o",
+  "password":"has\u0142o",
+  "Pleaseenterbonuscode":"Wprowad\u017a kod bonusowy",
+  "Pleaseenterpassword":"Wprowad\u017a has\u0142o",
+  "Passworddoesnotmatch":"Has\u0142o nie pasuje",
+  "AllReferral":"Wszystkie polecenia",
+  "LevelOne":"Pierwszy poziom",
+  "LevelTwo":"Poziom dwa",
+  "LevelThree":"Poziom trzy"
 }

@@ -134,5 +134,18 @@
   "Transactions": "Giao d\u1ecbch",
   "All": "T\u1ea5t c\u1ea3",
   "Deposits": "Ti\u1ec1n g\u1eedi",
-  "Withdrawals": "Withdrawals"
+  "Withdrawals": "Withdrawals",
+  "Claimed":"đã tuyên bố",
+  "BonusClaimCode":"Mã yêu cầu tiền thưởng",
+  "CLAIMBONUS":"YÊU CẦU TIỀN THƯỞNG",
+  "ContactCustomerCaretogetBonusclaimcode":"Liên hệ Chăm sóc khách hàng để nhận mã nhận thưởng",
+  "confirmpassword":"Xác nhận mật khẩu",
+  "password":"Mật khẩu",
+  "Pleaseenterbonuscode":"Vui lòng nhập mã thưởng",
+  "Pleaseenterpassword":"Vui lòng nhập mật khẩu",
+  "Passworddoesnotmatch":"Mật khẩu không khớp",
+  "AllReferral":"Tất cả giới thiệu",
+  "LevelOne":"Cấp độ một",
+  "LevelTwo":"Cấp độ hai",
+  "LevelThree":"Cấp độ ba"
 }

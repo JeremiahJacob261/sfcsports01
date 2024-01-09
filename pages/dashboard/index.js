@@ -202,12 +202,15 @@ export default function Home(props) {
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
-          <Translate />
+          
+        <Translate />
+          <Link href="https://t.me/sfc_customerservice">
             <motion.div whileHover={{ color: '#C61F41' }}>
-              <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
-                alert('Chat is not available yet')
-              }} />
+              <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} 
+              />
             </motion.div>
+          </Link>
+
             <motion.div whileHover={{ color: '#C61F41' }} onClick={testRoute}>
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={()=>{
                 router.push(`/dashboard/history?id=${user.username}`)

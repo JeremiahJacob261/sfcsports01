@@ -452,7 +452,7 @@ export default function Account({ vips }) {
                     </Stack>
                     </Link>
 
-                    <Link href='https://t.me/@sfc_customerservice'>
+                    <Link href='https://t.me/sfc_customerservice'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:customer-service" style={{ color: 'white' }} />

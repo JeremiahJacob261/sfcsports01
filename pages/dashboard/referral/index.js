@@ -10,13 +10,16 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import GoogleTranslate from '@/GoogleTranslate';
 export default function Referral() {
     const router = useRouter();
     const [reforigin, setRefOrigin] = useState([]);
     const [refers, setRefer] = useState([]);
     const [selected, setSelected] = useState(0);
     const [user, setUser] = useState({});
-    
+    const { t } = useTranslation('all');
     const betSelectLogic = (index) => {
         setSelected(index);
         //return referral desired data
@@ -112,8 +115,8 @@ export default function Referral() {
             return(
                 
             <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'55vh'}}>
-            <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
-            <p style={{ color:'grey'}}>Please Check your internet connection</p>
+            <p style={{ fontSize:'20px'}}>{t("NoDataAvaliable")}</p>
+            <p style={{ color:'grey'}}>{t("PleaseCheckyourinternetconnection")}</p>
           </Stack>
             )
         }
@@ -124,15 +127,17 @@ export default function Referral() {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}>Referral</p>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Referral")}</p>
             </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>All Referral ({reforigin.length ?? 0})</p>
-                <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Level One {(selected === 1) ? `(${refers.length ?? 0})` : ''}</p>
-                <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>Level Two {(selected === 2) ? `(${refers.length ?? 0})` : ''}</p>
-                <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(3) }}>Level Three {(selected === 3) ? `(${refers.length ?? 0})` : ''}</p>
+                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("AllReferral")} ({reforigin.length ?? 0})</p>
+                <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>{t("LevelOne")} {(selected === 1) ? `(${refers.length ?? 0})` : ''}</p>
+                <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>{t("LevelTwo")} {(selected === 2) ? `(${refers.length ?? 0})` : ''}</p>
+                <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(3) }}>{t("LevelThree")} {(selected === 3) ? `(${refers.length ?? 0})` : ''}</p>
             </Stack>
             <RefData/>
         </div>
     )
 }
+export async function getStaticProps({ locale }) { 
+    return { props: { ...await serverSideTranslations(locale, ['common', 'all']), }, }; }

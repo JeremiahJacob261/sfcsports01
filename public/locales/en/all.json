@@ -161,5 +161,18 @@
   "TransactionPassword": "Transaction Password",
   "WITHDRAW!": "WITHDRAW!",
   "WithdrawalRequestSuccess": "Withdrawal Request Success",
-  "YourWithdrawalRequesthasbeensentsuccessfully": "Your Withdrawal Request has been sent successfully"
+  "YourWithdrawalRequesthasbeensentsuccessfully": "Your Withdrawal Request has been sent successfully",
+  "Claimed":"Claimed",
+  "BonusClaimCode":"Bonus Claim Code",
+  "CLAIMBONUS":"CLAIM BONUS",
+  "ContactCustomerCaretogetBonusclaimcode":"Contact Customer Care to get Bonus claim code",
+  "confirmpassword":"confirm password",
+  "password":"password",
+  "Pleaseenterbonuscode":"Please enter bonus code",
+  "Pleaseenterpassword":"Please enter password",
+  "Passworddoesnotmatch":"Password does not match",
+  "AllReferral":"All Referral",
+  "LevelOne":"Level One",
+  "LevelTwo":"Level Two",
+  "LevelThree":"Level Three"
 }
