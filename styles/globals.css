@@ -297,3 +297,8 @@ font-family:var(--font-lilpops);
   border-radius: 5px;
   width: 200px;
 }
+.title-faq{
+  font-family: var(--font-lilpops);
+  font-weight: 800;
+  font-size: larger;
+}

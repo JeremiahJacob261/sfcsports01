@@ -472,15 +472,15 @@ export default function Account({ vips }) {
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
+                        <Link href='/faq'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
-                        onClick={() => {
-                            alert('Contact Customer Care')
-                        }}>
+                        >
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:faq" style={{ color: 'white' }} />
                             <p>FAQ</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
+                        </Link>
 
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
                         onClick={async () => {
