@@ -8,6 +8,11 @@ export default async  function handler(req, res) {
                     .select('*')
                     .match({ 'username': body.name });
                     console.log(data)
+                    const { data:bets, error:err } = await supabase
+                    .from('placed')
+                    .select('*')
+                    .eq('username', body.name)
+                    if(bets.length > 5){
                     if(!data[0].codeset){
                    
                         console.log('no transaction pin has been set')
@@ -39,4 +44,8 @@ console.log(e)
                     console.log(error);
                     return;
                 }
+            }else{
+                console.log('You have not placed up to 5 bets')
+                res.status(200).json([{'status':'Failed','message':'You have not placed up to 5 bets'}]);
+            }
 }

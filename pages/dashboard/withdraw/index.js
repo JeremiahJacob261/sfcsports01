@@ -52,7 +52,7 @@ console.log(e)
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.05).toFixed(3)) })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.08).toFixed(3)) })
         }).then(data => {
             return data.json();
         })
@@ -111,11 +111,11 @@ console.log(e)
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Charge")} </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.05).toFixed(3) ?? 0} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.08).toFixed(3) ?? 0} USDT</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Total")} </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.05).toFixed(3) ?? 0} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.08).toFixed(3) ?? 0} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>

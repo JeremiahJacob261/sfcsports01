@@ -139,10 +139,9 @@ export default function Home(props) {
     const [minutes, setMinutes] = useState('')
     const [seconds, setSeconds] = useState('')
     let playable = {
-      0: 3,
-      1: 2,
-      2: 1,
-      3: 0
+      0: 2,
+      1: 1,
+      2: 0
     }
     function calculateTimeRemaining() {
       const currentDate = new Date();
@@ -380,8 +379,6 @@ function MatchCountDown() {
           </div>
         </Carousel>
       </div>
-
-
       <CountDown />
       <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px', width: '100%' }}>
         {/* fans favourite */}
