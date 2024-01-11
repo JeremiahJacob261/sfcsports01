@@ -623,7 +623,8 @@ export async function getServerSideProps(context) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: id })
+            body: JSON.stringify({ "username": id }),
+            cache: 'no-store'
         }).then(data => {
             return data.json();
         })
