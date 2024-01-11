@@ -184,6 +184,16 @@ export default function Matchs({ matc }) {
       }
       getRef();
     }, [use])
+    const vip = {
+        '1':0,
+        '2':0.015,
+        '3':0.030,
+        '4':0.050,
+        '5':0.070,
+        '6':0.095,
+        '7':0.125
+    }
+
     return (
       <React.Fragment key={'bottom'} >
         <motion.div className='odds' onClick={() => {

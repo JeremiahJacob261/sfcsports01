@@ -138,7 +138,7 @@ export default function Account({ vips }) {
             }
 
         }
-        GET();
+        // GET();
         console.log(users.totald)
 
     }, [rprogress, cprogress, refCount, viplevel])
@@ -362,6 +362,7 @@ export default function Account({ vips }) {
 
         // const [vipcount, setVipcount] = useState({});
         let vipcount = vips;
+        console.log(vips)
         // useEffect(() => {
         //     const betting = async () => {
         //         let test = await fetch('/api/vip', {

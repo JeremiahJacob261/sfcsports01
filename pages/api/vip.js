@@ -35,7 +35,7 @@ export default async function handler(req, res) {
                 .from('users')
                 .select('*', { count: 'exact', head: true })
                 .match({
-                    'refer': users.newrefer,
+                    'refer': user[0].newrefer,
                     'firstd': true
                 });
                 console.log(count)
@@ -51,10 +51,11 @@ export default async function handler(req, res) {
             let c1 = (Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
             let r1 = (Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
             console.log(rprogress, cprogress, refCount, viplevel)
-        res.status(200).json({ status: 'success',refCount:parseFloat(refCount) ?? 0,viplevel:parseFloat(viplevel),rprogress:parseFloat(rprogress.toFixed(2)),cprogress:parseFloat(cprogress.toFixed(2)),c1:parseFloat(c1),r1:parseFloat(r1) })
+        res.status(200).json({ status: 'success',refCount:parseFloat(refCount) ?? 0,viplevel:parseFloat(viplevel) ?? 0,rprogress:parseFloat(rprogress.toFixed(2)),cprogress:parseFloat(cprogress.toFixed(2)),c1:parseFloat(c1),r1:parseFloat(r1) })
    
         } catch (e) {
             console.log(e)
+            res.status(500).json({ status: 'failed',message:e })
         }}catch(e){
     res.status(500).json({ status: 'failed',message:e })
    }
