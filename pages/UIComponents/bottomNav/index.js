@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react"; 
+import Translate from "@/pages/translator";
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 export async function getStaticProps({ locale }) {
@@ -80,9 +81,9 @@ export default function HomeBottom() {
 
              {/* history start */}
              <motion.div whileTap={{ color:'red'}}>
-         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(4)}}>
-              <Icon icon="solar:clipboard-bold" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>{t("History")}</p>
+         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}}>
+<Translate/>
+<p style={{ fontSize:'14px',fontWeight:'400',color:'green'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Translate")}</p>
             </Stack>
             </motion.div>
             {/* /* history end */}

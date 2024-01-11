@@ -6,8 +6,14 @@ import { Box, Typography, Modal, Fade, Backdrop } from '@mui/material';
 import { Icon, InlineIcon } from '@iconify/react';
 import { useEffect,useState } from 'react';
 import { supabase } from '@/pages/api/supabase';
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Translate from '@/pages/translator';
+
+ 
 export default function History({credent}) {
     const router = useRouter();
+    const { t } = useTranslation('history')
     const [data, setData] = useState({});
     const [ref,setRef] = useState('')
     const [noti, setNoti] = useState(false);
@@ -115,7 +121,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit was Successful</p>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>{t("YourUSDTDepositwasSuccessful")}</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
                                 </Stack>
@@ -134,7 +140,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully</p>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>{t("YourBetwasplacedSuccessfully")}</p>
                                     <p>{item.type}</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
@@ -202,7 +208,7 @@ export default function History({credent}) {
         }else{
             return(
             <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'55vh'}}>
-        <p style={{ fontSize:'20px'}}>No Data Avaliable</p>
+        <p style={{ fontSize:'20px'}}>{t("NoDataAvaliable")}</p>
         <p style={{ color:'grey'}}>Please Check your internet connection</p>
       </Stack>)
         }
@@ -213,10 +219,10 @@ export default function History({credent}) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>History</p>
+                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>{t("Notifications")}</p>
             </Stack>
             <Stack sx={{ minHeight: '100vh', padding: '8px' }} direction='column' alignItems='center'>
-                <p style={{ color: '#C61F41', fontSize: '24px' }}>History</p>
+                <p style={{ color: '#C61F41', fontSize: '24px' }}>{t("Notifications")}</p>
                 <NotiFunc/>
             </Stack>
             <HomeBottom />
@@ -225,19 +231,26 @@ export default function History({credent}) {
 }
 export async function getServerSideProps(context) { 
     const id = context.query.id;
+    const { locale } = context;
     try{
         const { data,error } = await supabase
         .from('users')
         .select('*')
         .eq('username',id)
         return {
-            props: {credent:data[0]}, // will be passed to the page component as props
+            props: {credent:data[0], 
+                ...(await serverSideTranslations(locale, [
+                    'all','history'
+                  ])),
+            }, // will be passed to the page component as props
         }
     }catch(err){
         console.log(err);
         let credent = {};
         return {
-            props: {credent:credent}, // will be passed to the page component as props
+            props: {credent:credent, ...(await serverSideTranslations(locale, [
+                'all','history'
+              ])),}, // will be passed to the page component as props
         }
     }
 }

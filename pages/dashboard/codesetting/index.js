@@ -5,7 +5,22 @@ import { useState,useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/pages/api/supabase';
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded';
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Translate from '@/pages/translator';
+
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all','login'
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
 export default function CodeSetting() {
+    const { t } = useTranslation('all')
     const router = useRouter();
     const [pi,setPi] = useState('') ;
     const [pin, setPin] = useState('');
