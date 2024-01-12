@@ -49,6 +49,7 @@ export default function Translate() {
             <motion.p onClick={()=>{ changeLanguageHandler('es') }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.9 }} className='translate-txt'>español ES</motion.p>
             <motion.p onClick={()=>{ changeLanguageHandler('fr') }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.9 }} className='translate-txt'>français FR</motion.p>
             <motion.p onClick={()=>{ changeLanguageHandler('pl') }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.9 }} className='translate-txt'>polski PL</motion.p>
+            <motion.p onClick={()=>{ changeLanguageHandler('id') }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.9 }} className='translate-txt'>indonesian IN</motion.p>
             <motion.p onClick={()=>{ changeLanguageHandler('ru') }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.9 }} className='translate-txt'>русский язык RU</motion.p>
             </Stack>
       </Modal>
