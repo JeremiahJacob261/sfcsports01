@@ -14,7 +14,21 @@ import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'all',
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
+  
 export default function BindWallet() {
+    const { t } = useTranslation('all');
     const router = useRouter();
     const [users,setUsers] = useState([])
     const [name,setName] = useState('')
@@ -92,12 +106,12 @@ export default function BindWallet() {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <p className="text-sm text-gray-500">BIND WALLET</p>
+                <p className="text-sm text-gray-500">{t("BINDWALLET")}</p>
             </Stack>
             <Stack direction='column' justifyContent='center' alignItems='center' spacing={2} sx={{ padding: '8px', width: '100%' }}>
              
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ background:'#573b41',padding:'12px',borderRadius:'8px',margin:'8px',maxWidth:'310px'}}>
-              <p style={{ color:'rgba(194,127,8,1)' ,fontSize:'18px'}} >Existing Wallets</p>
+              <p style={{ color:'rgba(194,127,8,1)' ,fontSize:'18px'}} >{t("ExistingWallets")}</p>
                 {
                   users.map((m)=>{
                     let date = new Date(m.created_at);
@@ -122,7 +136,7 @@ export default function BindWallet() {
                 }
             </Stack>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={2} sx={{ padding:'12px'}}>
-                <p>BIND WALLET</p>
+                <p>{t("BINDWALLET")}</p>
                 <form>
                     <Stack direction='column' spacing={3}>
                         <div className='arrange-label'>
@@ -144,7 +158,7 @@ export default function BindWallet() {
                 </form>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                <Icon icon="ph:info-light" color="#ad1c39" />
-                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>Transaction :The Password used for withdraws is required</p>
+                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'70vw'}}>{t("TransactionThePasswordusedforwithdrawsisrequired")}</p>
                 </Stack>
                <motion.p onClick={() => {
                     //   router.push('/dashboard/fund/success')
@@ -153,9 +167,9 @@ export default function BindWallet() {
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
                         whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#C61F41',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
-                    Bind Wallet</motion.p>
+                    {t("BindWallet")}</motion.p>
                     <Link href='/dashboard/codesetting'>
-                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</p>
+                    <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>{t("Setatransactionpin")}</p>
 
                 </Link>
                 </Stack>
@@ -202,7 +216,7 @@ export default function BindWallet() {
     
                   setOpen(false)
                 }
-              }}>OKAY</p>
+              }}>{t("OKAY")}</p>
             </Stack>
     
           </Modal>

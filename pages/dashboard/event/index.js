@@ -27,36 +27,12 @@ export async function getStaticProps({ locale }) {
   }
 export default function Event() {
   const { t } = useTranslation('all')
-  const [footDat, setFootDat] = useState([]);
   const [selected, setSelected] = React.useState(null);
   const router = useRouter();
   const [user, setUser] = useState({});
   const [parentopen, setParentOpen] = useState(false);
+
   useEffect(() => {
-    const getMatch = async () => { 
-      try {
-        // const { data, error } = await supabase
-        //   .from('bets')
-        //   .select('*')
-        //   .eq('verified', false)
-        //   .order('id', { ascending: false });
-     let test = await fetch('/api/match', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          }).then(data => {
-            return data.json();
-            })
-       setFootDat(test.data);
-       
-      } catch (e) {
-        console.log(e);
-        let err = [];
-        setFootDat([]);
-      }
-    }
-    getMatch();
     if (!localStorage.getItem('signedIns')) {
       router.push('/login')
     }
@@ -70,10 +46,9 @@ export default function Event() {
       } catch (e) {
         console.log(e)
       }
-
     }
     getRef();
-  }, [footDat.length])
+  }, [])
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -246,8 +221,34 @@ export default function Event() {
     )
   }
   function MatchRow() {
+  const [footDat, setFootDat] = useState([]);
  
-
+useEffect(()=>{
+  const getMatch = async () => { 
+    try {
+      // const { data, error } = await supabase
+      //   .from('bets')
+      //   .select('*')
+      //   .eq('verified', false)
+      //   .order('id', { ascending: false });
+   let test = await fetch('/api/match', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        }).then(data => {
+          return data.json();
+          })
+     setFootDat(test.data);
+     
+    } catch (e) {
+      console.log(e);
+      let err = [];
+      setFootDat([]);
+    }
+  }
+  getMatch();
+},[footDat]);
     if (footDat && footDat.length > 0) {
   
       return (
@@ -338,8 +339,8 @@ export default function Event() {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
-          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
-          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
+          <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
+          <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
         </Stack>)
     }
   }

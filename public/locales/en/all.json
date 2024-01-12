@@ -66,7 +66,7 @@
   "PleaseCheckyourinternetconnection": "Please Check your internet connection",
   "BINDWALLET": "BIND WALLET",
   "ExistingWallets": "Existing Wallets",
-  "Transaction:ThePasswordusedforwithdrawsisrequired": "Transaction :The Password used for withdraws is required",
+  "TransactionThePasswordusedforwithdrawsisrequired": "Transaction :The Password used for withdraws is required",
   "BindWallet": "Bind Wallet",
   "Setatransactionpin": "Set a transaction pin",
   "BindWalletSuccess": "Bind Wallet Success",

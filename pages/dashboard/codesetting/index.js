@@ -76,7 +76,7 @@ testRoute();
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/account')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}>Set Transaction Pin</p>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("SetTransactionPin")}</p>
             </Stack>
             <Stack direction='column' alignItems='center' sx={{minHeight:'90vh',padding:'12px'}} spacing={2}>
             <Stack direction='row' justifyContent='center' alignItems='center' sx={{ height: '58px', background: '#FBEFEF', borderRadius: '5px', padding: '16px', maxWidth: '344px' }} spacing={2}>
@@ -125,7 +125,7 @@ testRoute();
                     whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
                     style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
-                    SET Transaction Password</motion.p>
+                    {t("SETTransactionPassword")}</motion.p>
 
             </Stack>
             

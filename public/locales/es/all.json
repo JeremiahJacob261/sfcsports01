@@ -56,7 +56,7 @@
   "PleaseCheckyourinternetconnection": "Por favor, compruebe su conexi\u00f3n a Internet",
   "BINDWALLET": "BILLETERA BIND",
   "ExistingWallets": "Carteras existentes",
-  "Transaction:ThePasswordusedforwithdrawsisrequired": "Transacci\u00f3n: Se requiere la contrase\u00f1a utilizada para los retiros",
+  "TransactionThePasswordusedforwithdrawsisrequired": "Transacci\u00f3n: Se requiere la contrase\u00f1a utilizada para los retiros",
   "BindWallet": "Billetera Bind",
   "Setatransactionpin": "Establecer un pin de transacci\u00f3n",
   "BindWalletSuccess": "\u00c9xito de Bind Wallet",

@@ -8,7 +8,20 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRouter } from 'next/router'
 import faq from '../api/faq.json'
 import CloseIcon from '@mui/icons-material/Close';
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'faq',
+        ])),
+        // Will be passed to the page component as props
+      },
+    }
+  }
 export default function Faq() {
+  const { t } = useTranslation('faq')
   const [expanded, setExpanded] = useState(false);
 
   let i = 0;
@@ -24,7 +37,7 @@ const router = useRouter();
           router.push('/dashboard/account')
         }}
         /><p className="title-faq" sx={{ height: '91px', color: '#D9D9D9', textAlign: 'center', fontSize: '32px', fontWeight: '900',fontFamily:'Poppins,sans-serif' }}>
-        FREQUENTLY ASKED QUESTIONS
+        {t("FREQUENTLYASKEDQUESTIONS")}
       </p>
       </Stack>
       
@@ -44,13 +57,13 @@ const router = useRouter();
           id="panel1bh-header"
         >
           <p sx={{ width: '33%', flexShrink: 0,color:'rgb(114, 9, 30)',fontFamily:'Poppins,sans-serif' }}>
-            {f.Question}
+            {t(f.Question) ?? t.Question}
           </p>
           <p sx={{ color: '#E5E7EB' }}></p>
         </AccordionSummary>
         <AccordionDetails>
           <p sx={{ color: '#E5E7EB',fontWeight:'100',fontSize:'15px',fontFamily:'Poppins,sans-serif' }}>
-           {f.Answer}
+           {t(f.Answer) ?? f.Answer}
           </p>
         </AccordionDetails>
       </Accordion>

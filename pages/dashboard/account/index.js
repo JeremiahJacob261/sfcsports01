@@ -617,12 +617,13 @@ export default function Account({ vips }) {
 export async function getServerSideProps(context) {
     const id = context.query.id;
     const { locale } = context;
-    const { data: user, error: uerror } = await supabase
-            .from('users')
-            .select('*')
-            .eq('username', id)
-        let users = user[0];
+   
     try {
+        const { data: user, error: uerror } = await supabase
+        .from('users')
+        .select('*')
+        .eq('username', id)
+    let users = user[0];
         const viplimit = {
             '1': 50,
             '2': 100,
