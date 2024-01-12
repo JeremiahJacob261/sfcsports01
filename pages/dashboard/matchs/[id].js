@@ -262,7 +262,7 @@ export default function Matchs({ matc }) {
                 </Stack>
 
                 <Stack sx={{ width: '200px' }} spacing={2}>
-                  <p>Current Balance : {use.balance ?? 0} USDT</p>
+                  <p>Current Balance : {user.balance ?? 0} USDT</p>
                   <p>Stake: {amountInput}</p>
                   <p>Profit: {profit}</p>
                   <p>Total Winnings: {total}</p>
@@ -480,6 +480,7 @@ export async function getServerSideProps(context) {
       .from('bets')
       .select('*')
       .eq('match_id', context.query.id);
+      
     let matc = match[0];
     return {
       props: { matc }, // will be passed to the page component as props
