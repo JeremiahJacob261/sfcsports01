@@ -34,7 +34,7 @@ const router = useRouter();
       <Stack direction="column" justifyContent="center" alignItems="center">
         <CloseIcon style={{ color: '#E5E7EB', width: '30px', height: '30px', margin: '8px' }}
         onClick={()=>{
-          router.push('/dashboard/account')
+          router.back()
         }}
         /><p className="title-faq" sx={{ height: '91px', color: '#D9D9D9', textAlign: 'center', fontSize: '32px', fontWeight: '900',fontFamily:'Poppins,sans-serif' }}>
         {t("FREQUENTLYASKEDQUESTIONS")}

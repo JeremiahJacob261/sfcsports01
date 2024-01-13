@@ -30,7 +30,7 @@ export default function Withdraw() {
     const [password, setPassword] = useState('');
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
-    const [method, setMethod] = useState(1);
+    const [method, setMethod] = useState('USDT (TRC20)');
     useEffect(() => { 
         const getRef = async () => { 
             try{
@@ -52,7 +52,7 @@ console.log(e)
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.08).toFixed(3)) })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.08).toFixed(3)),method:(method === 'USDT (TRC20)') ? 'usdt' : 'idr' })
         }).then(data => {
             return data.json();
         })
@@ -103,12 +103,13 @@ console.log(e)
                 <Stack direction='column' sx={{ width:'320px'}} spacing={2}>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Method")}</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}>USDT(TRC20)</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}>{method}</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Amount")}</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {amount ?? 0} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? amount + " USDT" : amount + " IDR"}</p>
                     </Stack>
+
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Charge")} </p>
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.08).toFixed(3) ?? 0} USDT</p>
@@ -116,6 +117,11 @@ console.log(e)
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Total")} </p>
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.08).toFixed(3) ?? 0} USDT</p>
+                    </Stack>
+
+                    <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ display:(method === 'USDT (TRC20)') ?  'none'  :  'visible' }}>
+                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}> {t("Total in USDT")}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}>{(parseFloat((amount * 1.08).toFixed(3))/15550).toFixed(3)} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
@@ -127,12 +133,15 @@ console.log(e)
                             id="demo-simple-select"
                             value={method}
                             label="Select Payment Method"
+                            defaultValue='USDT (TRC20)'
                             onChange={(e) => {
                                 setMethod(e.target.value);
+                            
                             }}
                             sx={{ color: 'black', backgroundColor: 'white' }}
                         >
-                            <MenuItem value={1}>USDT (TRC20)</MenuItem>
+                            <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
+                            <MenuItem value='IDR (Bank BRI)'>IDR (Bank BRI)</MenuItem>
                         </Select>
                     </FormControl>
                 </Stack>
@@ -173,7 +182,7 @@ console.log(e)
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
                     <p>{t("Amount")}(USDT)</p>
-                    <TextField variant='standard' type='number' placeholder='Amount(USDT)' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
+                    <TextField variant='standard' type='number' placeholder='Amount' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={amount}
                         onChange={(e) => {
                             setAmount(e.target.value)

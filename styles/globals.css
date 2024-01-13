@@ -302,3 +302,7 @@ font-family:var(--font-lilpops);
   font-weight: 800;
   font-size: larger;
 }
+.amun{
+  font-family: var(--font-lilpops);
+  font-weight: 500;
+}

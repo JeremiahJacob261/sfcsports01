@@ -86,7 +86,7 @@ if(data.user){
         <div className="backgrounds" style={{ height:'99vh'}}>
              <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
-                    router.push('/dashboard/account')
+                    router.back()
                 }} />
                 <p className="text-sm text-gray-500">ChangePassword</p>
             </Stack>

@@ -21,17 +21,28 @@ export async function getStaticProps({ locale }) {
       },
     }
   }
-export default function Alertz({amount}) {
+export default function Alertz({amount,method}) {
     const { t } = useTranslation('all')
-  const checkCredible =  () => {
-    if (amount < 10) {
-        Alerts('Minimum amount to fund is $10', false);
-    } else {
+  const checkCredible =  (method) => {
+   if(method === 'bankbri'){
+    if (amount < 155500) {
+      Alerts('Minimum amount to fund is 155500 IDR', false);
+  } else {
+  router.push('/dashboard/fund/address?met=bankbri');
+  localStorage.setItem('deposit-amount',parseFloat(amount));
+  localStorage.setItem('deposit-method',method);
       
-    router.push('/dashboard/fund/address');
-    localStorage.setItem('deposit-amount',Number(amount));
-        
-    }
+  }
+   }else{
+    if (amount < 10) {
+      Alerts('Minimum amount to fund is $10', false);
+  } else {
+    
+  router.push('/dashboard/fund/address?met=usdt');
+  localStorage.setItem('deposit-amount',Number(amount));
+      
+  }
+   }
 } 
      //alerts
      const [ale, setAle] = useState('')
@@ -47,7 +58,7 @@ export default function Alertz({amount}) {
     return (
       <div>
         <motion.p onClick={() => {
-                        checkCredible()
+                        checkCredible(method)
                     }}
                     whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 1.09 }}
                     whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}

@@ -36,13 +36,14 @@ export default function Upload() {
         try {
             let amount = localStorage.getItem('deposit-amount');
             let name = localStorage.getItem('signNames');
+            let method = localStorage.getItem('deposit-method');
         const { data, error } = await supabase
         .from('notification')
         .insert({ 
             'username':name,
             'amount':amount,
             'type':'deposit',
-            'method':'usdt',
+            'method':method,
             'address':address
     })
     localStorage.removeItem('deposit-amount');
@@ -128,7 +129,7 @@ console.log(data.publicUrl);
         <div className="backgrounds" style={{ minHeight: '99vh' }}>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
-                    router.push('/dashboard/fund/address')
+                    router.back()
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Uploadreceipt")}</p>
             </Stack>

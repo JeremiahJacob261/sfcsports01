@@ -27,7 +27,7 @@ export default function BindWalletSuccess() {
                 <p className='text-md text-sheffield-red-deep'>{t("DepositClaimSuccess")}</p>
                 <p className='text-sm text-grey-500'>{t("YourDepositClaimhasbeensentsuccessfully")}</p>
             <motion.p onClick={() => {
-                      router.push('/dashboard/account')
+                      router.push('/dashboard/account'+ `?id=${localStorage.getItem("signNames")}`)
                     
                     }}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
