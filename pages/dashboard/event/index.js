@@ -239,7 +239,9 @@ useEffect(()=>{
         }).then(data => {
           return data.json();
           })
-     setFootDat(test.data);
+          let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+                          
+     setFootDat(bts);
      
     } catch (e) {
       console.log(e);
