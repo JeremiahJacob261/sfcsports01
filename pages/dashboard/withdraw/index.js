@@ -52,7 +52,7 @@ console.log(e)
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.08).toFixed(3)),method:(method === 'USDT (TRC20)') ? 'usdt' : 'idr' })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.08).toFixed(3)),method:(method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
         }).then(data => {
             return data.json();
         })
@@ -121,7 +121,7 @@ console.log(e)
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ display:(method === 'USDT (TRC20)') ?  'none'  :  'visible' }}>
                         <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}> {t("Total in USDT")}</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}>{(parseFloat((amount * 1.08).toFixed(3))/15550).toFixed(3)} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}>{(parseFloat((amount * 1.08).toFixed(3))/15500).toFixed(3)} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>

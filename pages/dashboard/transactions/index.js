@@ -64,8 +64,9 @@ export default function Transaction({ transaction }) {
                                     <Stack direction='column'>
                                         <p style={{ color:'goldenrod',fontWeight:'500'}}>Status: {m.sent ?? 'pending'}</p>
                                         <p>{m.type ?? 'unknown type'}</p>
-                                        <p>{m.amount ?? '0'} USDT</p>
-                                        <p style={{color:'grey'}}>{sent}</p>
+                                        <p>{(m.method === 'bankbri') ? (m.amount/15500).toFixed(3)  : m.amount} USDT</p>
+                                        <p>Transaction Type: {(m.method === 'bankbri') ? "IDR"  : "USDT"}</p>
+                                        <p style={{color:'grey'}}>{sent}</p> 
                                     </Stack>
                                 </Stack>
                             )

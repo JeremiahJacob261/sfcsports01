@@ -25,8 +25,8 @@ export default function Alertz({amount,method}) {
     const { t } = useTranslation('all')
   const checkCredible =  (method) => {
    if(method === 'bankbri'){
-    if (amount < 155500) {
-      Alerts('Minimum amount to fund is 155500 IDR', false);
+    if (amount < 15500) {
+      Alerts('Minimum amount to fund is 15500 IDR', false);
   } else {
   router.push('/dashboard/fund/address?met=bankbri');
   localStorage.setItem('deposit-amount',parseFloat(amount));

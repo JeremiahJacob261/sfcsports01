@@ -41,7 +41,7 @@ export default function Fund() {
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={3}>
                     
                     <p style={{ fontSize: '18px', fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>{t("SelectPaymentMethod")}</p>
-                    <p className='amun'>Amount in USDT: ${(method === 'bankbri') ?  (amount/15550).toFixed(3)  : amount}</p>
+                    <p className='amun'>Amount in USDT: ${(method === 'bankbri') ?  (amount/15500).toFixed(3)  : amount}</p>
                     <Stack direction='row' alignItems='center' justifyContent='center' spacing={2}>
                         <motion.div
                             whileTap={{ scale: 0.9 }}
