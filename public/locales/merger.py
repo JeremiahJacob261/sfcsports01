@@ -3,7 +3,7 @@ import json
 
 # Define the root directory and the specific directories to traverse
 root_dir = './'
-specific_dirs = ['es', 'vi', 'fr', 'pl', 'ru']
+specific_dirs = ['id']
 
 # Traverse through the specific directories
 for dirpath, dirnames, filenames in os.walk(root_dir):

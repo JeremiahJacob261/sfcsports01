@@ -34,9 +34,9 @@ export default function Translate() {
       >
         <Stack alignItems='center'
          justifyContent='space-evenly'
-         spacing={2}
+         spacing={1}
           sx={{
-          background: '#E5E7EB', width: '290px', height: '370px', borderRadius: '20px',
+          background: '#E5E7EB', width: '290px', height: '390px', borderRadius: '20px',
           position: 'absolute',
           top: '50%',
           left: '50%',
