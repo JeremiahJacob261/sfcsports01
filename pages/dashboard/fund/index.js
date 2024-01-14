@@ -41,7 +41,7 @@ export default function Fund() {
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={3}>
                     
                     <p style={{ fontSize: '18px', fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>{t("SelectPaymentMethod")}</p>
-                    <p className='amun'>Amount in USDT: ${(method === 'bankbri') ?  (amount/15500).toFixed(3)  : amount}</p>
+                    <p className='amun'>Amount in USDT: ${(method === 'bankbri') ?  (amount/1550).toFixed(3)  : amount}</p>
                     <Stack direction='row' alignItems='center' justifyContent='center' spacing={2}>
                         <motion.div
                             whileTap={{ scale: 0.9 }}
@@ -66,7 +66,7 @@ export default function Fund() {
                 <Stack direction='column' spacing={2} alignItems='center' justifyContent='center' sx={{ display: met }}>
                     <p style={{ fontSize: '18px', display: met, fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>{t("Amount")}</p>
                     <Stack direction='row' alignItems='center' justifyContent='center' sx={{ display: met }} spacing={2}>
-                        <TextField variant='standard' type='number' placeholder='Amount' sx={{ display: met, color: 'white', background: '#ad1c39', padding: '8px', borderRadius: '5px', letterSpacing: '1px', input: { color: 'white', } }} value={amount} onChange={(e) => {
+                        <TextField variant='standard' type='parseFloat' placeholder='Amount' sx={{ display: met, color: 'white', background: '#ad1c39', padding: '8px', borderRadius: '5px', letterSpacing: '1px', input: { color: 'white', } }} value={amount} onChange={(e) => {
                             setAmount(e.target.value);
                         }} />
                         <p sx={{ display: met }}> {(method === 'bankbri') ? " IDR" : " USDT"}</p>

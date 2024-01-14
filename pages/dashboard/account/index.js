@@ -125,8 +125,8 @@ export default function Account({ vips }) {
                         let vipl = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
                         setRProgress((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100);
                         setCProgress((parseInt(count) / parseInt(vipclimit[vipl])) * 100);
-                        setC1((Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)));
-                        setR1((Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)));
+                        setC1((parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)));
+                        setR1((parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)));
                         console.log(rprogress, cprogress, refCount, viplevel)
                     } catch (e) {
                         console.log(e)
@@ -402,16 +402,16 @@ export default function Account({ vips }) {
                             <Stack>
                                 <p style={{ fontFamily: 'Poppins,sans-serif' }}>{t("TotalDeposit")}</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
-                                    <BorderLinearProgress variant="determinate" value={(Number(vipcount.rprogress) > 100) ? 100 : Number(vipcount.rprogress ?? 0)} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.rprogress) > 100) ? 100 : Number(vipcount.rprogress ?? 0)}%</p >
+                                    <BorderLinearProgress variant="determinate" value={(parseFloat(vipcount.rprogress) > 100) ? 100 : parseFloat(vipcount.rprogress ?? 0)} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(parseFloat(vipcount.rprogress) > 100) ? 100 : parseFloat(vipcount.rprogress ?? 0)}%</p >
                                 </Stack>
                             </Stack>
 
                             <Stack>
                                 <p style={{ fontFamily: 'Poppins,sans-serif' }}>{t("Referrals")}</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
-                                    <BorderLinearProgress variant="determinate" value={(Number(vipcount.cprogress) > 100) ? 100 : Number(vipcount.cprogress) ?? 0} sx={{ width: '230px' }} />
-                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(Number(vipcount.cprogress)) > 100 ? 100 : Number(vipcount.cprogress) ?? 0}%</p >
+                                    <BorderLinearProgress variant="determinate" value={(parseFloat(vipcount.cprogress) > 100) ? 100 : parseFloat(vipcount.cprogress) ?? 0} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(parseFloat(vipcount.cprogress)) > 100 ? 100 : parseFloat(vipcount.cprogress) ?? 0}%</p >
                                 </Stack>
                             </Stack>
 
@@ -659,8 +659,8 @@ export async function getServerSideProps(context) {
         // console.log(users.totald)
         //end
         let cprogress = (parseInt(count) / parseInt(vipclimit[vipl])) * 100;
-        let c1 = (Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
-        let r1 = (Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : Number(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
+        let c1 = (parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
+        let r1 = (parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
         console.log(rprogress, cprogress, refCount, viplevel)
         let test = { status: 'success', refCount: parseFloat(refCount) ?? 0, viplevel: parseFloat(viplevel) ?? 0, rprogress: parseFloat(rprogress.toFixed(2)), cprogress: parseFloat(cprogress.toFixed(2)), c1: parseFloat(c1), r1: parseFloat(r1) }
         return {

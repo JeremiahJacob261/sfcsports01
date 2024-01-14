@@ -69,26 +69,50 @@ console.log(e)
 
     }
     const transaction = async () => {
-        if (wallet === 1) {
-            alert('Please select a wallet address')
-        } else if (wallet === 2) {
-            alert('Please add a wallet address')
-        } else if (password === '') {
-            alert('Please enter your password')
-        } else if (cpassword === '') {
-            alert('Please confirm your password')
-        } else if (password !== cpassword) {
-            alert('Password does not match')
-        } else if (amount === '') {
-            alert('Please enter amount')
-        } else if(amount < 20){
-            alert('Minimum amount to withdraw is 20 USDT')
-            
-        }else if(amount > 100){
-            alert('Maximum amount to withdraw is 100 USDT')
-
+        if(method === 'USDT (TRC20)'){
+            if (wallet === 1) {
+                alert('Please select a wallet address')
+            } else if (wallet === 2) {
+                alert('Please add a wallet address')
+            } else if (password === '') {
+                alert('Please enter your password')
+            } else if (cpassword === '') {
+                alert('Please confirm your password')
+            } else if (password !== cpassword) {
+                alert('Password does not match')
+            } else if (amount === '') {
+                alert('Please enter amount')
+            } else if(amount < 20){
+                alert('Minimum amount to withdraw is 20 USDT')
+                
+            }else if(amount > 100){
+                alert('Maximum amount to withdraw is 100 USDT')
+    
+            }else{
+                testRoute();
+            }
         }else{
-            testRoute();
+            if (wallet === 1) {
+                alert('Please select a wallet address')
+            } else if (wallet === 2) {
+                alert('Please add a wallet address')
+            } else if (password === '') {
+                alert('Please enter your password')
+            } else if (cpassword === '') {
+                alert('Please confirm your password')
+            } else if (password !== cpassword) {
+                alert('Password does not match')
+            } else if (amount === '') {
+                alert('Please enter amount')
+            } else if(amount < 31000){
+                alert('Minimum amount to withdraw is 20 USDT or 31000 IDR')
+                
+            }else if(amount > 155000){
+                alert('Maximum amount to withdraw is 100 USDT or 155000 IDR')
+    
+            }else{
+                testRoute();
+            }
         }
     }
     return (
@@ -112,16 +136,16 @@ console.log(e)
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Charge")} </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(amount * 0.08).toFixed(3) ?? 0} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? (amount * 0.08).toFixed(3) + " USDT" : (amount * 0.08).toFixed(3) + " IDR"}</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Total")} </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> { (amount * 1.08).toFixed(3) ?? 0} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? (amount * 1.08).toFixed(3) + " USDT" : (amount * 1.08).toFixed(3) + " IDR"}</p>
                     </Stack>
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ display:(method === 'USDT (TRC20)') ?  'none'  :  'visible' }}>
                         <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}> {t("Total in USDT")}</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}>{(parseFloat((amount * 1.08).toFixed(3))/15500).toFixed(3)} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}>{(parseFloat((amount * 1.08).toFixed(3))/1550).toFixed(3)} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
@@ -182,7 +206,7 @@ console.log(e)
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
                     <p>{t("Amount")}(USDT)</p>
-                    <TextField variant='standard' type='number' placeholder='Amount' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
+                    <TextField variant='standard' type='parseFloat' placeholder='Amount' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={amount}
                         onChange={(e) => {
                             setAmount(e.target.value)

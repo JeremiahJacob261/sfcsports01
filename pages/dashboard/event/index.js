@@ -91,8 +91,8 @@ export default function Event() {
             'market': market,
             'username': username,
             'started': false,
-            'stake': Number(stake),
-            'profit': Number(((odd * stake) / 100)).toFixed(2),
+            'stake': parseFloat(stake),
+            'profit': parseFloat(((odd * stake) / 100)).toFixed(2),
             'aim': profit,
             "home": matches.home,
             "away": matches.away,
@@ -113,26 +113,26 @@ export default function Event() {
     const [amountInput, setAmountInput] = useState('');
     let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
-    const click = (number) => {
-      if (number === 'X') {
+    const click = (parseFloat) => {
+      if (parseFloat === 'X') {
         const newVal = amountInput.substring(0, amountInput.length - 1);
         console.log(newVal)
         setAmountInput(newVal);
       } else {
-        if (number === '.') {
+        if (parseFloat === '.') {
           if (amountInput.includes('.')) {
             return;
           } else {
             if (amountInput === '') {
-              setAmountInput(amountInput + '0' + number);
+              setAmountInput(amountInput + '0' + parseFloat);
             } else {
-              setAmountInput(amountInput + number);
+              setAmountInput(amountInput + parseFloat);
             }
 
           }
         } else {
 
-          setAmountInput(amountInput + number);
+          setAmountInput(amountInput + parseFloat);
         }
       }
     }

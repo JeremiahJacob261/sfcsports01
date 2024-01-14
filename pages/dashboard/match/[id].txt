@@ -401,9 +401,9 @@ const { data, error } = await supabase
     );
     function Draws() {
         const [stake,setStake] = useState(0);
-        let tofal = Number((parseFloat(matches[picked]) + vip[viplevel]).toFixed(3));
+        let tofal = parseFloat((parseFloat(matches[picked]) + vip[viplevel]).toFixed(3));
         let profit = parseFloat((stake * tofal)/100);
-        let expext =Number(( parseFloat(stake) + profit).toFixed(3));
+        let expext =parseFloat(( parseFloat(stake) + profit).toFixed(3));
         console.log(profit)
         let ball = parseFloat(balance.toFixed(3));
         return (
@@ -468,7 +468,7 @@ const { data, error } = await supabase
                             <Typography sx={{ fontFamily: 'Poppins,sans-serif', fontSize: '16', fontWeight: '300', color: 'black' }}>Account Balance</Typography>
                             <Typography sx={{ fontFamily: 'Poppins,sans-serif', fontSize: '16', fontWeight: '500', color: 'black' }}>{ball} USDT</Typography>
                         </Stack>
-                        <TextField variant="outlined" label='stake' type='number' sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', background: '#E5E7EB',color:'#03045E' }}
+                        <TextField variant="outlined" label='stake' type='parseFloat' sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', background: '#E5E7EB',color:'#03045E' }}
                         value={stake}
                         onChange={(e)=>{
                             setStake(e.target.value)
@@ -507,8 +507,8 @@ const { data, error } = await supabase
                                                 'market': markets[picked],
                                                 'username': info.username,
                                                 'started': false,
-                                                'stake': Number(stake),
-                                                'profit': Number(((tofal * stake) / 100)).toFixed(2),
+                                                'stake': parseFloat(stake),
+                                                'profit': parseFloat(((tofal * stake) / 100)).toFixed(2),
                                                 'aim': profit,
                                                 "home": matches.home,
                                                 "away": matches.away,
@@ -528,8 +528,8 @@ const { data, error } = await supabase
                                                 'amount': stake + (tofal * stake) / 100,
                                                 'user': info.username,
                                                 'match_id': display.matchId,
-                                                'stake': Number(stake),
-                                                'profit': Number(((tofal * stake) / 100)),
+                                                'stake': parseFloat(stake),
+                                                'profit': parseFloat(((tofal * stake) / 100)),
                                                 'market': markets[picked]
                                             })
                                         console.log(error)

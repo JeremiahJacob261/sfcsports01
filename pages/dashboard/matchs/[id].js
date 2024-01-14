@@ -8,7 +8,6 @@ import { Drawer, TextField } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
 import Head from 'next/head';
 import { Button } from '@mui/material';
- 
 import ball from '@/public/ball.png';
 import Image from 'next/image'
 import React from 'react';
@@ -73,13 +72,13 @@ export default function Matchs({ matc }) {
     .select('balance,gcount')
     .eq('username', username)
     if (user.gcount > 1) {
-      alert('You have exceeded the number of games you can play today')
+      alert('You have exceeded the parseFloat of games you can play today')
       return;
     } else {
       if (stake < 2) {
         alert('Minimum stake is 2 USDT')
         return;
-      } else if (stake > mini[0].balance) {
+      } else if (parseFloat(stake) > mini[0].balance) {
         alert('Insufficient Balance')
         return;
 
@@ -92,8 +91,8 @@ export default function Matchs({ matc }) {
               'market': market,
               'username': username,
               'started': false,
-              'stake': Number(stake),
-              'profit': Number(((odd * stake) / 100)).toFixed(2),
+              'stake': parseFloat(stake),
+              'profit': parseFloat(((odd * stake) / 100)).toFixed(2),
               'aim': profit,
               "home": matches.home,
               "away": matches.away,
@@ -115,7 +114,7 @@ export default function Matchs({ matc }) {
             .insert({
               'code': 'bet-placed',
               'username': user.username,
-              'amount': Number(stake),
+              'amount': parseFloat(stake),
               'type': matches.home + ' vs ' + matches.away,
             })
           const { error: errr } = await supabase
@@ -141,26 +140,26 @@ export default function Matchs({ matc }) {
     const [use,setUse] = useState({});
     let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(placee.txt) / 100).toFixed(3))).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
-    const click = (number) => {
-      if (number === 'X') {
+    const click = (parseFloat) => {
+      if (parseFloat === 'X') {
         const newVal = amountInput.substring(0, amountInput.length - 1);
 
         setAmountInput(newVal);
       } else {
-        if (number === '.') {
+        if (parseFloat === '.') {
           if (amountInput.includes('.')) {
             return;
           } else {
             if (amountInput === '') {
-              setAmountInput(amountInput + '0' + number);
+              setAmountInput(amountInput + '0' + parseFloat);
             } else {
-              setAmountInput(amountInput + number);
+              setAmountInput(amountInput + parseFloat);
             }
 
           }
         } else {
 
-          setAmountInput(amountInput + number);
+          setAmountInput(amountInput + parseFloat);
         }
       }
     }

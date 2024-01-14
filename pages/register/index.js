@@ -51,7 +51,7 @@ export default function Register({ refer }) {
     setOpen(true)
   }
   //end
-  const nRef = generateRandomSevenDigitNumber().toString();
+  const nRef = generateRandomSevenDigitparseFloat().toString();
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -82,11 +82,11 @@ export default function Register({ refer }) {
   const handleClose = (value) => {
     setOpen(false);
   };
-  function generateRandomSevenDigitNumber() {
-    const min = 1000000; // Smallest 7-digit number (1,000,000)
-    const max = 9999999; // Largest 7-digit number (9,999,999)
-    const randomSevenDigitNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    return randomSevenDigitNumber;
+  function generateRandomSevenDigitparseFloat() {
+    const min = 1000000; // Smallest 7-digit parseFloat (1,000,000)
+    const max = 9999999; // Largest 7-digit parseFloat (9,999,999)
+    const randomSevenDigitparseFloat = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomSevenDigitparseFloat;
   }
   const updateRef = async () => {
     const { data, error } = await supabase
@@ -232,7 +232,7 @@ let test = await fetch('/api/regnotice', {
           options: {
             data: {
               displayName: username,
-              phoneNumber: phone,
+              phoneparseFloat: phone,
             }
           }
         })
@@ -258,7 +258,7 @@ let test = await fetch('/api/regnotice', {
           Alerts('Email already exists!', false)
         } else {
           if (error.message === 'Password should be at least 6 characters') {
-            Alerts('For security reasons, please choose a stronger password. It should be at least 8 characters long and include a mix of letters, numbers, and symbols', false)
+            Alerts('For security reasons, please choose a stronger password. It should be at least 8 characters long and include a mix of letters, parseFloats, and symbols', false)
           } else {
             if (error.message === 'Unable to validate email address: invalid format') {
               Alerts('Please enter a valid email address', false)
@@ -378,7 +378,7 @@ let test = await fetch('/api/regnotice', {
               </Select>
             </FormControl>
             <TextField id="outlined-basic" label="Phone"
-              type="number"
+              type="parseFloat"
               variant="outlined"
               style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
               value={phone}
@@ -463,7 +463,7 @@ let test = await fetch('/api/regnotice', {
                   checkDuplicate()
 
                 } else {
-                  Alerts('Please Input a Complete Phone Number! at least 9 digits', false)
+                  Alerts('Please Input a Complete Phone parseFloat! at least 9 digits', false)
                 }
               }}>
               <p style={{  marginLeft: "3px", color: '#D8B16B', fontSize: '14px',fontWeight:'400'}}>{t("Register")}</p>
