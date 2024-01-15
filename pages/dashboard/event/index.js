@@ -309,7 +309,7 @@ useEffect(()=>{
   //end of match countdown
 
               return (
-                <Link href={'/dashboard/matchs/' + data.match_id} key={data.match_id}>
+                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
                   <Stack direction="column" sx={{ minWidth: '96vw', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
                     onClick={() => {
 

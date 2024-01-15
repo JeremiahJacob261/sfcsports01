@@ -11,11 +11,10 @@ import { Button } from '@mui/material';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
 import React from 'react';
-export default function Matchs({ matc }) {
+export default function Matchs({ matc,user }) {
   const router = useRouter();
   const [matches, setMatches] = useState(matc);//[router.query.id
   const [placee,setPlacee] = useState({});
-  const [user, setUser] = useState({});
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem('signedIns')) {
@@ -38,7 +37,7 @@ export default function Matchs({ matc }) {
       }
 
     }
-    getRef();
+    // getRef();
 
   }, [])
   const [state, setState] = React.useState({
@@ -67,10 +66,6 @@ export default function Matchs({ matc }) {
     "otherscores": "Other"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
-    const { data:mini,error } = await supabase
-    .from('users')
-    .select('balance,gcount')
-    .eq('username', username)
     if (user.gcount > 1) {
       alert('You have exceeded the parseFloat of games you can play today')
       return;
@@ -78,7 +73,7 @@ export default function Matchs({ matc }) {
       if (stake < 2) {
         alert('Minimum stake is 2 USDT')
         return;
-      } else if (parseFloat(stake) > mini[0].balance) {
+      } else if (parseFloat(stake) > user.balance) {
         alert('Insufficient Balance')
         return;
 
@@ -124,6 +119,7 @@ export default function Matchs({ matc }) {
             })
           alert('Bet Placed Successfully')
           setParentOpen(false)
+          location.reload();
           console.log(error, err, arr, errr)
         } catch (e) {
           console.log(e)
@@ -472,22 +468,28 @@ export default function Matchs({ matc }) {
   )
 }
 export async function getServerSideProps(context) {
-  console.log(context.query.id)
+  console.log(context.query.name)
   try {
-
     const { data: match, error: errmatch } = await supabase
       .from('bets')
       .select('*')
       .eq('match_id', context.query.id);
       
+      const { data: use, error: usematch } = await supabase
+      .from('users')
+      .select('*')
+      .eq('userId', context.query.name);
+      
+    let user = use[0];
     let matc = match[0];
     return {
-      props: { matc }, // will be passed to the page component as props
+      props: { matc,user }, // will be passed to the page component as props
     }
   } catch (e) {
     let matc = {};
+    let user = {};
     return {
-      props: { matc }, // will be passed to the page component as props
+      props: { matc, user }, // will be passed to the page component as props
     }
   }
 
