@@ -97,7 +97,7 @@ export default function Bets() {
               // 17041 836 89
               // 17041 764 89
               // 17041 908 89
-              // 17041 836 89 + 7200
+              // 17041 836 89 + 5400
               console.log(bet.won)
               return (
 
@@ -107,7 +107,7 @@ export default function Bets() {
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
                       sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
                       <p>{t("Status")}</p>
-                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 7200 < curren) ? t('Processing') :  (stams < curren) ? t('Ongoing') : t('NotStarted')}</p> </Stack>
+                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 5400 < curren) ? t('Processing') :  (stams < curren) ? t('Ongoing') : t('NotStarted')}</p> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
