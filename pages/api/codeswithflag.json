@@ -11,6 +11,11 @@
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg"
     },
     {
+      "name": "Argentina",
+      "code": "+54",
+      "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg"
+     },
+    {
       "name": "Bangladesh",
       "code": "+880",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg"
@@ -24,6 +29,11 @@
       "name": "Belize",
       "code": "+501",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Flag_of_Belize.svg"
+    },
+    {
+     "name": "Brazil",
+     "code": "+55",
+     "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
     },
     {
       "name": "Bulgaria",
