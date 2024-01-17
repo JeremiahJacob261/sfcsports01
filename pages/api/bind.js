@@ -6,7 +6,8 @@ export default async  function handler(req, res) {
     const { data: users, error:warr } = await supabase
     .from('wallets')
     .select()
-    .eq('username', body.name);
+    .eq('username', body.name)
+    .eq('method', body.method);
     if(users.length > 0){
         console.log('already binded')
         res.status(200).json([{'status':'Failed','message':'Wallet already binded'}]);
@@ -21,7 +22,7 @@ export default async  function handler(req, res) {
                         const { data, error } = await supabase
                         .from('wallets')
                         .insert(
-                          { username: body.name, wallet: body.wallet },
+                          { username: body.name, wallet: body.wallet,method:body.method },
                         )
                         if(error){
                             console.log(error)

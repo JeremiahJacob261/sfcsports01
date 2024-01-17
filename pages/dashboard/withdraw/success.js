@@ -7,6 +7,10 @@ import { Stack } from '@mui/material';
 import { useState } from 'react';
 export default function BindWalletSuccess() {
     const router = useRouter();
+    const [name,setNames] = useState();
+    useEffect(() => {
+        setNames(localStorage.getItem("signNames"))
+    }, [])
     return(
         <div className="backgrounds" >
             <Stack justifyContent='center' alignItems="center" direction="column" spacing={2} sx={{ minHeight:'98vh',width:'100%'}}>
@@ -14,7 +18,7 @@ export default function BindWalletSuccess() {
                 <p className='text-md text-sheffield-red-deep'>Withdrawal Request Success</p>
                 <p className='text-sm text-grey-500'>Your Withdrawal Request has been sent successfully</p>
             <motion.p onClick={() => {
-                      router.push('/dashboard/account'+ `?id=${localStorage.getItem("signNames")}`)
+                      router.push('/dashboard/account'+ `?id=${name}`)
                     
                     }}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}

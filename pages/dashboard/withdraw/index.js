@@ -193,7 +193,7 @@ console.log(e)
                                 users.map((data) => {
                                     if (data.wallet !== '' && data.wallet !== null) {
                                         return (
-                                            <MenuItem key={data.id} value={data.wallet}>{data.wallet}</MenuItem>
+                                            <MenuItem key={data.id} value={data.wallet}>{data.wallet} - {(data.method === 'bankbri') ? 'IDR (Bank BRI)' : 'USDT (TRC20)'}</MenuItem>
 
                                         )
                                     }

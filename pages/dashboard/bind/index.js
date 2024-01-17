@@ -12,6 +12,7 @@ import LoadingBar from 'react-top-loading-bar'
 import Image from 'next/image'
 import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
@@ -29,6 +30,7 @@ export async function getStaticProps({ locale }) {
   
 export default function BindWallet() {
     const { t } = useTranslation('all');
+    const [method, setMethod] = useState('USDT (TRC20)');
     const router = useRouter();
     const [users,setUsers] = useState([])
     const [name,setName] = useState('')
@@ -53,7 +55,7 @@ export default function BindWallet() {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ name: name,pass:password,wallet:address })
+          body: JSON.stringify({ name: name,pass:password,wallet:address,method:(method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
         }).then(data => {
           return data.json();
           })
@@ -139,6 +141,28 @@ export default function BindWallet() {
                 <p>{t("BINDWALLET")}</p>
                 <form>
                     <Stack direction='column' spacing={3}>
+                    <Stack spacing={2} sx={{ width: '310px' }}>
+                    <p>{t("SelectPaymentMethod")}</p>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">{t("PaymentMethod")}</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={method}
+                            label="Select Payment Method"
+                            defaultValue='USDT (TRC20)'
+                            onChange={(e) => {
+                                setMethod(e.target.value);
+                            
+                            }}
+                            sx={{ color: 'black', backgroundColor: 'white' }}
+                        >
+                            <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
+                            <MenuItem value='IDR (Bank BRI)'>IDR (Bank BRI)</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Stack>
+
                         <div className='arrange-label'>
                             <label className='standard-label'>Wallet Address</label>
                 <input className='standard-input' placeholder='Address' type='text'  value={address} onChange={(e)=>{ setAddress(e.target.value)}}/>
