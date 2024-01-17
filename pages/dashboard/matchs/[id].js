@@ -134,12 +134,11 @@ export default function Matchs({ matc,user }) {
     // console.log(pick)
     // console.log(markets[pick])
     const [use,setUse] = useState({});
-    let profit = (parseFloat(parseFloat(amountInput).toFixed(3)) * parseFloat((parseFloat(placee.txt) / 100).toFixed(3))).toFixed(3);
-    let total = parseFloat((parseFloat(profit) + parseFloat((parseFloat(amountInput)).toFixed(3))).toFixed(3))
+    let profit = parseFloat(amountInput) * parseFloat((parseFloat(placee.txt) / 100).toFixed(3)).toFixed(3);
+    let total = parseFloat((parseFloat(profit) + parseFloat(amountInput)).toFixed(3))
     const click = (parseFloat) => {
       if (parseFloat === 'X') {
         const newVal = amountInput.substring(0, amountInput.length - 1);
-
         setAmountInput(newVal);
       } else {
         if (parseFloat === '.') {
@@ -151,7 +150,6 @@ export default function Matchs({ matc,user }) {
             } else {
               setAmountInput(amountInput + parseFloat);
             }
-
           }
         } else {
 
