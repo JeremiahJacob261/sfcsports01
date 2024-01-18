@@ -58,11 +58,13 @@ export default function Transaction({ transaction }) {
                             let hour = time.getHours();
                             let minute = time.getMinutes();
                             let sent = date + ' ' + hour + ':' + minute ;
+                            let stat = m.sent ?? 'pending';
                             return (
                                 <Stack direction='row' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
-                                    <Icon width={45} height={45} icon={(m.type === 'deposit') ? "solar:arrow-down-broken" :'solar:arrow-up-broken'} style={{color:(m.type === 'deposit') ? "green" :'red'}}/>
+                                    <Icon width={45} height={45} icon={(m.type === 'deposit') ? "solar:arrow-down-broken" :'solar:arrow-up-broken'} 
+                                    style={{color:(m.type === 'deposit') ? "green" :'red'}}/>
                                     <Stack direction='column'>
-                                        <p style={{ color:'goldenrod',fontWeight:'500'}}>Status: {m.sent ?? 'pending'}</p>
+                                        <p style={{ color:'goldenrod',fontWeight:'500'}}>{(m.address === 'admin') ? "Reason: "+m.method : "Status: "+stat}</p>
                                         <p>{m.type ?? 'unknown type'}</p>
                                         <p>{(m.method === 'bankbri') ? (m.amount/1550).toFixed(3)  : m.amount} USDT</p>
                                         <p>Transaction Type: {(m.method === 'bankbri') ? "IDR"  : "USDT"}</p>

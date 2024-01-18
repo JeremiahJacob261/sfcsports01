@@ -10,7 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEffect } from 'react';
 import local from 'next/font/local';
 import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';import { useTranslation } from 'next-i18next'
+import CircularProgress from '@mui/material/CircularProgress';
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 export async function getStaticProps({ locale }) {
     return {

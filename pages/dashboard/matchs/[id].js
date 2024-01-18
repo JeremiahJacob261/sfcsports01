@@ -10,8 +10,11 @@ import Head from 'next/head';
 import { Button } from '@mui/material';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
 export default function Matchs({ matc,user }) {
+  const [drop, setDrop] = useState(false);
   const router = useRouter();
   const [matches, setMatches] = useState(matc);//[router.query.id
   const [placee,setPlacee] = useState({});
@@ -66,15 +69,20 @@ export default function Matchs({ matc,user }) {
     "otherscores": "Other"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
+    setDrop(true)
+    console.log(stake)
     if (user.gcount > 1) {
-      alert('You have exceeded the parseFloat of games you can play today')
+      alert('You have exceeded the number of games you can play today')
+      setDrop(false)
       return;
     } else {
-      if (stake < 2) {
+       if (parseFloat(stake) < 2) {
         alert('Minimum stake is 2 USDT')
+        setDrop(false)
         return;
       } else if (parseFloat(stake) > user.balance) {
         alert('Insufficient Balance')
+        setDrop(false)
         return;
 
       } else {
@@ -86,9 +94,9 @@ export default function Matchs({ matc,user }) {
               'market': market,
               'username': username,
               'started': false,
-              'stake': parseFloat(stake),
+              'stake': parseFloat(stake ?? 0),
               'profit': parseFloat(((odd * stake) / 100)).toFixed(2),
-              'aim': profit,
+              'aim': (odd * stake) / 100,
               "home": matches.home,
               "away": matches.away,
               "time": matches.time,
@@ -121,11 +129,14 @@ export default function Matchs({ matc,user }) {
           setParentOpen(false)
           location.reload();
           console.log(error, err, arr, errr)
+          setDrop(false)
         } catch (e) {
           console.log(e)
+          setDrop(false)
         }
       }
     }
+    setDrop(false)
   }
 
   function Placer({ txt, data, pick }) {
@@ -266,7 +277,7 @@ export default function Matchs({ matc,user }) {
               <motion.p onClick={() => {
                 //   router.push('/dashboard/fund/success')
                 // (matches, stake, profit, username, market, odd)
-                placebet(data, parseFloat(parseFloat(amountInput).toFixed(3)), parseFloat(profit), localStorage.getItem('signNames'), placee.market, placee.txt);
+                placebet(data, parseFloat(amountInput ?? 0), parseFloat(profit), localStorage.getItem('signNames'), placee.market, placee.txt);
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}
@@ -434,6 +445,12 @@ export default function Matchs({ matc,user }) {
 
   return (
     <div className="backgrounds" style={{ minHeight: '100vh' }}>
+      <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={drop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
       <Head>
         <title>{matches.home} VS {matches.away}</title>
         <meta name="description" content="Get Started With us to get the latest betting market and fantantic Bonus" />
