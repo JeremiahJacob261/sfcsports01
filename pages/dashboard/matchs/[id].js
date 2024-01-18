@@ -76,7 +76,11 @@ export default function Matchs({ matc,user }) {
       setDrop(false)
       return;
     } else {
-       if (parseFloat(stake) < 2) {
+      if(!stake){
+        alert('Please Input a Number')
+        setDrop(false)
+        return;
+      }else if (parseFloat(stake) < 2) {
         alert('Minimum stake is 2 USDT')
         setDrop(false)
         return;
@@ -277,7 +281,7 @@ export default function Matchs({ matc,user }) {
               <motion.p onClick={() => {
                 //   router.push('/dashboard/fund/success')
                 // (matches, stake, profit, username, market, odd)
-                placebet(data, parseFloat(amountInput ?? 0), parseFloat(profit), localStorage.getItem('signNames'), placee.market, placee.txt);
+                placebet(data, parseFloat(amountInput), parseFloat(profit), localStorage.getItem('signNames'), placee.market, placee.txt);
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}
