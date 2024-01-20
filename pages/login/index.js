@@ -295,10 +295,10 @@ export default function Login(props) {
             <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </Typography>
           </Link>
           <Typography style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
-            {t("DontmissaminuteoftheactionSignin")}
+            Dont miss a minute of the action Signin
           </Typography>
           <Typography style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
-            {t("EnterthecorrectinformationprovidedtoLogintoyouraccount")}
+            Enter the correct information provided to Login to your account
           </Typography>
         </Stack>
         <Stack direction="column" spacing={4} sx={{ width: '343px' }}>
@@ -354,7 +354,7 @@ export default function Login(props) {
           <Divider sx={{ background: '#E5E7EB' }} />
         </Link>
         <Link href="/register?refer=0" style={{ width: '100%', textAlign: 'center', textDecoration: "none", color: "#E5E7EB", fontSize: '15px', fontWeight: '400', fontFamily: 'Poppins,sans-serif' }}>
-          {t("DonthaveanAccountCreateAccount")}
+         Dont have an Account Create Account
 
         </Link>
       </Stack>
