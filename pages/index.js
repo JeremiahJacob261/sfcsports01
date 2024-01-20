@@ -110,9 +110,9 @@ const { t } = useTranslation()
       <Stack style={{ minWidth: '100%', minHeight: '100vh',padding:'8px' }} justifyContent='center' alignItems='center' spacing={3}>
         
         <Stack direction="column" justifyContent='center' alignItems='center' spacing={3} style={{ padding: '12px', width: '100%', height: '100vh' }}>
-          <p style={{ color: '#D8B16B', fontSize: '20px', fontWeight: '700' }}>{t('all:GETUPTO100BONUSDAILY')}</p>
-          <p style={{ width: '300px', color: 'white', fontSize: '32px', fontWeight: '700' }}>{t('all:BETOnFootballGames&WinUpto$1Million')}</p>
-          <p style={{ width: '300px', color: 'white', fontSize: '17px', fontWeight: '300' }}>{t('all:BuildYourTeamToGetMultipleBonusesandUnlimitedPriviledges')}</p>
+        <p style={{ color: '#D8B16B', fontSize: '20px', fontWeight: '700' }}>GET UP TO 100% BONUS DAILY</p>
+          <p style={{ width: '300px', color: 'white', fontSize: '32px', fontWeight: '700' }}>BET On Football Games & Win Upto $1 Million</p>
+          <p style={{ width: '300px', color: 'white', fontSize: '17px', fontWeight: '300' }}>Build Your Team To  Get Multiple Bonuses and Unlimited Priviledges</p>
         
             <Stack onClick={()=>{
               router.push('/register?refer=0');

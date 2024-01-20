@@ -16,8 +16,13 @@ export default function Translate() {
     const router = useRouter();
 
     const changeLanguageHandler = (lang) => {
-        router.push(router.pathname, router.asPath, { locale: lang });
+      try{
+router.push(router.pathname, router.asPath, { locale: lang });
         setOpen(false);
+      }catch(e){
+console.log(e);
+      }
+        
         
     };
     return (
