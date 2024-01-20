@@ -306,3 +306,7 @@ font-family:var(--font-lilpops);
   font-family: var(--font-lilpops);
   font-weight: 500;
 }
+.skiptranslate {
+  display: none !important;
+  height: 0;
+}

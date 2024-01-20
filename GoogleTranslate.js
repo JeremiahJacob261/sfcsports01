@@ -49,7 +49,24 @@ export default function GoogleTranslate() {
         }
     }, []);
     return (
-    
-<div></div>
+        <>
+
+        <div id="google_translate_element" style={{width:'0px',height:'0px',position:'absolute',left:'50%'}}></div>
+        <SelectPicker 
+         data={languages} 
+         style={{ width: 100 }} 
+         placement="bottomEnd"
+         cleanable={false}
+         value={selected}
+         searchable={false}
+         className={'notranslate'}
+         menuClassName={'notranslate'}
+         onSelect={(e,m,evt) => {
+            console.log(e,m,evt)
+            console.log(languages)
+            langChange(e,m,evt)}}
+         placeholder="Lang"/> 
+    </>
+
     )
 }
