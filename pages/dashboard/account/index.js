@@ -158,43 +158,43 @@ export default function Account({ vips }) {
                 {/* accountinfoandBalance */}
                 <Stack className='accountinfo' justifyContent='center' alignItems='center' spacing={1}>
                     <p style={{ fontWeight: '600', fontSize: '24px', color: '#ac915fd2' }}>$ {balanace.toFixed(2)}</p>
-                    <p style={{ fontWeight: '300', fontSize: '12px' }}>{t("AccountBalance")}</p>
+                    <p style={{ fontWeight: '300', fontSize: '12px' }}>Account Balance</p>
                     <motion.p onClick={() => {
                         router.push('/dashboard/fund')
                     }}
                         whileTap={{ background: '#573b41', scale: '1.05' }}
                         whileHover={{ background: '#573b41' }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        {t("DEPOSIT")}</motion.p>
+                        DEPOSIT</motion.p>
                     <motion.p onClick={() => {
                         router.push('/dashboard/withdraw')
                     }}
                         whileTap={{ background: '#573b41', scale: '1.05' }}
                         whileHover={{ background: '#573b41' }}
                         style={{ fontWeight: '500', fontSize: '12px', color: '#C61F41', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        {t("WITHDRAW")}</motion.p>
+                        WITHDRAW</motion.p>
                     <motion.p onClick={() => {
                         router.push('/dashboard/transactions')
                     }}
                         whileTap={{ background: '#ac915fd2', scale: '1.05' }}
                         whileHover={{ background: '#ac915fd2' }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: 'rgba(245,186,79,1)', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        {t("SEETRANSACTIONS")}</motion.p>
+                        SEE TRANSACTIONS</motion.p>
                     <motion.p onClick={() => {
                         router.push('/dashboard/bind')
                     }}
                         whileTap={{ background: '#ac915fd2', scale: '1.05' }}
                         whileHover={{ background: '#ac915fd2' }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: 'grey', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        {t("BINDWALLETS")}</motion.p>
+                        BIND WALLETS</motion.p>
                     <Stack direction='row' justifyContent='stretch' alignItems='center'>
                         <Stack sx={{ padding: '8px' }} justifyContent='center' alignItems='center'>
                             <p style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totald}</p>
-                            <p style={{ fontWeight: '300', fontSize: '10px' }}>{t("TotalDEPOSITS")}</p>
+                            <p style={{ fontWeight: '300', fontSize: '10px' }}>Total DEPOSITS</p>
                         </Stack>
                         <Stack sx={{ padding: '8px' }} justifyContent='center' alignItems='center'>
                             <p style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totalw}</p>
-                            <p style={{ fontWeight: '300', fontSize: '10px' }}>{t("TotalWITHDRAWN")}</p>
+                            <p style={{ fontWeight: '300', fontSize: '10px' }}>Total WITHDRAWN</p>
                         </Stack>
                     </Stack>
 
@@ -231,7 +231,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="material-symbols:casino-outline-sharp" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px', color: '#C61F41' }}>{t("Bets")}</p>
+                        <p style={{ fontWeight: '500', fontSize: '15px', color: '#C61F41' }}>Bets</p>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -239,28 +239,28 @@ export default function Account({ vips }) {
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:receipt-text-pending" style={{ color: 'white' }} />
-                            <p>{t("PendingBets")}</p></Stack>
+                            <p>Pending Bets</p></Stack>
                         <p style={{ color: 'rgba(245,186,79,1)' }}>{betcount.pending ?? 0}</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:store-complete-outline" style={{ color: 'white' }} />
-                            <p>{t("SettledBets")}</p></Stack>
+                            <p>Settled Bets</p></Stack>
                         <p style={{ color: 'green' }}>{betcount.settled ?? 0}</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="mdi:cup-full" style={{ color: 'white' }} />
-                            <p>{t("TotalBets")}</p></Stack>
+                            <p>Total Bets</p></Stack>
                         <p style={{ color: 'grey' }}>{betcount.all ?? 0}</p>
                     </Stack>
                     <Divider sx={{ background: 'rgba(245,186,79,1)', color: 'rgba(245,186,79,1)' }} />
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
-                        <p>{t("TotalWins")}</p>
+                        <p>Total Wins</p>
                         <p style={{ color: 'blue' }}>{betcount.wins ?? 0}</p>
                     </Stack>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
-                        <p>{t("TotalLost")}</p>
+                        <p>Total Lost</p>
                         <p style={{ color: 'red' }}>{betcount.lost ?? 0}</p>
                     </Stack>
                 </Stack>
@@ -285,7 +285,7 @@ export default function Account({ vips }) {
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="tdesign:link" style={{ color: 'white' }} />
                             <Stack direction='column'>
-                                <p>{t("ReferralLink")}</p>
+                                <p>Referral Link</p>
                                 <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://sfcsports01.com/register?refer={users.newrefer}</p>
                                 <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>{t("copytheabovelinkandsharetogetmorerewards")}</p>
                             </Stack>
@@ -304,7 +304,7 @@ export default function Account({ vips }) {
                         >
                             <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                                 <Icon icon="mingcute:celebrate-line" style={{ color: 'white' }} />
-                                <p>{t("SeeAllReferrals")}</p></Stack>
+                                <p>See All Referrals</p></Stack>
                             <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                         </Stack>
                     </Link>
@@ -323,7 +323,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="mdi:security" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px' }}>{t("Security")}</p>
+                        <p style={{ fontWeight: '500', fontSize: '15px' }}>Security</p>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -337,7 +337,7 @@ export default function Account({ vips }) {
                             router.push('/dashboard/changepassword')
                         }}>
                             <Icon icon="ic:baseline-password" style={{ color: 'white' }} />
-                            <p>{t("ChangePassword")}</p></Stack>
+                            <p>Change Password</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
 
@@ -347,7 +347,7 @@ export default function Account({ vips }) {
                         }}>
                         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
                             <Icon icon="solar:key-broken" style={{ color: 'white' }} />
-                            <p>{t("ChangeTransactionPassword")}</p></Stack>
+                            <p>Change Transaction Password</p></Stack>
                         <Icon icon="mdi:chevron-right" width={24} height={24} style={{ color: 'white' }} />
                     </Stack>
                 </Stack>
