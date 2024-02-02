@@ -201,7 +201,6 @@ export default function Matchs({ matc, user ,test}) {
         '6':0.095,
         '7':0.125
     }
-
     return (
       <React.Fragment key={'bottom'} >
         <motion.div className='odds' onClick={() => {
@@ -214,7 +213,7 @@ export default function Matchs({ matc, user ,test}) {
         >
           <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer' }}>
             <p style={{ color: 'black' }}>{markets[pick]}</p>
-            <p style={{ color: '#e4264c' }}>{parseFloat(txt)  + parseFloat(vip[test.viplevel])}</p>
+            <p style={{ color: '#e4264c' }}>{(parseFloat(parseFloat(txt).toFixed(2)) + parseFloat(parseFloat(vip[test.viplevel]).toFixed(3))).toFixed(2)}</p>
           </Stack>
 
         </motion.div>
@@ -296,6 +295,7 @@ export default function Matchs({ matc, user ,test}) {
     )
   }
   function OddArrange() {
+    console.log(matches)
     return (
       <Stack direction='column' spacing={3} alignItems='center'>
 
@@ -336,7 +336,7 @@ export default function Matchs({ matc, user ,test}) {
             <Placer txt={matches.threethree} data={matches} pick={'threethree'} />
           </Stack>
           <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-            <Placer txt={matches.otherscores ?? 0} data={matches} pick={'otherscores'} />
+            <Placer txt={matches.otherscores} data={matches} pick={"otherscores"} />
           </Stack>
         </Stack>
       </Stack>
@@ -382,7 +382,6 @@ export default function Matchs({ matc, user ,test}) {
     let hourz = (parseFloat(timeLeft.days) > 0) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
     let min = timeLeft.minutes ?? 0;
     let sec = timeLeft.seconds ?? 0;
-    console.log(hourz + min + sec)
     return (
       <div>
         <Stack className="match-countdown-container" direction='row'>
