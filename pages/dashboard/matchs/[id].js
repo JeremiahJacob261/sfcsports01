@@ -13,7 +13,7 @@ import Image from 'next/image'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
-export default function Matchs({ matc,user }) {
+export default function Matchs({ matc, user ,test}) {
   const [drop, setDrop] = useState(false);
   const router = useRouter();
   const [matches, setMatches] = useState(matc);//[router.query.id
@@ -206,7 +206,7 @@ export default function Matchs({ matc,user }) {
       <React.Fragment key={'bottom'} >
         <motion.div className='odds' onClick={() => {
           setParentOpen(true)
-          setPlacee({'txt':txt,'pick':pick,'market':markets[pick]})
+          setPlacee({'txt':parseFloat(txt)  + parseFloat(vip[test.viplevel]),'pick':pick,'market':markets[pick]})
         }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -214,7 +214,7 @@ export default function Matchs({ matc,user }) {
         >
           <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer' }}>
             <p style={{ color: 'black' }}>{markets[pick]}</p>
-            <p style={{ color: '#e4264c' }}>{txt}</p>
+            <p style={{ color: '#e4264c' }}>{parseFloat(txt)  + parseFloat(vip[test.viplevel])}</p>
           </Stack>
 
         </motion.div>
@@ -336,7 +336,7 @@ export default function Matchs({ matc,user }) {
             <Placer txt={matches.threethree} data={matches} pick={'threethree'} />
           </Stack>
           <Stack direction="row" sx={{ width: '100%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-            <Placer txt={matches.otherscores} data={matches} pick={'otherscores'} />
+            <Placer txt={matches.otherscores ?? 0} data={matches} pick={'otherscores'} />
           </Stack>
         </Stack>
       </Stack>
@@ -499,16 +499,62 @@ export async function getServerSideProps(context) {
       .select('*')
       .eq('userId', context.query.name);
       
+      //get vip level
+      const id = context.query.name;
+    let users = use[0];
+        const viplimit = {
+            '1': 50,
+            '2': 100,
+            '3': 200,
+            '4': 300,
+            '5': 500,
+            '6': 1000,
+            '7': 5000
+        };
+        const vipclimit = {
+            '1': 3,
+            '2': 5,
+            '3': 8,
+            '4': 12,
+            '5': 15,
+            '6': 20,
+            '7': 500
+        };
+        const { count, error } = await supabase
+            .from('users')
+            .select('*', { count: 'exact', head: true })
+            .match({
+                'refer': use[0].newrefer,
+                'firstd': true
+            });
+        console.log(count)
+        let refCount = count;
+        let vipl = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+
+        let viplevel = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+        let rprogress = (parseInt(users.totald) / parseInt(viplimit[vipl])) * 100;
+        //tests
+        // console.log(users.totald)
+        //end
+        let cprogress = (parseInt(count) / parseInt(vipclimit[vipl])) * 100;
+        let c1 = (parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
+        let r1 = (parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
+        console.log(rprogress, cprogress, refCount, viplevel)
+        let test = { status: 'success', refCount: parseFloat(refCount) ?? 0, viplevel: parseFloat(viplevel) ?? 0, rprogress: parseFloat(rprogress.toFixed(2)), cprogress: parseFloat(cprogress.toFixed(2)), c1: parseFloat(c1), r1: parseFloat(r1) }
+  
+
+      //end of get vip level
     let user = use[0];
     let matc = match[0];
     return {
-      props: { matc,user }, // will be passed to the page component as props
+      props: { matc,user,test }, // will be passed to the page component as props
     }
   } catch (e) {
     let matc = {};
     let user = {};
+    let test = { };
     return {
-      props: { matc, user }, // will be passed to the page component as props
+      props: { matc, user,test }, // will be passed to the page component as props
     }
   }
 
