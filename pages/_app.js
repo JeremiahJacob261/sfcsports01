@@ -4,6 +4,7 @@ import { supabase } from './api/supabase'
 import localFont from 'next/font/local'
 import { useEffect } from 'react';
 import { appWithTranslation } from 'next-i18next'
+import ErrorBoundary from './ErrorBoundary';
 import Head from 'next/head';
 const poppins = Poppins({ weight: ['300','400','600'],subsets: ['latin']});
 const pops = localFont({ src: '../public/font/poppins.woff2' });
@@ -27,6 +28,7 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
   },[])
   return (
     <main className={lilpop.className} style={{ minHeight:'100vh'}}>
+      <ErrorBoundary>
             <Head>
         <title>SFCSPORTS01</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -71,6 +73,7 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
 
       </Head>
   <Component {...pageProps} />
+  </ErrorBoundary>
     </main>
   )
 }
