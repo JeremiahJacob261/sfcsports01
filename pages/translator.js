@@ -22,8 +22,10 @@ export default function Translate() {
     const changeLanguageHandler = (lang) => {
       try{
 // router.push(router.pathname, router.asPath, { locale: lang });
-setCookie(null, COOKIE_NAME, "/auto/" + lang)
-window.location.reload();
+//disabled for now
+// setCookie(null, COOKIE_NAME, "/auto/" + lang)
+// window.location.reload();
+alert("Translation is disabled for now, please use the browser's translation feature");
         setOpen(false);
       }catch(e){
 console.log(e);
