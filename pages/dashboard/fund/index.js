@@ -57,8 +57,9 @@ export default function Fund() {
                             whileHover={{ scale: 1.04 }}
                         >
                             <Image src={Bankbri} width={100} height={150} alt="payment_method" onClick={() => {
-                                setMet('visible');
-                                setMethod('bankbri')
+                                // setMet('visible');
+                                // setMethod('bankbri')
+                                alert("Bank BRI Indonesia is not available at the moment")
                             }} />
                         </motion.div>
                     </Stack>
