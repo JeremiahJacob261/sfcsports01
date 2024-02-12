@@ -42,7 +42,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#690f21",endCo
   background: rgb(105,15,33);
 }
 p{
-  color:'black';
+  color:"#0C090D";
   font-family:var(--font-poppins);
 }
 .bottomnav{
@@ -278,7 +278,7 @@ font-family:var(--font-lilpops);
   font-family:var(--font-lilpops);
 }
 .drawopstop{
-  color: goldenrod;
+  color: #CCA354;
   font-size: larger;
   font-weight: 600;
   font-family:var(--font-lilpops); 

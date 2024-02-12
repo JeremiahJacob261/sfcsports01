@@ -85,8 +85,8 @@ console.log(e)
             } else if(amount < 20){
                 alert('Minimum amount to withdraw is 20 USDT')
                 
-            }else if(amount > 100){
-                alert('Maximum amount to withdraw is 100 USDT')
+            }else if(amount > parseFloat((parseFloat((amount * 1.08).toFixed(3))/100).toFixed(3))){
+                alert('Maximum amount to withdraw including charges is 100 USDT')
     
             }else{
                 testRoute();
@@ -107,8 +107,8 @@ console.log(e)
             } else if(amount < 31000){
                 alert('Minimum amount to withdraw is 20 USDT or 31000 IDR')
                 
-            }else if(amount > 155000){
-                alert('Maximum amount to withdraw is 100 USDT or 155000 IDR')
+            }else if(amount > parseFloat((parseFloat((amount * 1.08).toFixed(3))/155000).toFixed(3))){
+                alert('Maximum amount including charges to withdraw is 100 USDT or 155000 IDR')
     
             }else{
                 testRoute();
