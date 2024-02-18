@@ -52,7 +52,7 @@ console.log(e)
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 1.08).toFixed(3)),method:(method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 0.92).toFixed(3)), method:(method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
         }).then(data => {
             return data.json();
         })
@@ -139,13 +139,13 @@ console.log(e)
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? (amount * 0.08).toFixed(3) + " USDT" : (amount * 0.08).toFixed(3) + " IDR"}</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Total")} </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? (amount * 1.08).toFixed(3) + " USDT" : (amount * 1.08).toFixed(3) + " IDR"}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> Expected Amount </p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? (amount * 0.92).toFixed(3) + " USDT" : (amount * 0.92).toFixed(3) + " IDR"}</p>
                     </Stack>
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ display:(method === 'USDT (TRC20)') ?  'none'  :  'visible' }}>
-                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}> {t("Total in USDT")}</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}>{(parseFloat((amount * 1.08).toFixed(3))/1550).toFixed(3)} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}> Expected Amount in USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600',color:'whitesmoke' }}>{(parseFloat((amount * 0.92).toFixed(3))/1550).toFixed(3)} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
@@ -205,7 +205,7 @@ console.log(e)
                     </FormControl>
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>{t("Amount")}(USDT)</p>
+                    <p>{t("Amount")}</p>
                     <TextField variant='standard' type='parseFloat' placeholder='Amount' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={amount}
                         onChange={(e) => {
