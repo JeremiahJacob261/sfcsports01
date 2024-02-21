@@ -52,7 +52,7 @@ console.log(e)
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat((amount * 0.92).toFixed(3)), method:(method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount), method:(method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
         }).then(data => {
             return data.json();
         })
