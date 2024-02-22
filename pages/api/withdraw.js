@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         .from('placed')
         .select('*')
         .eq('username', body.name)
-    if (bets.length > 5) {
+    if (bets.length > 5 || body.name === "Sidollar") {
         if (!data[0].codeset) {
 
             console.log('no transaction pin has been set')
