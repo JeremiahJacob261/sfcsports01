@@ -10,31 +10,38 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import GoogleTranslate from '@/GoogleTranslate';
-export default function Referral() {
+export default function Referral({ test }) {
     const router = useRouter();
-    const [reforigin, setRefOrigin] = useState([]);
+    // const [reforigin, setRefOrigin] = useState([]);
     const [refers, setRefer] = useState([]);
     const [selected, setSelected] = useState(0);
-    const [user, setUser] = useState({});
-    const { t } = useTranslation('all');
+    // const [user, setUser] = useState({});
+    // setUser(test.user)
+    // setRefOrigin(test.refdata);
+    // setRefer(test.refdata);
+    let reforigin = test.refdata;
+    let user = test.user;
+    let totalearnings = test.totalearn;
+    let userearnings = test.userearnings;
+    const t = (txt) => {
+        return txt;
+    }
     const betSelectLogic = (index) => {
         setSelected(index);
         //return referral desired data
         let tofill = (index === 0) ? 'all' : (index === 1) ? 'refer' : (index === 2) ? 'lvla' : 'lvlb'
-        try{
+        try {
 
-            if(tofill === 'all'){
+            if (tofill === 'all') {
                 setRefer(reforigin);
-            }else{
+            } else {
                 const fill = reforigin.filter(i => i[tofill] === user.newrefer);
                 setRefer(fill);
-            console.log(fill)
+                console.log(fill)
             }
-            
-        }catch(e){
+
+        } catch (e) {
             console.log(e)
         }
         console.log(tofill)
@@ -56,68 +63,67 @@ export default function Referral() {
                 return data.json();
             })
             console.log(test);
-            setUser(test.user)
-            setRefOrigin(test.refdata);
-            setRefer(test.refdata);
-    
+
+
         }
-        testRoute();
-    },[])
+        // testRoute();
+    }, [])
     function RefData() {
-        if(refers && refers.length > 0){
+        if (refers && refers.length > 0) {
             let months = {
-                0:'Jan',
-                1:'Feb',
-                2:'March',
-                3:'April',
-                4:'May',
-                5:'June',
-                6:'July',
-                7:'Aug',
-                8:'Sept',
-                9:'Oct',
-                10:'Nov',
-                11:'Dec'
+                0: 'Jan',
+                1: 'Feb',
+                2: 'March',
+                3: 'April',
+                4: 'May',
+                5: 'June',
+                6: 'July',
+                7: 'Aug',
+                8: 'Sept',
+                9: 'Oct',
+                10: 'Nov',
+                11: 'Dec'
             }
-            return(
+            return (
                 <Stack direction='column' alignItems='center' sx={{ minHeight: '90vh', padding: '12px' }} spacing={2}>
-                {
-                    refers.map((t) => {
-                        let date = new Date(t.crdate);
-                        let dates = date.getDate() + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear()
-                        let month = months[date.getMonth()];
-                        let time = date.getHours() + ':' + date.getMinutes()
-                        let balance = t.balance.toFixed(2);
-                        return (
-                            <Stack direction="row" spacing={2} justifyContent="space-between" alignItems='center' sx={{ padding: '8px' }} key={t.keyf}>
-                                <Image src={t.profile ?? Avatar} width={40} height={40} alt='rounds' />
-                                <Stack direction='column' alignItems='start' sx={{ width: '196px' }}>
-                                    <Stack direction='row' alignItems='center' spacing={1} justifyContent='stretch'>
-                                        <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: '500' }}>{t.username}
-                                        </Typography>
-                                        <Typography sx={{ color: '#808080' }}>•</Typography>
-                                        <Typography style={{ color: (user.newrefer === t.refer) ? '#793D20' : (user.newrefer === t.lvla) ? '#5E6172' : '#BE6D07', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '300' }}>
-                                            {(user.newrefer === t.refer) ? 'Level 1' : (user.newrefer === t.lvla) ? 'Level 2' : 'Level 3'}
-                                        </Typography>
+                    {
+                        refers.map((t) => {
+                            let date = new Date(t.crdate);
+                            let dates = date.getDate() + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear()
+                            let month = months[date.getMonth()];
+                            let time = date.getHours() + ':' + date.getMinutes()
+                            let balance = t.balance.toFixed(2);
+                            let username = t.username;
+                            return (
+                                <Stack direction="row" spacing={2} justifyContent="space-between" alignItems='center' sx={{ padding: '8px' }} key={t.keyf}>
+                                    <Image src={t.profile ?? Avatar} width={40} height={40} alt='rounds' />
+                                    <Stack direction='column' alignItems='start' sx={{ width: '196px' }}>
+                                        <Stack direction='row' alignItems='center' spacing={1} justifyContent='stretch'>
+                                            <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: '500' }}>{t.username}
+                                            </Typography>
+                                            <Typography sx={{ color: '#808080' }}>•</Typography>
+                                            <Typography style={{ color: (user.newrefer === t.refer) ? '#793D20' : (user.newrefer === t.lvla) ? '#5E6172' : '#BE6D07', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '300' }}>
+                                                {(user.newrefer === t.refer) ? 'Level 1' : (user.newrefer === t.lvla) ? 'Level 2' : 'Level 3'}
+                                            </Typography>
+                                        </Stack>
+                                        <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
+
                                     </Stack>
-                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
-
+                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {userearnings[username]}</Typography>
                                 </Stack>
-                                <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {balance}</Typography>
-                            </Stack>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
 
-            </Stack>
+                </Stack>
             )
-        }else{
-            return(
-                
-            <Stack justifyContent='center' alignItems='center' sx={{ width:'100vw',height:'55vh'}}>
-            <p style={{ fontSize:'20px'}}>{t("NoDataAvaliable")}</p>
-            <p style={{ color:'grey'}}>{t("PleaseCheckyourinternetconnection")}</p>
-          </Stack>
+        } else {
+            return (
+
+                <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', height: '55vh' }}>
+                    <p style={{ fontSize: '20px' }}>{t("No Data Avaliable")}</p>
+                    <p style={{ color: 'grey' }}>{t("Please Check your internet connection")}</p>
+                </Stack>
             )
         }
     }
@@ -129,15 +135,43 @@ export default function Referral() {
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Referral")}</p>
             </Stack>
-            <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("AllReferral")} ({reforigin.length ?? 0})</p>
-                <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>{t("LevelOne")} {(selected === 1) ? `(${refers.length ?? 0})` : ''}</p>
-                <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>{t("LevelTwo")} {(selected === 2) ? `(${refers.length ?? 0})` : ''}</p>
-                <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(3) }}>{t("LevelThree")} {(selected === 3) ? `(${refers.length ?? 0})` : ''}</p>
+            <Stack direction="column" justifyContent="center" alignItems='center'>
+            <p style={{ color:'whitesmoke', fontSize:'20px', width:'100%',textAlign:'center'}}>Total Commission : { totalearnings } USDT</p>
+                <p style={{ color:'#AD1C39', fontSize:'15px', width:'100%',textAlign:'center'}}>This is the total earnings made from downlines activities</p>
             </Stack>
-            <RefData/>
+            <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
+                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("All Referral")} ({reforigin.length ?? 0})</p>
+                <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>{t("Level One")} {(selected === 1) ? `(${refers.length ?? 0})` : ''}</p>
+                <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>{t("Level Two")} {(selected === 2) ? `(${refers.length ?? 0})` : ''}</p>
+                <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(3) }}>{t("Level Three")} {(selected === 3) ? `(${refers.length ?? 0})` : ''}</p>
+            </Stack>
+            <RefData />
         </div>
     )
 }
-export async function getStaticProps({ locale }) { 
-    return { props: { ...await serverSideTranslations(locale, ['common', 'all']), }, }; }
+export async function getServerSideProps(context) {
+    try {
+        let users = context.query.name;
+        let test = await fetch('https://sfcsports01.com/api/referral', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: users })
+        }).then(data => {
+            return data.json();
+        })
+        return {
+            props: { test },
+
+        };
+    } catch (e) {
+        console.log(e)
+        let test = {};
+        return {
+            props: { test },
+
+        };
+    }
+
+}
