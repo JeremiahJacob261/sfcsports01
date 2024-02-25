@@ -299,7 +299,7 @@ export default function Account({ vips }) {
                             }} />
                         </motion.div>
                     </Stack>
-                    <Link href='/dashboard/referral/'>
+                    <Link href={'/dashboard/referral/?name=' + users.username}>
                         <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}
                         >
                             <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
