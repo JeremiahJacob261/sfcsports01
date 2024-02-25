@@ -109,7 +109,7 @@ export default function Referral({ test }) {
                                         <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
 
                                     </Stack>
-                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {userearnings[username]}</Typography>
+                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {userearnings[username].toFixed(3)}</Typography>
                                 </Stack>
                             )
                         })
@@ -136,7 +136,7 @@ export default function Referral({ test }) {
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Referral")}</p>
             </Stack>
             <Stack direction="column" justifyContent="center" alignItems='center'>
-            <p style={{ color:'whitesmoke', fontSize:'20px', width:'100%',textAlign:'center'}}>Total Commission : { totalearnings } USDT</p>
+            <p style={{ color:'whitesmoke', fontSize:'20px', width:'100%',textAlign:'center'}}>Total Commission : { totalearnings.toFixed(3) } USDT</p>
                 <p style={{ color:'#AD1C39', fontSize:'15px', width:'100%',textAlign:'center'}}>This is the total earnings made from downlines activities</p>
             </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
