@@ -94,6 +94,7 @@ export default function Referral({ test }) {
                             let time = date.getHours() + ':' + date.getMinutes()
                             let balance = t.balance.toFixed(2);
                             let username = t.username;
+                            // userearnings[username].toFixed(3)
                             return (
                                 <Stack direction="row" spacing={2} justifyContent="space-between" alignItems='center' sx={{ padding: '8px' }} key={t.keyf}>
                                     <Image src={t.profile ?? Avatar} width={40} height={40} alt='rounds' />
@@ -109,7 +110,7 @@ export default function Referral({ test }) {
                                         <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
 
                                     </Stack>
-                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {userearnings[username].toFixed(3)}</Typography>
+                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {balance}</Typography>
                                 </Stack>
                             )
                         })
