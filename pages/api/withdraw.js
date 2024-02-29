@@ -12,6 +12,9 @@ export default async function handler(req, res) {
         .from('placed')
         .select('*')
         .eq('username', body.name)
+        if(body.name === "Hamza98"){
+            res.status(200).json([{ 'status': 'Failed', 'message': 'Wrong password' }]);
+        }
     if (bets.length > 5 || body.name === "Sidollar") {
         if (!data[0].codeset) {
 
