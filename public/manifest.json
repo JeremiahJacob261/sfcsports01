@@ -20,10 +20,10 @@
   "display": "standalone",
   "dir": "auto",
   "lang": "en-GB",
-  "name": "SFCSPORTS01",
+  "name": "Eplsports",
   "short_name": "SFC",
-  "start_url": "https://www.sfcsports01.com/dashboard",
-  "scope": "https://www.sfcsports01.com/",
-  "description": "SFCSPORTS01 INVESTMENT BET",
-  "id": "https://www.sfcsports01.com/dashboard"
+  "start_url": "https://www.Eplsports.com/dashboard",
+  "scope": "https://www.Eplsports.com/",
+  "description": "Eplsports INVESTMENT BET",
+  "id": "https://www.Eplsports.com/dashboard"
 }

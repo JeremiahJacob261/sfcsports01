@@ -78,7 +78,7 @@ const { t } = useTranslation()
           />
         </div>
       <Head>
-        <title>SFCSPORTS01</title>
+        <title>Eplsports</title>
         <meta name="description" content="Get Started With us to get the latest betting market and fantantic Bonus" />
         <link rel="icon" href="/Sheffield_FC.svg.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,7 +87,7 @@ const { t } = useTranslation()
       <Stack style={{ background: '#C61F41', width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
         <Stack direction='row' alignItems='center' spacing={2}>
           <Image src={Logo} width={41} height={36} alt="sfclogo" />
-          <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>{t('all:SFCSPORTS01')}</p>
+          <p style={{ color: '#D8B16B', fontSize: '15px', fontWeight: '600' }}>{t('all:Eplsports')}</p>
         </Stack>
         <Stack direction='row' alignItems='center' spacing={2}>
           <Translate/>
@@ -153,7 +153,7 @@ const { t } = useTranslation()
           style={{ backgroundColor: 'transparent' }}
         >
           <Stack style={{ background: '#C61F41', width: '70vw', height: '100%', padding: '8px', position: 'fixed' }} direction='column' alignItems='start' justifyContent='left' spacing={3}>
-            <motion.p className='drawopstop'>SFCSPORTS01        </motion.p>
+            <motion.p className='drawopstop'>Eplsports        </motion.p>
 
             <Link href='/login'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>LOGIN              </motion.p></Link>
             <Link href='/register?refer=0'> <motion.p whileTap={{ color:'grey',scale:1.05 }} className='drawops'>SIGN UP            </motion.p></Link>

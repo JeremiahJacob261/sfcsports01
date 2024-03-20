@@ -248,7 +248,7 @@ let test = await fetch('/api/regnotice', {
           updateRef();
           updateRefb();
           setDrop(false);
-          Alerts(`Welcome To SFCSPORTS01`, true);
+          Alerts(`Welcome To Eplsports`, true);
         }
       } catch (error) {
         console.error('Error signing up:', error);
@@ -306,10 +306,10 @@ let test = await fetch('/api/regnotice', {
             style={{ height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
             <Stack direction="column" spacing={4} justifyContent="center" alignItems="center">
               <Link href='/'>
-              <Image src={LOGO} width={100} height={120} alt='logo sfcsports' />
+              <Image src={LOGO} width={100} height={120} alt='logo Eplsports' />
               </Link>
               <Link href="/" style={{ textDecoration: "none" }}>
-                <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </p>
+                <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </p>
               </Link>
               <p style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
                 {t("Signupnowandgetawelcomebonus")}

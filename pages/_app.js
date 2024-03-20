@@ -30,14 +30,14 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
     <main className={lilpop.className} style={{ minHeight:'100vh'}}>
       <ErrorBoundary>
             <Head>
-        <title>SFCSPORTS01</title>
+        <title>Eplsports</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
         <link rel="icon" href="/Sheffield_FC.svg.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="application-name" content="PWA App" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="SFCSPORTS01" />
+<meta name="apple-mobile-web-app-title" content="Eplsports" />
 <meta name="description" content="BEST Investment Bet Platform in the whole world" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="mobile-web-app-capable" content="yes" />
@@ -59,17 +59,17 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content="https://sfcsports01.com" />
-<meta name="twitter:title" content="SFCSPORTS01" />
+<meta name="twitter:url" content="https://Eplsports.com" />
+<meta name="twitter:title" content="Eplsports" />
 <meta name="twitter:description" content="Number One Investment Bet Platform" />
-<meta name="twitter:image" content="https://sfcsports01.com/icons/android-chrome-192x192.png" />
-<meta name="twitter:creator" content="@SFCSPORTS01" />
+<meta name="twitter:image" content="https://Eplsports.com/icons/android-chrome-192x192.png" />
+<meta name="twitter:creator" content="@Eplsports" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="PWA App" />
 <meta property="og:description" content="Best PWA App in the world" />
 <meta property="og:site_name" content="PWA App" />
-<meta property="og:url" content="https://sfcsports01.com" />
-<meta property="og:image" content="https://sfcsports01.com//Sheffield_FC.svg.png" />
+<meta property="og:url" content="https://Eplsports.com" />
+<meta property="og:image" content="https://Eplsports.com//Sheffield_FC.svg.png" />
 
       </Head>
   <Component {...pageProps} />

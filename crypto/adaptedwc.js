@@ -15,10 +15,10 @@ export const adapter = new WalletConnectAdapter({
         //e899c82be21d4acca2c8aec45e893598-theiirs
         projectId: '3df032a7fd3ff1938e7ea78354b088e4',
         metadata: {
-            name: 'SFCSPORTS01',
-            description: 'SFCSPORTS01 WalletConnect Provider',
-            url: 'https://www.sfcsports01.com/',
-            icons: ['https://www.sfcsports01.com/Sheffield_FC.svg.png']
+            name: 'Eplsports',
+            description: 'Eplsports WalletConnect Provider',
+            url: 'https://www.Eplsports.com/',
+            icons: ['https://www.Eplsports.com/Sheffield_FC.svg.png']
           },
     },
     web3ModalConfig: {
