@@ -16,7 +16,7 @@ module.exports = {
     colors:{
       'sheffield-red-deep':'#981FC0',
       'sheffield-gold':'white',
-      'sheffield-red-shallow':'#D03151',
+      'sheffield-red-shallow':'#891CAD',
     }
   },
   plugins: [],

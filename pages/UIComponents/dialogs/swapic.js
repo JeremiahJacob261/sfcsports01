@@ -73,7 +73,7 @@ const uploadImage = async (fil) => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: '80vw',
+        width: '80%',
         height:'50vh',
         bgcolor: 'rgba(77, 3, 3, 1)',
         border: '2px solid #000',

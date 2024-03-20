@@ -223,7 +223,7 @@ export default function MatchDx({ data }) {
     }
     return (
         <div>
-            <Stack direction="column" key={data.match_id} sx={{ minWidth: '90vw', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
+            <Stack direction="column" key={data.match_id} sx={{ minWidth: '90%', maxWidth: '310px' }} className='rowsofdata' justifyContent='center' spacing={1}
                 onClick={() => {
                     handleOpen();
                 }}>
@@ -259,7 +259,7 @@ export default function MatchDx({ data }) {
                 <Fade in={open}>
                     <Box className='history'>
                         <Draw />
-                        <Stack direction="column" sx={{ width: '100vw', padding: '12px' }} justifyContent='center' alignItems="center">
+                        <Stack direction="column" sx={{ width: '100%', padding: '12px' }} justifyContent='center' alignItems="center">
                             {/* start of information stack */}
                             <p style={{ width: '100%', textAlign: 'center', color: 'greenyellow', background: 'grey' }}>{data.league}</p>
                             <Stack direction="row" spacing={2} sx={{ background: 'white', width: '100%', padding: '12px', color: 'black', borderRadius: '10px' }}>

@@ -87,7 +87,7 @@ export default function Bets() {
     if (betDta && betDta.length > 0) {
       console.log(betDta)
       return (
-        <Stack direction='column' sx={{ maxWidth: '100vw', padding: '8px', marginBottom: '100px' }} alignItems='center' spacing={2}>
+        <Stack direction='column' sx={{ maxWidth: '100%', padding: '8px', marginBottom: '100px' }} alignItems='center' spacing={2}>
           {
             betDta.map((bet) => {
               {/* bet data according to betTabSelected */ }

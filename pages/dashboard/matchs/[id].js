@@ -228,7 +228,7 @@ export default function Matchs({ matc, user ,test}) {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
+              <p style={{ width: '100%', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{data.home}</p>
                 <p>VS</p>
@@ -284,7 +284,7 @@ export default function Matchs({ matc, user ,test}) {
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}
-                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '90vw', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '90%', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                 Place Bet</motion.p>
             </Stack>
 
@@ -432,7 +432,7 @@ export default function Matchs({ matc, user ,test}) {
 
     return (
       <div>
-        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '98vw', textAlign: 'center' }}>
+        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '98%', textAlign: 'center' }}>
           <p style={{ color: 'whitesmoke' }}>Games Playable Today: </p>
           <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
         </Stack>

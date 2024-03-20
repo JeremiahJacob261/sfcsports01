@@ -121,7 +121,7 @@ export default function Referral({ test }) {
         } else {
             return (
 
-                <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', height: '55vh' }}>
+                <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', height: '55vh' }}>
                     <p style={{ fontSize: '20px' }}>{t("No Data Avaliable")}</p>
                     <p style={{ color: 'grey' }}>{t("Please Check your internet connection")}</p>
                 </Stack>

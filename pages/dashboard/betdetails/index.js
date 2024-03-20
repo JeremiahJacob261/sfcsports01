@@ -77,7 +77,7 @@ export default function BetDetails({ datas }) {
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("BetsDetails")}</p>
             </Stack>
-            <Stack direction="row" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
+            <Stack direction="row" justifyContent="center" alignItems='center' sx={{ width: '100%', padding: '8px' }} spacing={3}>
                 <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">
                     <Image src={datas.ihome} alt={datas.home} width={50} height={50} />
                     <p className="betd-text">{datas.home}</p>
@@ -88,7 +88,7 @@ export default function BetDetails({ datas }) {
                     <p className="betd-text">{datas.away}</p>
                 </Stack>
             </Stack>
-            <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
+            <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width: '100%', padding: '8px' }} spacing={3}>
                 <p className="betd-text">{t("Time")}: {fulltime}</p>
                 <p className="betd-text">{t("Stake")}: {datas.stake} USDT</p>
                 <p className="betd-text">{t("Odds")}: {datas.odd}</p>

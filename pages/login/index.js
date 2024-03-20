@@ -11,6 +11,8 @@ import { supabase } from '../api/supabase'
 import { useContext } from "react"; 
 import Link from "next/link";
 import { useRouter } from 'next/router'
+import generateRandomNumber from '@/functions/generatecodes';
+import { motion } from 'framer-motion'
 import LOGO from '../../public/logo.png'
 import Image from 'next/image'
 import Visibility from '@mui/icons-material/Visibility';
@@ -23,22 +25,15 @@ import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'all','login'
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
-  }
-export default function Login(props) {
+
+
+export default function Login({ranter}) {
   const { t } = useTranslation("all")
   const [username, setUsername] = useState("")
   const [drop, setDrop] = useState(false)
   const router = useRouter();
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
+  const [code,setCode] = useState('');
   //alerts
   const [ale, setAle] = useState('')
   const [open, setOpen] = useState(false)
@@ -246,7 +241,7 @@ export default function Login(props) {
         } else {
           // User successfully signed in
           let user = data.user;
-          Alerts('you are logged in', true);
+          Alerts('You are Logged In', true);
           console.log(user)
           // localStorage.setItem('signRef', data[0].newrefer);
           localStorage.setItem('signedIns', true);
@@ -255,7 +250,10 @@ export default function Login(props) {
           setDrop(false)
         }
       }
-      sign(email);
+      
+         sign(email);
+      //end of supabase sgn in
+     
     }
 
 
@@ -280,7 +278,10 @@ export default function Login(props) {
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={drop}
       >
-        <SportsSoccerIcon id='balls' sx={{ marginLeft: '8px' }} />
+        <div className="loadingimg">
+          <Image src={LOGO}  width={50} height={50} alt="logo"/>
+        </div>
+        
       </Backdrop>
       <Head>
         <title>Login</title>
@@ -295,22 +296,22 @@ export default function Login(props) {
             <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </Typography>
           </Link>
           <Typography style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
-            Dont miss a minute of the action Signin
+            SIGN IN
           </Typography>
           <Typography style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
-            Enter the correct information provided to Login to your account
+            input your email and password to login
           </Typography>
         </Stack>
         <Stack direction="column" spacing={4} sx={{ width: '343px' }}>
           <TextField id="outlined-basic" label="Email Or Username" variant="filled"
-            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB', } }}
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: 'black', } }}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
             }}
           />
           <FormControl
-            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB', } }}
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: 'black', } }}
             variant="filled">
             <InputLabel htmlFor="outlined-adornment-password">{t("Password")}</InputLabel>
             <OutlinedInput
@@ -333,9 +334,24 @@ export default function Login(props) {
               label="Password"
             />
           </FormControl>
+            
+            <motion.div whileHover={{ scale: 1.02 }}>
+                   <Stack sx={{ background:'#1B1B3A',color:'#FFFFFF',borderRadius:'3px'}} className='rant'>
+                    <p style={{ letterSpacing:5,padding:'8px',textAlign:'center'}}>{ranter}</p>
+                   </Stack>
+                   </motion.div>
+
+                   <TextField id="outlined-basic" label="captcha" variant="filled"
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: 'black', } }}
+            value={code}
+            onChange={(e) => {
+              setCode(e.target.value)
+            }}
+          />
         </Stack>
       </Stack>
       <Stack direction="column" spacing={2} justifyContent='center' alignItems='center' sx={{ width: '343px', marginTop: '200px' }}>
+       <motion.div whileHover={{ scale:1.1 }} whileTap={{ scale:0.9 }} style={{ width: '343px',}}>
         <Button variant="contained" className="authactionbtn"
           onKeyDown={(event) => {
             if (
@@ -346,9 +362,17 @@ export default function Login(props) {
             }
           }}
           sx={{ fontFamily: 'Poppins, sans-serif', padding: "10px", width: '100%', fontWeight: '400' }}
-          onClick={login}>
-          <Typography sx={{ fontFamily: 'Poppins, sans-serif', marginLeft: "3px", color: "#E5E7EB" }}>{t("Login")}</Typography>
+          onClick={()=>{
+            if(code != ranter){
+              console.log(ranter)
+             Alerts('CAPTCHA is wrong', false);
+           }else{
+            login()
+           }
+          }}>
+          <Typography sx={{ fontFamily: 'Poppins, sans-serif', marginLeft: "3px", color: "#E5E7EB" }}>LOGIN</Typography>
         </Button>
+        </motion.div>
         <Link href="/passwordreset" style={{ textDecoration: '#E5E7EB' }}>
           <Typography style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '200', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>{t('login:ForgottenPassword')}</Typography>
           <Divider sx={{ background: '#E5E7EB' }} />
@@ -376,23 +400,36 @@ export default function Login(props) {
         aria-describedby="modal-modal-description"
       >
         <Stack alignItems='center' justifyContent='space-evenly' sx={{
-          background: '#E5E7EB', width: '290px', height: '330px', borderRadius: '20px',
+          background: '#3D195B',
+          border:"1px solid #981FC0",
+           width: '290px', height: '300px', borderRadius: '20px',
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           padding: '12px'
         }}>
-          <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'black' }}>
+          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'white' }}>
 
-            {aleT ? 'Success' : 'Sorry!'}
+            {aleT ? 'SUCCESS' : 'SORRY!'}
           </p>
-          <p id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
+          <p id="modal-modal-description" style={{ mt: 2, color: 'whitesmoke', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
             {ale}
           </p>
           <Divider sx={{ borderBottomWidth: '45px' }} />
-          <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
+          <motion.div whileHover={{ scale:1.05 }} whileTap={{ scale:0.8 }} className="classicbtn" 
+          onClick={() => {
+            if (aleT) {
+              setOpen(false)
+              router.push('/dashboard')
+            } else {
+
+              setOpen(false)
+            }
+          }}
+          >
+             <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} 
+             onClick={() => {
             if (aleT) {
               setOpen(false)
               router.push('/dashboard')
@@ -401,8 +438,19 @@ export default function Login(props) {
               setOpen(false)
             }
           }}>OKAY</p>
+          </motion.div>
+         
         </Stack>
 
       </Modal>)
+  }
+}
+
+export async function getServerSideProps({locale}) {
+    
+  return {
+      props: {'ranter':generateRandomNumber(),   ...(await serverSideTranslations(locale, [
+        'all','login'
+      ])),}, // will be passed to the page component as props
   }
 }

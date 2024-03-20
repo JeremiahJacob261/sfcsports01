@@ -25,7 +25,7 @@ export default function HomeBottom() {
       1:'/dashboard/event',
       2:'/dashboard/bets',
       3:`/dashboard/account?id=${name}`,
-      4:`/dashboard/history?id=${name}`
+      4:`/dashboard/referral?name=${name}`
     }
   const [selected, setSelected] = useState(0);
   const selectLogic = (index) => {
@@ -42,7 +42,7 @@ export default function HomeBottom() {
     setNames(localStorage.getItem("signNames"));
   }, [selected]);
     return (
-        <Stack direction='row' className='bottomnav' sx={{ width:'100vw',position:'fixed',bottom:0}} justifyContent='space-around'>
+        <Stack direction='row' className='bottomnav' sx={{ width:'100%',position:'fixed',bottom:0}} justifyContent='space-around'>
             {/* home start */}
             <motion.div whileTap={{ color:'#f0e7e9'}} >
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(0)}}>
@@ -73,7 +73,7 @@ export default function HomeBottom() {
              {/* account start */}
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>
-              <Icon icon="mingcute:wallet-fill" width={24} height={24} className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
+              <Icon icon="icon-park-outline:me" width={24} height={24} className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
             <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Account")}</p>
             </Stack>
             </motion.div>
@@ -82,8 +82,9 @@ export default function HomeBottom() {
              {/* history start */}
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}}>
-<Translate/>
-<p style={{ fontSize:'14px',fontWeight:'400',color:'green'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Translate")}</p>
+         <Icon icon="ph:microsoft-teams-logo-light" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
+        
+<p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>Team</p>
             </Stack>
             </motion.div>
             {/* /* history end */}

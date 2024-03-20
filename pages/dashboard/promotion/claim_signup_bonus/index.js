@@ -62,24 +62,24 @@ export default function Claim() {
                 }} />
                 <p className="text-sm text-gray-500">{t("ClaimSignUpBonus")}</p>
             </Stack>
-            <Stack direction="column" justifyContent='center' alignItems="center" sx={{ padding: '8px', minWidth: '90vw' }} spacing={3}>
+            <Stack direction="column" justifyContent='center' alignItems="center" sx={{ padding: '8px', minWidth: '90%' }} spacing={3}>
                 <Stack direction="column">
                     <p>{t("BonusClaimCode")}</p>
-                    <TextField placeholder="claim code" sx={{ background: 'white', minWidth: '90vw' }} value={bonus} onChange={(event) => {
+                    <TextField placeholder="claim code" sx={{ background: 'white', minWidth: '90%' }} value={bonus} onChange={(event) => {
                         setBonus(event.target.value);
                     }} />
                     <p style={{ fontSize: '10px', color: 'greenyellow' }}>{t("ContactCustomerCaretogetBonusclaimcode")}</p>
                 </Stack>
                 <Stack >
                     <p>{t("password")}</p>
-                    <TextField placeholder={t("password")} sx={{ background: 'white', minWidth: '90vw' }}
+                    <TextField placeholder={t("password")} sx={{ background: 'white', minWidth: '90%' }}
                         value={password} onChange={(event) => {
                             setPassword(event.target.value);
                         }} />
                 </Stack>
                 <Stack>
                     <p>{t("confirmpassword")}</p>
-                    <TextField placeholder={t("confirmpassword")} sx={{ background: 'white', minWidth: '90vw' }} value={confirmPassword} onChange={(event) => {
+                    <TextField placeholder={t("confirmpassword")} sx={{ background: 'white', minWidth: '90%' }} value={confirmPassword} onChange={(event) => {
                         setConfirmPassword(event.target.value);
                     }} />
                 </Stack>

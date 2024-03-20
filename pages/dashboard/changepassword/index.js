@@ -90,7 +90,7 @@ if(data.user){
                 }} />
                 <p className="text-sm text-gray-500">ChangePassword</p>
             </Stack>
-            <Stack sx={{ width:'99vw',height:'100%'}} spacing={3} direction="column" justifyContent='center' alignItems='center'>
+            <Stack sx={{ width:'99%',height:'100%'}} spacing={3} direction="column" justifyContent='center' alignItems='center'>
                 <p>Change Password</p>
                 {/* input pass components */}
                 <div className='arrange-label'>

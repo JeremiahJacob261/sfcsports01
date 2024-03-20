@@ -26,11 +26,8 @@ body {
     rgb(var(--background-start-rgb));
 }
 .authactionbtn{
-  background: rgb(105,15,33);
-background: -moz-linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
-background: -webkit-linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
-background: linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#690f21",endColorstr="#981FC0",GradientType=1);
+  background: #5f087c;
+  border: 1px solid #b650d8;
 }
 .iconbtn{
 
@@ -155,7 +152,7 @@ p{
 }
 .navBar{
   /* From https://css.glass */
-background: rgba(162, 22, 22, 0.22);
+background:#38003c ;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(9.3px);
 -webkit-backdrop-filter: blur(9.3px);
@@ -176,7 +173,7 @@ Icon{
   border:1px solid #7e7777;
   border-radius: 6px;
   min-width: 300px;
-  max-width: 85vw;
+  max-width: 85%;
   height: 45px;
 }
 .standard-input:focus{
@@ -194,7 +191,7 @@ background: rgba(238, 183, 183, 0.22);
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(8.9px);
 -webkit-backdrop-filter: blur(8.9px);
-width:100vw;
+width:100%;
 min-height:100vh;
 overflow-y: auto;
 }
@@ -240,7 +237,7 @@ font-family:var(--font-lilpops);
   font-family:var(--font-lilpops);
 }
 .countdown-container{
-  width:100vw;
+  width:100%;
   padding:4px;
   font-size: 24px;
   font-weight: bolder;
@@ -266,7 +263,7 @@ font-family:var(--font-lilpops);
   padding: 8px;
   margin: 8px;
   min-width: 310px;
-  max-width: 80vw;
+  max-width: 80%;
   color:whitesmoke;
   border-radius: 5px;
   background-color: rgb(114, 9, 30);
@@ -310,4 +307,43 @@ font-family:var(--font-lilpops);
 .skiptranslate {
   display: none !important;
   height: 0;
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+ }
+  50% {
+    transform: translateY(20px);
+ }
+}
+
+@keyframes scaleUpDown {
+  0%, 100% {
+    transform: scale(1); /* Start and end at 100% scale */
+ }
+  50% {
+    transform: scale(1.5); /* Scale up to 150% at the midpoint */
+ }
+}
+
+.cvn {
+  animation: moveUpDown 2s ease-in-out infinite;
+}
+
+.classicbtn{
+  background:#38003c;
+  border: 1px solid #981FC0;
+  width:100%;
+  padding:8px;
+  margin:4px;
+  border-radius: 15px;
+}
+
+.loadingimg{
+  background-color: whitesmoke;
+  padding: 12px;
+  border-radius: 50%;
+  border: 1px solid #981FC0;
+  animation: scaleUpDown 2s ease-in-out infinite;
 }

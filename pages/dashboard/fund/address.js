@@ -65,10 +65,10 @@ export default function Address({ method }) {
             }} />
           </motion.div>
         </Stack>
-        <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70vw' }}>Bank Name: Bank BRI</p>
+        <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Bank Name: Bank BRI</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <Icon icon="ph:info-light" color="#ad1c39" />
-          <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70vw' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
+          <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
         </Stack>
         <motion.p onClick={() => {
           router.push('/dashboard/fund/upload')
@@ -120,10 +120,10 @@ export default function Address({ method }) {
             }} />
           </motion.div>
         </Stack>
-        <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70vw' }}>Network: USDT (TRC20)</p>
+        <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Network: USDT (TRC20)</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <Icon icon="ph:info-light" color="#ad1c39" />
-          <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70vw' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
+          <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
         </Stack>
         <motion.p onClick={() => {
           router.push('/dashboard/fund/upload')

@@ -32,7 +32,7 @@ export default function Promotion() {
                 <p className="text-sm text-gray-500">{t("Promotion")}</p>
             </Stack>
             <Stack direction="column" sx={{ padding: '8px' }}>
-                <p style={{ fontSize: '24px', color: 'whitesmoke', width: '99vw', textAlign: 'center' }}>{t("PROMOTIONs")}</p>
+                <p style={{ fontSize: '24px', color: 'whitesmoke', width: '99%', textAlign: 'center' }}>{t("PROMOTIONs")}</p>
                 <p style={{ fontSize: '12px', color: 'grey', padding: '4px' }}>{t("Belowarealistofongoingpromotionsonourplatform")}</p>
 
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.9 }} style={{ cursor: 'pointer',display:user.newbie ? 'none' : 'visible' }}>

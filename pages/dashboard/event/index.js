@@ -156,7 +156,7 @@ export default function Event() {
             className="placerstyles"
           >
             <Stack spacing={2} alignItems='center'>
-              <p style={{ width: '100vw', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
+              <p style={{ width: '100%', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{data.home}</p>
                 <p>VS</p>
@@ -210,7 +210,7 @@ export default function Event() {
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '90vw', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '90%', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                 Place Bet</motion.p>
             </Stack>
 
@@ -254,7 +254,7 @@ useEffect(()=>{
     if (footDat && footDat.length > 0) {
   
       return (
-        <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100vw' }}>
+        <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100%' }}>
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
@@ -310,7 +310,7 @@ useEffect(()=>{
 
               return (
                 <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
-                  <Stack direction="column" sx={{ minWidth: '96vw', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
+                  <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
                     onClick={() => {
 
                     }}>
@@ -340,7 +340,7 @@ useEffect(()=>{
       )
     } else {
       return (
-        <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
+        <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '85vh' }}>
           <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
           <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
         </Stack>)
@@ -385,7 +385,7 @@ useEffect(()=>{
 
     return (
       <div>
-        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
+        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100%', textAlign: 'center' }}>
           <p style={{ color: 'whitesmoke' }}>{t("GamesPlayableToday")}</p>
           <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
         </Stack>

@@ -173,7 +173,7 @@ export default function Home(props) {
 
     return (
       <div>
-        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100vw', textAlign: 'center' }}>
+        <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100%', textAlign: 'center' }}>
           <p style={{ color: 'whitesmoke' }}>{t("GamesPlayableToday")} </p>
           <p style={{ color: 'greenyellow' }}>{playable[gcount ?? 0]}</p>
         </Stack>
@@ -246,7 +246,7 @@ export default function Home(props) {
   function MatchRow() {
     if (footDat && footDat.length > 0) {
       return (
-        <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100vw' }}>
+        <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100%' }}>
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
@@ -296,7 +296,7 @@ function MatchCountDown() {
 //end of match countdown
               return (
                 <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
-                  <Stack direction="column" sx={{ minWidth: '96vw', maxWidth: '310px',border:data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow:data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
+                  <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px',border:data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow:data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
                     onClick={() => {
 
                     }}>
@@ -340,7 +340,7 @@ function MatchCountDown() {
       )
     } else {
       return (
-        <Stack justifyContent='center' alignItems='center' sx={{ width: '100vw', minHeight: '85vh' }}>
+        <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '85vh' }}>
           <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
           <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
         </Stack>)
