@@ -5,7 +5,7 @@ import { adapter, tronWeb } from '@/crypto/adaptedwc'
 import { Icon } from '@iconify/react';
 import { supabase } from '../api/supabase';
 import { useRouter } from 'next/router';
-import Logo from "@/public/Sheffield_FC.svg.png";
+import Logo from "@/public/logo.png";
 import Head from 'next/head';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -352,7 +352,7 @@ function MatchCountDown() {
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Stack sx={{ height: '50px', width: '100%' }}>

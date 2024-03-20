@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import Logo from "@/public/Sheffield_FC.svg.png";
+import Logo from "@/public/logo.png";
 import { Stack } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next'

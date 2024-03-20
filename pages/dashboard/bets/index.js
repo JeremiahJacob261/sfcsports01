@@ -154,7 +154,7 @@ export default function Bets() {
       <Head>
         <title>Bets History</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px' }} spacing={1}>

@@ -11,7 +11,7 @@ import { supabase } from '../api/supabase'
 import { useContext } from "react"; 
 import Link from "next/link";
 import { useRouter } from 'next/router'
-import LOGO from '../../public/Sheffield_FC.svg.png'
+import LOGO from '../../public/logo.png'
 import Image from 'next/image'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -285,14 +285,14 @@ export default function Login(props) {
       <Head>
         <title>Login</title>
         <meta name="description" content="Login to your Account to see whats up with your bets" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Stack direction='column' spacing={3}>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
           <Image src={LOGO} width={100} height={120} alt='logo sfcsports' />
           <Link href="/" style={{ textDecoration: "none" }}>
-            <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </Typography>
+            <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>epl-sports </Typography>
           </Link>
           <Typography style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
             Dont miss a minute of the action Signin

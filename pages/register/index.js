@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import { Form as Farm } from 'react-bootstrap'
-import LOGO from '../../public/Sheffield_FC.svg.png'
+import LOGO from '../../public/logo.png'
 import Image from 'next/image'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -248,7 +248,7 @@ let test = await fetch('/api/regnotice', {
           updateRef();
           updateRefb();
           setDrop(false);
-          Alerts(`Welcome To SFCSPORTS01`, true);
+          Alerts(`Welcome To epl-sports`, true);
         }
       } catch (error) {
         console.error('Error signing up:', error);
@@ -292,7 +292,7 @@ let test = await fetch('/api/regnotice', {
       <Head>
         <title>Register</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Box >
@@ -309,7 +309,7 @@ let test = await fetch('/api/regnotice', {
               <Image src={LOGO} width={100} height={120} alt='logo sfcsports' />
               </Link>
               <Link href="/" style={{ textDecoration: "none" }}>
-                <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>SFCSPORTS01 </p>
+                <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>epl-sports </p>
               </Link>
               <p style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
                 {t("Signupnowandgetawelcomebonus")}

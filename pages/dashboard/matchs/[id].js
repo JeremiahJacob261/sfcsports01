@@ -457,7 +457,7 @@ export default function Matchs({ matc, user ,test}) {
       <Head>
         <title>{matches.home} VS {matches.away}</title>
         <meta name="description" content="Get Started With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Stack>

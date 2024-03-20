@@ -5,10 +5,10 @@ export const wallet = new WalletConnectWallet({
     relayUrl: 'wss://relay.walletconnect.com',
     projectId: '3df032a7fd3ff1938e7ea78354b088e4',
     metadata: {
-      name: 'SFCSPORTS01',
-      description: 'SFCSPORTS01 WalletConnect Provider',
-      url: 'https://www.sfcsports01.com/',
-      icons: ['https://www.sfcsports01.com/Sheffield_FC.svg.png']
+      name: 'epl-sports',
+      description: 'epl-sports WalletConnect Provider',
+      url: 'https://www.epl-sports.com/',
+      icons: ['https://www.epl-sports.com/logo.png']
     }
   },
   web3ModalConfig: {
