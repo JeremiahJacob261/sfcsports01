@@ -4,9 +4,11 @@ import { supabase } from './api/supabase'
 import localFont from 'next/font/local'
 import { useEffect } from 'react';
 import { appWithTranslation } from 'next-i18next'
+import { Noto_Sans } from '@next/font/google';
 import ErrorBoundary from './ErrorBoundary';
 import Head from 'next/head';
 const poppins = Poppins({ weight: ['300','400','600'],subsets: ['latin']});
+const noto = Noto_Sans({ weight: ['300','400','600'],subsets: ['latin']});
 const pops = localFont({ src: '../public/font/poppins.woff2' });
 const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
  function App({ Component, pageProps }) {
