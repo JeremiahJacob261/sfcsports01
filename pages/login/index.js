@@ -292,7 +292,7 @@ export default function Login(props) {
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
           <Image src={LOGO} width={100} height={120} alt='logo sfcsports' />
           <Link href="/" style={{ textDecoration: "none" }}>
-            <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>epl-sports </Typography>
+            <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </Typography>
           </Link>
           <Typography style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
             Dont miss a minute of the action Signin

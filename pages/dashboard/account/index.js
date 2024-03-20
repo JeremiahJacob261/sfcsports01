@@ -286,7 +286,7 @@ export default function Account({ vips }) {
                             <Icon icon="tdesign:link" style={{ color: 'white' }} />
                             <Stack direction='column'>
                                 <p>Referral Link</p>
-                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://epl-sports.com/register?refer={users.newrefer}</p>
+                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://Eplsports.com/register?refer={users.newrefer}</p>
                                 <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>{t("copytheabovelinkandsharetogetmorerewards")}</p>
                             </Stack>
                         </Stack>
@@ -294,7 +294,7 @@ export default function Account({ vips }) {
                             whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
                         >
                             <Icon icon="solar:copy-bold-duotone" width={24} height={24} onClick={() => {
-                                navigator.clipboard.writeText('https://epl-sports.com/register?refer=' + users.newrefer);
+                                navigator.clipboard.writeText('https://Eplsports.com/register?refer=' + users.newrefer);
                                 toast.success('Referral link copied to clipboard');
                             }} />
                         </motion.div>
