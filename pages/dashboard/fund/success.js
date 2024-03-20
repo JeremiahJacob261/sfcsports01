@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import Logo from "@/public/Sheffield_FC.svg.png";
+import Logo from "@/public/logo.png";
 import { Stack } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next'
@@ -32,7 +32,7 @@ export default function BindWalletSuccess() {
                     }}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
                         whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#C61F41',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#981FC0',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                     {t("RETURNTODASHBOARD")}!</motion.p>
             </Stack>
             

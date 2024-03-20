@@ -14,8 +14,8 @@ module.exports = {
       },
     },
     colors:{
-      'sheffield-red-deep':'#C61F41',
-      'sheffield-gold':'#D8B16B',
+      'sheffield-red-deep':'#981FC0',
+      'sheffield-gold':'white',
       'sheffield-red-shallow':'#D03151',
     }
   },

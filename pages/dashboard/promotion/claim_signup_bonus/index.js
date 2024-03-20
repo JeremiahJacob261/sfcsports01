@@ -88,7 +88,7 @@ export default function Claim() {
                 }}
                     whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.3 }}
-                    style={{ fontWeight: '500', fontSize: '14px', color: 'white', padding: '8px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                    style={{ fontWeight: '500', fontSize: '14px', color: 'white', padding: '8px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                     {t("CLAIMBONUS")}</motion.p>
             </Stack>
         </div>

@@ -104,7 +104,7 @@ const uploadImage = async (fil) => {
                 onClick={()=>{
                     inputFile.current.click();
                 }}
-                style={{ fontWeight: '500', fontSize: '12px', color: '#C61F41', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
+                style={{ fontWeight: '500', fontSize: '12px', color: '#981FC0', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
                 Change Picture</motion.p>
                 <input type='file' id='file' ref={inputFile} style={{ display: 'none' }}
                             accept="image/*" onChange={(e) => {

@@ -5,7 +5,7 @@ import { adapter, tronWeb } from '@/crypto/adaptedwc'
 import { Icon } from '@iconify/react';
 import { supabase } from '../api/supabase';
 import { useRouter } from 'next/router';
-import Logo from "@/public/Sheffield_FC.svg.png";
+import Logo from "@/public/logo.png";
 import Head from 'next/head';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -192,7 +192,7 @@ export default function Home(props) {
       return (
         <Stack style={{ width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between' className='navBar'>
           <Stack direction='row' alignItems='center' spacing={2}>
-            <div style={{ borderRadius: '100px', background: '#D8B16B' }}>
+            <div style={{ borderRadius: '100px', background: 'white' }}>
               <Image src={Avatar} width={40} height={29} alt="sfclogo" />
             </div>
             <Stack>
@@ -204,13 +204,13 @@ export default function Home(props) {
           
         <Translate />
           <Link href="https://t.me/sfc_customerservice">
-            <motion.div whileHover={{ color: '#C61F41' }}>
+            <motion.div whileHover={{ color: '#981FC0' }}>
               <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} 
               />
             </motion.div>
           </Link>
 
-            <motion.div whileHover={{ color: '#C61F41' }} onClick={testRoute}>
+            <motion.div whileHover={{ color: '#981FC0' }} onClick={testRoute}>
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={()=>{
                 router.push(`/dashboard/history?id=${user.username}`)
               }}/>
@@ -222,7 +222,7 @@ export default function Home(props) {
       return (
         <Stack style={{ width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
           <Stack direction='row' alignItems='center' spacing={2}>
-            <div style={{ borderRadius: '100px', background: '#D8B16B' }}>
+            <div style={{ borderRadius: '100px', background: 'white' }}>
               <Image src={Avatar} width={40} height={29} alt="sfclogo" />
             </div>
             <Stack>
@@ -233,7 +233,7 @@ export default function Home(props) {
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
           >
           <Translate />
-            <motion.div whileHover={{ color: '#C61F41' }} onClick={() => {
+            <motion.div whileHover={{ color: '#981FC0' }} onClick={() => {
               router.push('/dashboard/history')
             }} >
               <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
@@ -352,7 +352,7 @@ function MatchCountDown() {
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Stack sx={{ height: '50px', width: '100%' }}>
@@ -383,7 +383,7 @@ function MatchCountDown() {
       <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px', width: '100%' }}>
         {/* fans favourite */}
         <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)', width: '30%' }}>
-          <Box sx={{ width: '100%', height: '5px', backgroundColor: '#C61F41' }}>
+          <Box sx={{ width: '100%', height: '5px', backgroundColor: '#981FC0' }}>
           </Box>
           <p style={{ textAlign: 'center', fontSize: '13px' }}>{t("PeopleFavourites")}</p>
         </Stack>

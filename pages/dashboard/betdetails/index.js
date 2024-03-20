@@ -68,14 +68,14 @@ export default function BetDetails({ datas }) {
             <Head>
                 <title>{t("BetsDetails")}: {datas.home} vs {datas.away}</title>
                 <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-                <link rel="icon" href="/Sheffield_FC.svg.png" />
+                <link rel="icon" href="/logo.png" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px' }} spacing={1}>
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard/bets')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>{t("BetsDetails")}</p>
+                <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("BetsDetails")}</p>
             </Stack>
             <Stack direction="row" justifyContent="center" alignItems='center' sx={{ width: '100vw', padding: '8px' }} spacing={3}>
                 <Stack direction='column' spacing={1} justifyContent="center" alignItems="center">

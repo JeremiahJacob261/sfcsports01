@@ -69,7 +69,7 @@ export default function History({credent}) {
                                 payment:'...'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
                             <p><p style={{ fontWeight:'bold',color:'greenyellow'}}>{item.type}</p> has just signed up with your Referral Link</p>
                             <p style={{ color: 'white' }}>{fullDay}</p>
@@ -88,7 +88,7 @@ export default function History({credent}) {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
                             <p className='ungradtext' style={{ fontSize: '16px' }}>Your Bet with betid of {item.type}</p>
                             <p style={{ color: 'white' }}>Amount {item.amount ?? 0}</p>
@@ -99,7 +99,7 @@ export default function History({credent}) {
                             )
                           }else if(item.type === 'bonus' && item.code === ''){
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                         <Stack>
                             <p style={{ fontWeight:'bold',color:'greenyellow'}}>You just recieved a {item.type}</p>
                             <p>{item.amount} USDT</p>
@@ -119,7 +119,7 @@ export default function History({credent}) {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
                                     <p style={{ fontWeight:'bold',color:'greenyellow'}}>{t("YourUSDTDepositwasSuccessful")}</p>
                                     <p>{item.amount} USDT</p>
@@ -138,7 +138,7 @@ export default function History({credent}) {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
                                     <p style={{ fontWeight:'bold',color:'greenyellow'}}>{t("YourBetwasplacedSuccessfully")}</p>
                                     <p>{item.type}</p>
@@ -159,7 +159,7 @@ export default function History({credent}) {
                                 payment:'USDT(TRC20)'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
                                     <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</p>
                                     <p>{item.amount} USDT</p>
@@ -179,7 +179,7 @@ export default function History({credent}) {
                                 payment:'none'
                             }
                             return(
-                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                 <Stack>
                                     <p style={{ fontWeight:'bold',color:'greenyellow'}}>You recieved first deposit bonus from {item.username}</p>
                                     <p>{item.amount} USDT</p>
@@ -190,7 +190,7 @@ export default function History({credent}) {
                            }else{
                             if(item.type === 'affbonus' && item.code === credent.newrefer){
                                 return(
-                                    <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #C61F41', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
+                                    <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90vw', minWidth: '80vw', borderRadius: '5px' }}>
                                     <Stack>
                                         <p style={{ fontWeight:'bold',color:'greenyellow'}}>You have recieved rebate bonus bonus from {item.username}</p>
                                         <p>{item.amount} USDT</p>
@@ -219,10 +219,10 @@ export default function History({credent}) {
                 <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
                     router.push('/dashboard')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>{t("Notifications")}</p>
+                <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Notifications")}</p>
             </Stack>
             <Stack sx={{ minHeight: '100vh', padding: '8px' }} direction='column' alignItems='center'>
-                <p style={{ color: '#C61F41', fontSize: '24px' }}>{t("Notifications")}</p>
+                <p style={{ color: '#981FC0', fontSize: '24px' }}>{t("Notifications")}</p>
                 <NotiFunc/>
             </Stack>
             <HomeBottom />

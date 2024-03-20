@@ -164,14 +164,14 @@ export default function Account({ vips }) {
                     }}
                         whileTap={{ background: '#573b41', scale: '1.05' }}
                         whileHover={{ background: '#573b41' }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#981FC0', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
                         DEPOSIT</motion.p>
                     <motion.p onClick={() => {
                         router.push('/dashboard/withdraw')
                     }}
                         whileTap={{ background: '#573b41', scale: '1.05' }}
                         whileHover={{ background: '#573b41' }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: '#C61F41', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
+                        style={{ fontWeight: '500', fontSize: '12px', color: '#981FC0', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
                         WITHDRAW</motion.p>
                     <motion.p onClick={() => {
                         router.push('/dashboard/transactions')
@@ -231,7 +231,7 @@ export default function Account({ vips }) {
                 <Stack sx={{ width: '100%', padding: '8px' }} spacing={1}>
                     <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
                         <Icon icon="material-symbols:casino-outline-sharp" width={24} height={24} style={{ color: 'white' }} />
-                        <p style={{ fontWeight: '500', fontSize: '15px', color: '#C61F41' }}>Bets</p>
+                        <p style={{ fontWeight: '500', fontSize: '15px', color: '#981FC0' }}>Bets</p>
                     </Stack>
                     <Divider sx={{ background: 'white', color: 'white' }} />
                 </Stack>
@@ -291,7 +291,7 @@ export default function Account({ vips }) {
                             </Stack>
                         </Stack>
                         <motion.div
-                            whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
+                            whileHover={{ scale: 1.1, color: '#981FC0' }} whileTap={{ scale: 0.8, color: '#981FC0' }} style={{ color: '#FFFFFF' }}
                         >
                             <Icon icon="solar:copy-bold-duotone" width={24} height={24} onClick={() => {
                                 navigator.clipboard.writeText('https://Eplsports.com/register?refer=' + users.newrefer);
@@ -588,7 +588,7 @@ export default function Account({ vips }) {
                         <Stack direction='row' spacing={1} alignItems='center'>
                             <p style={{ fontWeight: '200', color: 'white' }}>{users.uid}</p>
                             <motion.div
-                                whileHover={{ scale: 1.1, color: '#C61F41' }} whileTap={{ scale: 0.8, color: '#C61F41' }} style={{ color: '#FFFFFF' }}
+                                whileHover={{ scale: 1.1, color: '#981FC0' }} whileTap={{ scale: 0.8, color: '#981FC0' }} style={{ color: '#FFFFFF' }}
                             >
                                 <Icon icon="solar:copy-bold-duotone" width={15} height={15} onClick={() => {
                                     navigator.clipboard.writeText(users.uid);

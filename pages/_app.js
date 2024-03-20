@@ -32,7 +32,7 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
             <Head>
         <title>Eplsports</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="application-name" content="PWA App" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -46,16 +46,16 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
 <meta name="msapplication-tap-highlight" content="no" />
 <meta name="theme-color" content="#000000" />
 
-<link rel="apple-touch-icon" href="/Sheffield_FC.svg.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="/Sheffield_FC.svg.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/Sheffield_FC.svg.png" />
-<link rel="apple-touch-icon" sizes="167x167" href="/Sheffield_FC.svg.png" />
+<link rel="apple-touch-icon" href="/logo.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/logo.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+<link rel="apple-touch-icon" sizes="167x167" href="/logo.png" />
 
-<link rel="icon" type="image/png" sizes="32x32" href="/Sheffield_FC.svg.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/Sheffield_FC.svg.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
 <link rel="manifest" href="/manifest.json" />
-<link rel="mask-icon" href="/Sheffield_FC.svg.png" color="#5bbad5" />
-<link rel="shortcut icon" href="/Sheffield_FC.svg.png" />
+<link rel="mask-icon" href="/logo.png" color="#5bbad5" />
+<link rel="shortcut icon" href="/logo.png" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 
 <meta name="twitter:card" content="summary" />
@@ -69,7 +69,7 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
 <meta property="og:description" content="Best PWA App in the world" />
 <meta property="og:site_name" content="PWA App" />
 <meta property="og:url" content="https://Eplsports.com" />
-<meta property="og:image" content="https://Eplsports.com//Sheffield_FC.svg.png" />
+<meta property="og:image" content="https://Eplsports.com//logo.png" />
 
       </Head>
   <Component {...pageProps} />

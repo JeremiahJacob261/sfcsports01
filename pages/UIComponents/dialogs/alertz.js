@@ -62,7 +62,7 @@ export default function Alertz({amount,method}) {
                     }}
                     whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 1.09 }}
                     whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                         {t("DEPOSIT")}</motion.p>
       <Modal
         open={open}
@@ -93,7 +93,7 @@ export default function Alertz({amount,method}) {
             {ale}
           </p>
           <Divider sx={{ borderBottomWidth: '45px'}} />
-          <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+          <p style={{  color: 'white', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               router.push('/dashboard')

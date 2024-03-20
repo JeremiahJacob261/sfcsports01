@@ -30,13 +30,13 @@ body {
 background: -moz-linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
 background: -webkit-linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
 background: linear-gradient(90deg, rgba(105,15,33,1) 0%, rgba(198,31,65,1) 35%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#690f21",endColorstr="#c61f41",GradientType=1);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#690f21",endColorstr="#981FC0",GradientType=1);
 }
 .iconbtn{
 
 }
 .iconbtn:hover{
-  color: #C61F41;
+  color: #981FC0;
 }
 .bottombtn{
   background: rgb(105,15,33);
@@ -57,7 +57,7 @@ p{
   color:#f0e7e9;
 }
 .homebtnselected{
-  color:#C61F41;
+  color:#981FC0;
   cursor: pointer;
 }
 .backgrounds{
@@ -89,7 +89,7 @@ min-height:15vh;
 padding: 12px;
 }
 .headers{
-  color:#C61F41;
+  color:#981FC0;
   background-color: #573b41;
   height: 45px;
   font-family:var(--font-pops);

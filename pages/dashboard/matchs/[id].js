@@ -209,7 +209,7 @@ export default function Matchs({ matc, user ,test}) {
         }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #C61F41', borderRadius: '5px', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
+          style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #981FC0', borderRadius: '5px', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
         >
           <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer' }}>
             <p style={{ color: 'black' }}>{markets[pick]}</p>
@@ -284,7 +284,7 @@ export default function Matchs({ matc, user ,test}) {
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}
-                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '90vw', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '90vw', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                 Place Bet</motion.p>
             </Stack>
 
@@ -457,7 +457,7 @@ export default function Matchs({ matc, user ,test}) {
       <Head>
         <title>{matches.home} VS {matches.away}</title>
         <meta name="description" content="Get Started With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Stack>

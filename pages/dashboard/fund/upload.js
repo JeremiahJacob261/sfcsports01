@@ -149,7 +149,7 @@ console.log(data.publicUrl);
                         onClick={() => {
                             inputFile.current.click();
                         }}>
-                        <InsertDriveFileIcon sx={{ color: '#C61F41', fontFamily: 'Poppins,sans-serif' }} />
+                        <InsertDriveFileIcon sx={{ color: '#981FC0', fontFamily: 'Poppins,sans-serif' }} />
                         <input type='file' id='file'
                          ref={inputFile} style={{ display: 'none' }}
                             accept="image/*" onChange={(e) => {
@@ -181,7 +181,7 @@ console.log(data.publicUrl);
                 <motion.p onClick={checkParams}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
                         whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                         {t("COMPLETE")}!</motion.p>
 
             </Stack>

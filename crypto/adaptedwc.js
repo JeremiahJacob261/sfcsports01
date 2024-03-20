@@ -18,7 +18,7 @@ export const adapter = new WalletConnectAdapter({
             name: 'Eplsports',
             description: 'Eplsports WalletConnect Provider',
             url: 'https://www.Eplsports.com/',
-            icons: ['https://www.Eplsports.com/Sheffield_FC.svg.png']
+            icons: ['https://www.Eplsports.com/logo.png']
           },
     },
     web3ModalConfig: {

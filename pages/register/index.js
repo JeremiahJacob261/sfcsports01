@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import { Form as Farm } from 'react-bootstrap'
-import LOGO from '../../public/Sheffield_FC.svg.png'
+import LOGO from '../../public/logo.png'
 import Image from 'next/image'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -292,7 +292,7 @@ let test = await fetch('/api/regnotice', {
       <Head>
         <title>Register</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Box >
@@ -320,14 +320,14 @@ let test = await fetch('/api/regnotice', {
             </Stack>
 
             <TextField id="outlined-basic" label="Username" variant="outlined"
-              style={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB', } }}
+              style={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB', } }}
               value={username}
               onChange={(e) => {
                 setUsername((e.target.value).trim())
               }}
             />
             <TextField id="outlined-basic" label="Email" variant="outlined"
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
               value={email}
               type='email'
               onChange={(e) => {
@@ -337,7 +337,7 @@ let test = await fetch('/api/regnotice', {
             <TextField id="outlined-basic" label="Invite Code" variant="outlined"
               value={idR}
               disabled
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%",color: '#E5E7EB', background: '#D8B16B', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%",color: '#E5E7EB', background: 'white', input: { color: '#E5E7EB' } }}
               onChange={(e) => {
                 setidR(e.target.value)
               }} />
@@ -348,7 +348,7 @@ let test = await fetch('/api/regnotice', {
                 id="demo-simple-select"
                 value={age}
                 label="+84"
-                style={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+                style={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
                 onChange={(e) => {
                   setAge(e.target.value);
                 }}
@@ -357,7 +357,7 @@ let test = await fetch('/api/regnotice', {
                 {
                   codes.countries.map((c) => {
                     return (
-                      <MenuItem value={c.code} key={c.name} style={{ color: '#E5E7EB', background: '#D8B16B' }}>
+                      <MenuItem value={c.code} key={c.name} style={{ color: '#E5E7EB', background: 'white' }}>
                         <Stack direction='row' spacing={1}>
                           <Image src={c.flag_image_link} alt={c.name} width={25} height={22}/>
                         <p style={{fontFamily: 'Poppins, sans-serif'}}> {c.code} {c.name}</p>
@@ -380,7 +380,7 @@ let test = await fetch('/api/regnotice', {
             <TextField id="outlined-basic" label="Phone"
               type="parseFloat"
               variant="outlined"
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
               value={phone}
               onChange={(e) => {
                 setPhone(e.target.value);
@@ -393,7 +393,7 @@ let test = await fetch('/api/regnotice', {
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={handleChange('password')}
-                style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB' } }}
+                style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -414,7 +414,7 @@ let test = await fetch('/api/regnotice', {
               id="outlined-required"
               label="Confirm Password"
               type="password"
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#FFFFFF' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#FFFFFF' } }}
               value={cpassword}
               onChange={(e) => {
                 setcPassword((e.target.value).trim());
@@ -466,7 +466,7 @@ let test = await fetch('/api/regnotice', {
                   Alerts('Please Input a Complete Phone parseFloat! at least 9 digits', false)
                 }
               }}>
-              <p style={{  marginLeft: "3px", color: '#D8B16B', fontSize: '14px',fontWeight:'400'}}>{t("Register")}</p>
+              <p style={{  marginLeft: "3px", color: 'white', fontSize: '14px',fontWeight:'400'}}>{t("Register")}</p>
             </Button>
             <Stack direction="row" alignItems="center" justifyContent="center" style={{ height: '22px' }} spacing={1}>
               <p style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '100', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>{t("AlreadyhaveanAccount")}</p>
@@ -513,7 +513,7 @@ let test = await fetch('/api/regnotice', {
             {ale}
           </p>
           <Divider style={{ borderBottomWidth: '45px'}} />
-          <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+          <p style={{  color: 'white', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               route.push('/dashboard')

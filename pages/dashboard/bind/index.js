@@ -127,7 +127,7 @@ export default function BindWallet() {
                     return(
                       <Stack key={m.id} direction='row' alignItems='center' spacing={2}>
                         <Stack direction='column'>
-                           <p style={{ fontSize:'15px',color:'#C61F41',fontWeight:'600' }}>{m.wallet}</p>
+                           <p style={{ fontSize:'15px',color:'#981FC0',fontWeight:'600' }}>{m.wallet}</p>
                         <p style={{ fontSize:'12px',color:'#FFFFFF' }}>{created_at}</p>
                         </Stack>
                        <Icon icon="akar-icons:edit" width={24} height={24} onClick={()=>{
@@ -190,7 +190,7 @@ export default function BindWallet() {
                     }}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
                         whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#C61F41',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#981FC0',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
                     {t("BindWallet")}</motion.p>
                     <Link href='/dashboard/codesetting'>
                     <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>{t("Setatransactionpin")}</p>
@@ -232,7 +232,7 @@ export default function BindWallet() {
                 {ale}
               </p>
               <Divider sx={{ borderBottomWidth: '45px'}} />
-              <p style={{  color: '#D8B16B', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+              <p style={{  color: 'white', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
                 if (aleT) {
                   setOpen(false)
                   router.push('/dashboard')

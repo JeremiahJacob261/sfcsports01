@@ -210,7 +210,7 @@ export default function Event() {
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#C61F41', width: '90vw', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '90vw', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                 Place Bet</motion.p>
             </Stack>
 
@@ -406,7 +406,7 @@ useEffect(()=>{
           <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
             router.push('/dashboard')
           }} />
-          <p style={{ fontSize: '16px', fontWeight: '600', color: '#C61F41' }}>{t("Events")}</p>
+          <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Events")}</p>
         </Stack>
         <CountDown />
         <MatchRow />

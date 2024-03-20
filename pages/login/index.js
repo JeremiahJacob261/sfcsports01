@@ -11,7 +11,7 @@ import { supabase } from '../api/supabase'
 import { useContext } from "react"; 
 import Link from "next/link";
 import { useRouter } from 'next/router'
-import LOGO from '../../public/Sheffield_FC.svg.png'
+import LOGO from '../../public/logo.png'
 import Image from 'next/image'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -285,7 +285,7 @@ export default function Login(props) {
       <Head>
         <title>Login</title>
         <meta name="description" content="Login to your Account to see whats up with your bets" />
-        <link rel="icon" href="/Sheffield_FC.svg.png" />
+        <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Stack direction='column' spacing={3}>
@@ -303,14 +303,14 @@ export default function Login(props) {
         </Stack>
         <Stack direction="column" spacing={4} sx={{ width: '343px' }}>
           <TextField id="outlined-basic" label="Email Or Username" variant="filled"
-            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB', } }}
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB', } }}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
             }}
           />
           <FormControl
-            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: '#D8B16B', input: { color: '#E5E7EB', } }}
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB', } }}
             variant="filled">
             <InputLabel htmlFor="outlined-adornment-password">{t("Password")}</InputLabel>
             <OutlinedInput
@@ -392,7 +392,7 @@ export default function Login(props) {
             {ale}
           </p>
           <Divider sx={{ borderBottomWidth: '45px' }} />
-          <p style={{ color: '#D8B16B', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
+          <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               router.push('/dashboard')
