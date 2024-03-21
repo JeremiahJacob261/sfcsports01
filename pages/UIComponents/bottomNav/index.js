@@ -42,12 +42,13 @@ export default function HomeBottom() {
     setNames(localStorage.getItem("signNames"));
   }, [selected]);
     return (
-        <Stack direction='row' className='bottomnav' sx={{ width:'100%',position:'fixed',bottom:0}} justifyContent='space-around'>
+        <Stack direction='row' alignItems="center" className='bottomnav' sx={{ width:'90%',margin:'8px',position:'fixed',bottom:10,height:'70px'}} justifyContent='space-around'>
             {/* home start */}
             <motion.div whileTap={{ color:'#f0e7e9'}} >
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(0)}}>
               <Icon icon="majesticons:home" width={24} height={24} className={(selected != 0) ? 'homebtn' : 'homebtnselected'}  />
-            <p style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>{t("Home")}</p>
+            {/* <p style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>{t("Home")}</p>
+            */}
             </Stack>
             </motion.div>
             {/* /* home end */}
@@ -55,8 +56,9 @@ export default function HomeBottom() {
          {/* event start */}
             <motion.div whileTap={{ color:'#f0e7e9'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(1)}}>
-              <Icon icon="uis:chart" width={24} height={24} className={(selected != 1) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>{t("Event")}</p>
+              <Icon icon="material-symbols-light:sports-esports" width={24} height={24} className={(selected != 1) ? 'homebtn' : 'homebtnselected'} />
+            {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 1) ? 'visible' : 'none'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>Matches</p>
+           */}
             </Stack>
             </motion.div>
             {/* /* event end */}
@@ -65,7 +67,8 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(2)}}>
               <Icon icon="bxs:gift" width={24} height={24} className={(selected != 2) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>{t("Bets")}</p>
+            {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 2) ? 'visible' : 'none'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>{t("Bets")}</p>
+           */}
             </Stack>
             </motion.div>
             {/* /* search end */}
@@ -74,7 +77,8 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>
               <Icon icon="icon-park-outline:me" width={24} height={24} className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
-            <p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Account")}</p>
+            {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 3) ? 'visible' : 'none'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Account")}</p>
+          */}
             </Stack>
             </motion.div>
             {/* /* account end */}
@@ -83,8 +87,9 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red'}}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}}>
          <Icon icon="ph:microsoft-teams-logo-light" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
-        
-<p style={{ fontSize:'14px',fontWeight:'400'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>Team</p>
+{/*         
+<p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 4) ? 'visible' : 'none'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>Team</p>
+             */}
             </Stack>
             </motion.div>
             {/* /* history end */}

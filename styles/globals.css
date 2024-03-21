@@ -43,11 +43,14 @@ p{
   font-family:var(--font-poppins);
 }
 .bottomnav{
-  background-color: rgb(44, 2, 10);
+  background-color: #38003c;
   padding: 8px;
+  border-radius: 10px;
+  border: 0.6px solid #981FC0;
+  margin-bottom: 10px;
 }
 .homebtn{
-  color:#573b41;
+  color:#d5d2ff;
   cursor:pointer;
 }
 .home:hover{
@@ -58,16 +61,10 @@ p{
   cursor: pointer;
 }
 .backgrounds{
-  min-height: 90vh;
-  margin-top: -10px;
-  margin-bottom: 80px;
+  min-height: 100vh;
   padding-bottom: 100px;
-  background: rgb(27,3,0);
-background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
-background: -webkit-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
-background: linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1b0300",endColorstr="#2c040a",GradientType=1);
-}
+  background: #ffffff;
+ }
 .gradtest{
   background: -webkit-linear-gradient(297deg, rgba(194,127,8,1) 33%, rgba(245,186,79,1) 87%);
   -webkit-background-clip: text;
@@ -346,4 +343,23 @@ font-family:var(--font-lilpops);
   border-radius: 50%;
   border: 1px solid #981FC0;
   animation: scaleUpDown 2s ease-in-out infinite;
+}
+
+.headies {
+  width: 100%;
+  padding: 8px;
+}
+
+.title2 {
+  color: #5f087c;
+  font-weight: 700;
+  font-size: 29px;
+  word-spacing: 2px;
+  font-family: var(--font-suma);
+}
+
+.title1 {
+  color:#981FC0;
+  font-size: 29px;
+  word-spacing: 2px;
 }

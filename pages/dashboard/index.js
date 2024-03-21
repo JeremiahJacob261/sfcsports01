@@ -295,7 +295,7 @@ function MatchCountDown() {
 }
 //end of match countdown
               return (
-                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
+                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ padding:'8px'}}>
                   <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px',border:data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow:data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
                     onClick={() => {
 
@@ -346,7 +346,14 @@ function MatchCountDown() {
         </Stack>)
     }
   }
-
+    function Header (){
+      return(
+        <div className='headies'>
+            <p className='title1'>Hello</p>
+            <p className='title2'>username</p>
+          </div>
+      )
+    }
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '98vh' }} className='backgrounds' spacing={1}>
       <Head>
@@ -355,55 +362,7 @@ function MatchCountDown() {
         <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Stack sx={{ height: '50px', width: '100%' }}>
-        <NavbAR />
-      </Stack>
-      <marquee><p style={{color:'whitesmoke'}}>{t("WelcometoSFSPORTSO1")}</p></marquee>
-      <div style={{ width: '300px', height: 'auto', background: 'rgba(27,3,0,1)', padding: '2px' }}>
-        <Carousel interval={1500} autoPlay={true} >
-          <div >
-            <Image src={cara02} width={144} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
-
-          </div>
-          <div>
-            <Image src={cara03} width={344} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
-
-          </div>
-          <div>
-            <Image src={cara04} width={344} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
-
-          </div>
-          <div>
-            <Image src={cara01} width={344} height={137} alt='invitation bonus' sx={{ borderRadius: '15px' }} />
-
-          </div>
-        </Carousel>
-      </div>
-      <CountDown />
-      <Stack direction='row' justifyContent='center' spacing={1} sx={{ padding: '8px', width: '100%' }}>
-        {/* fans favourite */}
-        <Stack direction='column' alignItems='center' spacing={1} sx={{ background: 'rgb(27,3,0)', width: '30%' }}>
-          <Box sx={{ width: '100%', height: '5px', backgroundColor: '#981FC0' }}>
-          </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>{t("PeopleFavourites")}</p>
-        </Stack>
-
-        {/* today games */}
-        <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
-          <Box sx={{ height: '5px', width: '100%', backgroundColor: 'green' }}>
-          </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>{t("TodayMatches")}</p>
-        </Stack>
-
-        {/* tomorrow games */}
-        <Stack sx={{ background: 'rgb(27,3,0)', width: '30%' }} alignItems='center' spacing={1}>
-          <Box sx={{ height: '5px', width: '100%', backgroundColor: 'rgba(194,127,8,1)' }}>
-          </Box>
-          <p style={{ textAlign: 'center', fontSize: '13px' }}>{t("TomorrowMatches")}</p>
-        </Stack>
-
-      </Stack>
-      <MatchRow />
+      <Header/>
       <HomeBottom />
     </Stack>
   )

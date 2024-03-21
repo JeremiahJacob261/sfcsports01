@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"; 
+import React, { useState, useContext, useEffect } from "react";
 import Head from "next/head";
 import Link from 'next/link'
 import { Modal, Box, Stack, OutlinedInput, Button, Typography, Divider } from "@mui/material";
@@ -34,7 +34,7 @@ export default function Register({ refer }) {
   const route = useRouter();
   const [phone, setPhone] = useState("")
   const [username, setUsername] = useState("")
-  const [age, setAge] = useState("+84");
+  const [age, setAge] = useState("+44");
   const [drop, setDrop] = useState(false);
   const [idR, setidR] = useState(refer);
   const [agecheck, setAgecheck] = useState(false);
@@ -120,10 +120,10 @@ export default function Register({ refer }) {
 
         }
         GET();
-        const { data:users,error:uerr} = await supabase
-        .from('users')
-        .select('*')
-        .eq('uid',user.id)
+        const { data: users, error: uerr } = await supabase
+          .from('users')
+          .select('*')
+          .eq('uid', user.id)
         let usersinfo = users[0];
         localStorage.setItem('userinfo', usersinfo);
         localStorage.setItem('signedIns', true);
@@ -166,55 +166,55 @@ export default function Register({ refer }) {
 
       try {
         console.log(nRef)
-        const regRoute = async (uidl,password,phone,refer,username,age,nref,lvla,lvlb,email) => {
-          try{
-let test = await fetch('/api/regapi', {
+        const regRoute = async (uidl, password, phone, refer, username, age, nref, lvla, lvlb, email) => {
+          try {
+            let test = await fetch('/api/regapi', {
               method: 'POST',
               headers: {
-                  'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ 
-                uidl:uidl,
-                password:password,
-                phone:phone,
-                refer:refer,
-                username:username,
-                age:age,
-                nref:nref,
-                lvla:lvla,
-                lvlb:lvlb,
-                email:email
-               })
-          }).then(data => {
-              return data.json();
-          })
-          console.log(test);
-          }catch(e){
-            console.log(e)
-          }
-          
-  
-      }
-      regRoute(user.id,values.password,phone,refer,username,age,nRef,lvla,lvlb,email);
-          const testRoute = async (ref,newname) => {
-            try{
-let test = await fetch('/api/regnotice', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ newname:newname,ref:ref })
+              body: JSON.stringify({
+                uidl: uidl,
+                password: password,
+                phone: phone,
+                refer: refer,
+                username: username,
+                age: age,
+                nref: nref,
+                lvla: lvla,
+                lvlb: lvlb,
+                email: email
+              })
             }).then(data => {
-                return data.json();
+              return data.json();
             })
             console.log(test);
-            }catch(e){
-              console.log(e)
-            }
-            
-    
+          } catch (e) {
+            console.log(e)
+          }
+
+
         }
-        testRoute(refer,username)
+        regRoute(user.id, values.password, phone, refer, username, age, nRef, lvla, lvlb, email);
+        const testRoute = async (ref, newname) => {
+          try {
+            let test = await fetch('/api/regnotice', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ newname: newname, ref: ref })
+            }).then(data => {
+              return data.json();
+            })
+            console.log(test);
+          } catch (e) {
+            console.log(e)
+          }
+
+
+        }
+        testRoute(refer, username)
         localStorage.setItem('signedIns', true);
         localStorage.setItem('signUids', user.id);
         localStorage.setItem('signNames', username);
@@ -303,10 +303,10 @@ let test = await fetch('/api/regnotice', {
             alignItems="center"
             spacing={2}
             className="glass"
-            style={{ height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
+            style={{ minWidth:"340px",height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
             <Stack direction="column" spacing={4} justifyContent="center" alignItems="center">
               <Link href='/'>
-              <Image src={LOGO} width={100} height={120} alt='logo Eplsports' />
+                <Image src={LOGO} width={100} height={120} alt='logo Eplsports' />
               </Link>
               <Link href="/" style={{ textDecoration: "none" }}>
                 <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </p>
@@ -315,7 +315,7 @@ let test = await fetch('/api/regnotice', {
                 {t("Signupnowandgetawelcomebonus")}
               </p>
               <p style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
-              {t("Enterthecorrectinformationprovidedtocreateanaccount")}
+                {t("Enterthecorrectinformationprovidedtocreateanaccount")}
               </p>
             </Stack>
 
@@ -335,9 +335,9 @@ let test = await fetch('/api/regnotice', {
               }}
             />
             <TextField id="outlined-basic" label="Invite Code" variant="outlined"
-              value={idR}
+              value={(idR === '0') ? 'none' : idR}
               disabled
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%",color: '#E5E7EB', background: 'white', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", color: '#E5E7EB', background: 'white', input: { color: '#E5E7EB' } }}
               onChange={(e) => {
                 setidR(e.target.value)
               }} />
@@ -359,10 +359,10 @@ let test = await fetch('/api/regnotice', {
                     return (
                       <MenuItem value={c.code} key={c.name} style={{ color: '#E5E7EB', background: 'white' }}>
                         <Stack direction='row' spacing={1}>
-                          <Image src={c.flag_image_link} alt={c.name} width={25} height={22}/>
-                        <p style={{fontFamily: 'Poppins, sans-serif'}}> {c.code} {c.name}</p>
+                          <Image src={c.flag_image_link} alt={c.name} width={25} height={22} />
+                          <p style={{ fontFamily: 'Poppins, sans-serif', color: 'black' }}> {c.code} {c.name}</p>
                         </Stack>
-                       </MenuItem>
+                      </MenuItem>
                     )
                   })
                 }
@@ -424,7 +424,7 @@ let test = await fetch('/api/regnotice', {
           <Stack spacing={3} style={{ margin: '8px', padding: '8px' }}>
             <Farm.Check
               type="checkbox"
-              label={t("AcceptourTermsandConditions")}
+              label=" accept our Betting Terms and Conditions"
               id="age"
               style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif' }}
               value={agecheck}
@@ -463,10 +463,10 @@ let test = await fetch('/api/regnotice', {
                   checkDuplicate()
 
                 } else {
-                  Alerts('Please Input a Complete Phone parseFloat! at least 9 digits', false)
+                  Alerts('Please Input a Complete Phone Number! at least 9 digits', false)
                 }
               }}>
-              <p style={{  marginLeft: "3px", color: 'white', fontSize: '14px',fontWeight:'400'}}>{t("Register")}</p>
+              <p style={{ marginLeft: "3px", color: 'white', fontSize: '14px', fontWeight: '400' }}>{t("Register")}</p>
             </Button>
             <Stack direction="row" alignItems="center" justifyContent="center" style={{ height: '22px' }} spacing={1}>
               <p style={{ color: "#E5E7EB", fontSize: '14px', fontWeight: '100', opacity: '0.7', fontFamily: 'Poppins,sans-serif' }}>{t("AlreadyhaveanAccount")}</p>
@@ -505,15 +505,15 @@ let test = await fetch('/api/regnotice', {
           padding: '12px'
         }}>
           <Image src={aleT ? Success : Warn} width={120} height={120} alt='widh' />
-          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500',color:'black' }}>
+          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'black' }}>
 
             {aleT ? 'Success' : 'Sorry!'}
           </p>
-          <p id="modal-modal-description" style={{  mt: 2, color:'black',fontSize: '16px',textAlign:'center', fontWeight: '300' }}>
+          <p id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
             {ale}
           </p>
-          <Divider style={{ borderBottomWidth: '45px'}} />
-          <p style={{  color: 'white', padding: '8px', width: '100%',textAlign:'center',cursor: 'pointer' }} onClick={() => {
+          <Divider style={{ borderBottomWidth: '45px' }} />
+          <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               route.push('/dashboard')
@@ -532,9 +532,10 @@ export async function getServerSideProps(context) {
   console.log(refer)
   const { locale } = context;
   return {
-    props: { refer: refer,...(await serverSideTranslations(locale, [
-      'common','all'
-    ])),
-   },
+    props: {
+      refer: refer, ...(await serverSideTranslations(locale, [
+        'common', 'all'
+      ])),
+    },
   }
 }
