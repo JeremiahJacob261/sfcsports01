@@ -44,7 +44,7 @@ export default function HomeBottom() {
     return (
         <Stack direction='row' alignItems="center" className='bottomnav' sx={{ width:'90%',margin:'8px',position:'fixed',bottom:10,height:'70px'}} justifyContent='space-around'>
             {/* home start */}
-            <motion.div whileTap={{ color:'#f0e7e9'}} >
+            <motion.div whileTap={{ color:'#f0e7e9', y:10  }} >
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(0)}}>
               <Icon icon="majesticons:home" width={24} height={24} className={(selected != 0) ? 'homebtn' : 'homebtnselected'}  />
             {/* <p style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>{t("Home")}</p>
@@ -54,7 +54,7 @@ export default function HomeBottom() {
             {/* /* home end */}
 
          {/* event start */}
-            <motion.div whileTap={{ color:'#f0e7e9'}}>
+            <motion.div whileTap={{ color:'#f0e7e9', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(1)}}>
               <Icon icon="material-symbols-light:sports-esports" width={24} height={24} className={(selected != 1) ? 'homebtn' : 'homebtnselected'} />
             {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 1) ? 'visible' : 'none'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>Matches</p>
@@ -64,7 +64,7 @@ export default function HomeBottom() {
             {/* /* event end */}
 
              {/* search start */}
-             <motion.div whileTap={{ color:'red'}}>
+             <motion.div whileTap={{ color:'red', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(2)}}>
               <Icon icon="bxs:gift" width={24} height={24} className={(selected != 2) ? 'homebtn' : 'homebtnselected'} />
             {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 2) ? 'visible' : 'none'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>{t("Bets")}</p>
@@ -74,9 +74,9 @@ export default function HomeBottom() {
             {/* /* search end */}
 
              {/* account start */}
-             <motion.div whileTap={{ color:'red'}}>
+             <motion.div whileTap={{ color:'red', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>
-              <Icon icon="icon-park-outline:me" width={24} height={24} className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
+              <Icon icon="ph:wallet-duotone" width="24" height="24" className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
             {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 3) ? 'visible' : 'none'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Account")}</p>
           */}
             </Stack>
@@ -84,7 +84,7 @@ export default function HomeBottom() {
             {/* /* account end */}
 
              {/* history start */}
-             <motion.div whileTap={{ color:'red'}}>
+             <motion.div whileTap={{ color:'red', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}}>
          <Icon icon="ph:microsoft-teams-logo-light" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
 {/*         

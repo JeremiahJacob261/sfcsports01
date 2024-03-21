@@ -349,11 +349,18 @@ function MatchCountDown() {
     function Header (){
       return(
         <div className='headies'>
-            <p className='title1'>Hello</p>
-            <p className='title2'>username</p>
+           <Stack direction='column' sx={{ flex:1}}>
+           <p className='title1'>Hello</p>
+            <p className='title2'>{ "Username"}</p>
+            </Stack>
+            <motion.div whileHover={{ scale:1.05}} whileTap={{ scale:0.8}}>
+                <Icon icon="tdesign:notification-filled" width="24" height="24"  style={{color: "#981FC0"}} />
+            </motion.div>
           </div>
       )
     }
+
+    
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '98vh' }} className='backgrounds' spacing={1}>
       <Head>

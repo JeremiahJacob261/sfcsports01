@@ -551,7 +551,7 @@ export default function Account({ vips }) {
     //end of exit
     const router = useRouter();
     return (
-        <div className='backgrounds'>
+        <Stack alignItems="center" className='backgrounds'>
             <Head>
                 <title>{t("Account")}</title>
                 <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -611,7 +611,7 @@ export default function Account({ vips }) {
                 <Exit />
             </Stack>
             <HomeBottom />
-        </div>
+        </Stack>
     )
 }
 export async function getServerSideProps(context) {
