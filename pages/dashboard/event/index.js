@@ -398,6 +398,32 @@ useEffect(()=>{
       </div>
     )
   }
+
+  function Matchx(){
+    return( 
+      <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
+        <div className='live-containx' style={{ }}>
+        <div className='live1'>
+          <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
+          <p className='mtxt'>Princesa Solimões</p>
+        </div>
+        <div className='live2'>
+            <p className='mleague'>Premier league</p>
+            <p className='mscore'>10 : 20</p>
+            <p  className='mtime'>TODAY</p>
+        </div>
+        <div className='live1'>
+        <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
+          <p className='mtxt'>Princesa Solimões</p>
+        </div>
+        </div>
+        <motion.div className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
+          <p>Place Bet</p>
+          <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
+        </motion.div>
+      </div>
+    )
+}
   return (
     <div className='backgrounds'>
       <Stack alignItems='center'>
@@ -406,7 +432,7 @@ useEffect(()=>{
           <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
             router.push('/dashboard')
           }} />
-          <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Events")}</p>
+          <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>Games</p>
         </Stack>
         <CountDown />
         <MatchRow />

@@ -398,7 +398,8 @@ function MatchCountDown() {
             <p className='live-title1'>*</p>
             <p className='live-title'>Live</p>
           </div>
-          <div className='live-contain'>
+          <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
+            <div className='live-containx' style={{ }}>
             <div className='live1'>
               <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
               <p className='mtxt'>Princesa Solimões</p>
@@ -413,13 +414,19 @@ function MatchCountDown() {
               <p className='mtxt'>Princesa Solimões</p>
             </div>
           </div>
+          <motion.div className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
+              <p>Details</p>
+              <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
+            </motion.div>
+          </div>
         </Stack>
       )
     }
 
     function Matchx(){
         return( 
-          <div className='live-containx'>
+          <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
+            <div className='live-containx' style={{ }}>
             <div className='live1'>
               <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
               <p className='mtxt'>Princesa Solimões</p>
@@ -433,21 +440,46 @@ function MatchCountDown() {
             <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
               <p className='mtxt'>Princesa Solimões</p>
             </div>
+            </div>
+            <motion.div className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
+              <p>Place Bet</p>
+              <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
+            </motion.div>
           </div>
         )
     }
     function NextMatches(){
       return(
-        <div className='next-contain'>
+        <Stack className='next-contain' spacing={2}>
           <Matchx/>
+          <div style={{ height:'5px',width:'1px'}}></div>
           <Matchx/>
+          <div style={{ height:'5px',width:'1px'}}></div>
           <Matchx/>
+          <div style={{ height:'5px',width:'1px'}}></div>
           <Matchx/>
-        </div>
+          <div style={{ height:'5px',width:'1px'}}></div>
+        </Stack>
+      )
+    }
+
+    function Analytics () {
+      return(
+          <div className='analytics-div'>
+            
+            <p className='number'></p>
+            <p style={{ color:'grey'}}>Total Number Of Online Users</p>
+          </div>
       )
     }
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh',paddingBottom:'100px' }} className='backgrounds' spacing={1}>
+      <div style={{ width: '100%', height: '100%', position: 'fixed', zIndex: -1, opacity: '0.3',background:'white' }}>
+          <Image src={Logo}
+            layout='fill'
+            objectFit='cover'
+          />
+        </div>
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -457,6 +489,7 @@ function MatchCountDown() {
       <Header/>
       <SearchBar/>
       <Live/>
+      <Analytics/>
           <p className='next-title'>Next Matches</p>
       <NextMatches/>
       <HomeBottom />

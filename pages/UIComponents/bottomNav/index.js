@@ -47,8 +47,8 @@ export default function HomeBottom() {
             <motion.div whileTap={{ color:'#f0e7e9', y:10  }} >
             <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(0)}}>
               <Icon icon="majesticons:home" width={24} height={24} className={(selected != 0) ? 'homebtn' : 'homebtnselected'}  />
-            {/* <p style={{ fontSize:'14px',fontWeight:'400'}}className={(selected != 0) ? 'homebtn' : 'homebtnselected'}>{t("Home")}</p>
-            */}
+            <p style={{ fontSize:'10px',fontWeight:'200'}}>Home</p>
+           
             </Stack>
             </motion.div>
             {/* /* home end */}
@@ -57,8 +57,8 @@ export default function HomeBottom() {
             <motion.div whileTap={{ color:'#f0e7e9', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(1)}}>
               <Icon icon="material-symbols-light:sports-esports" width={24} height={24} className={(selected != 1) ? 'homebtn' : 'homebtnselected'} />
-            {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 1) ? 'visible' : 'none'}} className={(selected != 1) ? 'homebtn' : 'homebtnselected'}>Matches</p>
-           */}
+              <p style={{ fontSize:'10px',fontWeight:'200'}}>Game</p>
+           
             </Stack>
             </motion.div>
             {/* /* event end */}
@@ -67,8 +67,8 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>
               <Icon icon="ph:wallet-duotone" width="24" height="24" className={(selected != 3) ? 'homebtn' : 'homebtnselected'} />
-            {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 3) ? 'visible' : 'none'}} className={(selected != 3) ? 'homebtn' : 'homebtnselected'}>{t("Account")}</p>
-          */}
+              <p style={{ fontSize:'10px',fontWeight:'200',display:(selected === 3) ? 'none' : 'visible'}}>wallet</p>
+           
             </Stack>
             </motion.div>
             {/* /* account end */}
@@ -77,9 +77,8 @@ export default function HomeBottom() {
              <motion.div whileTap={{ color:'red', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}}>
          <Icon icon="ph:microsoft-teams-logo-light" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
-{/*         
-<p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 4) ? 'visible' : 'none'}} className={(selected != 4) ? 'homebtn' : 'homebtnselected'}>Team</p>
-             */}
+         <p style={{ fontSize:'10px',fontWeight:'200',display:(selected === 4) ? 'none' : 'visible'}}>Teams</p>
+           
             </Stack>
             </motion.div>
             {/* /* history end */}

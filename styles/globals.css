@@ -486,13 +486,25 @@ font-family:var(--font-lilpops);
 
 .live-containx {
   background: #981FC0;
-  width: 320px;
-  border: 1px solid #5f087c;
-  height: 150px;
+  max-width: 350px;
+  min-width: 330px;
+  height: 180px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+}
+
+.analytics-div  {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 200px;
+  background-color: #661980;
 }
 
 .new-concept {
@@ -523,3 +535,42 @@ font-family:var(--font-lilpops);
   font-family: var(--font-lilpops);
   font-size: 10px;
 }
+
+@property --num {
+  syntax: '<integer>';
+  initial-value: 12000;
+  inherits: false;
+ }
+ 
+ .number {
+  animation: animate 10s forwards;
+  counter-reset: num var(--num);
+  font-weight: bold;
+  font-size: 3rem;
+  font-family: sans-serif;
+  padding: 2rem;
+ }
+ 
+ .number::before {
+  content: counter(num);
+ }
+ 
+ @keyframes animate {
+  from {
+     --num: 1000;
+  }
+  to {
+     --num: 17000;
+  }
+ }
+ .decision-x {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #8525a5;
+  padding: 8px;
+  flex-wrap: wrap;
+ }
