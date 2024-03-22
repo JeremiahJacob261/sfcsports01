@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { Sumana, Poppins } from '@next/font/google'
+import { Sumana, Poppins, Walter_Turncoat } from '@next/font/google'
 import { supabase } from './api/supabase'
 import localFont from 'next/font/local'
 import { useEffect } from 'react';
@@ -9,6 +9,7 @@ import Head from 'next/head';
 const poppins = Poppins({ weight: ['300','400','600'],subsets: ['latin']});
 const suma = Sumana({ weight: ['400','700'],subsets: ['latin']})
 const pops = localFont({ src: '../public/font/poppins.woff2' });
+const walter = Walter_Turncoat({ weight:['400'],subsets:['latin']})
 const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
  function App({ Component, pageProps }) {
   useEffect(()=>{

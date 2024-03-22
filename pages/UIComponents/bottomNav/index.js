@@ -24,7 +24,7 @@ export default function HomeBottom() {
       0: '/dashboard',
       1:'/dashboard/event',
       2:'/dashboard/bets',
-      3:`/dashboard/account?id=${name}`,
+      3:`/dashboard/wallet?id=${name}`,
       4:`/dashboard/referral?name=${name}`
     }
   const [selected, setSelected] = useState(0);
@@ -63,6 +63,16 @@ export default function HomeBottom() {
             </motion.div>
             {/* /* event end */}
 
+{/* event start */}
+<motion.div whileTap={{ color:'#f0e7e9', y:10  }}>
+         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(2)}}>
+              <Icon icon="fluent-emoji-high-contrast:pool-8-ball" width={24} height={24} className={(selected != 2) ? 'homebtn' : 'homebtnselected'} />
+              <p style={{ fontSize:'10px',fontWeight:'200'}}>bets</p>
+           
+            </Stack>
+            </motion.div>
+            {/* /* event end */}
+            
              {/* account start */}
              <motion.div whileTap={{ color:'red', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>
@@ -75,7 +85,7 @@ export default function HomeBottom() {
 
              {/* history start */}
              <motion.div whileTap={{ color:'red', y:10  }}>
-         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}}>
+         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(4)}}>
          <Icon icon="ph:microsoft-teams-logo-light" width={24} height={24} className={(selected != 4) ? 'homebtn' : 'homebtnselected'} />
          <p style={{ fontSize:'10px',fontWeight:'200',display:(selected === 4) ? 'none' : 'visible'}}>Teams</p>
            
