@@ -63,16 +63,6 @@ export default function HomeBottom() {
             </motion.div>
             {/* /* event end */}
 
-             {/* search start */}
-             <motion.div whileTap={{ color:'red', y:10  }}>
-         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(2)}}>
-              <Icon icon="bxs:gift" width={24} height={24} className={(selected != 2) ? 'homebtn' : 'homebtnselected'} />
-            {/* <p style={{ fontSize:'14px',fontWeight:'400',display:(selected != 2) ? 'visible' : 'none'}} className={(selected != 2) ? 'homebtn' : 'homebtnselected'}>{t("Bets")}</p>
-           */}
-            </Stack>
-            </motion.div>
-            {/* /* search end */}
-
              {/* account start */}
              <motion.div whileTap={{ color:'red', y:10  }}>
          <Stack direction='column' alignItems='center' justifyContent='center' sx={{ padding:'8px'}} onClick={()=>{selectLogic(3)}}>

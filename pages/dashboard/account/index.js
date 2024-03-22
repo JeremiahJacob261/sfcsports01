@@ -159,34 +159,13 @@ export default function Account({ vips }) {
                 <Stack className='accountinfo' justifyContent='center' alignItems='center' spacing={1}>
                     <p style={{ fontWeight: '600', fontSize: '24px', color: '#ac915fd2' }}>$ {balanace.toFixed(2)}</p>
                     <p style={{ fontWeight: '300', fontSize: '12px' }}>Account Balance</p>
-                    <motion.p onClick={() => {
-                        router.push('/dashboard/fund')
-                    }}
-                        whileTap={{ background: '#573b41', scale: '1.05' }}
-                        whileHover={{ background: '#573b41' }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#981FC0', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        DEPOSIT</motion.p>
-                    <motion.p onClick={() => {
-                        router.push('/dashboard/withdraw')
-                    }}
-                        whileTap={{ background: '#573b41', scale: '1.05' }}
-                        whileHover={{ background: '#573b41' }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: '#981FC0', padding: '8px', background: 'white', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        WITHDRAW</motion.p>
-                    <motion.p onClick={() => {
-                        router.push('/dashboard/transactions')
-                    }}
-                        whileTap={{ background: '#ac915fd2', scale: '1.05' }}
-                        whileHover={{ background: '#ac915fd2' }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: 'rgba(245,186,79,1)', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        SEE TRANSACTIONS</motion.p>
-                    <motion.p onClick={() => {
-                        router.push('/dashboard/bind')
-                    }}
-                        whileTap={{ background: '#ac915fd2', scale: '1.05' }}
-                        whileHover={{ background: '#ac915fd2' }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: 'grey', width: '100%', textAlign: 'center', cursor: 'pointer' }}>
-                        BIND WALLETS</motion.p>
+                    <div className='new-concept'>
+                        <motion.div onClick={()=>{   router.push('/dashboard/fund')   }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.7 }} className='new-icon'><Icon icon="icon-park-solid:add-mode" width="24" height="24"  style={{color: '#981FC0'}} /></motion.div>
+                        <motion.div onClick={()=>{   router.push('/dashboard/withdraw')   }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.7 }} className='new-icon'><Icon icon="uil:money-withdrawal" width="24" height="24"  style={{color:  '#981FC0'}} /></motion.div>
+                        <motion.div onClick={()=>{   router.push('/dashboard/transactions')   }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.7 }} className='new-icon'><Icon icon="grommet-icons:transaction" width="24" height="24"  style={{color:  '#981FC0'}} /></motion.div>
+                        <motion.div onClick={()=>{   router.push('/dashboard/bind')   }} whileHover={{ scale:1.05 }} whileTap={{ scale:0.7 }} className='new-icon'><Icon icon="mdi:wallet-plus-outline" width="24" height="24"  style={{color:  '#981FC0'}} /></motion.div>
+                    </div>
+                   
                     <Stack direction='row' justifyContent='stretch' alignItems='center'>
                         <Stack sx={{ padding: '8px' }} justifyContent='center' alignItems='center'>
                             <p style={{ fontWeight: '600', fontSize: '18px', color: '#ac915fd2' }}>$ {users.totald}</p>

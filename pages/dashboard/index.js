@@ -8,13 +8,9 @@ import { useRouter } from 'next/router';
 import Logo from "@/public/logo.png";
 import Head from 'next/head';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
-import cara01 from '@/public/cara01.jpg';
-import cara02 from '@/public/cara02.jpg';
-import cara03 from '@/public/cara03.jpg';
-import cara04 from '@/public/cara04.jpg';
+import InputAdornment from '@mui/material/InputAdornment';
 import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
@@ -101,6 +97,7 @@ export default function Home(props) {
             }).then(data => {
               return data.json();
               })
+              console.log(test)
             setFootDat(test.data);
           } catch (error) {
             console.log(error)
@@ -360,9 +357,97 @@ function MatchCountDown() {
       )
     }
 
+    function SearchBar() {
+      return(
+        <Stack direction='column' sx={{ height:"70px",width:'100%', padding:'8px', alignItems:'center'}}>
+                <TextField
+        id="input-with-icon-textfield"
+        label="Search by name or ID"
+        sx={{ width: '100%', background: 'rgba(0,0,0,0.2)', borderRadius: '8px',
+        "& .MuiOutlinedInput-root": {
+          "& > fieldset": {
+            border: "none" // This removes the border
+          },
+          "& .MuiInputBase-input": {
+            color: "white" // This changes the text color to white
+          }
+        }
     
+      }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+           <Icon icon="iconamoon:search-duotone" width="24" height="24"  style={{color: "white"}} />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined"
+        InputLabelProps={{
+          style: { color: '#D8BFD8' } // Light purple color
+       }}
+      />
+
+        </Stack>
+      )
+    }
+
+    function Live() {
+      return(
+        <Stack className='live'>
+          <div className='live-title-contain'>
+            <p className='live-title1'>*</p>
+            <p className='live-title'>Live</p>
+          </div>
+          <div className='live-contain'>
+            <div className='live1'>
+              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
+              <p className='mtxt'>Princesa Solimões</p>
+            </div>
+            <div className='live2'>
+                <p className='mleague'>Premier league</p>
+                <p className='mscore'>1 : 2</p>
+                <p  className='mtime'>50 : 00</p>
+            </div>
+            <div className='live1'>
+            <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
+              <p className='mtxt'>Princesa Solimões</p>
+            </div>
+          </div>
+        </Stack>
+      )
+    }
+
+    function Matchx(){
+        return( 
+          <div className='live-containx'>
+            <div className='live1'>
+              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
+              <p className='mtxt'>Princesa Solimões</p>
+            </div>
+            <div className='live2'>
+                <p className='mleague'>Premier league</p>
+                <p className='mscore'>10 : 20</p>
+                <p  className='mtime'>TODAY</p>
+            </div>
+            <div className='live1'>
+            <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
+              <p className='mtxt'>Princesa Solimões</p>
+            </div>
+          </div>
+        )
+    }
+    function NextMatches(){
+      return(
+        <div className='next-contain'>
+          <Matchx/>
+          <Matchx/>
+          <Matchx/>
+          <Matchx/>
+        </div>
+      )
+    }
   return (
-    <Stack direction='column' alignItems='center' sx={{ minHeight: '98vh' }} className='backgrounds' spacing={1}>
+    <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh',paddingBottom:'100px' }} className='backgrounds' spacing={1}>
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -370,6 +455,10 @@ function MatchCountDown() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Header/>
+      <SearchBar/>
+      <Live/>
+          <p className='next-title'>Next Matches</p>
+      <NextMatches/>
       <HomeBottom />
     </Stack>
   )
