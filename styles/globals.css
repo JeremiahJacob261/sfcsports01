@@ -72,7 +72,7 @@ p{
 .backgrounds{
   min-height: 100vh;
   width: 100%;
-  background: #981fc0c7;
+  background: #981fc0e1;
  }
 .gradtest{
   background: -webkit-linear-gradient(297deg, rgba(194,127,8,1) 33%, rgba(245,186,79,1) 87%);
@@ -93,7 +93,7 @@ padding: 12px;
 }
 .headers{
   color:#981FC0;
-  background-color: #573b41;
+  background-color: #3F1052;
   height: 45px;
   font-family:var(--font-pops);
 }
@@ -135,14 +135,16 @@ height:34px;
 .betTab{
   padding: 15px;
   border-radius: 3px 10px 10px 10px;
-  background-color: #ad1c39;
+  background-color: #3F1052;
   cursor:pointer;
+  border: 1px solid #981fc0e3;
 }
 .betTabSelected{
   padding: 15px;
   border-radius: 3px 10px 10px 10px;
-  background-color: #e4264c;
+  background-color: #981FC0;
   cursor:pointer;
+  border:1px solid #661980;
 }
 .acctext{
   font-size: small;
@@ -499,12 +501,19 @@ font-family:var(--font-lilpops);
 .analytics-div  {
   width: 100%;
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 200px;
+  background-color: #661980;
+}
+
+.analytic-section {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 8px;
-  height: 200px;
-  background-color: #661980;
 }
 
 .new-concept {
@@ -543,7 +552,7 @@ font-family:var(--font-lilpops);
  }
  
  .number {
-  animation: animate 10s forwards;
+  animation: animate 15s forwards;
   counter-reset: num var(--num);
   font-weight: bold;
   font-size: 3rem;
@@ -557,12 +566,41 @@ font-family:var(--font-lilpops);
  
  @keyframes animate {
   from {
-     --num: 1000;
+     --num: 960;
   }
   to {
-     --num: 17000;
+     --num: 18452;
   }
  }
+
+ @property --numx {
+  syntax: '<integer>';
+  initial-value: 210;
+  inherits: false;
+ }
+
+ .numberx {
+  animation: animatxe 10s forwards;
+  counter-reset: numx var(--numx);
+  font-weight: bold;
+  font-size: 3rem;
+  font-family: sans-serif;
+  padding: 2rem;
+ }
+ 
+ .numberx::before {
+  content: counter(numx);
+ }
+ 
+ @keyframes animatxe {
+  from {
+     --numx: 210;
+  }
+  to {
+     --numx: 13760;
+  }
+ }
+
  .decision-x {
   display: flex;
   flex-direction: row;
@@ -570,7 +608,7 @@ font-family:var(--font-lilpops);
   align-items: center;
   width: 100%;
   border-radius: 8px;
-  background-color: #8525a5;
+  background-color: #3F1052;
   padding: 8px;
   flex-wrap: wrap;
  }
@@ -608,4 +646,12 @@ font-family:var(--font-lilpops);
   width: auto;
   text-align: center;
   font-style: bold;
+ }
+
+ .icon-con  {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px;
  }

@@ -19,15 +19,15 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Translate from '@/pages/translator';
 export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'all',
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'all',
+      ])),
+      // Will be passed to the page component as props
+    },
   }
+}
 export default function Home(props) {
   const { t } = useTranslation('all')
   const [addresst, setAddress] = useState('');
@@ -93,11 +93,11 @@ export default function Home(props) {
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({  })
+              body: JSON.stringify({})
             }).then(data => {
               return data.json();
-              })
-              console.log(test)
+            })
+            console.log(test)
             setFootDat(test.data);
           } catch (error) {
             console.log(error)
@@ -198,19 +198,19 @@ export default function Home(props) {
             </Stack>
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
-          
-        <Translate />
-          <Link href="https://t.me/sfc_customerservice">
-            <motion.div whileHover={{ color: '#981FC0' }}>
-              <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }} 
-              />
-            </motion.div>
-          </Link>
+
+            <Translate />
+            <Link href="https://t.me/sfc_customerservice">
+              <motion.div whileHover={{ color: '#981FC0' }}>
+                <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }}
+                />
+              </motion.div>
+            </Link>
 
             <motion.div whileHover={{ color: '#981FC0' }} onClick={testRoute}>
-              <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={()=>{
+              <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
                 router.push(`/dashboard/history?id=${user.username}`)
-              }}/>
+              }} />
             </motion.div>
           </Stack>
         </Stack>
@@ -229,7 +229,7 @@ export default function Home(props) {
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
           >
-          <Translate />
+            <Translate />
             <motion.div whileHover={{ color: '#981FC0' }} onClick={() => {
               router.push('/dashboard/history')
             }} >
@@ -253,52 +253,52 @@ export default function Home(props) {
                 let timeString = data.time;
                 let dateParts = dateString.split("-");
                 let timeParts = timeString.split(":");
-            
+
                 // Create a new Date object
                 let date = new Date(dateParts[0], parseInt(dateParts[1], 10) - 1, dateParts[2], timeParts[0], timeParts[1]);
                 // Get the timestamp
                 let timestamp = date.getTime();
                 return timestamp;
               }
-function MatchCountDown() {
-  function calculateTimeLeft() {
-    let difference = +new Date( defTime()) - +new Date();
-    let timeLeft = {};
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-    return timeLeft;
-   }
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    return () => clearTimeout(timer);
-  });
-  let hourz = (parseFloat(timeLeft.days) > 0 ) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
-  return (
-    <div>
-      <div className="match-countdown-container">
-        <span id="hours">{ hourz  + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
-      </div>
-    </div>
-  )
-}
-//end of match countdown
+              function MatchCountDown() {
+                function calculateTimeLeft() {
+                  let difference = +new Date(defTime()) - +new Date();
+                  let timeLeft = {};
+                  if (difference > 0) {
+                    timeLeft = {
+                      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                      minutes: Math.floor((difference / 1000 / 60) % 60),
+                      seconds: Math.floor((difference / 1000) % 60),
+                    };
+                  }
+                  return timeLeft;
+                }
+                const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+                useEffect(() => {
+                  const timer = setTimeout(() => {
+                    setTimeLeft(calculateTimeLeft());
+                  }, 1000);
+                  return () => clearTimeout(timer);
+                });
+                let hourz = (parseFloat(timeLeft.days) > 0) ? parseFloat(timeLeft.hours) + parseFloat(timeLeft.days * 24) : timeLeft.hours;
+                return (
+                  <div>
+                    <div className="match-countdown-container">
+                      <span id="hours">{hourz + ":" + timeLeft.minutes + ":" + timeLeft.seconds}</span>
+                    </div>
+                  </div>
+                )
+              }
+              //end of match countdown
               return (
-                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ padding:'8px'}}>
-                  <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px',border:data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow:data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
+                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ padding: '8px' }}>
+                  <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
                     onClick={() => {
 
                     }}>
-                     <Stack direction="row" style={{ color: 'grey' }}>{data.time} {data.date} ID {data.match_id} {data.league} 
-                    <MatchCountDown/>
+                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} {data.date} ID {data.match_id} {data.league}
+                      <MatchCountDown />
                     </Stack>
                     <Stack direction="row" alignItems='center'>
                       <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
@@ -310,19 +310,19 @@ function MatchCountDown() {
                         <div className='odds-fix' onClick={() => {
 
                         }}>
-                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
+                          <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
                           <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.onenil}</p>
                         </div>
                         <div className='odds-fix' onClick={() => {
 
                         }}>
-                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
+                          <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
                           <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilnil}</p>
                         </div>
                         <div className='odds-fix' onClick={() => {
 
                         }}>
-                        <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
+                          <p style={{ color: 'white', height: '7px', margin: 0, padding: 0 }}>.</p>
                           <p style={{ color: '#e4264c', fontSize: '14px' }}>{data.nilone}</p>
                         </div>
                       </Stack>
@@ -343,155 +343,162 @@ function MatchCountDown() {
         </Stack>)
     }
   }
-    function Header (){
-      return(
-        <div className='headies'>
-           <Stack direction='column' sx={{ flex:1}}>
-           <p className='title1'>Hello</p>
-            <p className='title2'>{ "Username"}</p>
-            </Stack>
-            <motion.div whileHover={{ scale:1.05}} whileTap={{ scale:0.8}}>
-                <Icon icon="tdesign:notification-filled" width="24" height="24"  style={{color: "#981FC0"}} />
-            </motion.div>
-          </div>
-      )
-    }
-
-    function SearchBar() {
-      return(
-        <Stack direction='column' sx={{ height:"70px",width:'100%', padding:'8px', alignItems:'center'}}>
-                <TextField
-        id="input-with-icon-textfield"
-        label="Search by name or ID"
-        sx={{ width: '100%', background: 'rgba(0,0,0,0.2)', borderRadius: '8px',
-        "& .MuiOutlinedInput-root": {
-          "& > fieldset": {
-            border: "none" // This removes the border
-          },
-          "& .MuiInputBase-input": {
-            color: "white" // This changes the text color to white
-          }
-        }
-    
-      }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-           <Icon icon="iconamoon:search-duotone" width="24" height="24"  style={{color: "white"}} />
-            </InputAdornment>
-          ),
-        }}
-        variant="outlined"
-        InputLabelProps={{
-          style: { color: '#D8BFD8' } // Light purple color
-       }}
-      />
-
+  function Header() {
+    return (
+      <div className='headies'>
+        <Stack direction='column' sx={{ flex: 1 }}>
+          <p className='title1'>Hello</p>
+          <p className='title2'>{"Username"}</p>
         </Stack>
-      )
-    }
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }}>
+          <Icon icon="tdesign:notification-filled" width="24" height="24" style={{ color: "#981FC0" }} />
+        </motion.div>
+      </div>
+    )
+  }
 
-    function Live() {
-      return(
-        <Stack className='live'>
-          <div className='live-title-contain'>
-            <p className='live-title1'>*</p>
-            <p className='live-title'>Live</p>
-          </div>
-          <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
-            <div className='live-containx' style={{ }}>
-            <div className='live1'>
-              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
-              <p className='mtxt'>Princesa Solimões</p>
-            </div>
-            <div className='live2'>
-                <p className='mleague'>Premier league</p>
-                <p className='mscore'>1 : 2</p>
-                <p  className='mtime'>50 : 00</p>
-            </div>
-            <div className='live1'>
-            <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
-              <p className='mtxt'>Princesa Solimões</p>
-            </div>
-          </div>
-          <motion.div className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
-              <p>Details</p>
-              <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
-            </motion.div>
-          </div>
-        </Stack>
-      )
-    }
+  function SearchBar() {
+    return (
+      <Stack direction='column' sx={{ height: "70px", width: '100%', padding: '8px', alignItems: 'center' }}>
+        <TextField
+          id="input-with-icon-textfield"
+          label="Search by name or ID"
+          sx={{
+            width: '100%', background: 'rgba(0,0,0,0.2)', borderRadius: '8px',
+            "& .MuiOutlinedInput-root": {
+              "& > fieldset": {
+                border: "none" // This removes the border
+              },
+              "& .MuiInputBase-input": {
+                color: "white" // This changes the text color to white
+              }
+            }
 
-    function Matchx(){
-        return( 
-          <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
-            <div className='live-containx' style={{ }}>
-            <div className='live1'>
-              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
-              <p className='mtxt'>Princesa Solimões</p>
-            </div>
-            <div className='live2'>
-                <p className='mleague'>Premier league</p>
-                <p className='mscore'>10 : 20</p>
-                <p  className='mtime'>TODAY</p>
-            </div>
-            <div className='live1'>
-            <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
-              <p className='mtxt'>Princesa Solimões</p>
-            </div>
-            </div>
-            <motion.div className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
-              <p>Place Bet</p>
-              <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
-            </motion.div>
-          </div>
-        )
-    }
-    function NextMatches(){
-      return(
-        <Stack className='next-contain' spacing={2}>
-          <Matchx/>
-          <div style={{ height:'5px',width:'1px'}}></div>
-          <Matchx/>
-          <div style={{ height:'5px',width:'1px'}}></div>
-          <Matchx/>
-          <div style={{ height:'5px',width:'1px'}}></div>
-          <Matchx/>
-          <div style={{ height:'5px',width:'1px'}}></div>
-        </Stack>
-      )
-    }
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Icon icon="iconamoon:search-duotone" width="24" height="24" style={{ color: "white" }} />
+              </InputAdornment>
+            ),
+          }}
+          variant="outlined"
+          InputLabelProps={{
+            style: { color: '#D8BFD8' } // Light purple color
+          }}
+        />
 
-    function Analytics () {
-      return(
-          <div className='analytics-div'>
-            
-            <p className='number'></p>
-            <p style={{ color:'grey'}}>Total Number Of Online Users</p>
-          </div>
-      )
-    }
-  return (
-    <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh',paddingBottom:'100px' }} className='backgrounds' spacing={1}>
-      <div style={{ width: '100%', height: '100%', position: 'fixed', zIndex: -1, opacity: '0.3',background:'white' }}>
-          <Image src={Logo}
-            layout='fill'
-            objectFit='cover'
-          />
+      </Stack>
+    )
+  }
+
+  function Live() {
+    return (
+      <Stack className='live'>
+        <div className='live-title-contain'>
+          <p className='live-title1'>*</p>
+          <p className='live-title'>Live</p>
         </div>
+        <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
+          <div className='live-containx' style={{}}>
+            <div className='live1'>
+              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo" />
+              <p className='mtxt'>Princesa Solimões</p>
+            </div>
+            <div className='live2'>
+              <p className='mleague'>Premier league</p>
+              <p className='mscore'>1 : 2</p>
+              <p className='mtime'>50 : 00</p>
+            </div>
+            <div className='live1'>
+              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo" />
+              <p className='mtxt'>Princesa Solimões</p>
+            </div>
+          </div>
+          <motion.div className="decision-x" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.8 }}>
+            <p>Details</p>
+            <Icon icon="ic:round-arrow-right" width="24" height="24" style={{ color: 'white' }} />
+          </motion.div>
+        </div>
+      </Stack>
+    )
+  }
+
+  function Matchx() {
+    return (
+      <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
+        <div className='live-containx' style={{}}>
+          <div className='live1'>
+            <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo" />
+            <p className='mtxt'>Princesa Solimões</p>
+          </div>
+          <div className='live2'>
+            <p className='mleague'>Premier league</p>
+            <p className='mscore'>10 : 20</p>
+            <p className='mtime'>TODAY</p>
+          </div>
+          <div className='live1'>
+            <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo" />
+            <p className='mtxt'>Princesa Solimões</p>
+          </div>
+        </div>
+        <motion.div className="decision-x" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.8 }}>
+          <p>Place Bet</p>
+          <Icon icon="ic:round-arrow-right" width="24" height="24" style={{ color: 'white' }} />
+        </motion.div>
+      </div>
+    )
+  }
+  function NextMatches() {
+    return (
+      <Stack className='next-contain' spacing={2}>
+        <Matchx />
+        <div style={{ height: '5px', width: '1px' }}></div>
+        <Matchx />
+        <div style={{ height: '5px', width: '1px' }}></div>
+        <Matchx />
+        <div style={{ height: '5px', width: '1px' }}></div>
+        <Matchx />
+        <div style={{ height: '5px', width: '1px' }}></div>
+      </Stack>
+    )
+  }
+
+  function Analytics() {
+    return (
+      <div className='analytics-div'>
+        <div className='analytic-section'>
+          <p className='number'></p>
+          <p style={{ color: 'grey' }}>Total Number Of Online Users</p>
+        </div>
+
+        <div className='analytic-section'>
+          <p className='numberx'></p>
+          <p style={{ color: 'grey' }}>Total Current Winners</p>
+        </div>
+      </div>
+    )
+  }
+  return (
+    <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh', paddingBottom: '100px' }} className='backgrounds' spacing={1}>
+      <div style={{ width: '100%', height: '100%', position: 'fixed', zIndex: -1, opacity: '0.3', background: 'white' }}>
+        <Image src={Logo}
+          layout='fill'
+          objectFit='cover'
+        />
+      </div>
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
         <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Header/>
-      <SearchBar/>
-      <Live/>
-      <Analytics/>
-          <p className='next-title'>Next Matches</p>
-      <NextMatches/>
+      <Header />
+      <SearchBar />
+      <Live />
+      <Analytics />
+      <p className='next-title'>Next Matches</p>
+      <NextMatches />
       <HomeBottom />
     </Stack>
   )

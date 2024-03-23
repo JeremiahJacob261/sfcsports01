@@ -26,7 +26,7 @@ export default function Promotion() {
     return (
         <div className="backgrounds" style={{ minHeight: '99vh' }}>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-                <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
+                <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.back()
                 }} />
                 <p className="text-sm text-gray-500">{t("Promotion")}</p>

@@ -429,7 +429,7 @@ useEffect(()=>{
       <Stack alignItems='center'>
 
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-          <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
+          <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
             router.push('/dashboard')
           }} />
           <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>Games</p>

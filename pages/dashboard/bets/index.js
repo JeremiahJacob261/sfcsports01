@@ -150,22 +150,24 @@ export default function Bets() {
 
   }
   return (
-    <div className='backgrounds'>
+    <div className='backgrounds' style={{ maxWidth:'100vw', display:'flex', alignItems:'center',flexDirection:'column'}}>
       <Head>
         <title>Bets History</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
         <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px' }} spacing={1}>
-        <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
+      <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px',width:'100%',background:'#981fc0' }} spacing={1}>
+        <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.push('/dashboard')
         }} />
         <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Bets")}</p>
       </Stack>
-      <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("OpenBets")}</p>
-        <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>{t("SettledBets")}</p>
+      <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px' }} spacing={2} justifyContent='center' alignItems="center">
+        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(0) }}>Ongoing <br/>0</p>
+        <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(1) }}>Wins<br/>0</p>
+        <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(2) }}>Loses<br/>0</p>
+        <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(3) }}>Cancelled Bets<br/>0</p>
       </Stack>
       <MatchRow />
       <HomeBottom />

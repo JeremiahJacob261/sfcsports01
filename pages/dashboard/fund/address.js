@@ -46,7 +46,7 @@ export default function Address({ method }) {
       />
 
       <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-        <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
+        <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.back()
         }} />
         <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("InputAddress")}</p>
@@ -101,7 +101,7 @@ export default function Address({ method }) {
       />
 
       <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
-        <Icon icon="ic:sharp-arrow-back" width={24} height={24} onClick={() => {
+        <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.back()
         }} />
         <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("InputAddress")}</p>
