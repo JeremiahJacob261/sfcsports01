@@ -61,8 +61,7 @@ export default function Transaction({ transaction }) {
                             let stat = m.sent ?? 'pending';
                             return (
                                 <Stack direction='row' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
-                                    <Icon width={45} height={45} icon={(m.type === 'deposit') ? "solar:arrow-down-broken" :'solar:arrow-up-broken'} 
-                                    style={{color:(m.type === 'deposit') ? "green" :'red'}}/>
+                                   
                                     <Stack direction='column'>
                                         <p style={{ color:'goldenrod',fontWeight:'500'}}>{(m.address === 'admin') ? "Reason: "+m.method : "Status: "+stat}</p>
                                         <p>{m.type ?? 'unknown type'}</p>

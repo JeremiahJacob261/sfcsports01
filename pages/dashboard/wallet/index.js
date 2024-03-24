@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from "next/router";
 import React from 'react';
 import { Backdrop } from "@mui/material";
-import { LOGO } from '../../../public/logo.png'
+import LOGO  from '../../../public/logo.png'
 import Image from 'next/image';
 import { useState } from 'react';
 export default function Wallet() {
