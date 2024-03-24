@@ -18,7 +18,7 @@ export default function BindWalletSuccess() {
                 <p className='text-md text-sheffield-red-deep'>Withdrawal Request Success</p>
                 <p className='text-sm text-grey-500'>Your Withdrawal Request has been sent successfully</p>
             <motion.p onClick={() => {
-                      router.push('/dashboard/account'+ `?id=${name}`)
+                      router.push('/dashboard/wallet'+ `?id=${name}`)
                     
                     }}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}

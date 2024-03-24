@@ -143,7 +143,7 @@ export default function Account({ vips }) {
 
     }, [rprogress, cprogress, refCount, viplevel])
     //end of vip logics
-    //accounts-balanace
+    //wallets-balanace
     function AccountsBalance() {
         let balanace = users.balance ?? 0;
         return (
@@ -342,25 +342,7 @@ export default function Account({ vips }) {
         // const [vipcount, setVipcount] = useState({});
         let vipcount = vips;
         console.log(vips)
-        // useEffect(() => {
-        //     const betting = async () => {
-        //         let test = await fetch('/api/vip', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify({ username: localStorage.getItem('signNames') })
-        //         }).then(data => {
-        //             return data.json();
-        //         })
-        //         if (test.status === 'success') {
-        //             setVipcount(test)
-        //         } else {
-        //             console.log(test.message)
-        //         }
-        //     }
-        //     betting();
-        // }, []);
+      
 
         return (
             <Stack style={{ width: '100%' }} justifyContent='center' alignItems='center'>

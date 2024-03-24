@@ -32,7 +32,7 @@ export default function Fund() {
 
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
-                    router.push('/dashboard/account')
+                    router.push('/dashboard/wallet')
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("FundAccount")}</p>
             </Stack>

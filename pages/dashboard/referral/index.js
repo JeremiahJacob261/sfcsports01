@@ -1,17 +1,20 @@
 import { Icon } from '@iconify/react';
-import { Stack, TextField, Button, Typography } from '@mui/material';
+import { Stack, Divider, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { supabase } from '@/pages/api/supabase';
 import { useState } from 'react';
 import Avatar from '@/public/avatar.png'
+import { styled } from '@mui/material/styles';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import HomeBottom from '@/pages/UIComponents/bottomNav';
 import Image from 'next/image';
 import GoogleTranslate from '@/GoogleTranslate';
-export default function Referral({ test }) {
+export default function Referral({ test,vips }) {
     const router = useRouter();
     // const [reforigin, setRefOrigin] = useState([]);
     const [refers, setRefer] = useState([]);
@@ -92,7 +95,7 @@ export default function Referral({ test }) {
                             let dates = date.getDate() + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear()
                             let month = months[date.getMonth()];
                             let time = date.getHours() + ':' + date.getMinutes()
-                            let balance = t.balance.toFixed(2);
+                            let balance = t.balance ;
                             let username = t.username;
                             // userearnings[username].toFixed(3)
                             return (
@@ -128,49 +131,240 @@ export default function Referral({ test }) {
             )
         }
     }
+
+        //vip logics
+    const [rprogress, setRProgress] = useState(0);
+    const [cprogress, setCProgress] = useState(0);
+    const [refCount, setRefCount] = useState(0);
+    const [viplevel, setViplevel] = useState(1);
+    const [c1, setC1] = useState(0);
+    const [r1, setR1] = useState(0);
+    const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+        height: 10,
+        borderRadius: 5,
+        [`&.${linearProgressClasses.colorPrimary}`]: {
+            backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+        },
+        [`& .${linearProgressClasses.bar}`]: {
+            borderRadius: 5,
+            backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+        },
+    }));
+    //endborder
+    //vip object
+    const viplimit = {
+        '1': 50,
+        '2': 100,
+        '3': 200,
+        '4': 300,
+        '5': 500,
+        '6': 1000,
+        '7': 5000
+    };
+    const vipclimit = {
+        '1': 3,
+        '2': 5,
+        '3': 8,
+        '4': 12,
+        '5': 15,
+        '6': 20,
+        '7': 500
+    };
+    const viproyal = {
+        '1': '#CD7F32P',
+        '2': '#71706E',
+        '3': '#FFD700',
+        '4': '#36F1CD',
+        '5': '#0F52BA',
+        '6': '#E01157',
+        '7': '#CF1259'
+    };
+    // end vip object
+    useEffect(() => {
+        const GET = async () => {
+            let info = users;
+            try {
+                async function getReferCount() {
+                    try {
+                        const { count, error } = await supabase
+                            .from('users')
+                            .select('*', { count: 'exact', head: true })
+                            .match({
+                                'refer': users.newrefer,
+                                'firstd': true
+                            });
+                        setRefCount(count)
+                        setViplevel((users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7');
+                        let vipl = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+                        setRProgress((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100);
+                        setCProgress((parseInt(count) / parseInt(vipclimit[vipl])) * 100);
+                        setC1((parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)));
+                        setR1((parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)));
+                        console.log(rprogress, cprogress, refCount, viplevel)
+                    } catch (e) {
+                        console.log(e)
+                    }
+                }
+                getReferCount();
+            } catch (e) {
+                console.log(e)
+            }
+
+        }
+        // GET();
+
+    }, [rprogress, cprogress, refCount, viplevel])
+    //end of vip logics
+
+    //start of vip
+    function Vip() {
+
+        // const [vipcount, setVipcount] = useState({});
+        let vipcount = vips ?? {};
+        console.log(vips)
+      
+
+        return (
+            <Stack style={{ width: '100%' }} justifyContent='center' alignItems='center'>
+                <Stack sx={{ width: '100%', padding: '8px' }}>
+                    <Stack direction='row' justifyContent='start' alignItems='center' spacing={1}>
+                        <Icon icon="tabler:vip" width={24} height={24} style={{ color: 'white' }} />
+                        <p style={{ fontWeight: '500', fontSize: '15px' }}>{t("VIP")}</p>
+                    </Stack>
+                    <Divider sx={{ background: 'white', color: 'white' }} />
+                </Stack>
+                <Stack className='accountinfo' justifyContent='center' alignItems='center' spacing={1}>
+                    <Stack justifyContent='center' alignItems='center' direction='column' sx={{ minHeight: 'auto', padding: '8px' }}>
+
+                        <p style={{ fontFamily: 'Poppins,sans-serif',fontSize:'35px',fontWeight:700, color: viproyal[vipcount.viplevel], opacity: 0.7 }}>{t("VIP")} {vipcount.viplevel}</p >
+
+                        <Stack justifyContent='left' alignItems='left'>
+                            <Stack>
+                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>{t("TotalDeposit")}</p >
+                                <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
+                                    <BorderLinearProgress variant="determinate" value={(parseFloat(vipcount.rprogress) > 100) ? 100 : parseFloat(vipcount.rprogress ?? 0)} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(parseFloat(vipcount.rprogress) > 100) ? 100 : parseFloat(vipcount.rprogress ?? 0)}%</p >
+                                </Stack>
+                            </Stack>
+
+                            <Stack>
+                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>{t("Referrals")}</p >
+                                <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
+                                    <BorderLinearProgress variant="determinate" value={(parseFloat(vipcount.cprogress) > 100) ? 100 : parseFloat(vipcount.cprogress) ?? 0} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(parseFloat(vipcount.cprogress)) > 100 ? 100 : parseFloat(vipcount.cprogress) ?? 0}%</p >
+                                </Stack>
+                            </Stack>
+
+                            <Stack>
+                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>{t("Total")}</p >
+                                <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
+                                    <BorderLinearProgress variant="determinate" value={parseFloat((vipcount.r1 + vipcount.c1).toFixed(2)) / 2} sx={{ width: '230px' }} />
+                                    <p style={{ fontFamily: 'Poppins,sans-serif' }}>{parseFloat((vipcount.r1 + vipcount.c1).toFixed(2)) / 2}%</p >
+                                </Stack>
+                            </Stack>
+                        </Stack>
+
+                    </Stack>
+
+                </Stack>
+            </Stack>
+        )
+    }
+    //end of vip
+
+
     return (
-        <div className="backgrounds">
+        <div className="backgrounds" style={{ width:'100vw', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
-                    router.push('/dashboard/account')
+                    router.push('/dashboard/wallet')
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Referral")}</p>
             </Stack>
+                <Vip />
             <Stack direction="column" justifyContent="center" alignItems='center'>
-            <p style={{ color:'whitesmoke', fontSize:'20px', width:'100%',textAlign:'center'}}>Total Commission : { totalearnings.toFixed(3) } USDT</p>
-                <p style={{ color:'#AD1C39', fontSize:'15px', width:'100%',textAlign:'center'}}>This is the total earnings made from downlines activities</p>
+            <p style={{ color:'whitesmoke', fontSize:'20px', width:'100%',textAlign:'center'}}>Total Commission : { totalearnings } USDT</p>
+                <p style={{ color:'grey', fontSize:'15px', width:'100%',textAlign:'center'}}>This is the total earnings made from downlines activities</p>
             </Stack>
-            <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px', background: 'rgb(27, 5, 9)' }} spacing={2} justifyContent='center' alignItems="center">
-                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("All Referral")} ({reforigin.length ?? 0})</p>
+            <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px' }} spacing={2} justifyContent='center' alignItems="center">
+                <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("All Referral")} ({
+                reforigin.length ?? 0
+                })</p>
                 <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>{t("Level One")} {(selected === 1) ? `(${refers.length ?? 0})` : ''}</p>
                 <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(2) }}>{t("Level Two")} {(selected === 2) ? `(${refers.length ?? 0})` : ''}</p>
                 <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(3) }}>{t("Level Three")} {(selected === 3) ? `(${refers.length ?? 0})` : ''}</p>
             </Stack>
             <RefData />
+            <HomeBottom/>
         </div>
     )
 }
 export async function getServerSideProps(context) {
     try {
-        let users = context.query.name;
-        let test = await fetch('https://www.Eplsports.com/api/referral', {
+        let id = context.query.name;
+        let test = await fetch('http://localhost:3000/api/referral', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users })
+            body: JSON.stringify({ name: id })
         }).then(data => {
             return data.json();
         })
+        const { data: user, error: uerror } = await supabase
+        .from('users')
+        .select('*')
+        .eq('username', id)
+    let users = user[0];
+        const viplimit = {
+            '1': 50,
+            '2': 100,
+            '3': 200,
+            '4': 300,
+            '5': 500,
+            '6': 1000,
+            '7': 5000
+        };
+        const vipclimit = {
+            '1': 3,
+            '2': 5,
+            '3': 8,
+            '4': 12,
+            '5': 15,
+            '6': 20,
+            '7': 500
+        };
+        const { count, error } = await supabase
+            .from('users')
+            .select('*', { count: 'exact', head: true })
+            .match({
+                'refer': user[0].newrefer,
+                'firstd': true
+            });
+        console.log(count)
+        let refCount = count;
+        let vipl = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+
+        let viplevel = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+        let rprogress = (parseInt(users.totald) / parseInt(viplimit[vipl])) * 100;
+        //tests
+        // console.log(users.totald)
+        //end
+        let cprogress = (parseInt(count) / parseInt(vipclimit[vipl])) * 100;
+        let c1 = (parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
+        let r1 = (parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
+        console.log(rprogress, cprogress, refCount, viplevel)
+        let tests = { status: 'success', refCount: parseFloat(refCount) ?? 0, viplevel: parseFloat(viplevel) ?? 0, rprogress: parseFloat(rprogress.toFixed(2)), cprogress: parseFloat(cprogress.toFixed(2)), c1: parseFloat(c1), r1: parseFloat(r1) }
+        console.log(tests)
         return {
-            props: { test },
+            props: { test:test, vips:tests },
 
         };
     } catch (e) {
         console.log(e)
         let test = {};
         return {
-            props: { test },
+            props: { test:test, vips:{} },
 
         };
     }
