@@ -2,12 +2,13 @@ import HomeBottom from "@/pages/UIComponents/bottomNav";
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import { useRouter } from "next/router";
-import React from 'react';
+import { supabase } from "@/pages/api/supabase";
+import React, { useEffect } from 'react';
 import { Backdrop } from "@mui/material";
 import LOGO  from '../../../public/logo.png'
 import Image from 'next/image';
 import { useState } from 'react';
-export default function Wallet() {
+export default function Wallet({user}) {
    const router = useRouter();
    const [drop, setDrop] = useState(false);
    const handleToggle = (page) => {
@@ -15,7 +16,18 @@ export default function Wallet() {
       router.push(page);
       setDrop(!drop);
    };
-
+   function showNotification(title, options) {
+      if (Notification.permission === "granted") {
+         new Notification(title, options);
+      }
+     }
+     
+     // Example usage
+    
+     
+   useEffect(()=> {
+      
+   },[])
    function Main() {
       return (
          <div className="main-account">
@@ -35,7 +47,16 @@ export default function Wallet() {
                </motion.div>
             </div>
 
-            <p className="azabalance"> $ 12 500</p>
+            <p className="azabalance"
+            onClick={()=>{
+               console.log('clicked')
+               new Notification("Hello!", {
+                  body: "This is a notification",
+                 });
+                 
+                 
+            }}
+            > $ {user.balance}</p>
             <div className='new-concept'>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/fund') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="icon-park-solid:add-mode" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>deposit</p></div>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/withdraw') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="uil:money-withdrawal" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>withdraw</p></div>
@@ -51,4 +72,22 @@ export default function Wallet() {
                <HomeBottom />
             </div>
             )   
+}
+
+export async function getServerSideProps(context) { 
+   try{
+   const { id } = context.query;
+      const { data: user, error: uerror } = await supabase
+      .from('users')
+      .select('*')
+      .eq('username', id);
+      return { props: { user: user[0] } }
+   }catch(e){
+      return {
+         redirect: {
+            destination: '/login',
+            permanent: false,
+         },
+      }
+   }
 }
