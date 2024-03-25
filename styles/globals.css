@@ -71,6 +71,7 @@ p{
 }
 .backgrounds{
   min-height: 100vh;
+  overflow-x: hidden;
   width: 100%;
   background: #981fc0e1;
  }
@@ -95,6 +96,7 @@ padding: 12px;
   color:#981FC0;
   background-color: #3F1052;
   height: 45px;
+  display: flex;
   font-family:var(--font-pops);
 }
 .rowsofdata{
@@ -133,14 +135,14 @@ display: inline;
 height:34px;
 }
 .betTab{
-  padding: 15px;
+  padding: 10px;
   border-radius: 3px 10px 10px 10px;
   background-color: #3F1052;
   cursor:pointer;
   border: 1px solid #981fc0e3;
 }
 .betTabSelected{
-  padding: 15px;
+  padding: 10px;
   border-radius: 3px 10px 10px 10px;
   background-color: #981FC0;
   cursor:pointer;
@@ -268,10 +270,10 @@ font-family:var(--font-lilpops);
   width: 100%;
 }
 .transactionrow{
-  padding: 8px;
+  padding: 12px;
   margin: 8px;
-  min-width: 310px;
-  max-width: 80%;
+  max-width: 320px;
+  height: auto;
   color:whitesmoke;
   border-radius: 5px;
   background-color: #3F1052;
@@ -488,7 +490,7 @@ font-family:var(--font-lilpops);
 
 .live-containx {
   background: #981FC0;
-  max-width: 350px;
+  max-width: 90vw;
   min-width: 330px;
   height: 180px;
   display: flex;
@@ -500,6 +502,7 @@ font-family:var(--font-lilpops);
 
 .analytics-div  {
   width: 100%;
+  min-width: 330px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -555,7 +558,7 @@ font-family:var(--font-lilpops);
   animation: animate 15s forwards;
   counter-reset: num var(--num);
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: sans-serif;
   padding: 2rem;
  }
@@ -583,7 +586,7 @@ font-family:var(--font-lilpops);
   animation: animatxe 10s forwards;
   counter-reset: numx var(--numx);
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: sans-serif;
   padding: 2rem;
  }
@@ -614,7 +617,7 @@ font-family:var(--font-lilpops);
  }
 
  .main-account  {
-  width: 100vw;
+  width: 100%;
   min-height: 300px;
   background-color: transparent;
   padding: 15px;
@@ -654,4 +657,32 @@ font-family:var(--font-lilpops);
   justify-content: space-around;
   align-items: center;
   padding: 8px;
+ }
+
+ .onhead  {
+  background-color: #981FC0;
+  color: #38003c;
+  border-radius: 10%;
+  padding: 8px;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  font-family: var(--font-lilpops);
+ }
+
+ .betspent  {
+  width: 310px;
+  border: 0.6px solid #3F1052;
+  height: auto;
+  background-color: #981FC0;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
  }

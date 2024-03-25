@@ -2,6 +2,7 @@ import React from 'react'
 import { Icon } from '@iconify/react';
 import { Stack, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
+import InputAdornment from '@mui/material/InputAdornment';
  
 import HomeBottom from '../../UIComponents/bottomNav';
 import Link from 'next/link'
@@ -399,6 +400,41 @@ useEffect(()=>{
     )
   }
 
+  function SearchBar() {
+    return (
+      <Stack direction='column' sx={{ height: "70px", width: '100%', padding: '8px', alignItems: 'center' }}>
+        <TextField
+          id="input-with-icon-textfield"
+          label="Search by name or ID"
+          sx={{
+            width: '100%', background: 'rgba(0,0,0,0.2)', borderRadius: '8px',
+            "& .MuiOutlinedInput-root": {
+              "& > fieldset": {
+                border: "none" // This removes the border
+              },
+              "& .MuiInputBase-input": {
+                color: "white" // This changes the text color to white
+              }
+            }
+
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Icon icon="iconamoon:search-duotone" width="24" height="24" style={{ color: "white" }} />
+              </InputAdornment>
+            ),
+          }}
+          variant="outlined"
+          InputLabelProps={{
+            style: { color: '#D8BFD8' } // Light purple color
+          }}
+        />
+
+      </Stack>
+    )
+  }
+
   function Matchx(){
     return( 
       <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
@@ -427,13 +463,14 @@ useEffect(()=>{
   return (
     <div className='backgrounds'>
       <Stack alignItems='center'>
-
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
           <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
             router.push('/dashboard')
           }} />
-          <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>Games</p>
+          <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0',flex:1 }}>Games</p>
+          <motion.div onClick={()=>{ router.push('/dashboard/wallet?id=' + user.username)}} whileTap={{ x:-5 }} className='onhead'>$ {user.balance ?? 0}</motion.div>
         </Stack>
+        <SearchBar/>
         <CountDown />
         <MatchRow />
         <HomeBottom />

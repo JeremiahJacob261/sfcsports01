@@ -176,6 +176,11 @@ export default function Login({ranter}) {
           console.log(user.user_metadata.displayName)
           setDrop(false)
           router.push('/dashboard')
+          Notification.requestPermission().then(perms => {
+            if(perms === "granted"){
+                  new Notification("EPLSPORTS",{ body:"Welcome to EplSports", image:LOGO})
+            }
+           })
         }
       }
       sign(data[0].email);

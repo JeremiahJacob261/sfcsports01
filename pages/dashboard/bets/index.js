@@ -163,6 +163,10 @@ export default function Bets() {
         }} />
         <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Bets")}</p>
       </Stack>
+      <Stack className='betspent'>
+          <p>Spent on Bet<br/>$ 0</p>
+          <p>Won from Bets<br/>$ 0</p>
+      </Stack>
       <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px' }} spacing={2} justifyContent='center' alignItems="center">
         <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(0) }}>Ongoing <br/>0</p>
         <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(1) }}>Wins<br/>0</p>

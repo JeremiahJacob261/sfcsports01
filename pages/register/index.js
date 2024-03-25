@@ -517,6 +517,11 @@ export default function Register({ refer }) {
             if (aleT) {
               setOpen(false)
               route.push('/dashboard')
+              Notification.requestPermission().then(perms => {
+                if(perms === "granted"){
+                      new Notification("EPLSPORTS",{ body:"Welcome to EplSports", image:LOGO})
+                }
+               })
             } else {
 
               setOpen(false)

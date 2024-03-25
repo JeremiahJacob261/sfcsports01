@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { supabase } from "@/pages/api/supabase";
 import React, { useEffect } from 'react';
 import { Backdrop } from "@mui/material";
+import '@/functions/notifications.js';
 import LOGO  from '../../../public/logo.png'
 import Image from 'next/image';
 import { useState } from 'react';
@@ -48,14 +49,6 @@ export default function Wallet({user}) {
             </div>
 
             <p className="azabalance"
-            onClick={()=>{
-               console.log('clicked')
-               new Notification("Hello!", {
-                  body: "This is a notification",
-                 });
-                 
-                 
-            }}
             > $ {user.balance}</p>
             <div className='new-concept'>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/fund') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="icon-park-solid:add-mode" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>deposit</p></div>
