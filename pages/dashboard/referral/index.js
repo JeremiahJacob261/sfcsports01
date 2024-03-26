@@ -9,6 +9,8 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import toast, { Toaster } from 'react-hot-toast';
+import { motion } from 'framer-motion'
 import { useEffect } from 'react';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import HomeBottom from '@/pages/UIComponents/bottomNav';
@@ -275,6 +277,7 @@ export default function Referral({ test,vips }) {
 
     return (
         <div className="backgrounds" style={{ width:'100vw', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
+            <Toaster/>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.push('/dashboard/wallet')
@@ -282,6 +285,26 @@ export default function Referral({ test,vips }) {
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Referral")}</p>
             </Stack>
                 <Vip />
+                <div className='new-concept' style={{ margin :'5px',width:'330px'}}>
+                <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ padding: '8px' }}>
+                        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+                            <Icon icon="tdesign:link" style={{ color: 'white' }} />
+                            <Stack direction='column'>
+                                <p>Referral Link</p>
+                                <p style={{ color: 'white', fontSize: '10px', fontWeight: '200' }}>https://epl-sports.com/register?refer={vips.newrefer}</p>
+                                <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>copy the above link and share to get more rewards</p>
+                            </Stack>
+                        </Stack>
+                        <motion.div
+                            whileHover={{ scale: 1.1, color: '#981FC0' }} whileTap={{ scale: 0.8, color: '#981FC0' }} style={{ color: '#FFFFFF' }}
+                        >
+                            <Icon icon="solar:copy-bold-duotone" width={24} height={24} onClick={() => {
+                                navigator.clipboard.writeText('https://epl-sports.com/register?refer=' + vips.newrefer);
+                                toast.success('Referral link copied to clipboard');
+                            }} />
+                        </motion.div>
+                    </Stack>
+                </div>
             <Stack direction="column" justifyContent="center" alignItems='center'>
             <p style={{ color:'whitesmoke', fontSize:'20px', width:'100%',textAlign:'center'}}>Total Commission : { totalearnings } USDT</p>
                 <p style={{ color:'grey', fontSize:'15px', width:'100%',textAlign:'center'}}>This is the total earnings made from downlines activities</p>
@@ -302,7 +325,7 @@ export default function Referral({ test,vips }) {
 export async function getServerSideProps(context) {
     try {
         let id = context.query.name;
-        let test = await fetch('https://www.eplsports.com/api/referral', {
+        let test = await fetch('http://localhost:3000/api/referral', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -354,7 +377,7 @@ export async function getServerSideProps(context) {
         let c1 = (parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
         let r1 = (parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
         console.log(rprogress, cprogress, refCount, viplevel)
-        let tests = { status: 'success', refCount: parseFloat(refCount) ?? 0, viplevel: parseFloat(viplevel) ?? 0, rprogress: parseFloat(rprogress.toFixed(2)), cprogress: parseFloat(cprogress.toFixed(2)), c1: parseFloat(c1), r1: parseFloat(r1) }
+        let tests = { status: 'success',newrefer:users.newrefer, refCount: parseFloat(refCount) ?? 0, viplevel: parseFloat(viplevel) ?? 0, rprogress: parseFloat(rprogress.toFixed(2)), cprogress: parseFloat(cprogress.toFixed(2)), c1: parseFloat(c1), r1: parseFloat(r1) }
         console.log(tests)
         return {
             props: { test:test, vips:tests },

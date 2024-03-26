@@ -6,6 +6,7 @@ export default function Transaction({ transaction }) {
     const router = useRouter();
     const [selected, setSelected] = useState(0);
     const [content, setContent] = useState([]);
+    const [user, setUser] = useState({});
     const betSelectLogic = (index) => {
         setSelected(index);
         //return bet desired data
@@ -27,7 +28,8 @@ export default function Transaction({ transaction }) {
                 return data.json();
             })
             console.log(test)
-            setContent(test);
+            setContent(test.data);
+            setUser(test.user)
         }
         testRoute();
     }
@@ -44,7 +46,8 @@ export default function Transaction({ transaction }) {
                 return data.json();
             })
             console.log(test)
-            setContent(test);
+            setContent(test.data);
+            setUser(test.user)
         }
         testRoute();
     }, [])
@@ -99,13 +102,17 @@ export default function Transaction({ transaction }) {
         }
     }
     return (
-        <div className="backgrounds">
+        <div className="backgrounds" style={{ width:'100vw', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.back()
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>Transactions</p>
             </Stack>
+            <Stack className='betspent'>
+          <p>Total Deposits<br/>$ {user.totald}</p>
+          <p>Total Withdraw<br/>$ {user.totalw}</p>
+      </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px' }} spacing={2} justifyContent='center' alignItems="center">
                 <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>All</p>
                 <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(1) }}>Deposits</p>

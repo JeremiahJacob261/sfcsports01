@@ -12,15 +12,22 @@ export default async  function handler(req, res) {
                     .select('*')
                     .match({ 'username': body.name })
                     .order('id', { ascending: false });
-
+        const { data:user, error: userrr } = await supabase
+        .from('users')
+        .select()
+        .eq('username',body.name)
                 if (error) {
                     console.log(error);
                     return;
                 }
                 console.log(data);
 
-                res.status(200).json(data);
+                res.status(200).json({'data':data,'user':user[0]});
             }else{
+                const { data:user, error: userrr } = await supabase
+                .from('users')
+                .select()
+                .eq('username',body.name)
                 const { data, error } = await supabase
                 .from('notification')
                 .select('*')
@@ -32,6 +39,6 @@ export default async  function handler(req, res) {
                 }
                 console.log(data);
 
-                res.status(200).json(data);
+                res.status(200).json({'data':data,'user':user[0]});
             }
 }
