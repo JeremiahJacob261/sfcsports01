@@ -138,11 +138,14 @@ display: inline;
 height:34px;
 }
 .betTab{
-  padding: 10px;
+  padding: 8px;
   border-radius: 3px 10px 10px 10px;
   background-color: #3F1052;
   cursor:pointer;
   border: 1px solid #981fc0e3;
+  width: auto;
+  height: 100px;
+  text-align: center;
 }
 .betTabSelected{
   padding: 10px;
@@ -150,6 +153,9 @@ height:34px;
   background-color: #981FC0;
   cursor:pointer;
   border:1px solid #661980;
+  width: auto;
+  height: 100px;
+  text-align: center;
 }
 .acctext{
   font-size: small;

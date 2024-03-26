@@ -348,9 +348,11 @@ export default function Home(props) {
       <div className='headies'>
         <Stack direction='column' sx={{ flex: 1 }}>
           <p className='title1'>Hello</p>
-          <p className='title2'>{"Username"}</p>
+          <p className='title2'>{user ? user.username : ""}</p>
         </Stack>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }}>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={()=>{
+          router.push('/dashboard/history?=' + user ? user.username : "");
+        }}>
           <Icon icon="tdesign:notification-filled" width="24" height="24" style={{ color: "#981FC0" }} />
         </motion.div>
       </div>
