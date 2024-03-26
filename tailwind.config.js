@@ -17,6 +17,8 @@ module.exports = {
       'sheffield-red-deep':'#981FC0',
       'sheffield-gold':'white',
       'sheffield-red-shallow':'#891CAD',
+      'premier-dark':'#3F1052',
+      'premier-normal':'#981FC0'
     }
   },
   plugins: [],

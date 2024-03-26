@@ -70,10 +70,13 @@ p{
   cursor: pointer;
 }
 .backgrounds{
+  margin-top: -10px;
   min-height: 100vh;
+  padding-top: 12px;
   overflow-x: hidden;
   width: 100%;
-  background: #981fc0e1;
+  background: rgba(152, 31, 192, 0.74);
+  background: linear-gradient(3deg, rgba(152,31,192,1) 56%, rgba(63,16,82,1) 100%);
  }
 .gradtest{
   background: -webkit-linear-gradient(297deg, rgba(194,127,8,1) 33%, rgba(245,186,79,1) 87%);
@@ -688,4 +691,35 @@ font-family:var(--font-lilpops);
   text-align: center;
   margin: 10px;
   border-radius: 10px;
+ }
+
+ .amount-hold {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  font-family: var(--font-suma);
+ }
+
+ .amount-txt {
+  color: #5f087c;
+  font-family: var(--font-suma);
+  height: 40px;
+  padding: 8px;
+ }
+
+ .inmap {
+    padding: 8px;
+    color: #981FC0;
+    background-color: whitesmoke;
+    margin: 5px;
+    width: 55px;
+    text-align: center;
+ }
+
+ .mapcontain  {
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
  }

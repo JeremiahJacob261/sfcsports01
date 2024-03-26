@@ -280,7 +280,7 @@ export default function Referral({ test,vips }) {
             <Toaster/>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
-                    router.push('/dashboard/wallet')
+                    router.push('/dashboard/')
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Referral")}</p>
             </Stack>

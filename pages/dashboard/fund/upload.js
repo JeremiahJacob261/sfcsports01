@@ -145,7 +145,7 @@ console.log(data.publicUrl);
                     whileTap={{ scale: 1.09 }}
                     whileHover={{ scale: 1.1 }}
                 >
-                    <Stack justifyContent='center' alignItems='center' sx={{ width: '343px', height: '87px', background: 'rgba(44,4,10,1)', borderStyle: 'dashed', borderRadius: '10px', border: '1.5px dashed rgba(194,127,8,1)' }}
+                    <Stack justifyContent='center' alignItems='center' sx={{ width: '343px', height: '87px', background: '#3F1052', borderStyle: 'dashed', borderRadius: '10px', border: '1.5px dashed rgba(194,127,8,1)' }}
                         onClick={() => {
                             inputFile.current.click();
                         }}>
@@ -166,7 +166,7 @@ console.log(data.publicUrl);
                 whileTap={{  scale: 0.9  }}
                 whileHover={{ scale: 1.04 }}
                 >
-                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ height: '58px', background: '#ad1c39', borderRadius: '5px', padding: '16px' }} spacing={2}>
+                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ height: '58px', background: '#981FC0', borderRadius: '5px',border:'0.5px solid #3F1052', padding: '16px' }} spacing={2}>
                     <InsertDriveFileIcon sx={{ color: 'white', fontFamily: 'Poppins,sans-serif' }} />
                     <Stack alignItems='start' justifyContent='start'>
                         <p style={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '300', color: 'white' }}>{file.name ? file.name : 'No File Selected'}</p>
@@ -181,7 +181,7 @@ console.log(data.publicUrl);
                 <motion.p onClick={checkParams}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
                         whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px',border:'1px solid #3f1052' }}>
                         {t("COMPLETE")}!</motion.p>
 
             </Stack>

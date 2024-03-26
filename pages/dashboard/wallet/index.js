@@ -6,7 +6,7 @@ import { supabase } from "@/pages/api/supabase";
 import React, { useEffect } from 'react';
 import { Backdrop,Stack } from "@mui/material";
 import '@/functions/notifications.js';
-
+import Translate from "@/pages/translator";
 import toast, { Toaster } from 'react-hot-toast';
 import LOGO  from '../../../public/logo.png'
 import Image from 'next/image';
@@ -80,8 +80,10 @@ export default function Wallet({user}) {
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/bind') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mdi:customer-service" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>customer care</p></div>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/bind') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="fluent:people-community-16-filled" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>telegram community</p></div>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/faq') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mingcute:question-fill" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>FAQ</p></div>
-               <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/bind') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="ic:outline-translate" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>Translate</p></div>
-           
+               { 
+               //translate goes here
+               }
+               <Translate/>
             </div>
             <div style={{ height:'20px'}}>
 

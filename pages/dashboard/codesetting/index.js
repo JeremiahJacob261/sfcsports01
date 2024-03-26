@@ -48,7 +48,7 @@ export default function CodeSetting() {
               alert(test[0].message);
             }else{
               alert('Transaction pin set successfully')
-              router.push('/dashboard/wallet')
+              router.push('/dashboard/')
             }
   
     }

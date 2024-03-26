@@ -463,7 +463,7 @@ export default function Matchs({ matc, user ,test}) {
       <Stack>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
           <Icon icon="basil:cancel-outline" width={30} height={30} onClick={() => { router.push('/dashboard/event') }} />
-          <p style={{ color: 'wheat', fontSize: '20px', fontWeight: 'bold', textAlign: 'center', width: '100%' }}>{matches.league}</p>
+          <p style={{ color: 'white', fontSize: '15px', fontWeight: '600', textAlign: 'center', width: '100%' }}>{matches.league}</p>
         </Stack>
         <CountDown />
         <Stack direction="column" sx={{ width: '100%', height: '100%', padding: '12px' }} spacing={2} alignItems='center' justifyContent='center'>

@@ -26,7 +26,7 @@ export default function BindWalletSuccess() {
                 <p className='text-md text-sheffield-red-deep'>{t("BindWalletSuccess")}</p>
                 <p className='text-sm text-grey-500'>{t("YourUSDTwallethasbeenlinkedtoyouraccountsuccessfully")}</p>
             <motion.p onClick={() => {
-                      router.push('/dashboard/wallet')
+                      router.push('/dashboard/')
                     
                     }}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}

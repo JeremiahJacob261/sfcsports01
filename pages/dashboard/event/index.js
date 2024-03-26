@@ -309,31 +309,57 @@ useEffect(()=>{
   }
   //end of match countdown
 
-              return (
-                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
-                  <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
-                    onClick={() => {
+              // return (
+              //   <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
+              //     <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
+              //       onClick={() => {
 
-                    }}>
-                    <Stack direction="row" style={{ color: 'grey' }}>{data.time} {data.date} ID {data.match_id} {data.league} 
-                    <MatchCountDown/>
-                    </Stack>
-                    <Stack direction="row" alignItems='center'>
+              //       }}>
+              //       <Stack direction="row" style={{ color: 'grey' }}>{data.time} {data.date} ID {data.match_id} {data.league} 
+              //       <MatchCountDown/>
+              //       </Stack>
+              //       <Stack direction="row" alignItems='center'>
 
-                      <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-                        <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
-                        <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
-                      </Stack>
+              //         <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
+              //           <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
+              //           <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
+              //         </Stack>
 
-                      <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-                        <Placer txt={data.onenil} data={data} pick={'onenil'} />
-                        <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
-                        <Placer txt={data.nilone} data={data} pick={'nilone'} />
-                      </Stack>
-                    </Stack>
-                    <Stack direction="row"></Stack>
-                  </Stack>
-                </Link>
+              //         <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+              //           <Placer txt={data.onenil} data={data} pick={'onenil'} />
+              //           <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
+              //           <Placer txt={data.nilone} data={data} pick={'nilone'} />
+              //         </Stack>
+              //       </Stack>
+              //       <Stack direction="row"></Stack>
+              //     </Stack>
+              //   </Link>
+              // )
+              return( 
+                <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
+                  <div className='live-containx' style={{ }}>
+                  <div className='live1'>
+                    <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo"/>
+                    <p className='mtxt'>{data.home}</p>
+                  </div>
+                  <div className='live2'>
+                      <p className='mleague'>Premier league</p>
+                      <p className='mscore'>10 : 20</p>
+                      <p  className='mtime'>TODAY</p>
+                  </div>
+                  <div className='live1'>
+                  <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo"/>
+                    <p className='mtxt'>{data.away}</p>
+                  </div>
+                  </div>
+                        
+                  <motion.div onClick={()=>{
+                    // router.push('/dashboard/match/')
+                  }} className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
+                    <p>Place Bet</p>
+                    <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
+                  </motion.div>
+                </div>
               )
             })
           }
@@ -453,10 +479,15 @@ useEffect(()=>{
           <p className='mtxt'>Princesa Solimões</p>
         </div>
         </div>
-        <motion.div className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
+        <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
+                
+        <motion.div onClick={()=>{
+          // router.push('/dashboard/match/')
+        }} className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
           <p>Place Bet</p>
           <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
         </motion.div>
+        </Link>
       </div>
     )
 }

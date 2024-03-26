@@ -24,59 +24,57 @@ export default function Fund() {
     const { t } = useTranslation('all')
     const router = useRouter();
     const [amount, setAmount] = useState('');
-    const [method, setMethod] = useState('');
+    const [method, setMethod] = useState('usdt');
     const [met, setMet] = useState('none');
 
+    const options = [50,100,200,500,1000,2000,3000,5000];
     return (
         <div className="backgrounds" style={{ height: '100vh', width: 'auto' }}>
 
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
-                    router.push('/dashboard/wallet')
+                    router.push('/dashboard/')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("FundAccount")}</p>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>Select Payment Method</p>
             </Stack>
+            <Stack direction="column" sx={{ padding: '12px' }} spacing={2}>
 
-            <Stack direction='column' alignItems='center' justifyContent='center' spacing={2} sx={{ padding: '12px', margin: '8px', width: '100%', height: '100%' }}>
-                <Stack direction='column' alignItems='center' justifyContent='center' spacing={3}>
-                    
-                    <p style={{ fontSize: '18px', fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>{t("SelectPaymentMethod")}</p>
-                    <p className='amun'>Amount in USDT: ${(method === 'bankbri') ?  (amount/1550).toFixed(3)  : amount}</p>
-                    <Stack direction='row' alignItems='center' justifyContent='center' spacing={2}>
-                        <motion.div
-                            whileTap={{ scale: 0.9 }}
-                            whileHover={{ scale: 1.04 }}
-                        >
-                            <Image src={Tether} width={100} height={100} alt="payment_method" onClick={() => {
-                                setMet('visible');
-                                setMethod('usdt')
-                            }} />
-                        </motion.div>
-                        <motion.div
-                            whileTap={{ scale: 0.9 }}
-                            whileHover={{ scale: 1.04 }}
-                        >
-                            <Image src={Bankbri} width={100} height={150} alt="payment_method" onClick={() => {
-                                // setMet('visible');
-                                // setMethod('bankbri')
-                                alert("Bank BRI Indonesia is not available at the moment")
-                            }} />
-                        </motion.div>
-                    </Stack>
+                <Image src={Tether} width={100} height={100} alt="usdt" onClick={() => {
+                    setMethod('usdt');
+                }} />
+                <Stack direction="row">
+                    <p>Network : </p><p style={{ color: '#3F1052', fontWeight: 700 }}>  TRC20</p>
                 </Stack>
-                <Stack direction='column' spacing={2} alignItems='center' justifyContent='center' sx={{ display: met }}>
-                    <p style={{ fontSize: '18px', display: met, fontWeight: '600px', color: 'rgba(194,127,8,1)' }}>{t("Amount")}</p>
-                    <Stack direction='row' alignItems='center' justifyContent='center' sx={{ display: met }} spacing={2}>
-                        <TextField variant='standard' type='parseFloat' placeholder='Amount' sx={{ display: met, color: 'white', background: '#ad1c39', padding: '8px', borderRadius: '5px', letterSpacing: '1px', input: { color: 'white', } }} value={amount} onChange={(e) => {
-                            setAmount(e.target.value);
-                        }} />
-                        <p sx={{ display: met }}> {(method === 'bankbri') ? " IDR" : " USDT"}</p>
-                    </Stack>
 
-                    <Alertz amount={amount} method={method} sx={{ display: met }} />
-                </Stack>
+                <div className='amount-hold'>
+                    <p style={{ color: '#3F1052', fontWeight: 700 }}>Amount :</p>
+                   <input 
+                   className='amount-txt'
+                   type='number'
+                   value={amount} onChange={(e)=>{ 
+                    setAmount(e.target.value)
+                   }}/>
+                </div>
+                    <p>Note: Minimum Deposit is 10 USDT</p>
+                   <div className='mapcontain'>
+                    {
+                        options.map((i)=>{
+                            return <motion.p whileTap={{ scale:0.7}} className='inmap' onClick={()=>{
+                                setAmount(i)
+                            }}>{i}</motion.p>;
+                        })
+                    }
+                    </div> 
+                    <motion.p onClick={() => {
+                      router.push('/dashboard/fund/address?met='+method);
+                    // transaction();
+                    localStorage.setItem('deposit-amount',amount)
+                }}
+                    whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
+                    whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
+                    style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0',border:'0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                    DEPOSIT</motion.p>
             </Stack>
-
         </div>
     )
 }
