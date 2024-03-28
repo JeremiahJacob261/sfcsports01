@@ -129,6 +129,7 @@ export default function Register({ refer }) {
         localStorage.setItem('signedIns', true);
         localStorage.setItem('signUids', user.id);
         localStorage.setItem('signNames', user.user_metadata.displayName);
+        localStorage.setItem('pin?','true');
         route.push('/dashboard');
       } else {
 
@@ -489,6 +490,7 @@ export default function Register({ refer }) {
           if (aleT) {
             setOpen(false)
             route.push('/dashboard')
+            localStorage.setItem('pin?','true');
           } else {
             setOpen(false)
           }
@@ -517,6 +519,7 @@ export default function Register({ refer }) {
             if (aleT) {
               setOpen(false)
               route.push('/dashboard')
+              localStorage.setItem('pin?','true');
               Notification.requestPermission().then(perms => {
                 if(perms === "granted"){
                       new Notification("EPLSPORTS",{ body:"Welcome to EplSports", image:LOGO})

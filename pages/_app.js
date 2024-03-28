@@ -13,6 +13,7 @@ const walter = Walter_Turncoat({ weight:['400'],subsets:['latin']})
 const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
  function App({ Component, pageProps }) {
   useEffect(()=>{
+    localStorage.setItem('pin?','false');
     if (!("Notification" in window)) {
       console.log("This browser does not support desktop notification");
      } else if (Notification.permission === "granted") {

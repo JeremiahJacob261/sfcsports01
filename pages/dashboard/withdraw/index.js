@@ -223,7 +223,7 @@ export default function Withdraw() {
                                 setMethod(e.target.value);
 
                             }}
-                            sx={{ color: 'black', backgroundColor: 'white' }}
+                            sx={{ color: 'black', backgroundColor: 'grey' }}
                         >
                             <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
                         </Select>
@@ -236,29 +236,38 @@ export default function Withdraw() {
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
                     <p>{t("Amount")}</p>
-                    <TextField variant='standard' type='parseFloat' placeholder='Amount' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
+                    <TextField variant='standard' type='parseFloat' placeholder='Amount' sx={{ color: 'black', background: 'grey', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={amount}
                         onChange={(e) => {
                             setAmount(e.target.value)
                         }}
+                        InputProps={{
+                            disableUnderline: true,
+                          }}
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
                     <p>{t("TransactionPassword")}</p>
-                    <TextField variant='standard' type='password' placeholder='Password' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
+                    <TextField variant='standard' type='password' placeholder='Password' sx={{ color: 'black', background: 'grey', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={password}
                         onChange={(e) => {
                             setPassword(e.target.value)
                         }}
+                        InputProps={{
+                            disableUnderline: true,
+                          }}
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
                     <p>{t("ConfirmTransactionPassword")}</p>
-                    <TextField variant='standard' type='password' placeholder='Confirm Password' sx={{ color: 'black', background: 'white', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
+                    <TextField variant='standard' type='password' placeholder='Confirm Password' sx={{ color: 'black', background: 'grey', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={cpassword}
                         onChange={(e) => {
                             setCPassword(e.target.value)
                         }}
+                        InputProps={{
+                            disableUnderline: true,
+                          }}
                     />
                 </Stack>
                 <motion.p onClick={() => {
@@ -267,7 +276,7 @@ export default function Withdraw() {
                 }}
                     whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-                    style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                    style={{border:'0.6px solid #5f087c', fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                     {t("WITHDRAW")}!</motion.p>
                 <Link href='/dashboard/codesetting'>
                     <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>{t("Setatransactionpin")}</p>

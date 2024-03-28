@@ -19,6 +19,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Translate from '@/pages/translator';
 export async function getStaticProps({ locale }) {
+  
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -81,6 +82,16 @@ export default function Home(props) {
   }
 
   useEffect(() => {
+    try{
+      if( localStorage.getItem('pin?') === 'true'){
+        //show set pin dialog
+        alert('not set')
+  }else{
+      //dont show pin dialog
+  }
+    }catch(e){
+      console.log(e)
+    }
     const checkAuth = async () => {
       const signedIn = localStorage.getItem('signedIns');
       const uid = localStorage.getItem('signUids');

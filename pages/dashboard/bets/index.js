@@ -1,7 +1,7 @@
 import HomeBottom from '../../UIComponents/bottomNav';
 import { useRouter } from 'next/router';
 import { Icon, InlineIcon } from '@iconify/react';
-import { Stack } from '@mui/material';
+import { Stack, keyframes } from '@mui/material';
 import { useState } from 'react';
 import Image from 'next/image';
 import { supabase } from '@/pages/api/supabase';
@@ -24,10 +24,13 @@ export default function Bets() {
   const { t } = useTranslation('all')
   const router = useRouter();
   const [betDta, setBetDta] = useState([]);
+  const [betCounter,setBetCounter] = useState(0);
   const [selected, setSelected] = useState(0);
   const betObj = {
-    0: 'all',
-    1: 'settled'
+    0: 'ongoing',
+    1: 'win',
+    2: 'lose',
+    3: 'cancelled'
   }
   //match countdown
   const defTime = (dates, time) => {
@@ -57,7 +60,8 @@ export default function Bets() {
         }).then(data => {
           return data.json();
         })
-        setBetDta(test.message)
+        setBetDta(test.message);
+        setBetCounter(betObj[index]);
       } catch (e) {
 
       }
@@ -65,22 +69,8 @@ export default function Bets() {
     getFilter();
   }
   useEffect(() => {
-    const getRef = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('placed')
-          .select()
-          .eq('username', localStorage.getItem('signNames'))
-          .eq('won', 'null')
-          .order('id', { ascending: false });
-        setBetDta(data)
-        console.log(data)
-      } catch (e) {
-        console.log(e)
-      }
-
-    }
-    getRef();
+   betSelectLogic(0);
+    
   }, [])
   function MatchRow() {
 
@@ -164,14 +154,14 @@ export default function Bets() {
         <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Bets")}</p>
       </Stack>
       <Stack className='betspent'>
-          <p>Spent on Bet<br/>$ 0</p>
-          <p>Won from Bets<br/>$ 0</p>
+          <p>Spent<br/>$ 0</p>
+          <p>Won<br/>$ 0</p>
       </Stack>
-      <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px' }} spacing={2} justifyContent='center' alignItems="center">
-        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(0) }}>Ongoing <br/>0</p>
-        <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(1) }}>Wins<br/>0</p>
-        <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(2) }}>Loses<br/>0</p>
-        <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(3) }}>Cancelled Bets<br/>0</p>
+      <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px'}} spacing={2} justifyContent='center' alignItems="center">
+        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(0) }}>Ongoing <br/>{(betCounter === betObj[0]) ? betDta.length : ''}</p>
+        <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(1) }}>Wins<br/>{(betCounter === betObj[1]) ? betDta.length : ''}</p>
+        <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(2) }}>Loses<br/>{(betCounter === betObj[2]) ? betDta.length : ''}</p>
+        <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(3) }}>Cancelled Bets<br/>{(betCounter === betObj[3]) ? betDta.length : ''}</p>
       </Stack>
       <MatchRow />
       <HomeBottom />
