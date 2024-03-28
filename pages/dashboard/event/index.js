@@ -336,15 +336,17 @@ useEffect(()=>{
               //   </Link>
               // )
               return( 
-                <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
+                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
+             \
+                <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}} >
                   <div className='live-containx' style={{ }}>
                   <div className='live1'>
                     <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo"/>
                     <p className='mtxt'>{data.home}</p>
                   </div>
                   <div className='live2'>
-                      <p className='mleague'>Premier league</p>
-                      <p className='mscore'>10 : 20</p>
+                      <p className='mleague'>{data.league}</p>
+                      <p className='mscore'>{data.time}</p>
                       <p  className='mtime'>TODAY</p>
                   </div>
                   <div className='live1'>
@@ -360,6 +362,7 @@ useEffect(()=>{
                     <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
                   </motion.div>
                 </div>
+                </Link>
               )
             })
           }
