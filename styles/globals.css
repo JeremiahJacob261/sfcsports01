@@ -694,6 +694,7 @@ font-family:var(--font-lilpops);
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
   text-align: center;
   margin: 10px;
   border-radius: 10px;
