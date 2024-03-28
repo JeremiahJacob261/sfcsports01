@@ -730,3 +730,7 @@ font-family:var(--font-lilpops);
   display: flex;
   flex-wrap: wrap;
  }
+
+ .standard-input  {
+  text-align: center;
+ }

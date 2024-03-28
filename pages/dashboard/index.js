@@ -33,6 +33,7 @@ export default function Home(props) {
   const { t } = useTranslation('all')
   const [addresst, setAddress] = useState('');
   const [gcount, setGCount] = useState(0);
+  const [open,setOpen] = useState(false);
   const [reciept, setReciept] = useState('');
   const [balance, setBalance] = useState(0);
   const [authed, setAuthed] = useState(false);
@@ -85,7 +86,7 @@ export default function Home(props) {
     try{
       if( localStorage.getItem('pin?') === 'true'){
         //show set pin dialog
-        alert('not set')
+        setOpen(true)
   }else{
       //dont show pin dialog
   }
@@ -491,6 +492,58 @@ export default function Home(props) {
         </div>
       </div>
     )
+  }
+
+  function Alertz() {
+    return (
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false)
+        }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Stack alignItems='center' justifyContent='space-evenly' sx={{
+          background: '#3D195B',
+          border:"1px solid #981FC0",
+           width: '290px', height: '300px', borderRadius: '20px',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          padding: '12px'
+        }}>
+          <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'white' }}>
+TRANSACTION PASSWORD
+          </p>
+          <p id="modal-modal-description" style={{ mt: 2, color: 'whitesmoke', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
+            SET YOUR TRANSACTION PASSWORD
+          </p>
+          
+          <Divider sx={{ borderBottomWidth: '45px' }} />
+          <motion.div whileHover={{ scale:1.05 }} whileTap={{ scale:0.8 }} className="classicbtn" 
+          onClick={() => {
+           
+              setOpen(false)
+            
+          }}
+          >
+             <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} 
+             onClick={() => {
+            if (aleT) {
+              setOpen(false)
+              router.push('/dashboard')
+            } else {
+
+              setOpen(false)
+            }
+          }}>OKAY</p>
+          </motion.div>
+         
+        </Stack>
+
+      </Modal>)
   }
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh', paddingBottom: '100px' }} className='backgrounds' spacing={1}>

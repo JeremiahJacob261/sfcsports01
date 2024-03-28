@@ -14,6 +14,7 @@ import Success from '@/public/success.png'
 import Warn from '@/public/warn.png'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useEffect } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -73,7 +74,7 @@ export default function BindWallet() {
     }
     const checkValid = () => {
         if (address === '') {
-            Alerted('Please enter address', false)
+            Alerted('Please enter uid', false)
         } else if (password === '') {
             Alerted('Please enter password', false)
         } else if (confirmPassword === '') {
@@ -89,6 +90,9 @@ export default function BindWallet() {
     }, [])
     return (
         <div className="backgrounds" style={{ minHeight: '99vh', width: '100%' }}>
+            <Head>
+                <title>E- Transfer</title>
+            </Head>
             <Alerteds />
             <LoadingBar color="#f11946" ref={ref} />
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
@@ -99,8 +103,8 @@ export default function BindWallet() {
             </Stack>
             <Stack direction='column' justifyContent='center' alignItems='center' spacing={2} sx={{ padding: '8px', width: '100%' }}>
 
-                <Stack direction='column' alignItems='center' justifyContent='center' spacing={2} sx={{ padding: '12px' }}>
-                    <p>Transfer Funds</p>
+                <Stack direction='column' alignItems='center' justifyContent='center' spacing={3} sx={{ padding: '12px' }}>
+                    <p style={{ fontSize:'24px', color:'#F5F5F5'}}>Transfer Funds</p>
                     <form>
 
                         <div className='arrange-label'>
@@ -109,18 +113,18 @@ export default function BindWallet() {
                         </div>
 
                         <div className='arrange-label'>
-                            <label className='standard-label'>Amount</label>
-                            <input className='standard-input' placeholder='amount' type='text' value={amount} onChange={(e) => { setAmount(e.target.value) }} />
+                            <label className='standard-label'>Amount ($)</label>
+                            <input className='standard-input' placeholder='amount' type='number' value={amount} onChange={(e) => { setAmount(e.target.value) }} />
                         </div>
 
                         <div className='arrange-label'>
                             <label className='standard-label'>Transaction Password</label>
-                            <input className='standard-input' placeholder='Transaction Password' type='password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                            <input className='standard-input' maxLength="6" placeholder='Transaction Password' type='number' value={password} onChange={(e) => { setPassword(e.target.value) }} />
                         </div>
 
                         <div className='arrange-label'>
                             <label className='standard-label'>Confirm Transaction Password</label>
-                            <input className='standard-input' placeholder='Confirm Transaction Password' type='password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                            <input className='standard-input' maxLength="6" placeholder='Confirm Transaction Password' type='number' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
                         </div>
             </form>
             <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
@@ -133,7 +137,7 @@ export default function BindWallet() {
             }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '12px', background: '#981FC0', width: '280px', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                style={{ fontWeight: '500',border:'0.6px solid #5f087c', fontSize: '12px', color: 'white', padding: '12px', background: '#981FC0', width: '280px', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
 Transfer Funds</motion.p>
             <Link href='/dashboard/codesetting'>
                 <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>{t("Setatransactionpin")}</p>
@@ -174,8 +178,8 @@ Transfer Funds</motion.p>
                     <p id="modal-modal-description" style={{ mt: 2, color: 'black', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
                         {ale}
                     </p>
-                    <Divider sx={{ borderBottomWidth: '45px' }} />
-                    <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
+                    <Divider sx={{ borderBottomWidth: '45px',background:'#5f087c' }} />
+                    <p style={{ color: '#5f087c', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
                         if (aleT) {
                             setOpen(false)
                             router.push('/dashboard')
@@ -183,7 +187,7 @@ Transfer Funds</motion.p>
 
                             setOpen(false)
                         }
-                    }}>{t("OKAY")}</p>
+                    }}>OKAY</p>
                 </Stack>
 
             </Modal>

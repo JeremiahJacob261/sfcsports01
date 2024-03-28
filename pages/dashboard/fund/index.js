@@ -59,7 +59,7 @@ export default function Fund() {
                    <div className='mapcontain'>
                     {
                         options.map((i)=>{
-                            return <motion.p whileTap={{ scale:0.7}} className='inmap' onClick={()=>{
+                            return <motion.p key={i} whileTap={{ scale:0.7}} className='inmap' onClick={()=>{
                                 setAmount(i)
                             }}>{i}</motion.p>;
                         })
