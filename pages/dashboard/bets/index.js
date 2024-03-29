@@ -153,7 +153,7 @@ export default function Bets() {
         }} />
         <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Bets")}</p>
       </Stack>
-      <Stack className='betspent'>
+      <Stack className='betspent' direction="row">
           <p>Spent<br/>$ 0</p>
           <p>Won<br/>$ 0</p>
       </Stack>
