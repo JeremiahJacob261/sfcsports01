@@ -338,7 +338,7 @@ useEffect(()=>{
               return( 
                 <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
              
-                <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}} >
+                <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column',border:'0.5px solid #3F1052'}} >
                   <div className='live-containx' style={{ }}>
                   <div className='live1'>
                     <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo"/>

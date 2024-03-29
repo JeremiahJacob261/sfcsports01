@@ -18,9 +18,9 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Translate from '@/pages/translator';
-import {  Divider,Modal  } from '@mui/material';
+import { Divider, Modal } from '@mui/material';
 export async function getStaticProps({ locale }) {
-  
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -34,7 +34,7 @@ export default function Home(props) {
   const { t } = useTranslation('all')
   const [addresst, setAddress] = useState('');
   const [gcount, setGCount] = useState(0);
-  const [open,setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [reciept, setReciept] = useState('');
   const [balance, setBalance] = useState(0);
   const [authed, setAuthed] = useState(false);
@@ -84,14 +84,14 @@ export default function Home(props) {
   }
 
   useEffect(() => {
-    try{
-      if( localStorage.getItem('pin?') === 'true'){
+    try {
+      if (localStorage.getItem('pin?') === 'true') {
         //show set pin dialog
         setOpen(true)
-  }else{
-      //dont show pin dialog
-  }
-    }catch(e){
+      } else {
+        //dont show pin dialog
+      }
+    } catch (e) {
       console.log(e)
     }
     const checkAuth = async () => {
@@ -363,8 +363,8 @@ export default function Home(props) {
           <p className='title1'>Hello</p>
           <p className='title2'>{user ? user.username : ""}</p>
         </Stack>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={()=>{
-          router.push('/dashboard/history?=' + user ? user.username : "");
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
+          router.push(`/dashboard/history?id=${user.userId ?? ""}`);
         }}>
           <Icon icon="tdesign:notification-filled" width="24" height="24" style={{ color: "#981FC0" }} />
         </motion.div>
@@ -466,15 +466,42 @@ export default function Home(props) {
   }
   function NextMatches() {
     return (
-      <Stack className='next-contain' spacing={2}>
-        <Matchx />
+      <Stack className='next-contain' spacing={2} sx={{ padding:0 }}>
         <div style={{ height: '5px', width: '1px' }}></div>
-        <Matchx />
-        <div style={{ height: '5px', width: '1px' }}></div>
-        <Matchx />
-        <div style={{ height: '5px', width: '1px' }}></div>
-        <Matchx />
-        <div style={{ height: '5px', width: '1px' }}></div>
+        {
+          footDat.map((data) => {
+            return (
+              <Link  href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
+
+                <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
+                  <div className='live-containx' style={{}}>
+                    <div className='live1'>
+                      <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo" />
+                      <p className='mtxt'>{data.home}</p>
+                    </div>
+                    <div className='live2'>
+                      <p className='mleague'>{data.league}</p>
+                      <p className='mscore'>{data.time}</p>
+                      <p className='mtime'>TODAY</p>
+                    </div>
+                    <div className='live1'>
+                      <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo" />
+                      <p className='mtxt'>{data.away}</p>
+                    </div>
+                  </div>
+
+                  <motion.div onClick={() => {
+                    // router.push('/dashboard/match/')
+                  }} className="decision-x" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.8 }}>
+                    <p>Place Bet</p>
+                    <Icon icon="ic:round-arrow-right" width="24" height="24" style={{ color: 'white' }} />
+                  </motion.div>
+                </div>
+              </Link>
+
+            )
+          })
+        }
       </Stack>
     )
   }
@@ -507,8 +534,8 @@ export default function Home(props) {
       >
         <Stack alignItems='center' justifyContent='space-evenly' sx={{
           background: '#3D195B',
-          border:"1px solid #981FC0",
-           width: '290px', height: '300px', borderRadius: '20px',
+          border: "1px solid #981FC0",
+          width: '290px', height: '300px', borderRadius: '20px',
           position: 'absolute',
           top: '50%',
           left: '50%',
@@ -516,35 +543,31 @@ export default function Home(props) {
           padding: '12px'
         }}>
           <p id="modal-modal-title" style={{ fontSize: '20px', fontWeight: '500', color: 'white' }}>
-TRANSACTION PASSWORD
+            TRANSACTION PASSWORD
           </p>
           <p id="modal-modal-description" style={{ mt: 2, color: 'whitesmoke', fontSize: '16px', textAlign: 'center', fontWeight: '300' }}>
             SET YOUR TRANSACTION PASSWORD
           </p>
-          
+
           <Divider sx={{ borderBottomWidth: '45px' }} />
-          <motion.div whileHover={{ scale:1.05 }} whileTap={{ scale:0.8 }} className="classicbtn" 
-          onClick={() => {
-           
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} className="classicbtn"
+            onClick={() => {
               setOpen(false)
-            
-          }}
+            }}
           >
-             <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} 
-             onClick={() => {
-            if (aleT) {
-              setOpen(false)
-              router.push('/dashboard')
-            } else {
-
-              setOpen(false)
-            }
-          }}>OKAY</p>
+            <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }}
+              onClick={() => {
+                if (aleT) {
+                  setOpen(false)
+                  router.push('/dashboard')
+                } else {
+                  setOpen(false)
+                }
+              }}>OKAY</p>
           </motion.div>
-         
         </Stack>
-
-      </Modal>)
+      </Modal>
+      )
   }
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh', paddingBottom: '100px' }} className='backgrounds' spacing={1}>

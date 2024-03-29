@@ -147,7 +147,7 @@ export default function Bets() {
         <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px',width:'100%',background:'#981fc0' }} spacing={1}>
+      <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px',width:'100%' }} spacing={1}>
         <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.push('/dashboard')
         }} />

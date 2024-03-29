@@ -121,7 +121,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>{t("YourUSDTDepositwasSuccessful")}</p>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit was Successful</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
                                 </Stack>
@@ -140,7 +140,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>{t("YourBetwasplacedSuccessfully")}</p>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully</p>
                                     <p>{item.type}</p>
                                     <p>{item.amount} USDT</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
@@ -214,15 +214,14 @@ export default function History({credent}) {
         }
     }
     return (
-        <div className='backgrounds' style={{ width: '100%', minHeight: '100vh' }}>
-            <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px' }} spacing={1}>
+        <div className='backgrounds' style={{ width: '100%', minHeight: '90vh',display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center',paddingBottom:'200px' }}>
+            <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px',width:'100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.push('/dashboard')
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Notifications")}</p>
+                  <p style={{ color: '#981FC0', fontSize: '18px' }}>Notifications</p>
             </Stack>
-            <Stack sx={{ minHeight: '100vh', padding: '8px' }} direction='column' alignItems='center'>
-                <p style={{ color: '#981FC0', fontSize: '24px' }}>{t("Notifications")}</p>
+            <Stack sx={{ padding: '8px' }} direction='column' alignItems='center'>
                 <NotiFunc/>
             </Stack>
             <HomeBottom />
@@ -232,11 +231,12 @@ export default function History({credent}) {
 export async function getServerSideProps(context) { 
     const id = context.query.id;
     const { locale } = context;
+    console.log(id)
     try{
         const { data,error } = await supabase
         .from('users')
         .select('*')
-        .eq('username',id)
+        .eq('userId',id)
         return {
             props: {credent:data[0], 
                 ...(await serverSideTranslations(locale, [

@@ -87,10 +87,9 @@ const { t } = useTranslation()
       <Stack style={{ background: '#981FC0', width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
         <Stack direction='row' alignItems='center' spacing={2}>
           <Image src={Logo} width={41} height={36} alt="sfclogo" />
-          <p style={{ color: 'white', fontSize: '15px', fontWeight: '600' }}>{t('all:Eplsports')}</p>
+          <p style={{ color: 'white', fontSize: '15px', fontWeight: '600' }}>eplsports</p>
         </Stack>
         <Stack direction='row' alignItems='center' spacing={2}>
-          <Translate/>
         <Stack onClick={async()=>{
           try{
             const { data,error } = supabase.auth.signOut();
