@@ -88,7 +88,7 @@ export default function Home(props) {
   }
     const [initialized, setInitialized] = useState(false);
   useEffect(() => {
-
+    runOneSignal();
     try {
       if (localStorage.getItem('pin?') === 'true') {
         //show set pin dialog
@@ -365,7 +365,7 @@ export default function Home(props) {
     return (
       <div className='headies'>
         <Stack direction='column' sx={{ flex: 1 }}>
-          <p className='title1' onClick={()=>{ runOneSignal(); }}>Hello</p>
+          <p className='title1'>Hello</p>
           <p className='title2'>{user ? user.username : ""}</p>
         </Stack>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
