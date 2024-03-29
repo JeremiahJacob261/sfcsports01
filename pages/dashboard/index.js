@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { Box, Button, Stack } from '@mui/material';
-import { adapter, tronWeb } from '@/crypto/adaptedwc'
+import OneSignal from 'react-onesignal';
 import { Icon } from '@iconify/react';
 import { supabase } from '../api/supabase';
 import { useRouter } from 'next/router';
@@ -82,8 +82,13 @@ export default function Home(props) {
     //     })
     //     console.log(test)
   }
-
+   async function runOneSignal() {
+    await OneSignal.init({ appId: '1fc58f49-adf9-4461-a23d-56ea6586c275', allowLocalhostAsSecureOrigin: true});
+    OneSignal.Slidedown.promptPush();
+  }
+    const [initialized, setInitialized] = useState(false);
   useEffect(() => {
+
     try {
       if (localStorage.getItem('pin?') === 'true') {
         //show set pin dialog
@@ -360,7 +365,7 @@ export default function Home(props) {
     return (
       <div className='headies'>
         <Stack direction='column' sx={{ flex: 1 }}>
-          <p className='title1'>Hello</p>
+          <p className='title1' onClick={()=>{ runOneSignal(); }}>Hello</p>
           <p className='title2'>{user ? user.username : ""}</p>
         </Stack>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
