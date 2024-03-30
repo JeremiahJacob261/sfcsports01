@@ -734,3 +734,48 @@ font-family:var(--font-lilpops);
  .standard-input  {
   text-align: center;
  }
+
+ .p-popover {
+  background-color: #3F1052;
+  color: whitesmoke;
+  padding: 8px;
+  font-family: var(--font-lilpops);
+  font-size: 12px;
+  font-weight: 200;
+  text-align: center;
+  cursor: pointer;
+  min-width: 85px;
+  display: inline;
+  height: 34px;
+ }
+
+ @media screen and (max-width: 600px) {
+  .desk {
+    display: none;
+  }
+  .main-title {
+    font-size: 20px;
+  }
+  .azabalance {
+    font-size: 30px;
+  }
+  .icon-con {
+    width: 60px;
+  }
+  .onhead {
+    font-size: 10px;
+  }
+  .betspent {
+    width: 250px;
+  }
+  .amount-txt {
+    font-size: 10px;
+  }
+  .inmap {
+    width: 45px;
+  }
+  .p-popover {
+    font-size: 10px;
+  }
+  
+ }

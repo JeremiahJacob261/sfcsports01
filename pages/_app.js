@@ -34,6 +34,7 @@ const lilpop = localFont({ src: '../public/font/lightpops.woff2' })
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
         <link rel="icon" href="/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <meta name="application-name" content="PWA App" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
