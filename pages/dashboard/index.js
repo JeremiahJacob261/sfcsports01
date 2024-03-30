@@ -154,9 +154,10 @@ export default function Home(props) {
     const [minutes, setMinutes] = useState('')
     const [seconds, setSeconds] = useState('')
     let playable = {
-      0: 2,
-      1: 1,
-      2: 0
+      0: 3,
+      1: 2,
+      2: 1,
+      3: 0
     }
     function calculateTimeRemaining() {
       const currentDate = new Date();

@@ -247,7 +247,7 @@ export default function Withdraw() {
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>{t("TransactionPassword")}</p>
+                    <p>{t("Transaction Pin")}</p>
                     <TextField variant='standard' type='password' placeholder='Password' sx={{ color: 'black', background: 'grey', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={password}
                         onChange={(e) => {
@@ -259,7 +259,7 @@ export default function Withdraw() {
                     />
                 </Stack>
                 <Stack spacing={1} sx={{ width: '310px' }}>
-                    <p>{t("ConfirmTransactionPassword")}</p>
+                    <p>{t("ConfirmTransaction Pin")}</p>
                     <TextField variant='standard' type='password' placeholder='Confirm Password' sx={{ color: 'black', background: 'grey', padding: '8px', letterSpacing: '1px', input: { color: 'black', }, borderRadius: '5px' }}
                         value={cpassword}
                         onChange={(e) => {

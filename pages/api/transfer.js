@@ -26,12 +26,18 @@ export default async function handler(req, res) {
                         .rpc('depositor', { amount: damount, names: dusername })
                     console.log(error);
                 }
+                const Withdrawer = async (damount, dusername) => {
+                    const { data, error } = await supabase
+                        .rpc('withdrawer', {  names: dusername, amount: damount + 1 })
+                    console.log(error);
+                }
                 Depositing(body.amount,uu[0].username);
+                Withdrawer(body.amount,body.username);
             }
         }
   }catch(e){
+    res.status(200).json({ status: 'failed',message:'Wrong Uid Please Check and Try Again' })
 
   }
-    res.status(200).json({ name: 'Jerry is the flash' })
   }
   
