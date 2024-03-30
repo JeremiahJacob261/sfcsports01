@@ -18,7 +18,7 @@ import Tour1 from '@/public/tours.png'
 import Tour2 from '@/public/tour2.png'
 import Tour3 from '@/public/tour3.png'
 import Head from 'next/head';
-import Translate from '@/pages/translator';
+import Translate from '@/pages/translatec';
 import { useTranslation } from 'next-i18next'
 import { adapter, tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
@@ -110,7 +110,6 @@ export default function Home(locale) {
         </Stack>
         <Stack direction='row' alignItems='end' spacing={2}>
           
-
         </Stack>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Stack  onClick={async () => {
@@ -126,7 +125,8 @@ export default function Home(locale) {
             <Icon icon="ic:round-menu" width={39} height={33} style={{ color: '#545454', background: 'white' }} onClick={() => { setParentOpen(true) }} />
           </Stack>
 
-          <Popover
+          <Translate/>
+          {/* <Popover
             animate={{
               mount: { scale: 1, y: 0 },
               unmount: { scale: 0, y: 25 },
@@ -144,7 +144,7 @@ export default function Home(locale) {
                 <motion.p whileHover={{ x: -10 }} whileTap={{ scale: 0.75 }} className='p-popover'>ENGLISH</motion.p>
               </div>
             </PopoverContent>
-          </Popover>
+          </Popover> */}
         </div>
 
       </Stack>
