@@ -14,20 +14,15 @@ import { supabase } from '../../api/supabase';
 import { useEffect } from 'react';
 import { Button, Drawer } from '@mui/material';
 import { useState } from 'react';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
+export async function getStaticProps() {
     return {
       props: {
-        ...(await serverSideTranslations(locale, [
-          'all',
-        ])),
+     
         // Will be passed to the page component as props
       },
     }
   }
 export default function Event() {
-  const { t } = useTranslation('all')
   const [selected, setSelected] = React.useState(null);
   const router = useRouter();
   const [user, setUser] = useState({});
@@ -371,8 +366,8 @@ useEffect(()=>{
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '85vh' }}>
-          <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
-          <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
+          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
+          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
         </Stack>)
     }
   }
@@ -417,14 +412,14 @@ useEffect(()=>{
     return (
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100%', textAlign: 'center' }}>
-          <p style={{ color: 'whitesmoke' }}>{t("GamesPlayableToday")}</p>
+          <p style={{ color: 'whitesmoke' }}>Games Playable Today</p>
           <p style={{ color: 'greenyellow' }}>{playable[user.gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
           <span id="minutes">{minutes} : </span>
           <span id="seconds"> {seconds}</span>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>{t("TimebeforeGamesPlayableResets")}</p>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
         </div>
       </div>
     )
