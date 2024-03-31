@@ -501,7 +501,7 @@ useEffect(()=>{
           <motion.div onClick={()=>{ router.push('/dashboard/wallet?id=' + user.username)}} whileTap={{ x:-5 }} className='onhead'>$ {user.balance ?? 0}</motion.div>
         </Stack>
         <SearchBar/>
-        <CountDown />
+        {/* <CountDown /> */}
         <MatchRow />
         <HomeBottom />
       </Stack>

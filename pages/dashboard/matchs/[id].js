@@ -466,7 +466,7 @@ export default function Matchs({ matc, user ,test}) {
           <Icon icon="basil:cancel-outline" width={30} height={30} onClick={() => { router.push('/dashboard/event') }} />
           <p style={{ color: 'white', fontSize: '15px', fontWeight: '600', textAlign: 'center', width: '100%' }}>{matches.league}</p>
         </Stack>
-        <CountDown />
+        {/* <CountDown /> */}
         <Stack direction="column" sx={{ width: '100%', height: '100%', padding: '12px' }} spacing={2} alignItems='center' justifyContent='center'>
           <Stack direction="row" sx={{ width: '100%', height: '100%', padding: '8px' }} spacing={2} alignItems='center' justifyContent='space-between'>
             <Stack direction="row" spacing={2} justifyContent='center' alignItems='center' sx={{}}>
@@ -479,7 +479,7 @@ export default function Matchs({ matc, user ,test}) {
               <p>{matches.away}</p>
             </Stack>
           </Stack>
-          <MatchCountDown />
+          {/* <MatchCountDown /> */}
           <OddArrange />
         </Stack>
       </Stack>

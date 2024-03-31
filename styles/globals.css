@@ -704,7 +704,7 @@ font-family:var(--font-lilpops);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   font-family: var(--font-suma);
  }
@@ -779,3 +779,7 @@ font-family:var(--font-lilpops);
   }
   
  }
+
+ font {
+  pointer-events: none;
+}

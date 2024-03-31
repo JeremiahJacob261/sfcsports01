@@ -5,6 +5,7 @@ import { getCookie, hasCookie, setCookie } from 'cookies-next';
 import { Icon } from "@iconify/react";
 
 export default function GoogleTranslate() {
+    const [isLoaded, setIsLoaded] = useState(false)
     const languages = [
         { label: 'English', value: '/auto/en' },
         { label: `Русский`, value: '/auto/ru' },
@@ -47,11 +48,14 @@ export default function GoogleTranslate() {
         else {
             setSelected('/auto/en')
         }
+        script.onload = () => setIsLoaded(true)
     }, []);
     return (
-        <>
-
-        <div id="google_translate_element" style={{width:'0px',height:'0px',position:'absolute',left:'50%'}}></div>
+        <div>
+            {isLoaded && (
+                // Placeholder expression
+                <>
+                  <div id="google_translate_element" style={{width:'0px',height:'0px',position:'absolute',left:'50%'}}></div>
         <SelectPicker 
          data={languages} 
          style={{ width: 100 }} 
@@ -66,7 +70,8 @@ export default function GoogleTranslate() {
             console.log(languages)
             langChange(e,m,evt)}}
          placeholder="Lang"/> 
-    </>
-
+                </>
+            )}
+        </div>
     )
 }
