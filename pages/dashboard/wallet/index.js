@@ -45,9 +45,6 @@ export default function Wallet({user}) {
             </Backdrop>
             <div className="main-header">
                <p className="main-title">Balance</p>
-               <motion.div>
-                  <Icon icon="solar:settings-bold-duotone" width="24" height="24" style={{ color: 'grey' }} />
-               </motion.div>
             </div>
 
         

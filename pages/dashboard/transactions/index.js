@@ -109,7 +109,7 @@ export default function Transaction({ transaction }) {
                 }} />
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>Transactions</p>
             </Stack>
-            <Stack className='betspent'>
+            <Stack className='betspent' direction="row" justifyContent="space-between">
           <p>Total Deposits<br/>$ {user.totald}</p>
           <p>Total Withdraw<br/>$ {user.totalw}</p>
       </Stack>

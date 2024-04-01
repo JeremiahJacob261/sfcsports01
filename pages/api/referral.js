@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     res.status(200).json({
         'refdata': refer,
         'user': data[0],
-        'totalearn': total,
+        'totalearn': total.toFixed(3),
         'userearnings': userearnings
     });
 

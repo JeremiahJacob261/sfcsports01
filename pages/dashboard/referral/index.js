@@ -101,7 +101,7 @@ export default function Referral({ test,vips }) {
                             let username = t.username;
                             // userearnings[username].toFixed(3)
                             return (
-                                <Stack direction="row" spacing={2} justifyContent="space-between" alignItems='center' sx={{ padding: '8px' }} key={t.keyf}>
+                                <Stack direction="row" spacing={2} justifyContent="space-between" alignItems='center' sx={{ padding: '8px',width:'370px' }} key={t.keyf}>
                                     <Image src={t.profile ?? Avatar} width={40} height={40} alt='rounds' />
                                     <Stack direction='column' alignItems='start' sx={{ width: '196px' }}>
                                         <Stack direction='row' alignItems='center' spacing={1} justifyContent='stretch'>
@@ -115,7 +115,7 @@ export default function Referral({ test,vips }) {
                                         <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
 
                                     </Stack>
-                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>$ {balance}</Typography>
+                                    <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500',width:'80px' }}>$ {balance.toFixed(2)}</Typography>
                                 </Stack>
                             )
                         })
@@ -238,11 +238,11 @@ export default function Referral({ test,vips }) {
                 <Stack className='accountinfo' justifyContent='center' alignItems='center' spacing={1}>
                     <Stack justifyContent='center' alignItems='center' direction='column' sx={{ minHeight: 'auto', padding: '8px' }}>
 
-                        <p style={{ fontFamily: 'Poppins,sans-serif',fontSize:'35px',fontWeight:700, color: viproyal[vipcount.viplevel], opacity: 0.7 }}>{t("VIP")} {vipcount.viplevel}</p >
+                        <p style={{ fontFamily: 'Poppins,sans-serif',fontSize:'35px',fontWeight:700, color: "white", opacity: 0.7 }}>{t("VIP")} {vipcount.viplevel}</p >
 
                         <Stack justifyContent='left' alignItems='left'>
                             <Stack>
-                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>{t("TotalDeposit")}</p >
+                                <p style={{ fontFamily: 'Poppins,sans-serif' }}>Total Deposit</p >
                                 <Stack direction='row' justifyContent='left' alignItems='center' spacing={2}>
                                     <BorderLinearProgress variant="determinate" value={(parseFloat(vipcount.rprogress) > 100) ? 100 : parseFloat(vipcount.rprogress ?? 0)} sx={{ width: '230px' }} />
                                     <p style={{ fontFamily: 'Poppins,sans-serif' }}>{(parseFloat(vipcount.rprogress) > 100) ? 100 : parseFloat(vipcount.rprogress ?? 0)}%</p >
@@ -307,7 +307,7 @@ export default function Referral({ test,vips }) {
                 </div>
             <Stack direction="column" justifyContent="center" alignItems='center'>
             <p style={{ color:'whitesmoke', fontSize:'20px', width:'100%',textAlign:'center'}}>Total Commission : { totalearnings } USDT</p>
-                <p style={{ color:'grey', fontSize:'15px', width:'100%',textAlign:'center'}}>This is the total earnings made from downlines activities</p>
+                <p style={{ color:'white', fontSize:'15px', width:'100%',textAlign:'center'}}>This is the total earnings made from downlines activities</p>
             </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px' }} spacing={2} justifyContent='center' alignItems="center">
                 <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>{t("All Referral")} ({

@@ -472,12 +472,12 @@ export default function Home(props) {
   }
   function NextMatches() {
     return (
-      <Stack className='next-contain' spacing={2} sx={{ padding:0 }}>
+      <Stack className='next-contain' alignItems="center" spacing={2} sx={{ padding:0 }}>
         <div style={{ height: '5px', width: '1px' }}></div>
         {
           footDat.map((data) => {
             return (
-              <Link  href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
+              <Link  href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'310px'}}>
 
                 <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
                   <div className='live-containx' style={{}}>

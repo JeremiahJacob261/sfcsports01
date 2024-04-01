@@ -88,7 +88,7 @@ testRoute();
                 <TextField
                     sx={{ color: 'white',background:'grey',borderRadius:'8px', input: { color: '#E5E7EB', }  }}
                     value={pi}
-                    label='Enter Transaction Password'
+                    label='Enter Transaction PIN'
                     type='text'
                     onChange={(p) => {
                         setPi(p.target.value)
@@ -99,7 +99,7 @@ testRoute();
                 <Typography sx={{ fontSize: '12px', fontWeight: '500', fontFamily: 'Poppins,sans-serif', color: 'white' }}>Confirm Transaction Password </Typography>
                 <TextField
                     sx={{ color: 'white',background:'grey',borderRadius:'8px' ,input: { color: '#E5E7EB', },inputLabel: { color: '#E5E7EB',}  }}
-                    label='Confirm Transaction Password'
+                    label='Confirm Transaction PIN'
                     type='password'
                     value={pin}
                     onChange={(p) => {
@@ -124,8 +124,8 @@ testRoute();
                 }}
                     whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                     whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-                    style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
-                    {t("SETTransaction Pin")}</motion.p>
+                    style={{ fontWeight: '500', fontSize: '12px',border:'0.6px solid #5f087c', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+SET TRANSACTION PIN</motion.p>
 
             </Stack>
             

@@ -275,7 +275,7 @@ export default function Login({ranter}) {
         overflowX: "hidden",
         maxWidth: "100%",
         minHeight: "100vh",
-        background: 'black'
+        background: '#3F1052'
         , position: 'relative'
       }}>
       <Alertz />
@@ -309,14 +309,14 @@ export default function Login({ranter}) {
         </Stack>
         <Stack direction="column" spacing={4} sx={{ width: '343px' }}>
           <TextField id="outlined-basic" label="Email Or Username" variant="filled"
-            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: 'black', } }}
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: 'black', } }}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
             }}
           />
           <FormControl
-            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: 'black', } }}
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: 'black', } }}
             variant="filled">
             <InputLabel htmlFor="outlined-adornment-password">{t("Password")}</InputLabel>
             <OutlinedInput
@@ -347,7 +347,7 @@ export default function Login({ranter}) {
                    </motion.div>
 
                    <TextField id="outlined-basic" label="captcha" variant="filled"
-            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: 'black', } }}
+            sx={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: 'black', } }}
             value={code}
             onChange={(e) => {
               setCode(e.target.value)

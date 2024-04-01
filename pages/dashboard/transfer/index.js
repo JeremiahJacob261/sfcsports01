@@ -99,12 +99,13 @@ export default function BindWallet() {
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.back()
                 }} />
-                <p className="text-sm text-gray-500">{t("BINDWALLET")}</p>
+                <p className="text-sm text-gray-500">E- Transfer</p>
             </Stack>
             <Stack direction='column' justifyContent='center' alignItems='center' spacing={2} sx={{ padding: '8px', width: '100%' }}>
 
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={3} sx={{ padding: '12px' }}>
-                    <p style={{ fontSize:'24px', color:'#F5F5F5'}}>Transfer Funds</p>
+                    <p style={{ fontSize:'24px', color:'#F5F5F5'}}>Transfer Funds To Another User</p>
+                    <p  style={{ fontSize:'13px',fontStyle:'italic', color:'#F5F5F5'}}>note: there is a 1 USDT charge for making transfers to other users</p>
                     <form>
 
                         <div className='arrange-label'>
@@ -118,13 +119,13 @@ export default function BindWallet() {
                         </div>
 
                         <div className='arrange-label'>
-                            <label className='standard-label'>Transaction Password</label>
-                            <input className='standard-input' maxLength="6" placeholder='Transaction Password' type='number' value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                            <label className='standard-label'>Transaction PIN</label>
+                            <input className='standard-input' maxLength="6" placeholder='Transaction PIN' type='number' value={password} onChange={(e) => { setPassword(e.target.value) }} />
                         </div>
 
                         <div className='arrange-label'>
-                            <label className='standard-label'>Confirm Transaction Password</label>
-                            <input className='standard-input' maxLength="6" placeholder='Confirm Transaction Password' type='number' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                            <label className='standard-label'>Confirm Transaction PIN</label>
+                            <input className='standard-input' maxLength="6" placeholder='Confirm Transaction PIN ' type='number' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
                         </div>
             </form>
             <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
