@@ -296,7 +296,7 @@ export default function Login({ranter}) {
       </Head>
       <Stack direction='column' spacing={3}>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
-          <Image src={LOGO} width={100} height={120} alt='logo Eplsports' />
+          <Image src={LOGO} width={100} height={120} alt='logo Eplsports' style={{ padding:'12px',background:'white',borderRadius:'50%'}} onClick={()=>{ route.push('/')  }}/>
           <Link href="/" style={{ textDecoration: "none" }}>
             <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </Typography>
           </Link>
@@ -433,7 +433,7 @@ export default function Login({ranter}) {
             }
           }}
           >
-             <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} 
+             <p style={{ color: '#5f087c', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} 
              onClick={() => {
             if (aleT) {
               setOpen(false)

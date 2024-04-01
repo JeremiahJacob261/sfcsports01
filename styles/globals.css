@@ -723,7 +723,7 @@ font-family:var(--font-lilpops);
     color: #981FC0;
     background-color: whitesmoke;
     margin: 5px;
-    width: 55px;
+    width: 60px;
     text-align: center;
  }
 
@@ -772,9 +772,6 @@ font-family:var(--font-lilpops);
   }
   .amount-txt {
     font-size: 10px;
-  }
-  .inmap {
-    width: 45px;
   }
   .p-popover {
     font-size: 10px;

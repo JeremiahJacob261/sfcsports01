@@ -307,7 +307,7 @@ export default function Register({ refer }) {
             style={{ minWidth:"340px",height: "100%", marginTop: "15px", padding: "10px", backgound: "#495265" }}>
             <Stack direction="column" spacing={4} justifyContent="center" alignItems="center">
               <Link href='/'>
-                <Image src={LOGO} width={100} height={120} alt='logo Eplsports' />
+                <Image src={LOGO} width={100} height={120} alt='logo Eplsports' style={{ padding:'12px',background:'white',borderRadius:'50%'}} onClick={()=>{ route.push('/')  }}/>
               </Link>
               <Link href="/" style={{ textDecoration: "none" }}>
                 <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </p>
@@ -321,14 +321,14 @@ export default function Register({ refer }) {
             </Stack>
 
             <TextField id="outlined-basic" label="Username" variant="outlined"
-              style={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB', } }}
+              style={{ padding: 0, fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: '#E5E7EB', } }}
               value={username}
               onChange={(e) => {
                 setUsername((e.target.value).trim())
               }}
             />
             <TextField id="outlined-basic" label="Email" variant="outlined"
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: '#E5E7EB' } }}
               value={email}
               type='email'
               onChange={(e) => {
@@ -338,7 +338,7 @@ export default function Register({ refer }) {
             <TextField id="outlined-basic" label="Invite Code" variant="outlined"
               value={(idR === '0') ? 'none' : idR}
               disabled
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", color: '#E5E7EB', background: 'white', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", color: '#E5E7EB', background: 'grey', input: { color: '#E5E7EB' } }}
               onChange={(e) => {
                 setidR(e.target.value)
               }} />
@@ -349,7 +349,7 @@ export default function Register({ refer }) {
                 id="demo-simple-select"
                 value={age}
                 label="+84"
-                style={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
+                style={{ fontSize: '14', color: '#E5E7EB', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: '#E5E7EB' } }}
                 onChange={(e) => {
                   setAge(e.target.value);
                 }}
@@ -381,7 +381,7 @@ export default function Register({ refer }) {
             <TextField id="outlined-basic" label="Phone"
               type="parseFloat"
               variant="outlined"
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', color: '#E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: '#E5E7EB' } }}
               value={phone}
               onChange={(e) => {
                 setPhone(e.target.value);
@@ -394,7 +394,7 @@ export default function Register({ refer }) {
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={handleChange('password')}
-                style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#E5E7EB' } }}
+                style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: '#E5E7EB' } }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -415,7 +415,7 @@ export default function Register({ refer }) {
               id="outlined-required"
               label="Confirm Password"
               type="password"
-              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'white', input: { color: '#FFFFFF' } }}
+              style={{ fontSize: '14', fontWeight: '300', border: '1px solid #E5E7EB', borderRadius: '4px', fontFamily: 'Poppins, sans-serif', width: "100%", background: 'grey', input: { color: '#FFFFFF' } }}
               value={cpassword}
               onChange={(e) => {
                 setcPassword((e.target.value).trim());
@@ -515,7 +515,7 @@ export default function Register({ refer }) {
             {ale}
           </p>
           <Divider style={{ borderBottomWidth: '45px' }} />
-          <p style={{ color: 'white', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
+          <p style={{ color: '#5f087c', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer' }} onClick={() => {
             if (aleT) {
               setOpen(false)
               route.push('/dashboard')
