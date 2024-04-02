@@ -13,6 +13,8 @@ import Link from "next/link";
 import { useRouter } from 'next/router'
 import generateRandomNumber from '@/functions/generatecodes';
 import { motion } from 'framer-motion'
+import Translate from "../translatec";
+import BACK from '../../public/loginb.png'
 import LOGO from '../../public/logo.png'
 import Image from 'next/image'
 import Visibility from '@mui/icons-material/Visibility';
@@ -274,10 +276,16 @@ export default function Login({ranter}) {
         padding: "15px",
         overflowX: "hidden",
         maxWidth: "100%",
-        minHeight: "100vh",
-        background: '#3F1052'
+        minHeight: "100vh"
         , position: 'relative'
       }}>
+        <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.3', background: '#3F1052' }}>
+        <Image src={BACK} alt="star" style={{ zIndex: -1 }}
+          layout='fill'
+          objectFit='cover'
+        />
+      </div>
+      <Translate/>
       <Alertz />
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}

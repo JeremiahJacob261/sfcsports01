@@ -72,7 +72,7 @@ export default function Translate() {
   //  };
   return (
     <div className='notranslate'>
-       <p onClick={ startTranslate} style={{ color: '#FFFFFF', fontSize: '15px', fontWeight: '600' }}>Translate</p>
+       <p onClick={ startTranslate} style={{ color: '#FFFFFF',padding:'8px',background:'#981fc0', fontSize: '15px', fontWeight: '600',position:'fixed',bottom:0,right:0 }}>SWITCH LANGUAGE</p>
       <Modal
         open={open}
         onClose={() => {

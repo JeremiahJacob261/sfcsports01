@@ -29,6 +29,7 @@ import {
   PopoverHandler,
   PopoverContent
 } from '@material-tailwind/react'
+import Footer from './footer/index'
 export async function getStaticProps({ locale }) {
   return {
     props: {
@@ -246,6 +247,7 @@ export default function Home(locale) {
           </Stack>
         </Drawer>
       </Stack>
+      <Footer/>
     </Stack>
   )
 }
