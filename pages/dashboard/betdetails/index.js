@@ -90,14 +90,14 @@ export default function BetDetails({ datas }) {
             </Stack>
             <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width: '100%', padding: '8px' }} spacing={3}>
                 <p className="betd-text">{t("Time")}: {fulltime}</p>
-                <p className="betd-text">{t("Stake")}: {datas.stake} USDT</p>
+                <p className="betd-text">{t("Stake")}: {datas.stake.toFixed(3)} USDT</p>
                 <p className="betd-text">{t("Odds")}: {datas.odd}</p>
                 <p className="betd-text">{t("Betmarket")}: {datas.market}</p><p className="betd-text">Match ID: {datas.match_id}</p>
-                <p className="betd-text">{t("Return")}: {datas.aim + datas.stake} USDT</p>
-                <p className="betd-text">{t("Profit")}: {datas.profit}</p>
+                <p className="betd-text">{t("Return")}: {(datas.aim + datas.stake).toFixed(3)} USDT</p>
+                <p className="betd-text">{t("Profit")}: {(datas.profit).toFixed(3)}</p>
                 <p className="betd-text">{t("Status")}: {(datas.won != 'null') ? 'Finished' : (stams+5400 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
                 <p className="betd-text">{t("MatchResult")}: {resulta}</p>
-                <p className="betd-text">{t("EventDateandTime")}: {datas.date} {datas.time}</p>
+                <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
                 <p className="betd-text" style={{ color: 'goldenrod' }}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
                 
             </Stack>

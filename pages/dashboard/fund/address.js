@@ -35,7 +35,7 @@ export default function Address({ method }) {
         toastOptions={{
           style: {
             fontSize: '14px',
-            background: '#ad1c39',
+            background: '#981FC0',
             color: '#fff',
           },
           iconTheme: {
@@ -59,7 +59,7 @@ export default function Address({ method }) {
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>{(method === 'bankbri') ? "174901058158503" : "TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z"}</p>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Icon icon="solar:copy-bold-duotone" color="#ad1c39" width={30} height={30} onClick={() => {
+            <Icon icon="solar:copy-bold-duotone" color="#981FC0" width={30} height={30} onClick={() => {
               navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z");
               toast.success('Copied to clipboard');
             }} />
@@ -67,7 +67,7 @@ export default function Address({ method }) {
         </Stack>
         <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Bank Name: Bank BRI</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-          <Icon icon="ph:info-light" color="#ad1c39" />
+          <Icon icon="ph:info-light" color="#981FC0" />
           <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
         </Stack>
         <motion.p onClick={() => {
@@ -90,7 +90,7 @@ export default function Address({ method }) {
         toastOptions={{
           style: {
             fontSize: '14px',
-            background: '#ad1c39',
+            background: '#981FC0',
             color: '#fff',
           },
           iconTheme: {
@@ -112,9 +112,9 @@ export default function Address({ method }) {
           <Image src={Barcode} alt='barcode' width={300} height={300} />
         </motion.div>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>{(method === 'bankbri') ? "174901058158503" : "TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z"}</p>
+          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'whitesmoke' }}>{(method === 'bankbri') ? "174901058158503" : "TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z"}</p>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Icon icon="solar:copy-bold-duotone" color="#ad1c39" width={30} height={30} onClick={() => {
+            <Icon icon="solar:copy-bold-duotone" color="#3f1052" width={30} height={30} onClick={() => {
               navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z");
               toast.success('Copied to clipboard');
             }} />
@@ -122,7 +122,7 @@ export default function Address({ method }) {
         </Stack>
         <p style={{ color: 'greenyellow', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Network: USDT (TRC20)</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-          <Icon icon="ph:info-light" color="#ad1c39" />
+          <Icon icon="ph:info-light" color="#981FC0" />
           <p style={{ color: 'whitesmoke', fontSize: '12px', fontWeight: '100', maxWidth: '70%' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
         </Stack>
         <motion.p onClick={() => {

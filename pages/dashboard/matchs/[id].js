@@ -13,11 +13,11 @@ import Image from 'next/image'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
-export default function Matchs({ matc, user ,test}) {
+export default function Matchs({ matc, user, test }) {
   const [drop, setDrop] = useState(false);
   const router = useRouter();
   const [matches, setMatches] = useState(matc);//[router.query.id
-  const [placee,setPlacee] = useState({});
+  const [placee, setPlacee] = useState({});
   const [parentopen, setParentOpen] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem('signedIns')) {
@@ -76,12 +76,12 @@ export default function Matchs({ matc, user ,test}) {
       setDrop(false)
       return;
     } else {
-      if(!stake){
+      if (!stake) {
         alert('Please Input a Number')
         setDrop(false)
         return;
-      }else if (parseFloat(stake) < 2) {
-        alert('Minimum stake is 2 USDT')
+      } else if (parseFloat(stake) < 5) {
+        alert('Minimum stake is 5 USDT')
         setDrop(false)
         return;
       } else if (parseFloat(stake) > user.balance) {
@@ -148,7 +148,7 @@ export default function Matchs({ matc, user ,test}) {
     // console.log(txt)
     // console.log(pick)
     // console.log(markets[pick])
-    const [use,setUse] = useState({});
+    const [use, setUse] = useState({});
     let profit = parseFloat(amountInput) * parseFloat((parseFloat(placee.txt) / 100).toFixed(3)).toFixed(3);
     let total = parseFloat((parseFloat(profit) + parseFloat(amountInput)).toFixed(3))
     const click = (parseFloat) => {
@@ -172,7 +172,7 @@ export default function Matchs({ matc, user ,test}) {
         }
       }
     }
-    useEffect(() => { 
+    useEffect(() => {
       const getRef = async () => {
         try {
           const { data: refer, error: errref } = await supabase
@@ -188,24 +188,24 @@ export default function Matchs({ matc, user ,test}) {
         } catch (e) {
           console.log(e)
         }
-  
+
       }
       getRef();
     }, [use])
     const vip = {
-        '1':0,
-        '2':0.015,
-        '3':0.030,
-        '4':0.050,
-        '5':0.070,
-        '6':0.095,
-        '7':0.125
+      '1': 0,
+      '2': 0.015,
+      '3': 0.030,
+      '4': 0.050,
+      '5': 0.070,
+      '6': 0.095,
+      '7': 0.125
     }
     return (
       <React.Fragment key={'bottom'} >
         <motion.div className='odds' onClick={() => {
           setParentOpen(true)
-          setPlacee({'txt':parseFloat(txt)  + parseFloat(vip[test.viplevel]),'pick':pick,'market':markets[pick]})
+          setPlacee({ 'txt': parseFloat(txt) + parseFloat(vip[test.viplevel]), 'pick': pick, 'market': markets[pick] })
         }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -238,7 +238,18 @@ export default function Matchs({ matc, user ,test}) {
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{placee.market}</p> <p>{placee.txt}</p>
               </Stack>
+              <p style={{ color: 'black',textAlign:'center',fontSize:'20px',fontWeight:'700', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '80%', borderRadius: '5px' }}>{amountInput} </p>
+              <Stack direction="row" justifyContent="space-around" sx={{ width: '100%' }} spacing={1}>
+                  <Stack direction="column" spacing={1}>
+                    <p>Balance : {user.balance ?? 0} USDT</p>
+                    <p>Stake: {amountInput}</p>
+                  </Stack>
+                  <Stack direction="column" spacing={1}>
+                    <p>Profit: {profit}</p>
+                    <p>Winnings: {total}</p>
+                  </Stack>
 
+                </Stack>
               <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
                 <Stack direction="column" spacing={2}>
                   {/* whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} */}
@@ -247,34 +258,22 @@ export default function Matchs({ matc, user ,test}) {
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('0')} className="figures">0</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('1')} className="figures">1</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('2')} className="figures">2</motion.p>
-                  </Stack>
-
-                  <Stack direction="row" spacing={1}>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('3')} className="figures">3</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('4')} className="figures">4</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('5')} className="figures">5</motion.p>
-                  </Stack>
+                   </Stack>
 
                   <Stack direction="row" spacing={1}>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('6')} className="figures">6</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('7')} className="figures">7</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('8')} className="figures">8</motion.p>
-                  </Stack>
-
-                  <Stack direction="row" spacing={1}>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('9')} className="figures">9</motion.p>
-                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('.')} className="figures">.</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('X')} className="figures">X</motion.p>
                   </Stack>
+
                 </Stack>
 
-                <Stack sx={{ width: '200px' }} spacing={2}>
-                  <p>Current Balance : {user.balance ?? 0} USDT</p>
-                  <p>Stake: {amountInput}</p>
-                  <p>Profit: {profit}</p>
-                  <p>Total Winnings: {total}</p>
-                  <p style={{ color: 'black', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '50px', borderRadius: '5px' }}>{amountInput}</p>
-                </Stack>
+               
               </Stack>
 
               <motion.p onClick={() => {
@@ -284,7 +283,7 @@ export default function Matchs({ matc, user ,test}) {
               }}
                 whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                 whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}
-                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '90%', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                style={{ fontWeight: '500', fontSize: '12px', color: 'white', border: '0.6px solid #3F1052', padding: '10px', background: '#981FC0', width: '90%', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                 Place Bet</motion.p>
             </Stack>
 
@@ -450,11 +449,11 @@ export default function Matchs({ matc, user ,test}) {
   return (
     <div className="backgrounds" style={{ minHeight: '100vh' }}>
       <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={drop}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={drop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Head>
         <title>{matches.home} VS {matches.away}</title>
         <meta name="description" content="Get Started With us to get the latest betting market and fantantic Bonus" />
@@ -493,68 +492,68 @@ export async function getServerSideProps(context) {
       .from('bets')
       .select('*')
       .eq('match_id', context.query.id);
-      
-      const { data: use, error: usematch } = await supabase
+
+    const { data: use, error: usematch } = await supabase
       .from('users')
       .select('*')
       .eq('userId', context.query.name);
-      
-      //get vip level
-      const id = context.query.name;
+
+    //get vip level
+    const id = context.query.name;
     let users = use[0];
-        const viplimit = {
-            '1': 50,
-            '2': 100,
-            '3': 200,
-            '4': 300,
-            '5': 500,
-            '6': 1000,
-            '7': 5000
-        };
-        const vipclimit = {
-            '1': 3,
-            '2': 5,
-            '3': 8,
-            '4': 12,
-            '5': 15,
-            '6': 20,
-            '7': 500
-        };
-        const { count, error } = await supabase
-            .from('users')
-            .select('*', { count: 'exact', head: true })
-            .match({
-                'refer': use[0].newrefer,
-                'firstd': true
-            });
-        console.log(count)
-        let refCount = count;
-        let vipl = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+    const viplimit = {
+      '1': 50,
+      '2': 100,
+      '3': 200,
+      '4': 300,
+      '5': 500,
+      '6': 1000,
+      '7': 5000
+    };
+    const vipclimit = {
+      '1': 3,
+      '2': 5,
+      '3': 8,
+      '4': 12,
+      '5': 15,
+      '6': 20,
+      '7': 500
+    };
+    const { count, error } = await supabase
+      .from('users')
+      .select('*', { count: 'exact', head: true })
+      .match({
+        'refer': use[0].newrefer,
+        'firstd': true
+      });
+    console.log(count)
+    let refCount = count;
+    let vipl = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
 
-        let viplevel = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
-        let rprogress = (parseInt(users.totald) / parseInt(viplimit[vipl])) * 100;
-        //tests
-        // console.log(users.totald)
-        //end
-        let cprogress = (parseInt(count) / parseInt(vipclimit[vipl])) * 100;
-        let c1 = (parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
-        let r1 = (parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
-        console.log(rprogress, cprogress, refCount, viplevel)
-        let test = { status: 'success', refCount: parseFloat(refCount) ?? 0, viplevel: parseFloat(viplevel) ?? 0, rprogress: parseFloat(rprogress.toFixed(2)), cprogress: parseFloat(cprogress.toFixed(2)), c1: parseFloat(c1), r1: parseFloat(r1) }
-  
+    let viplevel = (users.totald < 50 || count < 3) ? '1' : (users.totald < 100 || count < 5) ? '2' : (users.totald < 200 || count < 8) ? '3' : (users.totald < 300 || count < 12) ? '4' : (users.totald < 500 || count < 15) ? '5' : (users.totald < 1000 || count < 20) ? '6' : '7';
+    let rprogress = (parseInt(users.totald) / parseInt(viplimit[vipl])) * 100;
+    //tests
+    // console.log(users.totald)
+    //end
+    let cprogress = (parseInt(count) / parseInt(vipclimit[vipl])) * 100;
+    let c1 = (parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(count) / parseInt(vipclimit[vipl])) * 100).toFixed(2));
+    let r1 = (parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2)) > 100) ? 100 : parseFloat(((parseInt(users.totald) / parseInt(viplimit[vipl])) * 100).toFixed(2));
+    console.log(rprogress, cprogress, refCount, viplevel)
+    let test = { status: 'success', refCount: parseFloat(refCount) ?? 0, viplevel: parseFloat(viplevel) ?? 0, rprogress: parseFloat(rprogress.toFixed(2)), cprogress: parseFloat(cprogress.toFixed(2)), c1: parseFloat(c1), r1: parseFloat(r1) }
 
-      //end of get vip level
+
+    //end of get vip level
     let user = use[0];
     let matc = match[0];
     return {
-      props: { matc,user,test }, // will be passed to the page component as props
+      props: { matc, user, test }, // will be passed to the page component as props
     }
   } catch (e) {
     let matc = {};
     let user = {};
-    let test = { };
+    let test = {};
     return {
-      props: { matc, user,test }, // will be passed to the page component as props
+      props: { matc, user, test }, // will be passed to the page component as props
     }
   }
 

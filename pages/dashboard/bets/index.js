@@ -97,7 +97,7 @@ export default function Bets() {
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
                       sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
                       <p>{t("Status")}</p>
-                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 5400 < curren) ? t('Processing') :  (stams < curren) ? t('Ongoing') : t('NotStarted')}</p> </Stack>
+                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 5400 < curren) ? "pending" :  (stams < curren) ? "t('Ongoing')" : t('NotStarted')}</p> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
@@ -158,7 +158,7 @@ export default function Bets() {
           <p>Won<br/>$ 0</p>
       </Stack>
       <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px'}} spacing={2} justifyContent='center' alignItems="center">
-        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(0) }}>Ongoing <br/>{(betCounter === betObj[0]) ? betDta.length : ''}</p>
+        <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(0) }}>Pending <br/>{(betCounter === betObj[0]) ? betDta.length : ''}</p>
         <p className={(selected != 1) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(1) }}>Wins<br/>{(betCounter === betObj[1]) ? betDta.length : ''}</p>
         <p className={(selected != 2) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(2) }}>Loses<br/>{(betCounter === betObj[2]) ? betDta.length : ''}</p>
         <p className={(selected != 3) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(3) }}>Cancelled Bets<br/>{(betCounter === betObj[3]) ? betDta.length : ''}</p>

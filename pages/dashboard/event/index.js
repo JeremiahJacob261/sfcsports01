@@ -250,7 +250,7 @@ useEffect(()=>{
     if (footDat && footDat.length > 0) {
   
       return (
-        <Stack direction='column' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100%' }}>
+        <Stack direction='column-reverse' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100%' }}>
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
@@ -331,12 +331,12 @@ useEffect(()=>{
               //   </Link>
               // )
               return( 
-                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
+                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'310px'}}>
              
-                <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column',border:'0.5px solid #3F1052'}} >
+                <div className='live-containx' style={{ width:'330px', padding:4, margin:0,flexDirection:'column',border:'0.5px solid #3F1052'}} >
                   <div className='live-containx' style={{ }}>
                   <div className='live1'>
-                    <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo"/>
+                    <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo"/>
                     <p className='mtxt'>{data.home}</p>
                   </div>
                   <div className='live2'>
@@ -345,7 +345,7 @@ useEffect(()=>{
                       <p  className='mtime'>TODAY</p>
                   </div>
                   <div className='live1'>
-                  <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo"/>
+                  <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo"/>
                     <p className='mtxt'>{data.away}</p>
                   </div>
                   </div>

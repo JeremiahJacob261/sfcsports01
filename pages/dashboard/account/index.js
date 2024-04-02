@@ -265,7 +265,7 @@ export default function Account({ vips }) {
                             <Icon icon="tdesign:link" style={{ color: 'white' }} />
                             <Stack direction='column'>
                                 <p>Referral Link</p>
-                                <p style={{ color: '#ad1c39', fontSize: '10px', fontWeight: '200' }}>https://Eplsports.com/register?refer={users.newrefer}</p>
+                                <p style={{ color: '#981FC0', fontSize: '10px', fontWeight: '200' }}>https://Eplsports.com/register?refer={users.newrefer}</p>
                                 <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>{t("copytheabovelinkandsharetogetmorerewards")}</p>
                             </Stack>
                         </Stack>
@@ -525,7 +525,7 @@ export default function Account({ vips }) {
                 toastOptions={{
                     style: {
                         fontSize: '14px',
-                        background: '#ad1c39',
+                        background: '#981FC0',
                         color: '#fff',
                     },
                     iconTheme: {

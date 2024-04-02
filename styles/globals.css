@@ -241,10 +241,11 @@ padding: 12px;
 .placerstyles{
   min-width: none;
   min-height: 300px;
-  background: rgb(27,3,0);
-background: -moz-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
-background: -webkit-linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
-background: linear-gradient(24deg, rgba(27,3,0,1) 42%, rgba(44,4,10,1) 71%);
+  background: rgb(152,31,192);
+  background: -moz-linear-gradient(266deg, rgba(152,31,192,0.9556197478991597) 0%, rgba(63,16,82,1) 53%);
+  background: -webkit-linear-gradient(266deg, rgba(152,31,192,0.9556197478991597) 0%, rgba(63,16,82,1) 53%);
+  background: linear-gradient(266deg, rgba(152,31,192,0.9556197478991597) 0%, rgba(63,16,82,1) 53%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#981fc0",endColorstr="#3f1052",GradientType=1);
 padding:16px;
 font-family:var(--font-lilpops);
 }
@@ -253,8 +254,9 @@ font-family:var(--font-lilpops);
   min-width: 50px;
   text-align: center;
   color:whitesmoke;
-  background-color: #ad1c39;
+  background-color: #981FC0;
   border-radius: 5px;
+  border: 0.6px solid #1c0027;
   font-family:var(--font-lilpops);
 }
 .countdown-container{
@@ -304,6 +306,8 @@ font-family:var(--font-lilpops);
 .betd-text{
   color:whitesmoke;
   font-size: 12px;
+  width: 100%;
+  text-align: start;
   font-family:var(--font-lilpops);
 }
 .translate-txt{
@@ -518,7 +522,8 @@ font-family:var(--font-lilpops);
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 150px;
+  height: 60px;
+  padding: 4px;
   background-color: #661980;
 }
 
@@ -527,7 +532,7 @@ font-family:var(--font-lilpops);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 4px;
 }
 
 .new-concept {
@@ -569,10 +574,10 @@ font-family:var(--font-lilpops);
  .number {
   animation: animate 15s forwards;
   counter-reset: num var(--num);
-  font-weight: bold;
-  font-size: 1.5rem;
+  font-weight: normal;
+  font-size: 1rem;
   font-family: sans-serif;
-  padding: 1rem;
+  padding: 0.5rem;
  }
  
  .number::before {
@@ -598,9 +603,9 @@ font-family:var(--font-lilpops);
   animation: animatxe 10s forwards;
   counter-reset: numx var(--numx);
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: sans-serif;
-  padding: 1rem;
+  padding: 0.5rem;
  }
  
  .numberx::before {

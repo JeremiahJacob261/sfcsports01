@@ -180,7 +180,7 @@ export default function BindWallet() {
                 </Stack>
                 </form>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-               <Icon icon="ph:info-light" color="#ad1c39" />
+               <Icon icon="ph:info-light" color="#981FC0" />
                 <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'90%'}}>{t("TransactionThePasswordusedforwithdrawsisrequired")}</p>
                 </Stack>
                <motion.p onClick={() => {

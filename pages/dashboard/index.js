@@ -517,12 +517,12 @@ export default function Home(props) {
       <div className='analytics-div'>
         <div className='analytic-section'>
           <p className='number'></p>
-          <p style={{ color: 'grey' }}>Total Number Of Online Users</p>
+          <p style={{ color: 'grey' }}> Online Users</p>
         </div>
 
         <div className='analytic-section'>
           <p className='numberx'></p>
-          <p style={{ color: 'grey' }}>Total Current Winners</p>
+          <p style={{ color: 'grey' }}> Winners</p>
         </div>
       </div>
     )

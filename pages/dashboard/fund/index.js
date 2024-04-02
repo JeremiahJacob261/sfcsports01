@@ -74,7 +74,8 @@ export default function Fund() {
                             })
                         }
                     </div>
-                    <motion.p onClick={() => {
+                    <Stack sx={{ width:'100%'}} alignItems="center">
+                         <motion.p onClick={() => {
                         router.push('/dashboard/fund/address?met=' + method);
                         // transaction();
                         localStorage.setItem('deposit-amount', amount)
@@ -83,6 +84,8 @@ export default function Fund() {
                         whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
                         style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                         DEPOSIT</motion.p>
+                    </Stack>
+                   
                
 
             </Stack>
