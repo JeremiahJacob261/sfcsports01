@@ -467,7 +467,8 @@ font-family:var(--font-lilpops);
 
 .mleague {
   font-size: small;
-  width: 100px;
+  width: 100%;
+  text-align: center;
   font-family: var(--font-pops);
   color: #d24aff;
   font-weight: 200;

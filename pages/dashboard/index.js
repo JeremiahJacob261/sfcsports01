@@ -414,35 +414,51 @@ export default function Home(props) {
   }
 
   function Live() {
-    return (
-      <Stack className='live'>
-        <div className='live-title-contain'>
-          <p className='live-title1'>*</p>
-          <p className='live-title'>Live</p>
-        </div>
-        <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
-          <div className='live-containx' style={{}}>
-            <div className='live1'>
-              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo" />
-              <p className='mtxt'>Princesa Solimões</p>
-            </div>
-            <div className='live2'>
-              <p className='mleague'>Premier league</p>
-              <p className='mscore'>1 : 2</p>
-              <p className='mtime'>50 : 00</p>
-            </div>
-            <div className='live1'>
-              <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo" />
-              <p className='mtxt'>Princesa Solimões</p>
-            </div>
+    const [liver,setLiver] = useState([]);
+    useEffect(()=>{
+        const fetchLives = async () => {
+              const { data,error } = await supabase
+              .from('bets')
+              .select('*')
+              .eq('live',true)
+              setLiver(data);
+        }
+        fetchLives()
+    },[liver])
+    console.log(liver && liver.length > 0)
+    if(liver && liver.length > 0){
+      return (
+        <Stack className='live'>
+          <div className='live-title-contain'>
+            <p className='live-title1'>*</p>
+            <p className='live-title'>Live</p>
           </div>
-          <motion.div className="decision-x" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.8 }}>
-            <p>Details</p>
-            <Icon icon="ic:round-arrow-right" width="24" height="24" style={{ color: 'white' }} />
-          </motion.div>
-        </div>
-      </Stack>
-    )
+          <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
+                <p className='mleague'>{liver[0].league}</p>
+            <div className='live-containx' style={{}}>
+              <div className='live1'>
+                <Image src={liver[0].ihome} width={40} height={40} alt="home_logo" />
+                <p className='mtxt'>{liver[0].home}</p>
+              </div>
+              <div className='live2'>
+                <p className='mscore'>{liver[0].mcore}</p>
+                <p className='mtime'>{liver[0].mive} mins</p>
+              </div>
+              <div className='live1'>
+                <Image src={liver[0].iaway} width={40} height={40} alt="home_logo" />
+                <p className='mtxt'>{liver[0].away}</p>
+              </div>
+            </div>
+            <motion.div className="decision-x" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.8 }}>
+              <p>Details</p>
+              <Icon icon="ic:round-arrow-right" width="24" height="24" style={{ color: 'white' }} />
+            </motion.div>
+          </div>
+        </Stack>
+      )
+    }else{
+        return;
+    }
   }
 
   function Matchx() {
