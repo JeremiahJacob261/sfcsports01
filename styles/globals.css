@@ -570,31 +570,35 @@ font-family:var(--font-lilpops);
 
 @property --num {
   syntax: '<integer>';
-  initial-value: 12000;
+  initial-value: 210;
   inherits: false;
  }
  
- .number {
-  animation: animate 15s forwards;
+ .numberx {
+  animation: animateNum 40s forwards;
   counter-reset: num var(--num);
-  font-weight: normal;
+  font-weight: bold;
   font-size: 1rem;
   font-family: sans-serif;
   padding: 0.5rem;
  }
  
- .number::before {
+ .numberx::before {
   content: counter(num);
  }
  
- @keyframes animate {
-  from {
-     --num: 960;
+ @keyframes animateNum {
+   0% {
+     --num: 300;
   }
-  to {
-     --num: 18452;
+   50% {
+     --num: 500; /* Example intermediate value */
+  }
+   100% {
+     --num: 9056;
   }
  }
+ 
 
  @property --numx {
   syntax: '<integer>';
@@ -620,7 +624,7 @@ font-family:var(--font-lilpops);
      --numx: 210;
   }
   to {
-     --numx: 13760;
+     --numx: 8862;
   }
  }
 
