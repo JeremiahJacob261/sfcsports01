@@ -71,8 +71,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                         <Stack>
-                            <p><p style={{ fontWeight:'bold',color:'greenyellow'}}>{item.type}</p> has just signed up with your Referral Link</p>
-                            <p style={{ color: 'white' }}>{fullDay}</p>
+                            <p><p style={{ fontWeight:'bold',color:'greenyellow'}}>{item.type}</p> has just signed up with your Referral Link on {fullDay}</p>
                         </Stack>
                        
                     </Stack>
@@ -90,9 +89,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                         <Stack>
-                            <p className='ungradtext' style={{ fontSize: '16px' }}>Your Bet with betid of {item.type}</p>
-                            <p style={{ color: 'white' }}>Amount {item.amount ?? 0}</p>
-                            <p style={{ color: 'white' }}>{fullDay}</p>
+                            <p className='ungradtext' style={{ fontSize: '16px' }}>Your Bet with betid of {item.type} and amount of {item.amount ?? 0} on {fullDay}</p>
                             <p style={{ color: 'white',fontSize:'11px' }}>If you did not Request for this Bet Cancellation, please contact Customer Care</p>
                         </Stack>
                     </Stack>
@@ -121,10 +118,8 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit was Successful</p>
-                                    <p>{item.amount} USDT</p>
-                                    <p style={{ color: 'white' }}>{fullDay}</p>
-                                </Stack>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit of {item.amount} was Successful on {fullDay}</p>
+                                 </Stack>
                             </Stack>
                             )
                           }else if(item.code === 'bet-placed'){
@@ -140,11 +135,8 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully</p>
-                                    <p>{item.type}</p>
-                                    <p>{item.amount} USDT</p>
-                                    <p style={{ color: 'white' }}>{fullDay}</p>
-                                </Stack>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully for {item.type} and staked at {item.amount} USDT on {fullDay}</p>
+                                  </Stack>
                             </Stack>
                             )
 
@@ -161,10 +153,8 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit Failed</p>
-                                    <p>{item.amount} USDT</p>
-                                    <p style={{ color: 'white' }}>{fullDay}</p>
-                                </Stack>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your USDT Deposit of {item.amount} USDT Failed on {fullDay}</p>
+                                 </Stack>
                             </Stack>
                             )
                           }else{
@@ -181,8 +171,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>You recieved first deposit bonus from {item.username}</p>
-                                    <p>{item.amount} USDT</p>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>You recieved first deposit bonus of {item.amount} USDT from {item.username}</p>
                                     <p style={{ color: 'white' }}>{fullDay}</p>
                                 </Stack>
                             </Stack>
@@ -192,8 +181,7 @@ export default function History({credent}) {
                                 return(
                                     <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                     <Stack>
-                                        <p style={{ fontWeight:'bold',color:'greenyellow'}}>You have recieved rebate bonus bonus from {item.username}</p>
-                                        <p>{item.amount} USDT</p>
+                                        <p style={{ fontWeight:'bold',color:'greenyellow'}}>You have recieved rebate bonus of {item.amount} USDT from {item.username}</p>
                                         <p style={{ color: 'white' }}>{fullDay}</p>
                                     </Stack>
                                 </Stack>
