@@ -274,7 +274,6 @@ export default function Login({ranter}) {
       spacing={10}
       style={{
         padding: "15px",
-        overflowX: "hidden",
         maxWidth: "100%",
         minHeight: "100vh"
         , position: 'relative'

@@ -152,7 +152,7 @@ export default function Bets() {
       getBetter();
   },[]);
   return (
-    <div className='backgrounds' style={{ background:'none',maxWidth:'100vw', display:'flex', alignItems:'center',flexDirection:'column'}}>
+    <div className='backgrounds' style={{ background:'none',maxWidth:'100%', display:'flex', alignItems:'center',flexDirection:'column'}}>
         <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
         <Image src={BACK} alt="star" style={{ zIndex: -1 }}
           layout='fill'

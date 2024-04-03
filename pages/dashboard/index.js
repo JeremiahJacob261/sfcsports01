@@ -104,25 +104,25 @@ export default function Home(props) {
       const uid = localStorage.getItem('signUids');
       if (signedIn) {
         setAuthed(true)
-        const getUser = async () => {
-          try {
-            let test = await fetch('/api/match', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({})
-            }).then(data => {
-              return data.json();
-            })
-            console.log(test)
-            setFootDat(test.data);
-          } catch (error) {
-            console.log(error)
-          }
+        // const getUser = async () => {
+        //   try {
+        //     let test = await fetch('/api/match', {
+        //       method: 'POST',
+        //       headers: {
+        //         'Content-Type': 'application/json'
+        //       },
+        //       body: JSON.stringify({})
+        //     }).then(data => {
+        //       return data.json();
+        //     })
+        //     console.log(test)
+        //     setFootDat(test.data);
+        //   } catch (error) {
+        //     console.log(error)
+        //   }
 
-        }
-        getUser();
+        // }
+        // getUser();
         const getData = async () => {
           try {
             const { data, error } = await supabase
@@ -142,9 +142,34 @@ export default function Home(props) {
       }
     };
     checkAuth();
+    const getMatch = async () => { 
+      try {
+        // const { data, error } = await supabase
+        //   .from('bets')
+        //   .select('*')
+        //   .eq('verified', false)
+        //   .order('id', { ascending: false });
+     let test = await fetch('/api/match', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          }).then(data => {
+            return data.json();
+            })
+            let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+                            
+       setFootDat(bts);
+       
+      } catch (e) {
+        console.log(e);
+        let err = [];
+        setFootDat([]);
+      }
+    }
+    getMatch();
 
-
-  }, [authed]);
+  }, [authed,footDat]);
 
 
 
@@ -436,20 +461,20 @@ export default function Home(props) {
               .from('bets')
               .select('*')
               .eq('live',true)
+              console.log(data)
               setLiver(data);
         }
         fetchLives()
     },[liver])
-    console.log(liver && liver.length > 0)
     if(liver && liver.length > 0){
       return (
-        <Stack className='live'>
+        <Stack className='live' sx={{ maxWidth:'350px'}}>
           <div className='live-title-contain'>
             <p className='live-title1'>*</p>
             <p className='live-title'>Live</p>
           </div>
           <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
-                <p className='mleague'>{liver[0].league}</p>
+                <p className='mleague' style={{ padding:'8px'}}>{liver[0].league}</p>
             <div className='live-containx' style={{}}>
               <div className='live1'>
                 <Image src={liver[0].ihome} width={40} height={40} alt="home_logo" />
@@ -457,17 +482,13 @@ export default function Home(props) {
               </div>
               <div className='live2'>
                 <p className='mscore'>{liver[0].mcore}</p>
-                <p className='mtime'>{liver[0].mive} mins</p>
+                <p className='mtime' style={{ color:'#00ff2a'}}>{liver[0].mive} mins</p>
               </div>
               <div className='live1'>
                 <Image src={liver[0].iaway} width={40} height={40} alt="home_logo" />
                 <p className='mtxt'>{liver[0].away}</p>
               </div>
             </div>
-            <motion.div className="decision-x" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.8 }}>
-              <p>Details</p>
-              <Icon icon="ic:round-arrow-right" width="24" height="24" style={{ color: 'white' }} />
-            </motion.div>
           </div>
         </Stack>
       )
@@ -503,14 +524,14 @@ export default function Home(props) {
   }
   function NextMatches() {
     return (
-      <Stack className='next-contain' alignItems="center" spacing={2} sx={{ padding:0 }}>
+      <Stack  alignItems="center" justifyContent="center" spacing={2} sx={{ padding:0,width:'100%' }}>
         <div style={{ height: '5px', width: '1px' }}></div>
         {
           footDat.map((data) => {
             return (
               <Link  href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'310px'}}>
 
-                <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
+                <div className='live-containx' style={{ minWidth:'340px',width: 'auto', padding: 4, margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
                   <div className='live-containx' style={{}}>
                     <div className='live1'>
                       <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo" />
@@ -548,12 +569,12 @@ export default function Home(props) {
       <div className='analytics-div'>
         <div className='analytic-section'>
           <p className='number'></p>
-          <p style={{ color: 'grey' }}> Online Users</p>
+          <p style={{ color: '#00ff2a' }}> Online Users</p>
         </div>
 
         <div className='analytic-section'>
           <p className='numberx'></p>
-          <p style={{ color: 'grey' }}> Winners</p>
+          <p style={{ color: '#00ff2a' }}> Winners</p>
         </div>
       </div>
     )

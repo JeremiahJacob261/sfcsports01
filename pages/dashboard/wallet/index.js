@@ -99,7 +99,7 @@ export default function Wallet({user}) {
             )
    }
             return(
-            <div style={{ alignItems: 'start', justifyContent: "center", display: 'flex', width: '100vw', padding: '0',paddingBottom:'100px' }} className="backgrounds">
+            <div style={{ alignItems: 'start', justifyContent: "center", display: 'flex', width: '100%', padding: '0',paddingBottom:'100px' }} className="backgrounds">
                      <div style={{ width: '100%', height: '100%', position: 'fixed', zIndex: -1, opacity: '0.3', background: 'white' }}>
         <Image src={LOGO}
           layout='fill'

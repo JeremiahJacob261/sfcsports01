@@ -91,6 +91,12 @@ export default function Referral({ test,vips }) {
             }
             return (
                 <Stack direction='column' alignItems='center' sx={{ minHeight: '90vh', padding: '12px' }} spacing={2}>
+                    <Stack direction='row' spacing={2} justifyContent="space-between" alignItems="center" sx={{ padding:'12px',borderRadius:'5px', background:'#3f1052',minWidth:'370px',width:'auto'}}>
+                    <p>username</p>
+                    <p>level</p>
+                    <p>amount</p>
+                    <p>time</p>
+                    </Stack>
                     {
                         refers.map((t) => {
                             let date = new Date(t.crdate);
@@ -101,21 +107,12 @@ export default function Referral({ test,vips }) {
                             let username = t.username;
                             // userearnings[username].toFixed(3)
                             return (
-                                <Stack direction="row" spacing={2} justifyContent="space-between" alignItems='center' sx={{ padding: '8px',width:'370px' }} key={t.keyf}>
-                                    <Image src={t.profile ?? Avatar} width={40} height={40} alt='rounds' />
-                                    <Stack direction='column' alignItems='start' sx={{ width: '196px' }}>
-                                        <Stack direction='row' alignItems='center' spacing={1} justifyContent='stretch'>
-                                            <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: '500' }}>{t.username}
-                                            </Typography>
-                                            <Typography sx={{ color: '#808080' }}>•</Typography>
-                                            <Typography style={{ color: (user.newrefer === t.refer) ? '#793D20' : (user.newrefer === t.lvla) ? '#5E6172' : '#BE6D07', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '300' }}>
-                                                {(user.newrefer === t.refer) ? 'Level 1' : (user.newrefer === t.lvla) ? 'Level 2' : 'Level 3'}
-                                            </Typography>
-                                        </Stack>
-                                        <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates} • {time}</Typography>
-
-                                    </Stack>
+                                <Stack direction="row" spacing={3} justifyContent="space-between" alignItems='center' sx={{ padding: '8px',width:'370px' }} key={t.keyf}>
+                                    {/* <Image src={t.profile ?? Avatar} width={40} height={40} alt='rounds' /> */}
+                                    <p style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500',width:'80px' }}>{t.username}</p>
+                                    <p style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500',width:'37px',textAlign:'center' }}>{(user.newrefer === t.refer) ? '1' : (user.newrefer === t.lvla) ? '2' : '3'}</p>
                                     <Typography style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500',width:'80px' }}>$ {balance.toFixed(2)}</Typography>
+                                    <p style={{ color: 'white', fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: '500' }}>{dates}</p>
                                 </Stack>
                             )
                         })
@@ -276,7 +273,7 @@ export default function Referral({ test,vips }) {
 
 
     return (
-        <div className="backgrounds" style={{ width:'100vw', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
+        <div className="backgrounds" style={{ width:'100%', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
             <Toaster/>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {

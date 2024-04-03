@@ -74,7 +74,7 @@ p{
   min-height: 100vh;
   padding-top: 12px;
   overflow-x: hidden;
-  width: 100%;
+  width: auto;
   background: rgba(152, 31, 192, 0.74);
   background: linear-gradient(3deg, rgba(152,31,192,1) 56%, rgba(63,16,82,1) 100%);
  }
@@ -426,7 +426,7 @@ font-family:var(--font-lilpops);
 }
 
 .live-title {
-  color: #5f087c;
+  color: #1b9630;
   font-weight: 700;
   font-size: 20px;
   word-spacing: 2px;
@@ -436,7 +436,7 @@ font-family:var(--font-lilpops);
 }
 
 .live-title1 {
-  color: #d24aff;
+  color: #00ff2a;
   font-weight: 700;
   font-size: 20px;
   word-spacing: 2px;

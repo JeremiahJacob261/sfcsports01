@@ -102,7 +102,7 @@ export default function Transaction({ transaction }) {
         }
     }
     return (
-        <div className="backgrounds" style={{ width:'100vw', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
+        <div className="backgrounds" style={{ width:'100%', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.back()
