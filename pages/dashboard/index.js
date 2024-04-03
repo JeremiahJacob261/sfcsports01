@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import { supabase } from '../api/supabase';
 import { useRouter } from 'next/router';
 import Logo from "@/public/logo.png";
+import TranslateX from '../translatex';
 import Head from 'next/head';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import ball from '@/public/ball.png';
@@ -39,7 +40,6 @@ export default function Home(props) {
   const [balance, setBalance] = useState(0);
   const [authed, setAuthed] = useState(false);
   const [user, setUser] = useState(null);
-  const [footDat, setFootDat] = useState([]);
   const router = useRouter();
   // const sendTRX = async () => {
   //   console.log('started ...');
@@ -142,34 +142,9 @@ export default function Home(props) {
       }
     };
     checkAuth();
-    const getMatch = async () => { 
-      try {
-        // const { data, error } = await supabase
-        //   .from('bets')
-        //   .select('*')
-        //   .eq('verified', false)
-        //   .order('id', { ascending: false });
-     let test = await fetch('/api/match', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          }).then(data => {
-            return data.json();
-            })
-            let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
-                            
-       setFootDat(bts);
-       
-      } catch (e) {
-        console.log(e);
-        let err = [];
-        setFootDat([]);
-      }
-    }
-    getMatch();
+    
 
-  }, [authed,footDat]);
+  }, [authed]);
 
 
 
@@ -243,7 +218,7 @@ export default function Home(props) {
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
 
-            <Translate />
+            <TranslateX />
             <Link href="https://t.me/sfc_customerservice">
               <motion.div whileHover={{ color: '#981FC0' }}>
                 <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }}
@@ -273,7 +248,7 @@ export default function Home(props) {
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
           >
-            <Translate />
+           <TranslateX/>
             <motion.div whileHover={{ color: '#981FC0' }} onClick={() => {
               router.push('/dashboard/history')
             }} >
@@ -394,11 +369,7 @@ export default function Home(props) {
           <p className='title1'>Hello</p>
           <p className='title2'>{user ? user.username : ""}</p>
         </Stack>
-        <motion.div className="icon-con" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
-          router.push(`/dashboard/history?id=${user.userId ?? ""}`);
-        }}>
-          <Icon icon="ph:translate-fill" width="24" height="24" style={{ color: "#981FC0" }} />
-        </motion.div>
+        <TranslateX/>
         <motion.div  className="icon-con" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
           router.push(`/dashboard/history?id=${user.userId ?? ""}`);
         }}>
@@ -523,16 +494,40 @@ export default function Home(props) {
     )
   }
   function NextMatches() {
+    const [footDat, setFootDat] = useState([]);
+    useEffect(() => { 
+      const getMatch = async () => { 
+        try {
+       let test = await fetch('/api/match', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            }).then(data => {
+              return data.json();
+              })
+              let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+                              
+         setFootDat(bts);
+         
+        } catch (e) {
+          console.log(e);
+          let err = [];
+          setFootDat([]);
+        }
+      }
+      getMatch();
+    }, [footDat])
     return (
-      <Stack  alignItems="center" justifyContent="center" spacing={2} sx={{ padding:0,width:'100%' }}>
+      <Stack alignItems="center" justifyContent="center" spacing={2} style={{ width:'auto',marginLeft:'-30px' }}>
         <div style={{ height: '5px', width: '1px' }}></div>
         {
           footDat.map((data) => {
             return (
               <Link  href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'310px'}}>
 
-                <div className='live-containx' style={{ minWidth:'340px',width: 'auto', padding: 4, margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
-                  <div className='live-containx' style={{}}>
+                <div className='live-containx' style={{ minWidth:'340px',width: 'auto', margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
+                  <div className='live-containx' style={{ margin:0}}>
                     <div className='live1'>
                       <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo" />
                       <p className='mtxt'>{data.home}</p>
@@ -540,7 +535,8 @@ export default function Home(props) {
                     <div className='live2'>
                       <p className='mleague'>{data.league}</p>
                       <p className='mscore'>{data.time}</p>
-                      <p className='mtime'>TODAY</p>
+                       <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()+1) ) ? 'Tomorrow' : Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())}</p>
+                  
                     </div>
                     <div className='live1'>
                       <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo" />
@@ -629,12 +625,7 @@ export default function Home(props) {
   }
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh', paddingBottom: '100px' }} className='backgrounds' spacing={1}>
-      <div style={{ width: '100%', height: '100%', position: 'fixed', zIndex: -1, opacity: '0.3', background: 'white' }}>
-        <Image src={Logo}
-          layout='fill'
-          objectFit='cover'
-        />
-      </div>
+      
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />

@@ -7,6 +7,7 @@ import React, { useEffect } from 'react';
 import { Backdrop,Stack } from "@mui/material";
 import '@/functions/notifications.js';
 import Translate from "@/pages/translator";
+import BACK from '@/public/backfield.png'
 import toast, { Toaster } from 'react-hot-toast';
 import LOGO  from '../../../public/logo.png'
 import Image from 'next/image';
@@ -99,9 +100,9 @@ export default function Wallet({user}) {
             )
    }
             return(
-            <div style={{ alignItems: 'start', justifyContent: "center", display: 'flex', width: '100%', padding: '0',paddingBottom:'100px' }} className="backgrounds">
-                     <div style={{ width: '100%', height: '100%', position: 'fixed', zIndex: -1, opacity: '0.3', background: 'white' }}>
-        <Image src={LOGO}
+            <div style={{ background:'none',alignItems: 'start', justifyContent: "center", display: 'flex', width: '100%', padding: '0',paddingBottom:'100px' }} className="backgrounds">
+                <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
+        <Image src={BACK} alt="star" style={{ zIndex: -1 }}
           layout='fill'
           objectFit='cover'
         />

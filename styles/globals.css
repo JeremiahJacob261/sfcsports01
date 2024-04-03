@@ -73,10 +73,11 @@ p{
   margin-top: -10px;
   min-height: 100vh;
   padding-top: 12px;
+  background: none;
   overflow-x: hidden;
   width: auto;
-  background: rgba(152, 31, 192, 0.74);
-  background: linear-gradient(3deg, rgba(152,31,192,1) 56%, rgba(63,16,82,1) 100%);
+  /* background: rgba(152, 31, 192, 0.74);
+  background: linear-gradient(3deg, rgba(152,31,192,1) 56%, rgba(63,16,82,1) 100%); */
  }
 .gradtest{
   background: -webkit-linear-gradient(297deg, rgba(194,127,8,1) 33%, rgba(245,186,79,1) 87%);
@@ -88,7 +89,7 @@ p{
 }
 .accountinfo{
   /* From https://css.glass */
-background: rgba(77, 3, 3, 0.2);
+background: #3f1052c4;
 border-radius: 10px;
 width:90%;
 margin: 12px;
@@ -507,8 +508,7 @@ font-family:var(--font-lilpops);
 }
 
 .live-containx {
-  background: #981FC0;
-  width: auto;
+  background: #981fc0c4;
   min-width: 320px;
   height: 210px;
   display: flex;
@@ -821,7 +821,7 @@ font-family:var(--font-lilpops);
 
 .short-title {
   font-size: large;
-  color: #1c0027;
+  color: #9506ce;
   font-weight: 700;
   width: 100%;
   padding: 8px;

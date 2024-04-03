@@ -4,6 +4,8 @@ import { supabase } from './api/supabase'
 import localFont from 'next/font/local'
 import { useEffect } from 'react';
 import { appWithTranslation } from 'next-i18next'
+import Image from 'next/image';
+import BACK from '@/public/backfield.png'
 import ErrorBoundary from './ErrorBoundary';
 import Head from 'next/head';
 const poppins = Poppins({ weight: ['300', '400', '600'], subsets: ['latin'] });
@@ -73,6 +75,12 @@ function App({ Component, pageProps }) {
           <meta property="og:image" content="https://Eplsports.com//logo.png" />
 
         </Head>
+        <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
+        <Image src={BACK} alt="star" style={{ zIndex: -1 }}
+          layout='fill'
+          objectFit='cover'
+        />
+      </div>
         <Component {...pageProps} />
       </ErrorBoundary>
     </main>

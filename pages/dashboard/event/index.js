@@ -4,6 +4,7 @@ import { Stack, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
 import InputAdornment from '@mui/material/InputAdornment';
  
+import BACK from '@/public/backfield.png'
 import HomeBottom from '../../UIComponents/bottomNav';
 import Link from 'next/link'
 import { useRef } from 'react'
@@ -250,7 +251,7 @@ useEffect(()=>{
     if (footDat && footDat.length > 0) {
   
       return (
-        <Stack direction='column-reverse' spacing={1} alignItems='center' style={{ padding: '4px', marginBottom: '100px', width: '100%' }}>
+        <Stack direction='column-reverse' spacing={1} alignItems='center' justifyContent="center" style={{ marginBottom: '100px',width: '100%' }}>
           {/* container for all matches i sabove */}
           {
             footDat.map((data) => {
@@ -330,8 +331,9 @@ useEffect(()=>{
               //     </Stack>
               //   </Link>
               // )
+              console.log(new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()))
               return( 
-                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'310px'}}>
+                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'330px'}}>
              
                 <div className='live-containx' style={{ width:'330px', padding:4, margin:0,flexDirection:'column',border:'0.5px solid #3F1052'}} >
                  
@@ -343,7 +345,7 @@ useEffect(()=>{
                   </div>
                   <div className='live2'>
                       <p className='mscore'>{data.time}</p>
-                      <p  className='mtime'>TODAY</p>
+                      <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()+1) ) ? 'Tomorrow' : Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())}</p>
                   </div>
                   <div className='live1'>
                   <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo"/>
@@ -492,7 +494,13 @@ useEffect(()=>{
     )
 }
   return (
-    <div className='backgrounds'>
+    <div className='backgrounds' style={{ background:'none'}}>
+       <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
+        <Image src={BACK} alt="star" style={{ zIndex: -1 }}
+          layout='fill'
+          objectFit='cover'
+        />
+      </div>
       <Stack alignItems='center'>
         <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
           <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {

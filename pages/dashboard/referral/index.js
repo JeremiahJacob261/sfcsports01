@@ -2,6 +2,8 @@ import { Icon } from '@iconify/react';
 import { Stack, Divider, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { supabase } from '@/pages/api/supabase';
+
+import BACK from '@/public/backfield.png'
 import { useState } from 'react';
 import Avatar from '@/public/avatar.png'
 import { styled } from '@mui/material/styles';
@@ -273,8 +275,14 @@ export default function Referral({ test,vips }) {
 
 
     return (
-        <div className="backgrounds" style={{ width:'100%', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
+        <div className="backgrounds" style={{ background:'none',width:'100%', display:'flex',flexDirection:'column',justifyContent:'start',alignItems:'center'}}>
             <Toaster/>
+            <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
+        <Image src={BACK} alt="star" style={{ zIndex: -1 }}
+          layout='fill'
+          objectFit='cover'
+        />
+      </div>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.push('/dashboard/')
