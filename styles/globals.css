@@ -570,12 +570,12 @@ font-family:var(--font-lilpops);
 
 @property --num {
   syntax: '<integer>';
-  initial-value: 210;
+  initial-value: 8000;
   inherits: false;
  }
  
- .numberx {
-  animation: animateNum 40s forwards;
+ .number {
+  animation: animateNum 1000s forwards;
   counter-reset: num var(--num);
   font-weight: bold;
   font-size: 1rem;
@@ -583,16 +583,16 @@ font-family:var(--font-lilpops);
   padding: 0.5rem;
  }
  
- .numberx::before {
+ .number::before {
   content: counter(num);
  }
  
  @keyframes animateNum {
    0% {
-     --num: 300;
+     --num: 8000;
   }
    50% {
-     --num: 500; /* Example intermediate value */
+     --num: 8500; /* Example intermediate value */
   }
    100% {
      --num: 9056;
