@@ -369,7 +369,12 @@ export default function Home(props) {
           <p className='title1'>Hello</p>
           <p className='title2'>{user ? user.username : ""}</p>
         </Stack>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
+        <motion.div className="icon-con" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
+          router.push(`/dashboard/history?id=${user.userId ?? ""}`);
+        }}>
+          <Icon icon="ph:translate-fill" width="24" height="24" style={{ color: "#981FC0" }} />
+        </motion.div>
+        <motion.div  className="icon-con" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
           router.push(`/dashboard/history?id=${user.userId ?? ""}`);
         }}>
           <Icon icon="tdesign:notification-filled" width="24" height="24" style={{ color: "#981FC0" }} />
@@ -377,7 +382,17 @@ export default function Home(props) {
       </div>
     )
   }
-
+    function ShortCuts (){
+      return(
+        <div>
+          <Stack direction='row' justifyContent= 'space-between' spacing={1} sx={{ width: '100%', padding: '4px',  }}>
+            <Link href="/dashboard/fund" ><motion.p whileHover={{ y:-10 }} whileTap={{ scale:0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
+            <Link href="/dashboard/bets" ><motion.p whileHover={{ y:-10 }} whileTap={{ scale:0.7 }} className='shorts'>BETS</motion.p></Link>
+            <Link href="/dashboard/" >             <motion.p whileHover={{ y:-10 }} whileTap={{ scale:0.7 }} className='shorts'>CUSTOMER CARE</motion.p></Link>
+            </Stack>
+        </div>
+      )
+    }
   function SearchBar() {
     return (
       <Stack direction='column' sx={{ height: "70px", width: '100%', padding: '8px', alignItems: 'center' }}>
@@ -606,6 +621,8 @@ export default function Home(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Header />
+      <p className='short-title'>SHORTCUTS</p>
+      <ShortCuts/>
       <SearchBar />
       <Live />
       <Analytics />

@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { supabase } from '@/pages/api/supabase';
 import Head from 'next/head'
 import Link from 'next/link';
+import BACK from '@/public/backfield.png'
 import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -140,7 +141,13 @@ export default function Bets() {
 
   }
   return (
-    <div className='backgrounds' style={{ maxWidth:'100vw', display:'flex', alignItems:'center',flexDirection:'column'}}>
+    <div className='backgrounds' style={{ background:'none',maxWidth:'100vw', display:'flex', alignItems:'center',flexDirection:'column'}}>
+        <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
+        <Image src={BACK} alt="star" style={{ zIndex: -1 }}
+          layout='fill'
+          objectFit='cover'
+        />
+      </div>
       <Head>
         <title>Bets History</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />

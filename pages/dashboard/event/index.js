@@ -334,13 +334,14 @@ useEffect(()=>{
                 <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'310px'}}>
              
                 <div className='live-containx' style={{ width:'330px', padding:4, margin:0,flexDirection:'column',border:'0.5px solid #3F1052'}} >
-                  <div className='live-containx' style={{ }}>
+                 
+                <p className='mleague'>{data.league}</p>
+                  <div className='live-containx' style={{ margin:0 }}>
                   <div className='live1'>
                     <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo"/>
                     <p className='mtxt'>{data.home}</p>
                   </div>
                   <div className='live2'>
-                      <p className='mleague'>{data.league}</p>
                       <p className='mscore'>{data.time}</p>
                       <p  className='mtime'>TODAY</p>
                   </div>
