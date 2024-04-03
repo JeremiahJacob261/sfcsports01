@@ -27,6 +27,7 @@ export default function Bets() {
   const [betDta, setBetDta] = useState([]);
   const [betCounter,setBetCounter] = useState(0);
   const [selected, setSelected] = useState(0);
+  const [better,setBetter ] = useState({});
   const betObj = {
     0: 'ongoing',
     1: 'win',
@@ -140,6 +141,16 @@ export default function Bets() {
     }
 
   }
+  useEffect(()=>{
+      const getBetter = async () =>{
+          const {data,error} = await supabase
+          .from('users')
+          .select('*')
+          .eq('username',localStorage.getItem('signNames'))
+          setBetter(data[0])
+      }
+      getBetter();
+  },[]);
   return (
     <div className='backgrounds' style={{ background:'none',maxWidth:'100vw', display:'flex', alignItems:'center',flexDirection:'column'}}>
         <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
@@ -161,8 +172,8 @@ export default function Bets() {
         <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Bets")}</p>
       </Stack>
       <Stack className='betspent' direction="row">
-          <p>Spent<br/>$ 0</p>
-          <p>Won<br/>$ 0</p>
+          <p>Spent<br/>$ {better.betspend ?? 0}</p>
+          <p>Won<br/>$ {better.betwon ?? 0}</p>
       </Stack>
       <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px'}} spacing={2} justifyContent='center' alignItems="center">
         <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} style={{  textAlign:'center'  }} onClick={() => { betSelectLogic(0) }}>Pending <br/>{(betCounter === betObj[0]) ? betDta.length : ''}</p>
