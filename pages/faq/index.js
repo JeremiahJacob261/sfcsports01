@@ -48,7 +48,7 @@ const router = useRouter();
          
           return(
             <Accordion expanded={expanded === `panel${f.id}`} onChange={handleChange(`panel${f.id}`)}
-            sx={{background:'rgb(114, 9, 30)'}}
+            sx={{background:'#3F1052'}}
             key={f.id}
             >
         <AccordionSummary
@@ -56,7 +56,7 @@ const router = useRouter();
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <p sx={{ width: '33%', flexShrink: 0,color:'rgb(114, 9, 30)',fontFamily:'Poppins,sans-serif' }}>
+          <p sx={{ width: '33%', flexShrink: 0,color:'#3F1052',fontFamily:'Poppins,sans-serif' }}>
             {t(f.Question) ?? t.Question}
           </p>
           <p sx={{ color: '#E5E7EB' }}></p>

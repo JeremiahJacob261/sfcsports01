@@ -510,7 +510,7 @@ font-family:var(--font-lilpops);
   background: #981FC0;
   width: auto;
   min-width: 320px;
-  height: 180px;
+  height: 210px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -712,7 +712,7 @@ font-family:var(--font-lilpops);
 
  .amount-hold {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
@@ -724,6 +724,11 @@ font-family:var(--font-lilpops);
   font-family: var(--font-suma);
   height: 40px;
   padding: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  height: 50px;
+  text-align: center;
+  width: 300px;
  }
 
  .inmap {
@@ -777,9 +782,6 @@ font-family:var(--font-lilpops);
   }
   .betspent {
     width: 250px;
-  }
-  .amount-txt {
-    font-size: 10px;
   }
   .p-popover {
     font-size: 10px;

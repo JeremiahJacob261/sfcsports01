@@ -128,10 +128,10 @@ export default function Address({ method }) {
         <motion.p onClick={() => {
           router.push('/dashboard/fund/upload')
         }}
-          whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
-          whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-          style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px',border:'0.3px solid #3F1052' }}>
-          NEXT</motion.p>
+        whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
+        whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
+        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+        NEXT</motion.p>
       </Stack>
 
     </div>

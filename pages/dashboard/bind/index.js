@@ -168,29 +168,29 @@ export default function BindWallet() {
                         </div>
                         
                         <div className='arrange-label'>
-                            <label className='standard-label'>Transaction Password</label>
-                <input className='standard-input' placeholder='Transaction Password' type='password' value={password} onChange={(e)=>{ setPassword(e.target.value)}}/>
+                            <label className='standard-label'>Transaction PIN</label>
+                <input className='standard-input' placeholder='Transaction PIN' type='password' value={password} onChange={(e)=>{ setPassword(e.target.value)}}/>
                         </div>
                         
                         <div className='arrange-label'>
-    <label className='standard-label'>Confirm Transaction Password</label>
-                <input className='standard-input' placeholder='Confirm Transaction Password' type='password' value={confirmPassword} onChange={(e)=>{ setConfirmPassword(e.target.value)}}/>
+    <label className='standard-label'>Confirm Transaction PIN</label>
+                <input className='standard-input' placeholder='Confirm Transaction PIN' type='password' value={confirmPassword} onChange={(e)=>{ setConfirmPassword(e.target.value)}}/>
                         </div>
                     
                 </Stack>
                 </form>
                 <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-               <Icon icon="ph:info-light" color="#981FC0" />
-                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'90%'}}>{t("TransactionThePasswordusedforwithdrawsisrequired")}</p>
+               <Icon icon="ph:info-light" color="#3F1052" />
+                <p style={{ color:'greenyellow',fontSize:'12px',fontWeight:'200',maxWidth:'90%'}}>TRANSACTION PIN IS REQUIRED FOR WITHDRAWALS TOO</p>
                 </Stack>
                <motion.p onClick={() => {
                     //   router.push('/dashboard/fund/success')
                     checkValid();
                     }}
-                        whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
-                        whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white',border:'0.6px solid #5f087c', padding: '12px', background: '#981FC0',width:'280px',textAlign: 'center', cursor: 'pointer',borderRadius:'5px' }}>
-                    {t("BindWallet")}</motion.p>
+                    whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
+                    whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
+                    style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                      {t("BindWallet")}</motion.p>
                     <Link href='/dashboard/codesetting'>
                     <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>{t("Setatransactionpin")}</p>
 

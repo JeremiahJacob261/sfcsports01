@@ -23,12 +23,12 @@ export default async function handler(req, res) {
             }else{
                 const Depositing = async (damount, dusername) => {
                     const { data, error } = await supabase
-                        .rpc('depositor', { amount: damount, names: dusername })
+                        .rpc('depositor', { amount: damount - 1 , names: dusername })
                     console.log(error);
                 }
                 const Withdrawer = async (damount, dusername) => {
                     const { data, error } = await supabase
-                        .rpc('withdrawer', {  names: dusername, amount: damount + 1 })
+                        .rpc('withdrawer', {  names: dusername, amount: damount  })
                     console.log(error);
                 }
                 Depositing(body.amount,uu[0].username);

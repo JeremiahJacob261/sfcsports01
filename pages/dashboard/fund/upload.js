@@ -179,10 +179,10 @@ console.log(data.publicUrl);
                 </Stack>
                 </motion.div>
                 <motion.p onClick={checkParams}
-                        whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
-                        whileHover={{ background: '#573b41',color:'rgba(194,127,8,1)',scale: 1.1  }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer',borderRadius:'5px',border:'1px solid #3f1052' }}>
-                        {t("COMPLETE")}!</motion.p>
+whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
+whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
+style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+  {t("COMPLETE")}!</motion.p>
 
             </Stack>
         </div>

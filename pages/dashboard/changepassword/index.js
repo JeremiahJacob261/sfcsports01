@@ -115,10 +115,10 @@ if(data.user){
                 <motion.p onClick={() => {
                   ChangePasswordFunc();
                 }}
-                    whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
-                    whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-                    style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
-                    Change Password</motion.p>
+                whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
+                whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
+                style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                Change Password</motion.p>
             </Stack>
         </div>
     )

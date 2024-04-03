@@ -33,13 +33,13 @@ export default function Promotion() {
             </Stack>
             <Stack direction="column" sx={{ padding: '8px' }}>
                 <p style={{ fontSize: '24px', color: 'whitesmoke', width: '99%', textAlign: 'center' }}>{t("PROMOTIONs")}</p>
-                <p style={{ fontSize: '12px', color: 'grey', padding: '4px' }}>{t("Belowarealistofongoingpromotionsonourplatform")}</p>
+                <p style={{ fontSize: '12px', color: 'white', padding: '4px' }}>{t("Belowarealistofongoingpromotionsonourplatform")}</p>
 
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.9 }} style={{ cursor: 'pointer',display:user.newbie ? 'none' : 'visible' }}>
-                    <Link href={user.claim ? "/dashboard/promotion" : "/dashboard/promotion/claim_signup_bonus"}>
+                    <Link href={user.claim ? "/dashboard/promotion" : "/dashboard/promotion/rewards"}>
 
-                        <Stack direction="row" justifyContent='space-between' alignItems="center" sx={{ padding: '12px', borderRadius: '10px', background: ' rgb(122, 12, 32)',display:user.newbie ? 'none' : 'visible' }}>
-                            <p>{t("ClaimSignUpBonus")}</p>
+                        <Stack direction="row" justifyContent='space-between' alignItems="center" sx={{ padding: '12px', background: '#3F1052',display:user.newbie ? 'none' : 'visible' }}>
+                            <p>CLAIM REWARDS</p>
                             <p style={{ color: 'greenyellow' }}>{user.claim ? t('Claimed') : t('NotClaimed')}</p>
                         </Stack>
                     </Link>

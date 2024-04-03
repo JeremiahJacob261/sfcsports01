@@ -56,13 +56,14 @@ export default function Fund() {
                 </div>
 
                     <div className='amount-hold'>
-                        <p style={{ color: '#3F1052', fontWeight: 700 }}>Amount :</p>
                         <input
                             className='amount-txt'
+                            style={{ letterSpacing:2}}
                             type='number'
                             value={amount} onChange={(e) => {
                                 setAmount(e.target.value)
                             }} />
+                        <p style={{ color: '#3F1052', fontWeight: 700 }}>amount</p>
                     </div>
                     <p>Note: Minimum Deposit is 10 USDT</p>
                     <div className='mapcontain'>
@@ -76,13 +77,17 @@ export default function Fund() {
                     </div>
                     <Stack sx={{ width:'100%'}} alignItems="center">
                          <motion.p onClick={() => {
+                       if(amount < 10){
+                           
+                       }else{
                         router.push('/dashboard/fund/address?met=' + method);
                         // transaction();
                         localStorage.setItem('deposit-amount', amount)
+                       }
                     }}
-                        whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
-                        whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
-                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#981FC0', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                        whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
+                        whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
+                        style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
                         DEPOSIT</motion.p>
                     </Stack>
                    
