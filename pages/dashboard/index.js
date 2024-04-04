@@ -529,7 +529,7 @@ export default function Home(props) {
                 <div className='live-containx' style={{ minWidth:'340px',width: 'auto', margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
                   <div className='live-containx' style={{ margin:0}}>
                     <div className='live1'>
-                      <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo" />
+                      <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo" />
                       <p className='mtxt'>{data.home}</p>
                     </div>
                     <div className='live2'>
@@ -539,7 +539,7 @@ export default function Home(props) {
                   
                     </div>
                     <div className='live1'>
-                      <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo" />
+                      <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo" />
                       <p className='mtxt'>{data.away}</p>
                     </div>
                   </div>
