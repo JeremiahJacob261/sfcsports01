@@ -77,7 +77,8 @@ export default function Bets() {
   function MatchRow() {
 
     if (betDta && betDta.length > 0) {
-      console.log(betDta)
+      console.log(betDta);
+      
       return (
         <Stack direction='column' sx={{ maxWidth: '100%', padding: '8px', marginBottom: '100px' }} alignItems='center' spacing={2}>
           {
@@ -90,7 +91,22 @@ export default function Bets() {
               // 17041 764 89
               // 17041 908 89
               // 17041 836 89 + 5400
-              console.log(bet.won)
+              const [resulta, setResulta] = useState({});
+             useEffect(() => { 
+              const getRef = async () => {
+                try {
+                    const { data, error } = await supabase
+                        .from('bets')
+                        .select()
+                        .eq('match_id', bet.match_id)
+                    setResulta(data[0])
+                    console.log(data[0])
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+            getRef();
+              }, [])
               return (
 
                 <Link href={'/dashboard/betdetails?id=' + bet.betid} key={bet.betid}>
@@ -99,7 +115,7 @@ export default function Bets() {
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
                       sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
                       <p>{t("Status")}</p>
-                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 5400 < curren) ? "pending" :  (stams < curren) ? "t('Ongoing')" : t('NotStarted')}</p> </Stack>
+                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 5400 < curren) ? "pending" :  (stams < curren) ? "Ongoing" : t('NotStarted')}</p> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
@@ -121,6 +137,12 @@ export default function Bets() {
                     </Stack>
                     {/* end of team data */}
                     <Stack><p>{t("Stake")}: {bet.stake} USDT</p></Stack>
+
+                {/* <Stack direction="row" justifyContent={"space-between"} alignItems={"center"} sx={{ width:'100%'}}>
+                   <Stack><p>result {resulta.results ?? ''}</p></Stack>
+                    <Stack><p>{resulta.mive ?? ''} mins</p></Stack>
+                </Stack> */}
+                   
                   </Stack>
                 </Link>
 

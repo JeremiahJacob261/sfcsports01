@@ -203,62 +203,6 @@ export default function Home(props) {
     )
   }
 
-  function NavbAR() {
-    if (authed) {
-      return (
-        <Stack style={{ width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between' className='navBar'>
-          <Stack direction='row' alignItems='center' spacing={2}>
-            <div style={{ borderRadius: '100px', background: 'white' }}>
-              <Image src={Avatar} width={40} height={29} alt="sfclogo" />
-            </div>
-            <Stack>
-              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>{t("GoodMorning")}</p>
-              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}>{user ? user.username : 'Loading name ...'}</p>
-            </Stack>
-          </Stack>
-          <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
-
-            <TranslateX />
-            <Link href="https://t.me/sfc_customerservice">
-              <motion.div whileHover={{ color: '#981FC0' }}>
-                <Icon icon="fluent:chat-24-regular" width={24} height={24} className='iconbtn' style={{ color: 'white' }}
-                />
-              </motion.div>
-            </Link>
-
-            <motion.div whileHover={{ color: '#981FC0' }} onClick={testRoute}>
-              <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} onClick={() => {
-                router.push(`/dashboard/history?id=${user.username}`)
-              }} />
-            </motion.div>
-          </Stack>
-        </Stack>
-      );
-    } else {
-      return (
-        <Stack style={{ width: '100%', height: '56px', padding: '8px', position: 'fixed' }} direction='row' alignItems='center' justifyContent='space-between'>
-          <Stack direction='row' alignItems='center' spacing={2}>
-            <div style={{ borderRadius: '100px', background: 'white' }}>
-              <Image src={Avatar} width={40} height={29} alt="sfclogo" />
-            </div>
-            <Stack>
-              <p className='ungradtext' style={{ fontSize: '15px', fontWeight: '600' }}>{t("GoodMorning")}</p>
-              <p className='gradtest' style={{ fontSize: '15px', fontWeight: '600' }}></p>
-            </Stack>
-          </Stack>
-          <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
-          >
-            <TranslateX />
-            <motion.div whileHover={{ color: '#981FC0' }} onClick={() => {
-              router.push('/dashboard/history')
-            }} >
-              <Icon icon="ri:notification-4-fill" width={24} height={24} className='iconbtn' style={{ color: 'white' }} />
-            </motion.div>
-          </Stack>
-        </Stack>
-      );
-    }
-  }
   function MatchRow() {
     if (footDat && footDat.length > 0) {
       return (
@@ -445,31 +389,31 @@ export default function Home(props) {
             <p className='live-title1'>*</p>
             <p className='live-title'>Live</p>
           </div>
-
+        <Stack direction='column' justifyContent='center' alignItems='center' spacing={1} style={{ width: 'auto', padding: '4px', margin: 0 }}>
           {
             liver.map((i) => { 
               return ( 
                 <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
-            <p className='mleague' style={{ padding: '8px' }}>{liver[i].league}</p>
+            <p className='mleague' style={{ padding: '8px' }}>{i.league}</p>
             <div className='live-containx' style={{}}>
               <div className='live1'>
-                <Image src={liver[i].ihome} width={40} height={40} alt="home_logo" />
-                <p className='mtxt'>{liver[i].home}</p>
+                <Image src={i.ihome} width={40} height={40} alt="home_logo" />
+                <p className='mtxt'>{i.home}</p>
               </div>
               <div className='live2'>
-                <p className='mscore'>{liver[i].mcore}</p>
-                <p className='mtime' style={{ color: '#00ff2a' }}>{liver[i].mive} mins</p>
+                <p className='mscore'>{i.mcore}</p>
+                <p className='mtime' style={{ color: '#00ff2a' }}>{i.mive} mins</p>
               </div>
               <div className='live1'>
-                <Image src={liver[i].iaway} width={40} height={40} alt="home_logo" />
-                <p className='mtxt'>{liver[i].away}</p>
+                <Image src={i.iaway} width={40} height={40} alt="home_logo" />
+                <p className='mtxt'>{i.away}</p>
               </div>
             </div>
           </div>
               )
             })
           }
-
+</Stack>
           
         </Stack>
       )
