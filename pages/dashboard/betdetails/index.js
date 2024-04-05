@@ -4,7 +4,8 @@ import { Stack } from "@mui/material";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Head from "next/head";
-import { useEffect, useState } from "react"; 
+import Tether from '@/public/tether.jpg'
+import { useEffect, useState } from "react";
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -88,24 +89,66 @@ export default function BetDetails({ datas }) {
                     <p className="betd-text">{datas.away}</p>
                 </Stack>
             </Stack>
-            <Stack direction="column" justifyContent="center" alignItems='center' sx={{ width: '100%', padding: '8px' }} spacing={3}>
-                <p className="betd-text">{t("Time")}: {fulltime}</p>
-                <p className="betd-text">{t("Stake")}: {datas.stake.toFixed(3)} USDT</p>
-                <p className="betd-text">{t("Odds")}: {datas.odd}</p>
-                <p className="betd-text">{t("Betmarket")}: {datas.market}</p><p className="betd-text">Match ID: {datas.match_id}</p>
-                <p className="betd-text">{t("Return")}: {(datas.aim + datas.stake).toFixed(3)} USDT</p>
-                <p className="betd-text">{t("Profit")}: {(datas.profit).toFixed(3)}</p>
-                <p className="betd-text">{t("Status")}: {(datas.won != 'null') ? 'Finished' : (stams+5400 < curren) ? 'Processing' :  (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
-                <p className="betd-text">{t("MatchResult")}: {resulta}</p>
-                <p className="betd-text">Event Date and Time: {datas.date} {datas.time}</p>
-                <p className="betd-text" style={{ color: 'goldenrod' }}>Bet Cancellation is currently unavailable: Contact Customer Care To Cancel your Bets</p>
-                
+
+            <div style={{ width:"100%",display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+            <Stack direction="column" alignItems='center' justifyContent="space-between" spacing={3} className="betcover">
+                <Stack direction="row" alignItems='center' justifyContent="space-between" spacing={3} sx={{ width: '340px' }}>
+
+                    <Stack direction="column">
+                        <p style={{ color:'#9506ce' }}>Bet Market</p>
+                        <p style={{ color:'#9506ce' }}>Market Result</p>
+                        <p style={{ color:'#9506ce' }}>Odds</p>
+                        <p style={{ color:'#9506ce' }}>Time</p>
+                    </Stack>
+                    <Stack direction="column">
+                        <p>{datas.market}</p>
+                        <p>{resulta ?? 'loading ...'}</p>
+                        <p>{datas.odd}</p>
+                        <p>{fulltime}</p>
+                    </Stack>
+                </Stack>
+
+                <Stack direction="row" alignItems='center' justifyContent="space-between" spacing={3} sx={{ width: '340px' }}>
+                    <Stack direction="column">
+                        <p style={{ color:'#9506ce' }}>Stake</p>
+                        <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
+                            <Image src={Tether} width={20} height={20} alt="logo" style={{ borderRadius:'50%'}}/>
+                              <p>{datas.stake}</p>
+                        </Stack>
+                      
+                    </Stack>
+
+
+                    <Stack direction="column">
+                        <p style={{ color:'#9506ce' }}>Profit</p>
+                        <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
+                            <Image src={Tether} width={20} height={20} alt="logo" style={{ borderRadius:'50%'}}/>
+                        <p>{datas.profit}</p>
+                        </Stack>
+                    </Stack>
+
+
+                    <Stack direction="column">
+                        <p style={{ color:'#9506ce' }}>Return</p>
+                        <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
+                            <Image src={Tether} width={20} height={20} alt="logo" style={{ borderRadius:'50%'}}/>
+                        <p>{datas.stake + datas.aim}</p>
+                        </Stack>
+                    </Stack>
+
+
+                    <Stack direction="column">
+                        <p style={{ color:'#9506ce' }}>Status</p>
+                        <p>{(datas.won != 'null') ? 'Finished' : (stams + 5400 < curren) ? 'Pending' : (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
+                    </Stack>
+                </Stack>
             </Stack>
+            </div>
         </div>
     )
 }
 export async function getServerSideProps(context) {
-    
+
     const { locale } = context;
     try {
         const id = context.query.id;
@@ -115,16 +158,20 @@ export async function getServerSideProps(context) {
             .eq('betid', id)
         let datas = data[0];
         return {
-            props: { datas,...(await serverSideTranslations(locale, [
-                'all','betdetails'
-              ])), }, // will be passed to the page component as props
+            props: {
+                datas, ...(await serverSideTranslations(locale, [
+                    'all', 'betdetails'
+                ])),
+            }, // will be passed to the page component as props
         }
     } catch (error) {
         let datas = {};
         return {
-            props: { datas,...(await serverSideTranslations(locale, [
-                'all',
-              ])), }, // will be passed to the page component as props
+            props: {
+                datas, ...(await serverSideTranslations(locale, [
+                    'all',
+                ])),
+            }, // will be passed to the page component as props
         }
     }
 }

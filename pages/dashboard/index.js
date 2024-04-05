@@ -82,11 +82,11 @@ export default function Home(props) {
     //     })
     //     console.log(test)
   }
-   async function runOneSignal() {
-    await OneSignal.init({ appId: '1fc58f49-adf9-4461-a23d-56ea6586c275', allowLocalhostAsSecureOrigin: true});
+  async function runOneSignal() {
+    await OneSignal.init({ appId: '1fc58f49-adf9-4461-a23d-56ea6586c275', allowLocalhostAsSecureOrigin: true });
     OneSignal.Slidedown.promptPush();
   }
-    const [initialized, setInitialized] = useState(false);
+  const [initialized, setInitialized] = useState(false);
   useEffect(() => {
     runOneSignal();
     try {
@@ -142,7 +142,7 @@ export default function Home(props) {
       }
     };
     checkAuth();
-    
+
 
   }, [authed]);
 
@@ -248,7 +248,7 @@ export default function Home(props) {
           </Stack>
           <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'
           >
-           <TranslateX/>
+            <TranslateX />
             <motion.div whileHover={{ color: '#981FC0' }} onClick={() => {
               router.push('/dashboard/history')
             }} >
@@ -369,8 +369,8 @@ export default function Home(props) {
           <p className='title1'>Hello</p>
           <p className='title2'>{user ? user.username : ""}</p>
         </Stack>
-        <TranslateX/>
-        <motion.div  className="icon-con" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
+        <TranslateX />
+        <motion.div className="icon-con" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.8 }} onClick={() => {
           router.push(`/dashboard/history?id=${user.userId ?? ""}`);
         }}>
           <Icon icon="tdesign:notification-filled" width="24" height="24" style={{ color: "#981FC0" }} />
@@ -378,17 +378,18 @@ export default function Home(props) {
       </div>
     )
   }
-    function ShortCuts (){
-      return(
-        <div>
-          <Stack direction='row' justifyContent= 'space-between' spacing={1} sx={{ width: '100%', padding: '4px',  }}>
-            <Link href="/dashboard/fund" ><motion.p whileHover={{ y:-10 }} whileTap={{ scale:0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
-            <Link href="/dashboard/bets" ><motion.p whileHover={{ y:-10 }} whileTap={{ scale:0.7 }} className='shorts'>BETS</motion.p></Link>
-            <Link href="/dashboard/" >             <motion.p whileHover={{ y:-10 }} whileTap={{ scale:0.7 }} className='shorts'>CUSTOMER CARE</motion.p></Link>
-            </Stack>
-        </div>
-      )
-    }
+  function ShortCuts() {
+    return (
+      <div>
+        <Stack direction='row' justifyContent='space-between' spacing={1} sx={{ width: '100%', padding: '4px', }}>
+          <Link href="/dashboard/fund" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
+          <Link href="/dashboard/withdraw" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>WITHDRAW</motion.p></Link>
+        <Link href="/dashboard/bets" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>BETS</motion.p></Link>
+          <Link href="/dashboard/" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>CUSTOMER CARE</motion.p></Link>
+        </Stack>
+      </div>
+    )
+  }
   function SearchBar() {
     return (
       <Stack direction='column' sx={{ height: "70px", width: '100%', padding: '8px', alignItems: 'center' }}>
@@ -425,46 +426,55 @@ export default function Home(props) {
   }
 
   function Live() {
-    const [liver,setLiver] = useState([]);
-    useEffect(()=>{
-        const fetchLives = async () => {
-              const { data,error } = await supabase
-              .from('bets')
-              .select('*')
-              .eq('live',true)
-              console.log(data)
-              setLiver(data);
-        }
-        fetchLives()
-    },[liver])
-    if(liver && liver.length > 0){
+    const [liver, setLiver] = useState([]);
+    useEffect(() => {
+      const fetchLives = async () => {
+        const { data, error } = await supabase
+          .from('bets')
+          .select('*')
+          .eq('live', true)
+        console.log(data)
+        setLiver(data);
+      }
+      fetchLives()
+    }, [liver])
+    if (liver && liver.length > 0) {
       return (
-        <Stack className='live' sx={{ maxWidth:'350px'}}>
+        <Stack className='live' sx={{ maxWidth: '350px' }}>
           <div className='live-title-contain'>
             <p className='live-title1'>*</p>
             <p className='live-title'>Live</p>
           </div>
-          <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
-                <p className='mleague' style={{ padding:'8px'}}>{liver[0].league}</p>
+
+          {
+            liver.map((i) => { 
+              return ( 
+                <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
+            <p className='mleague' style={{ padding: '8px' }}>{liver[i].league}</p>
             <div className='live-containx' style={{}}>
               <div className='live1'>
-                <Image src={liver[0].ihome} width={40} height={40} alt="home_logo" />
-                <p className='mtxt'>{liver[0].home}</p>
+                <Image src={liver[i].ihome} width={40} height={40} alt="home_logo" />
+                <p className='mtxt'>{liver[i].home}</p>
               </div>
               <div className='live2'>
-                <p className='mscore'>{liver[0].mcore}</p>
-                <p className='mtime' style={{ color:'#00ff2a'}}>{liver[0].mive} mins</p>
+                <p className='mscore'>{liver[i].mcore}</p>
+                <p className='mtime' style={{ color: '#00ff2a' }}>{liver[i].mive} mins</p>
               </div>
               <div className='live1'>
-                <Image src={liver[0].iaway} width={40} height={40} alt="home_logo" />
-                <p className='mtxt'>{liver[0].away}</p>
+                <Image src={liver[i].iaway} width={40} height={40} alt="home_logo" />
+                <p className='mtxt'>{liver[i].away}</p>
               </div>
             </div>
           </div>
+              )
+            })
+          }
+
+          
         </Stack>
       )
-    }else{
-        return;
+    } else {
+      return;
     }
   }
 
@@ -495,21 +505,21 @@ export default function Home(props) {
   }
   function NextMatches() {
     const [footDat, setFootDat] = useState([]);
-    useEffect(() => { 
-      const getMatch = async () => { 
+    useEffect(() => {
+      const getMatch = async () => {
         try {
-       let test = await fetch('/api/match', {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-            }).then(data => {
-              return data.json();
-              })
-              let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
-                              
-         setFootDat(bts);
-         
+          let test = await fetch('/api/match', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          }).then(data => {
+            return data.json();
+          })
+          let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+
+          setFootDat(bts);
+
         } catch (e) {
           console.log(e);
           let err = [];
@@ -519,15 +529,15 @@ export default function Home(props) {
       getMatch();
     }, [footDat])
     return (
-      <Stack alignItems="center" justifyContent="center" spacing={2} style={{ width:'auto',marginLeft:'-30px' }}>
+      <Stack alignItems="center" direction="column-reverse" justifyContent="center" spacing={2} style={{ width: 'auto', marginLeft: '-30px' }}>
         <div style={{ height: '5px', width: '1px' }}></div>
         {
           footDat.map((data) => {
             return (
-              <Link  href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'310px'}}>
+              <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width: '310px' }}>
 
-                <div className='live-containx' style={{ minWidth:'340px',width: 'auto', margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
-                  <div className='live-containx' style={{ margin:0}}>
+                <div className='live-containx' style={{ minWidth: '340px', width: 'auto', margin: 0, flexDirection: 'column', border: '0.5px solid #3F1052' }} >
+                  <div className='live-containx' style={{ margin: 0 }}>
                     <div className='live1'>
                       <Image src={data.ihome ?? ball} width={40} height={40} alt="home_logo" />
                       <p className='mtxt'>{data.home}</p>
@@ -535,8 +545,8 @@ export default function Home(props) {
                     <div className='live2'>
                       <p className='mleague'>{data.league}</p>
                       <p className='mscore'>{data.time}</p>
-                       <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()+1) ) ? 'Tomorrow' : Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())}</p>
-                  
+                      <p className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth() + 1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth() + 1) + "-0" + Number(new Date().getDate() + 1)) ? 'Tomorrow' : Number(new Date().getMonth() + 1) + "-0" + Number(new Date().getDate())}</p>
+
                     </div>
                     <div className='live1'>
                       <Image src={data.iaway ?? ball} width={40} height={40} alt="home_logo" />
@@ -621,11 +631,11 @@ export default function Home(props) {
           </motion.div>
         </Stack>
       </Modal>
-      )
+    )
   }
   return (
     <Stack direction='column' alignItems='center' sx={{ minHeight: '100vh', paddingBottom: '100px' }} className='backgrounds' spacing={1}>
-      
+
       <Head>
         <title>Dashboard</title>
         <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
@@ -634,7 +644,7 @@ export default function Home(props) {
       </Head>
       <Header />
       <p className='short-title'>SHORTCUTS</p>
-      <ShortCuts/>
+      <ShortCuts />
       <SearchBar />
       <Live />
       <Analytics />

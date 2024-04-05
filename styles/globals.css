@@ -831,3 +831,15 @@ font-family:var(--font-lilpops);
   padding: 8px;
   text-align: left;
 }
+
+.betcover {
+  background-color: #3F1052;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 8px;
+  min-height: 15vh;
+  color: #d5d2ff;
+  width: 360px;
+  font-size: large;
+  font-family: var(--font-suma);
+}
