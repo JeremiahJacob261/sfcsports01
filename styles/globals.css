@@ -171,6 +171,7 @@ height:34px;
 }
 p{
   color:white;
+  font-size: 16px;
 }
 .navBar{
   /* From https://css.glass */
@@ -818,8 +819,8 @@ font-family:var(--font-lilpops);
   text-align: center;
   color: #5f087c;
   background-color: whitesmoke;
-  padding: 12px;
-  min-width:100px;
+  padding: 8px;
+  min-width:80px;
   font-size: small;
 }
 

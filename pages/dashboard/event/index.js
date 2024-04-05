@@ -69,7 +69,10 @@ export default function Event() {
     "twothree": "2 - 3",
     "threetwo": "3 - 2",
     "threethree": "3 - 3",
-    "otherscores": "Other"
+    "otherscores": "Other",
+    "hd": "Home or Draw",
+    "ha": "Home or Away",
+    "da": "Draw or Away"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
     if (stake < 1) {

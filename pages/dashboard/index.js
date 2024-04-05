@@ -325,11 +325,11 @@ export default function Home(props) {
   function ShortCuts() {
     return (
       <div>
-        <Stack direction='row' justifyContent='space-between' spacing={1} sx={{ width: '100%', padding: '4px', }}>
+        <Stack direction='row' justifyContent='space-between' spacing={1} sx={{ width: '100%', padding: '4px',overflow:'auto' }}>
           <Link href="/dashboard/fund" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
           <Link href="/dashboard/withdraw" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>WITHDRAW</motion.p></Link>
         <Link href="/dashboard/bets" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>BETS</motion.p></Link>
-          <Link href="/dashboard/" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>CUSTOMER CARE</motion.p></Link>
+          <Link href="/dashboard/" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>SUPPORT</motion.p></Link>
         </Stack>
       </div>
     )

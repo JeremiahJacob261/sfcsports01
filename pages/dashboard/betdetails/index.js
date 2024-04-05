@@ -30,7 +30,10 @@ export default function BetDetails({ datas }) {
         "twothree": "2 - 3",
         "threetwo": "3 - 2",
         "threethree": "3 - 3",
-        "otherscores": "Other"
+        "otherscores": "Other",
+        "hd": "Home or Draw",
+        "ha": "Home or Away",
+        "da": "Draw or Away"
     }
     let s = datas;
     let timers = datas.created_at;
@@ -102,13 +105,13 @@ export default function BetDetails({ datas }) {
                     </Stack>
                     <Stack direction="column">
                         <p>{datas.market}</p>
-                        <p>{resulta ?? 'loading ...'}</p>
+                        <p>{resulta ?? 'unavailable'}</p>
                         <p>{datas.odd}</p>
                         <p>{fulltime}</p>
                     </Stack>
                 </Stack>
 
-                <Stack direction="row" alignItems='center' justifyContent="space-between" spacing={3} sx={{ width: '340px' }}>
+                <Stack direction="row" alignItems='center' justifyContent="space-between" spacing={2} sx={{ width: '340px' }}>
                     <Stack direction="column">
                         <p style={{ color:'#9506ce' }}>Stake</p>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
@@ -139,7 +142,7 @@ export default function BetDetails({ datas }) {
 
                     <Stack direction="column">
                         <p style={{ color:'#9506ce' }}>Status</p>
-                        <p>{(datas.won != 'null') ? 'Finished' : (stams + 5400 < curren) ? 'Pending' : (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
+                        <p style={{ fontSize:'13px',padding:0}}>{(datas.won != 'null') ? 'Finished' : (stams + 5400 < curren) ? 'Pending' : (stams < curren) ? 'Ongoing' : 'Not Started'}</p>
                     </Stack>
                 </Stack>
             </Stack>

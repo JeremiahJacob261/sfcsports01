@@ -66,7 +66,10 @@ export default function Matchs({ matc, user, test }) {
     "twothree": "2 - 3",
     "threetwo": "3 - 2",
     "threethree": "3 - 3",
-    "otherscores": "Other"
+    "otherscores": "Other",
+    "hd": "Home or Draw",
+    "ha": "Home or Away",
+    "da": "Draw or Away"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
     setDrop(true)
@@ -142,6 +145,158 @@ export default function Matchs({ matc, user, test }) {
     }
     setDrop(false)
   }
+
+
+  function DoubleChance({ txt, data, pick }) {
+    const [amountInput, setAmountInput] = useState('');
+    // console.log(txt)
+    // console.log(pick)
+    // console.log(markets[pick])
+    const [use, setUse] = useState({});
+    let profit = parseFloat(amountInput) * parseFloat((parseFloat(placee.txt) / 100).toFixed(3)).toFixed(3);
+    let total = parseFloat((parseFloat(profit) + parseFloat(amountInput)).toFixed(3))
+    const click = (parseFloat) => {
+      if (parseFloat === 'X') {
+        const newVal = amountInput.substring(0, amountInput.length - 1);
+        setAmountInput(newVal);
+      } else {
+        if (parseFloat === '.') {
+          if (amountInput.includes('.')) {
+            return;
+          } else {
+            if (amountInput === '') {
+              setAmountInput(amountInput + '0' + parseFloat);
+            } else {
+              setAmountInput(amountInput + parseFloat);
+            }
+          }
+        } else {
+
+          setAmountInput(amountInput + parseFloat);
+        }
+      }
+    }
+    useEffect(() => {
+      const getRef = async () => {
+        try {
+          const { data: refer, error: errref } = await supabase
+            .from('users')
+            .select('*')
+            .eq('username', localStorage.getItem('signNames'))
+          setUse(refer[0]);
+          // const { data:match, error:errmatch } = await supabase
+          // .from('bets')
+          // .select('*')
+          // .eq('match_id', router.query.id)
+          // setMatches(match[0]);
+        } catch (e) {
+          console.log(e)
+        }
+
+      }
+      getRef();
+    }, [use])
+    const vip = {
+      '1': 0,
+      '2': 0.015,
+      '3': 0.030,
+      '4': 0.050,
+      '5': 0.070,
+      '6': 0.095,
+      '7': 0.125
+    }
+    return (
+      <React.Fragment key={'bottom'} >
+        <motion.div className='odds' onClick={() => {
+          setParentOpen(true)
+          setPlacee({ 'txt': parseFloat(txt) + parseFloat(vip[test.viplevel]), 'pick': pick, 'market': markets[pick] })
+        }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #981FC0', borderRadius: '5px', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
+        >
+          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer' }}>
+            <p style={{ color: '#e4264c' }}>{(parseFloat(parseFloat(txt).toFixed(2)) + parseFloat(parseFloat(vip[test.viplevel]).toFixed(3))).toFixed(2)}</p>
+          </Stack>
+
+        </motion.div>
+
+        <Drawer
+          anchor={'bottom'}
+          open={parentopen}
+          onClose={() => { setParentOpen(false) }}
+          style={{ backgroundColor: 'transparent' }}
+        >
+          <div
+            className="placerstyles"
+          >
+            <Stack spacing={2} alignItems='center'>
+              <p style={{ width: '100%', color: 'whitesmoke', textAlign: 'center', color: 'rgba(245,186,79,1)', fontSize: '600' }} className='p-1'>{data.league}</p>
+              <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
+                <p>{data.home}</p>
+                <p>VS</p>
+                <p>{data.away}</p>
+              </Stack>
+
+              <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
+                <p>{placee.market}</p> <p>{placee.txt}</p>
+              </Stack>
+              <p style={{ color: 'black', textAlign: 'center', fontSize: '20px', fontWeight: '700', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '80%', borderRadius: '5px' }}>{amountInput} </p>
+              <Stack direction="row" justifyContent="space-around" sx={{ width: '100%' }} spacing={1}>
+                <Stack direction="column" spacing={1}>
+                  <p>Balance : {user.balance ?? 0} USDT</p>
+                  <p>Stake: {amountInput}</p>
+                </Stack>
+                <Stack direction="column" spacing={1}>
+                  <p>Profit: {profit}</p>
+                  <p>Winnings: {total}</p>
+                </Stack>
+
+              </Stack>
+              <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
+                <Stack direction="column" spacing={2}>
+                  {/* whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} */}
+                  {/* calculator sizes stack */}
+                  <Stack direction="row" spacing={1}>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('0')} className="figures">0</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('1')} className="figures">1</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('2')} className="figures">2</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('3')} className="figures">3</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('4')} className="figures">4</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('5')} className="figures">5</motion.p>
+                  </Stack>
+
+                  <Stack direction="row" spacing={1}>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('6')} className="figures">6</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('7')} className="figures">7</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('8')} className="figures">8</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('9')} className="figures">9</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('X')} className="figures">X</motion.p>
+                  </Stack>
+
+                </Stack>
+
+
+              </Stack>
+
+              <motion.p onClick={() => {
+                //   router.push('/dashboard/fund/success')
+                // (matches, stake, profit, username, market, odd)
+                placebet(data, parseFloat(amountInput) ?? 0, parseFloat(profit), localStorage.getItem('signNames'), placee.market, placee.txt);
+              }}
+                whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
+                whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.05 }}
+                style={{ fontWeight: '500', fontSize: '12px', color: 'white', border: '0.6px solid #3F1052', padding: '10px', background: '#981FC0', width: '90%', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+                Place Bet</motion.p>
+            </Stack>
+
+          </div>
+        </Drawer>
+      </React.Fragment>
+
+    )
+  }
+
 
   function Placer({ txt, data, pick }) {
     const [amountInput, setAmountInput] = useState('');
@@ -238,18 +393,18 @@ export default function Matchs({ matc, user, test }) {
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{placee.market}</p> <p>{placee.txt}</p>
               </Stack>
-              <p style={{ color: 'black',textAlign:'center',fontSize:'20px',fontWeight:'700', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '80%', borderRadius: '5px' }}>{amountInput} </p>
+              <p style={{ color: 'black', textAlign: 'center', fontSize: '20px', fontWeight: '700', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '80%', borderRadius: '5px' }}>{amountInput} </p>
               <Stack direction="row" justifyContent="space-around" sx={{ width: '100%' }} spacing={1}>
-                  <Stack direction="column" spacing={1}>
-                    <p>Balance : {user.balance ?? 0} USDT</p>
-                    <p>Stake: {amountInput}</p>
-                  </Stack>
-                  <Stack direction="column" spacing={1}>
-                    <p>Profit: {profit}</p>
-                    <p>Winnings: {total}</p>
-                  </Stack>
-
+                <Stack direction="column" spacing={1}>
+                  <p>Balance : {user.balance ?? 0} USDT</p>
+                  <p>Stake: {amountInput}</p>
                 </Stack>
+                <Stack direction="column" spacing={1}>
+                  <p>Profit: {profit}</p>
+                  <p>Winnings: {total}</p>
+                </Stack>
+
+              </Stack>
               <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ width: '100%' }}>
                 <Stack direction="column" spacing={2}>
                   {/* whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} */}
@@ -261,7 +416,7 @@ export default function Matchs({ matc, user, test }) {
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('3')} className="figures">3</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('4')} className="figures">4</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('5')} className="figures">5</motion.p>
-                   </Stack>
+                  </Stack>
 
                   <Stack direction="row" spacing={1}>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('6')} className="figures">6</motion.p>
@@ -273,7 +428,7 @@ export default function Matchs({ matc, user, test }) {
 
                 </Stack>
 
-               
+
               </Stack>
 
               <motion.p onClick={() => {
@@ -293,10 +448,33 @@ export default function Matchs({ matc, user, test }) {
 
     )
   }
+
   function OddArrange() {
     console.log(matches)
     return (
       <Stack direction='column' spacing={3} alignItems='center'>
+
+
+        <Stack direction="column" className='homecol' spacing={2} justifyContent='center' alignItems='center'>
+          <p>DOUBLE CHANCE</p>
+          <Stack direction="row" alignItems={"center"} justifyContent="space-between" sx={{ width: '100%' }}>
+            <Stack direction="column" sx={{ width: 'auto', height: '100%' }} spacing={3} alignItems='center' justifyContent='space-between'>
+              <p style={{ fontWeight:'600',color:'whitesmoke'}}>Home or Draw</p>
+              <p style={{ fontWeight:'600',color:'whitesmoke'}}>Home or Away</p>
+              <p style={{ fontWeight:'600',color:'whitesmoke'}}>Draw or AWAY</p>
+            </Stack>
+
+            <Stack direction="column" sx={{ width: 'auto', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
+              <DoubleChance txt={matches.hd} data={matches} pick='hd' />
+              <DoubleChance txt={matches.ha} data={matches} pick={'ha'} />
+              <DoubleChance txt={matches.da} data={matches} pick={'da'} />
+            </Stack>
+
+          </Stack>
+
+
+        </Stack>
+
 
         <Stack direction="column" className='homecol' spacing={2} justifyContent='center' alignItems='center'>
           <p>Home</p>
