@@ -91,22 +91,7 @@ export default function Bets() {
               // 17041 764 89
               // 17041 908 89
               // 17041 836 89 + 5400
-              const [resulta, setResulta] = useState({});
-             useEffect(() => { 
-              const getRef = async () => {
-                try {
-                    const { data, error } = await supabase
-                        .from('bets')
-                        .select()
-                        .eq('match_id', bet.match_id)
-                    setResulta(data[0])
-                    console.log(data[0])
-                } catch (e) {
-                    console.log(e)
-                }
-            }
-            getRef();
-              }, [])
+             
               return (
 
                 <Link href={'/dashboard/betdetails?id=' + bet.betid} key={bet.betid}>

@@ -393,7 +393,7 @@ export default function Home(props) {
           {
             liver.map((i) => { 
               return ( 
-                <div className='live-containx' style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
+                <div className='live-containx' key={i.ihome} style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
             <p className='mleague' style={{ padding: '8px' }}>{i.league}</p>
             <div className='live-containx' style={{}}>
               <div className='live1'>
