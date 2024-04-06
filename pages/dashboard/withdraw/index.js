@@ -82,8 +82,8 @@ export default function Withdraw() {
                 alert('Password does not match')
             } else if (amount === '') {
                 alert('Please enter amount')
-            } else if (amount < 20) {
-                alert('Minimum amount to withdraw is 20 USDT')
+            } else if (amount < 15) {
+                alert('Minimum amount to withdraw is 15 USDT')
 
             } else if (amount > 100) {
                 alert('Maximum amount to withdraw including charges is 100 USDT')

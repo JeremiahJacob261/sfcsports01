@@ -135,7 +135,7 @@ export default function History({credent}) {
                             return(
                                 <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
                                 <Stack>
-                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Bet was placed Successfully for {item.type} and staked at {item.amount} USDT on {fullDay}</p>
+                                    <p style={{ fontWeight:'bold',color:'greenyellow'}}>Your Trade was Successfully for {item.type}, {item.amount} USDT, {fullDay}</p>
                                   </Stack>
                             </Stack>
                             )

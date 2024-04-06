@@ -115,7 +115,7 @@ export default function BetDetails({ datas }) {
                     <Stack direction="column">
                         <p style={{ color:'#9506ce' }}>Stake</p>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
-                            <Image src={Tether} width={20} height={20} alt="logo" style={{ borderRadius:'50%'}}/>
+                           <p>$</p>
                               <p>{datas.stake}</p>
                         </Stack>
                       
@@ -125,7 +125,7 @@ export default function BetDetails({ datas }) {
                     <Stack direction="column">
                         <p style={{ color:'#9506ce' }}>Profit</p>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
-                            <Image src={Tether} width={20} height={20} alt="logo" style={{ borderRadius:'50%'}}/>
+                           <p>$</p>
                         <p>{datas.profit}</p>
                         </Stack>
                     </Stack>
@@ -134,7 +134,7 @@ export default function BetDetails({ datas }) {
                     <Stack direction="column">
                         <p style={{ color:'#9506ce' }}>Return</p>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
-                            <Image src={Tether} width={20} height={20} alt="logo" style={{ borderRadius:'50%'}}/>
+                           <p>$</p>
                         <p>{datas.stake + datas.aim}</p>
                         </Stack>
                     </Stack>

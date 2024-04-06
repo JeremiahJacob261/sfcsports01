@@ -16,12 +16,12 @@ export default async function handler(req, res) {
             res.status(200).json([{ 'status': 'Failed', 'message': 'Wrong password' }]);
         }else{
             
-            if (bets.length > 5 || body.name === "Sidollar") {
+            if (bets.length > 5 ) {
                 if (!data[0].codeset) {
         
                     console.log('no transaction pin has been set')
                     res.status(200).json([{ 'status': 'Failed', 'message': 'No transaction pin has been set' }]);
-                } else if (true) {
+                } else if (data[0].password != body.password) {
                     console.log('wrong password')
         
                     res.status(200).json([{ 'status': 'Failed', 'message': 'Wrong password' }]);

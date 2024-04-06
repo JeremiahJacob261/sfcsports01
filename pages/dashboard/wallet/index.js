@@ -11,6 +11,7 @@ import BACK from '@/public/backfield.png'
 import toast, { Toaster } from 'react-hot-toast';
 import LOGO  from '../../../public/logo.png'
 import Image from 'next/image';
+import Link from "next/link";
 import { useState } from 'react';
 export default function Wallet({user}) {
    const router = useRouter();
@@ -75,8 +76,12 @@ export default function Wallet({user}) {
                <div className="icon-con" style={{ width:'90px'}}><motion.div onClick={() => { handleToggle('/dashboard/codesetting') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="carbon:security" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>transaction pin</p></div>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/changepassword') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="tabler:password-fingerprint" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>password</p></div>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/promotion') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="material-symbols:rewarded-ads-outline-rounded" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>rewards</p></div>
-               <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/bind') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mdi:customer-service" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>support</p></div>
+               <Link href="https://t.me/EPL_customercare">
+               <div className="icon-con"><motion.div onClick={() => {  }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mdi:customer-service" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>support</p></div>
+               </Link>
+               <Link href="https://t.me/EPLFOOTBALLOFFICIAL">
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/bind') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="fluent:people-community-16-filled" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>community</p></div>
+               </Link>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/faq') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mingcute:question-fill" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>FAQ</p></div>
                { 
                //translate goes here
