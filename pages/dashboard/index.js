@@ -389,11 +389,11 @@ export default function Home(props) {
             <p className='live-title1'>*</p>
             <p className='live-title'>Live</p>
           </div>
-        <Stack direction='column' justifyContent='center' alignItems='center' spacing={1} style={{ width: 'auto', padding: '4px', margin: 0 }}>
+        <Stack direction='column' justifyContent='center' alignItems='center' spacing={4} style={{ width: 'auto', padding: '4px', margin: 0 }}>
           {
             liver.map((i) => { 
               return ( 
-                <div className='live-containx' key={i.ihome} style={{ width: 'auto', padding: 4, margin: 0, flexDirection: 'column' }}>
+                <div className='live-containx' key={i.ihome} style={{ width: 'auto', height:'210px',padding: 4, margin: 0, flexDirection: 'column' }}>
             <p className='mleague' style={{ padding: '8px' }}>{i.league}</p>
             <div className='live-containx' style={{}}>
               <div className='live1'>

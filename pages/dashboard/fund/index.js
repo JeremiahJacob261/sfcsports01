@@ -63,7 +63,7 @@ export default function Fund() {
                             value={amount} onChange={(e) => {
                                 setAmount(e.target.value)
                             }} />
-                        <p style={{ color: '#3F1052', fontWeight: 700 }}>amount</p>
+                        <p style={{ color: '#9506ce', fontWeight: 700 }}>amount</p>
                     </div>
                     <p>Note: Minimum Deposit is 10 USDT</p>
                     <div className='mapcontain'>
