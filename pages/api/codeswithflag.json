@@ -30,6 +30,11 @@
       "code": "+501",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Flag_of_Belize.svg"
     },
+    { 
+      "name":"Benin",
+      "code":"+229",
+      "flag_image_link":"https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Benin.svg"
+    },
     {
      "name": "Brazil",
      "code": "+55",
@@ -39,6 +44,11 @@
       "name": "Bulgaria",
       "code": "+359",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Bulgaria.svg"
+    },
+    {
+      "name":"Burkina Faso",
+      "code":"+226",
+      "flag_image_link":"https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Burkina_Faso.svg"
     },
     {
       "name": "Cameroon",
@@ -141,6 +151,11 @@
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg"
     },
     {
+      "name":"Ivory Coast",
+      "code":"+225",
+      "flag_image_link":"https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_C%C3%B4te_d%27Ivoire.svg"
+    },
+    {
       "name": "Kenya",
       "code": "+254",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg"
@@ -154,6 +169,11 @@
       "name": "Malaysia",
       "code": "+60",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg"
+    },
+    {
+      "name":"Mali",
+      "code":"+223",
+      "flag_image_link":"https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_Mali.svg"
     },
     {
       "name": "Malta",
@@ -204,6 +224,11 @@
       "name": "Portugal",
       "code": "+351",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg"
+    },
+    {
+      "name":"Romania",
+      "code":"+40",
+      "flag_image_link":"https://upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Romania.svg"
     },
     {
       "name": "Russia",
