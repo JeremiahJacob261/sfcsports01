@@ -18,6 +18,7 @@ import Tour1 from '@/public/tours.png'
 import Tour2 from '@/public/tour2.png'
 import Tour3 from '@/public/tour3.png'
 import Head from 'next/head';
+import Massive from '@/public/slider/cn.jpg'
 import Translate from '@/pages/translatec';
 import { useTranslation } from 'next-i18next'
 import { adapter, tronWeb } from '@/crypto/adaptedwc'
@@ -110,10 +111,10 @@ export default function Home(locale) {
           <p style={{ color: 'white', fontSize: '15px', fontWeight: '600' }}>eplsports</p>
         </Stack>
         <Stack direction='row' alignItems='end' spacing={2}>
-          
+
         </Stack>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <Stack  onClick={async () => {
+          <Stack onClick={async () => {
             try {
               const { data, error } = supabase.auth.signOut();
               localStorage.clear();
@@ -126,7 +127,7 @@ export default function Home(locale) {
             <Icon icon="ic:round-menu" width={39} height={33} style={{ color: '#545454', background: 'white' }} onClick={() => { setParentOpen(true) }} />
           </Stack>
 
-          <Translate/>
+          <Translate />
           {/* <Popover
             animate={{
               mount: { scale: 1, y: 0 },
@@ -212,7 +213,7 @@ export default function Home(locale) {
           >
             <Stack onClick={() => {
               router.push('/register?refer=0');
-            }} sx={{marginBottom:'100px', background: "#3F1052", padding: '16px', width: '191px', border: "1px solid #891CAD" }} justifyContent='center' alignItems='center' >
+            }} sx={{ marginBottom: '100px', background: "#3F1052", padding: '16px', width: '191px', border: "1px solid #891CAD" }} justifyContent='center' alignItems='center' >
               <p style={{ color: 'white', fontSize: '16px', fontWeight: '300' }}>EXPLORE Now</p>
             </Stack>
           </motion.div>
@@ -221,6 +222,26 @@ export default function Home(locale) {
             <Image src={Tour2} alt="star" style={{ margin: '5px' }} width={290} height={200} />
             <Image src={Tour3} alt="star" style={{ margin: '5px' }} width={290} height={200} />
           </div>
+        </div>
+
+        <div className='massive'>
+          <Image src={Massive} width={367} height={210} alt="massive" />
+          <Stack direction={"column"} spacing={3} style={{ width:'300px',margin:'12px'}}>
+            <p style={{ fontSize:'21px',fontWeight:'600'}}>Earn Massively with EPLSPORTS</p>
+            <p>Invest in EPLSPORTS for potential high daily profits and earn a 3% referral bonus on level one referrals.</p>
+            <motion.div className="cvn" whileTap={{ y: 50 }} whileHover={{ y: 10 }}
+              animate={{ y: 50 }}
+              exit={{ y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Stack onClick={() => {
+                router.push('/register?refer=0');
+              }} sx={{ marginBottom: '100px', background: "#3F1052", padding: '16px', width: '191px', border: "1px solid #891CAD" }} justifyContent='center' alignItems='center' >
+                <p style={{ color: 'white', fontSize: '16px', fontWeight: '300' }}>Earn Now</p>
+              </Stack>
+            </motion.div>
+          </Stack>
+
         </div>
 
         <motion.p whileTap={{ color: 'grey', scale: 1.05 }} style={{ color: 'white', fontSize: '21px', fontWeight: '700' }}>{t('all:OurCertificates')}</motion.p>
@@ -247,7 +268,7 @@ export default function Home(locale) {
           </Stack>
         </Drawer>
       </Stack>
-      <Footer/>
+      <Footer />
     </Stack>
   )
 }

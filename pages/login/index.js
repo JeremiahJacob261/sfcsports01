@@ -303,7 +303,7 @@ export default function Login({ranter}) {
       </Head>
       <Stack direction='column' spacing={3}>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
-          <Image src={LOGO} width={100} height={120} alt='logo Eplsports' style={{ padding:'12px',background:'white',borderRadius:'50%'}} onClick={()=>{ route.push('/')  }}/>
+          <Image src={LOGO} width={100} height={120} alt='logo Eplsports' style={{ padding:'12px',background:'white',borderRadius:'50%'}} onClick={()=>{ router.push('/')  }}/>
           <Link href="/" style={{ textDecoration: "none" }}>
             <Typography style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </Typography>
           </Link>

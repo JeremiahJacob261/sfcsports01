@@ -8,7 +8,14 @@ import { useRouter } from 'next/router';
 import Logo from "@/public/logo.png";
 import TranslateX from '../translatex';
 import Head from 'next/head';
+import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import Cn from '@/public/slider/cn.jpg';
+import Cn1 from '@/public/slider/cn1.jpg';
+import Cn2 from '@/public/slider/cn2.jpg';
+import Cn3 from '@/public/slider/cn3.jpg';
+import Cn4 from '@/public/slider/cn4.jpg';
+import Cn5 from '@/public/slider/cn5.jpg';
 import ball from '@/public/ball.png';
 import Image from 'next/image'
 import InputAdornment from '@mui/material/InputAdornment';
@@ -590,6 +597,17 @@ export default function Home(props) {
       <p className='short-title'>SHORTCUTS</p>
       <ShortCuts />
       <SearchBar />
+      <div style={{ width:'300px',height:'auto'}}>
+         <Carousel interval={1500} autoPlay={true}>
+        <Image src={Cn} alt="logo" width={330}  height={212}/>
+        <Image src={Cn1} alt="logo"  width={330}  height={212}/>
+        <Image src={Cn2} alt="logo"  width={330}  height={212}/>
+        <Image src={Cn3} alt="logo"  width={330}  height={212}/>
+        <Image src={Cn4} alt="logo"  width={330}  height={212}/>
+        <Image src={Cn5} alt="logo"  width={330}  height={212}/>
+      </Carousel>
+      </div>
+     
       <Live />
       <Analytics />
       <p className='next-title'>Next Matches</p>

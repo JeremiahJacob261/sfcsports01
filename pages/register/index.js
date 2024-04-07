@@ -281,8 +281,10 @@ export default function Register({ refer }) {
     <Stack justifyContent="center" alignItems="center"
       spacing={5}
       style={{
-        background: "#3F1052", width: '100%', minHeight: '100vh'
-      }}>
+         width: '100%', minHeight: '100vh'
+      }}
+      className="cvb"
+      >
       <Backdrop
         style={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={drop}
