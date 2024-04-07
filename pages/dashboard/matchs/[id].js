@@ -74,7 +74,7 @@ export default function Matchs({ matc, user, test }) {
   const placebet = async (matches, stake, profit, username, market, odd) => {
     setDrop(true)
     console.log(stake)
-    if (user.gcount > 1) {
+    if (user.gcount > 2) {
       alert('You have exceeded the number of games you can play today')
       setDrop(false)
       return;
