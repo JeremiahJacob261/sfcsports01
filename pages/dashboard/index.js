@@ -408,6 +408,7 @@ export default function Home(props) {
                 <p className='mtxt'>{i.home}</p>
               </div>
               <div className='live2'>
+                <p className='mnot' style={{color:'whitesmoke'}}>{i.match_id}</p>
                 <p className='mscore'>{i.mcore}</p>
                 <p className='mtime' style={{ color: '#00ff2a' }}>{i.mive} mins</p>
               </div>

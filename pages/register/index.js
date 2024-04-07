@@ -315,10 +315,10 @@ export default function Register({ refer }) {
                 <p style={{ fontFamily: 'Noto Serif, serif', color: "#E5E7EB", fontWeight: '400', fontSize: '20px' }}>Eplsports </p>
               </Link>
               <p style={{ fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '25px', fontWeight: '400', width: '240px', textAlign: 'center' }}>
-                {t("Signupnowandgetawelcomebonus")}
+              Join Us now and get a welcome bonus
               </p>
               <p style={{ opacity: '0.7', fontFamily: 'Poppins,sans-serif', color: '#E5E7EB', fontSize: '14px', fontWeight: '100', width: '292px', textAlign: 'center' }}>
-                {t("Enterthecorrectinformationprovidedtocreateanaccount")}
+              Enter the correct information provided to create an account
               </p>
             </Stack>
 
