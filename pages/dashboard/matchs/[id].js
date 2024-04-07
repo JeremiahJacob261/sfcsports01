@@ -364,11 +364,11 @@ export default function Matchs({ matc, user, test }) {
         }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #981FC0', borderRadius: '5px', padding: '8px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
+          style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #981FC0', borderRadius: '5px', padding: '4px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
         >
-          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer' }}>
-            <p style={{ color: 'black' }}>{markets[pick]}</p>
-            <p style={{ color: '#e4264c' }}>{(parseFloat(parseFloat(txt).toFixed(2)) + parseFloat(parseFloat(vip[test.viplevel]).toFixed(3))).toFixed(2)}</p>
+          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer',padding:'3px' }}>
+            <p style={{ color: 'black',fontSize:'12px' }}>{markets[pick]}</p>
+            <p style={{ color: '#e4264c',fontSize:'12px' }}>{(parseFloat(parseFloat(txt).toFixed(2)) + parseFloat(parseFloat(vip[test.viplevel]).toFixed(3))).toFixed(2)}</p>
           </Stack>
 
         </motion.div>

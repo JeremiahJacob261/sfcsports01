@@ -102,12 +102,14 @@ export default function BetDetails({ datas }) {
                         <p style={{ color:'#9506ce' }}>Market Result</p>
                         <p style={{ color:'#9506ce' }}>Odds</p>
                         <p style={{ color:'#9506ce' }}>Time</p>
+                        <p style={{ color:'#9506ce' }}>Match ID</p>
                     </Stack>
                     <Stack direction="column">
                         <p>{datas.market}</p>
                         <p>{resulta ?? 'unavailable'}</p>
                         <p>{datas.odd}</p>
                         <p>{fulltime}</p>
+                        <p>{datas.match_id}</p>
                     </Stack>
                 </Stack>
 
