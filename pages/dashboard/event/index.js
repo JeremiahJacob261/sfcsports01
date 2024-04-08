@@ -69,8 +69,8 @@ export default function Event({foot}) {
     "da": "Draw or Away"
   }
   const placebet = async (matches, stake, profit, username, market, odd) => {
-    if (stake < 1) {
-      alert('Minimum stake is 1 USDT')
+    if (stake < 5) {
+      alert('Minimum stake is 5 USDT')
       return;
     } else if (stake > user.balance) {
       alert('Insufficient Balance')

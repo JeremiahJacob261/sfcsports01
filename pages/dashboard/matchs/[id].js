@@ -83,8 +83,8 @@ export default function Matchs({ matc, user, test }) {
         alert('Please Input a Number')
         setDrop(false)
         return;
-      } else if (parseFloat(stake) < 10) {
-        alert('Minimum stake is 10 USDT')
+      } else if (parseFloat(stake) < 5) {
+        alert('Minimum stake is 5 USDT')
         setDrop(false)
         return;
       } else if (parseFloat(stake) > user.balance) {
@@ -658,7 +658,7 @@ export default function Matchs({ matc, user, test }) {
           </Stack>
           <div className='live2'>
                       <p className='mscore'>{matches.time}</p>
-                      <p  className='mtime'>{(matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()+1) ) ? 'Tomorrow' : Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())}</p>
+                      <p className='mtime'>{(matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()+1) ) ? 'Tomorrow' : Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())}</p>
                       <p className='mtime'>Match ID: {matches.match_id}</p>
                   </div>
           {/* <MatchCountDown /> */}
