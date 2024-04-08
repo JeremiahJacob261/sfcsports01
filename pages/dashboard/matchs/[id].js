@@ -366,9 +366,9 @@ export default function Matchs({ matc, user, test }) {
           whileTap={{ scale: 0.9 }}
           style={{ border: (matc.company && matc.comarket === pick) ? '3px solid goldenrod' : '1px solid #981FC0', borderRadius: '5px', padding: '4px', width: '100%', textAlign: 'center', cursor: 'pointer', color: 'white', fontWeight: '500', fontSize: '12px', boxShadow: '0px 0px 5px rgba(0,0,0,0.5)', textShadow: '0px 0px 5px rgba(0,0,0,0.5)' }}
         >
-          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer',padding:'3px' }}>
-            <p style={{ color: 'black',fontSize:'12px' }}>{markets[pick]}</p>
-            <p style={{ color: '#e4264c',fontSize:'12px' }}>{(parseFloat(parseFloat(txt).toFixed(2)) + parseFloat(parseFloat(vip[test.viplevel]).toFixed(3))).toFixed(2)}</p>
+          <Stack direction='row' spacing={1} justifyContent='center' alignItems='center' sx={{ cursor: 'pointer', padding: '3px' }}>
+            <p style={{ color: 'black', fontSize: '12px' }}>{markets[pick]}</p>
+            <p style={{ color: '#e4264c', fontSize: '12px' }}>{(parseFloat(parseFloat(txt).toFixed(2)) + parseFloat(parseFloat(vip[test.viplevel]).toFixed(3))).toFixed(2)}</p>
           </Stack>
 
         </motion.div>
@@ -459,9 +459,9 @@ export default function Matchs({ matc, user, test }) {
           <p>DOUBLE CHANCE</p>
           <Stack direction="row" alignItems={"center"} justifyContent="space-between" sx={{ width: '100%' }}>
             <Stack direction="column" sx={{ width: 'auto', height: '100%' }} spacing={3} alignItems='center' justifyContent='space-between'>
-              <p style={{ fontWeight:'600',color:'whitesmoke'}}>Home or Draw</p>
-              <p style={{ fontWeight:'600',color:'whitesmoke'}}>Home or Away</p>
-              <p style={{ fontWeight:'600',color:'whitesmoke'}}>Draw or AWAY</p>
+              <p style={{ fontWeight: '600', color: 'whitesmoke' }}>Home or Draw</p>
+              <p style={{ fontWeight: '600', color: 'whitesmoke' }}>Home or Away</p>
+              <p style={{ fontWeight: '600', color: 'whitesmoke' }}>Draw or AWAY</p>
             </Stack>
 
             <Stack direction="column" sx={{ width: 'auto', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
@@ -656,6 +656,10 @@ export default function Matchs({ matc, user, test }) {
               <p>{matches.away}</p>
             </Stack>
           </Stack>
+          <div className='live2'>
+                      <p className='mscore'>{matches.time}</p>
+                      <p  className='mtime'>{(matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()+1) ) ? 'Tomorrow' : Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())}</p>
+                  </div>
           {/* <MatchCountDown /> */}
           <OddArrange />
         </Stack>

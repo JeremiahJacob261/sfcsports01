@@ -48,6 +48,8 @@ export default function Home(props) {
   const [authed, setAuthed] = useState(false);
   const [user, setUser] = useState(null);
   const router = useRouter();
+ 
+
   // const sendTRX = async () => {
   //   console.log('started ...');
   //   try {
@@ -332,21 +334,56 @@ export default function Home(props) {
   function ShortCuts() {
     return (
       <div>
-        <Stack direction='row' justifyContent='space-between' spacing={1} sx={{ width: '100%', padding: '4px',overflow:'auto' }}>
+        <Stack direction='row' justifyContent='space-between' spacing={1} sx={{ width: '100%', padding: '4px', overflow: 'auto' }}>
           <Link href="/dashboard/fund" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
           <Link href="/dashboard/withdraw" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>WITHDRAW</motion.p></Link>
-        <Link href="/dashboard/bets" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>BETS</motion.p></Link>
+          <Link href="/dashboard/bets" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>BETS</motion.p></Link>
           <Link href="https://t.me/EPL_customercare" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>SUPPORT</motion.p></Link>
         </Stack>
       </div>
     )
   }
   function SearchBar() {
+    const [search, setSearch] = useState('');
+    const [filterSearch ,setFilterSearch ] = useState([])
+    const [foots, setFoots] = useState([]);
+    const getMatchx = async () => {
+      try {
+        let test = await fetch('/api/match', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        }).then(data => {
+          return data.json();
+        })
+        let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+        setFoots(bts);
+  
+      } catch (e) {
+        console.log(e);
+        let err = [];
+        setFoots([]);
+      }
+    }
+    getMatchx();
+    const searcher = (e) => {
+      //this runs on every key stroke
+      console.log("typed")
+      setSearch(e.target.value);
+      setFilterSearch(foots.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
+    
+    }
     return (
-      <Stack direction='column' sx={{ height: "70px", width: '100%', padding: '8px', alignItems: 'center' }}>
+      <Stack direction='column' sx={{ height: "auto",minHeight:'70px', width: '100%', padding: '8px', alignItems: 'center' }}>
         <TextField
           id="input-with-icon-textfield"
           label="Search by name or ID"
+          value={search}
+          onChange={(e) => {
+            searcher(e);
+
+          }}
           sx={{
             width: '100%', background: 'rgba(0,0,0,0.2)', borderRadius: '8px',
             "& .MuiOutlinedInput-root": {
@@ -371,7 +408,20 @@ export default function Home(props) {
             style: { color: '#D8BFD8' } // Light purple color
           }}
         />
-
+          <Stack sx={{ position:'relative',background:'#3F1052',color:'#981FC0',maxWidth:'99%'}}>
+            {
+              filterSearch.map((data) => { 
+                return ( 
+                  <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ padding: '8px' }}>
+                        <Stack direction={"row"}>
+                          <p style={{ color:'whitesmoke'}}>{data.home} vs {data.away}</p>
+                        </Stack>
+                        <p style={{ color:'#981FC0'}}>{data.match_id}</p>
+                    </Link>
+                )
+              })
+            }
+          </Stack>
       </Stack>
     )
   }
@@ -384,7 +434,6 @@ export default function Home(props) {
           .from('bets')
           .select('*')
           .eq('live', true)
-        console.log(data)
         setLiver(data);
       }
       fetchLives()
@@ -396,33 +445,33 @@ export default function Home(props) {
             <p className='live-title1'>*</p>
             <p className='live-title'>Live</p>
           </div>
-        <Stack direction='column' justifyContent='center' alignItems='center' spacing={4} style={{ width: 'auto', padding: '4px', margin: 0 }}>
-          {
-            liver.map((i) => { 
-              return ( 
-                <div className='live-containx' key={i.ihome} style={{ width: 'auto', height:'210px',padding: 4, margin: 0, flexDirection: 'column' }}>
-            <p className='mleague' style={{ padding: '8px' }}>{i.league}</p>
-            <div className='live-containx' style={{}}>
-              <div className='live1'>
-                <Image src={i.ihome} width={40} height={40} alt="home_logo" />
-                <p className='mtxt'>{i.home}</p>
-              </div>
-              <div className='live2'>
-                <p className='mnot' style={{color:'whitesmoke'}}>{i.match_id}</p>
-                <p className='mscore'>{i.mcore}</p>
-                <p className='mtime' style={{ color: '#00ff2a' }}>{i.mive} mins</p>
-              </div>
-              <div className='live1'>
-                <Image src={i.iaway} width={40} height={40} alt="home_logo" />
-                <p className='mtxt'>{i.away}</p>
-              </div>
-            </div>
-          </div>
-              )
-            })
-          }
-</Stack>
-          
+          <Stack direction='column' justifyContent='center' alignItems='center' spacing={4} style={{ width: 'auto', padding: '4px', margin: 0 }}>
+            {
+              liver.map((i) => {
+                return (
+                  <div className='live-containx' key={i.ihome} style={{ width: 'auto', height: '210px', padding: 4, margin: 0, flexDirection: 'column' }}>
+                    <p className='mleague' style={{ padding: '8px' }}>{i.league}</p>
+                    <div className='live-containx' style={{}}>
+                      <div className='live1'>
+                        <Image src={i.ihome} width={40} height={40} alt="home_logo" />
+                        <p className='mtxt'>{i.home}</p>
+                      </div>
+                      <div className='live2'>
+                        <p className='mnot' style={{ color: 'whitesmoke' }}>{i.match_id}</p>
+                        <p className='mscore'>{i.mcore}</p>
+                        <p className='mtime' style={{ color: '#00ff2a' }}>{i.mive} mins</p>
+                      </div>
+                      <div className='live1'>
+                        <Image src={i.iaway} width={40} height={40} alt="home_logo" />
+                        <p className='mtxt'>{i.away}</p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </Stack>
+
         </Stack>
       )
     } else {
@@ -598,17 +647,17 @@ export default function Home(props) {
       <p className='short-title'>SHORTCUTS</p>
       <ShortCuts />
       <SearchBar />
-      <div style={{ width:'300px',height:'auto'}}>
-         <Carousel interval={1500} autoPlay={true}>
-        <Image src={Cn} alt="logo" width={330}  height={212}/>
-        <Image src={Cn1} alt="logo"  width={330}  height={212}/>
-        <Image src={Cn2} alt="logo"  width={330}  height={212}/>
-        <Image src={Cn3} alt="logo"  width={330}  height={212}/>
-        <Image src={Cn4} alt="logo"  width={330}  height={212}/>
-        <Image src={Cn5} alt="logo"  width={330}  height={212}/>
-      </Carousel>
+      <div style={{ width: '300px', height: 'auto' }}>
+        <Carousel interval={1500} autoPlay={true}>
+          <Image src={Cn} alt="logo" width={330} height={212} />
+          <Image src={Cn1} alt="logo" width={330} height={212} />
+          <Image src={Cn2} alt="logo" width={330} height={212} />
+          <Image src={Cn3} alt="logo" width={330} height={212} />
+          <Image src={Cn4} alt="logo" width={330} height={212} />
+          <Image src={Cn5} alt="logo" width={330} height={212} />
+        </Carousel>
       </div>
-     
+
       <Live />
       <Analytics />
       <p className='next-title'>Next Matches</p>

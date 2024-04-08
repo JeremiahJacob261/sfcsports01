@@ -334,7 +334,6 @@ useEffect(()=>{
               //     </Stack>
               //   </Link>
               // )
-              console.log(new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()))
               return( 
                 <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'330px'}}>
              
@@ -432,11 +431,46 @@ useEffect(()=>{
   }
 
   function SearchBar() {
+    const [search, setSearch] = useState('');
+    const [filterSearch ,setFilterSearch ] = useState([])
+    const [foots, setFoots] = useState([]);
+    const getMatchx = async () => {
+      try {
+        let test = await fetch('/api/match', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        }).then(data => {
+          return data.json();
+        })
+        let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+        setFoots(bts);
+  
+      } catch (e) {
+        console.log(e);
+        let err = [];
+        setFoots([]);
+      }
+    }
+    getMatchx();
+    const searcher = (e) => {
+      //this runs on every key stroke
+      console.log("typed")
+      setSearch(e.target.value);
+      setFilterSearch(foots.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
+    
+    }
     return (
-      <Stack direction='column' sx={{ height: "70px", width: '100%', padding: '8px', alignItems: 'center' }}>
+      <Stack direction='column' sx={{ height: "auto",minHeight:'70px', width: '100%', padding: '8px', alignItems: 'center' }}>
         <TextField
           id="input-with-icon-textfield"
           label="Search by name or ID"
+          value={search}
+          onChange={(e) => {
+            searcher(e);
+
+          }}
           sx={{
             width: '100%', background: 'rgba(0,0,0,0.2)', borderRadius: '8px',
             "& .MuiOutlinedInput-root": {
@@ -461,41 +495,24 @@ useEffect(()=>{
             style: { color: '#D8BFD8' } // Light purple color
           }}
         />
-
+          <Stack sx={{ position:'relative',background:'#3F1052',color:'#981FC0',maxWidth:'99%'}}>
+            {
+              filterSearch.map((data) => { 
+                return ( 
+                  <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ padding: '8px' }}>
+                        <Stack direction={"row"}>
+                          <p style={{ color:'whitesmoke'}}>{data.home} vs {data.away}</p>
+                        </Stack>
+                        <p style={{ color:'#981FC0'}}>{data.match_id}</p>
+                    </Link>
+                )
+              })
+            }
+          </Stack>
       </Stack>
     )
   }
 
-  function Matchx(){
-    return( 
-      <div className='live-containx' style={{ width:'auto', padding:4, margin:0,flexDirection:'column'}}>
-        <div className='live-containx' style={{ }}>
-        <div className='live1'>
-          <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
-          <p className='mtxt'>Princesa Solimões</p>
-        </div>
-        <div className='live2'>
-            <p className='mleague'>Premier league</p>
-            <p className='mscore'>10 : 20</p>
-            <p  className='mtime'>TODAY</p>
-        </div>
-        <div className='live1'>
-        <Image src="https://media.api-sports.io/football/teams/7879.png" width={40} height={40} alt="home_logo"/>
-          <p className='mtxt'>Princesa Solimões</p>
-        </div>
-        </div>
-        <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
-                
-        <motion.div onClick={()=>{
-          // router.push('/dashboard/match/')
-        }} className="decision-x" whileHover={{ scale:1.01 }} whileTap={{ scale:0.8 }}>
-          <p>Place Bet</p>
-          <Icon icon="ic:round-arrow-right" width="24" height="24"  style={{color: 'white'}} />
-        </motion.div>
-        </Link>
-      </div>
-    )
-}
   return (
     <div className='backgrounds' style={{ background:'none'}}>
        <div style={{ width: '100%', height: '100vh', position: 'fixed', zIndex: -1, opacity: '0.2', background: '#3F1052' }}>
