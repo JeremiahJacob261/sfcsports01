@@ -23,23 +23,39 @@ import { motion } from 'framer-motion';
 import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Translate from '@/pages/translator';
 import { Divider, Modal } from '@mui/material';
-export async function getStaticProps({ locale }) {
-
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, [
-        'all',
-      ])),
-      // Will be passed to the page component as props
-    },
-  }
+export async function getServerSideProps(context) {
+ 
+    try {
+      let test = await fetch('https://epl-sports.com/api/match', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then(data => {
+        return data.json();
+      })
+      let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+      return {
+        props: {
+        foot:bts
+          // Will be passed to the page component as props
+        },
+      }
+    } catch (e) {
+      console.log(e);
+      let err = [];
+      return {
+        props: {
+          foot:[]
+          // Will be passed to the page component as props
+        },
+      }
+    }
+ 
 }
-export default function Home(props) {
-  const { t } = useTranslation('all')
+
+export default function Home({foot}) {
   const [addresst, setAddress] = useState('');
   const [gcount, setGCount] = useState(0);
   const [open, setOpen] = useState(false);
@@ -48,7 +64,7 @@ export default function Home(props) {
   const [authed, setAuthed] = useState(false);
   const [user, setUser] = useState(null);
   const router = useRouter();
- 
+  console.log(foot)
 
   // const sendTRX = async () => {
   //   console.log('started ...');
@@ -199,14 +215,14 @@ export default function Home(props) {
     return (
       <div>
         <Stack direction="row" justifyContent='center' spacing={2} sx={{ background: 'grey', padding: '4px', width: '100%', textAlign: 'center' }}>
-          <p style={{ color: 'whitesmoke' }}>{t("GamesPlayableToday")} </p>
+          <p style={{ color: 'whitesmoke' }}>Games Playable Today </p>
           <p style={{ color: 'greenyellow' }}>{playable[gcount ?? 0]}</p>
         </Stack>
         <div className="countdown-container">
           <span id="hours">{hours} : </span>
           <span id="minutes">{minutes} : </span>
           <span id="seconds"> {seconds}</span>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>{t("TimebeforeGamesPlayableResets")}</p>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: 'rgba(245,186,79,1)' }}>Time before Games Playable Resets</p>
         </div>
       </div>
     )
@@ -310,8 +326,8 @@ export default function Home(props) {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '85vh' }}>
-          <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
-          <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
+          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
+          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
         </Stack>)
     }
   }
@@ -346,33 +362,14 @@ export default function Home(props) {
   function SearchBar() {
     const [search, setSearch] = useState('');
     const [filterSearch ,setFilterSearch ] = useState([])
-    const [foots, setFoots] = useState([]);
-    const getMatchx = async () => {
-      try {
-        let test = await fetch('/api/match', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        }).then(data => {
-          return data.json();
-        })
-        let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
-        setFoots(bts);
-  
-      } catch (e) {
-        console.log(e);
-        let err = [];
-        setFoots([]);
-      }
-    }
-    getMatchx();
+    const [foots, setFoots] = useState(foot);
+    
     const searcher = (e) => {
       //this runs on every key stroke
       console.log("typed")
       setSearch(e.target.value);
-      setFilterSearch(foots.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
-    
+      setFilterSearch(foot.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
+    console.log(foot.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())))
     }
     return (
       <Stack direction='column' sx={{ height: "auto",minHeight:'70px', width: '100%', padding: '8px', alignItems: 'center' }}>

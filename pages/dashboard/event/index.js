@@ -15,15 +15,9 @@ import { supabase } from '../../api/supabase';
 import { useEffect } from 'react';
 import { Button, Drawer } from '@mui/material';
 import { useState } from 'react';
-export async function getStaticProps() {
-    return {
-      props: {
-     
-        // Will be passed to the page component as props
-      },
-    }
-  }
-export default function Event() {
+
+
+export default function Event({foot}) {
   const [selected, setSelected] = React.useState(null);
   const router = useRouter();
   const [user, setUser] = useState({});
@@ -434,31 +428,12 @@ useEffect(()=>{
     const [search, setSearch] = useState('');
     const [filterSearch ,setFilterSearch ] = useState([])
     const [foots, setFoots] = useState([]);
-    const getMatchx = async () => {
-      try {
-        let test = await fetch('/api/match', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        }).then(data => {
-          return data.json();
-        })
-        let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
-        setFoots(bts);
-  
-      } catch (e) {
-        console.log(e);
-        let err = [];
-        setFoots([]);
-      }
-    }
-    getMatchx();
+    
     const searcher = (e) => {
       //this runs on every key stroke
       console.log("typed")
       setSearch(e.target.value);
-      setFilterSearch(foots.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
+      setFilterSearch(foot.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
     
     }
     return (
@@ -538,6 +513,35 @@ useEffect(()=>{
 
   )
 }
-// export async function getServerSideProps(context) {
+
+
+export async function getServerSideProps(context) {
  
-// }
+  try {
+    let test = await fetch('https://epl-sports.com/api/match', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(data => {
+      return data.json();
+    })
+    let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+    return {
+      props: {
+      foot:bts
+        // Will be passed to the page component as props
+      },
+    }
+  } catch (e) {
+    console.log(e);
+    let err = [];
+    return {
+      props: {
+        foot:[]
+        // Will be passed to the page component as props
+      },
+    }
+  }
+
+}
