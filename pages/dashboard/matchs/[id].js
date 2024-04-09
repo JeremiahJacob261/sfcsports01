@@ -623,7 +623,8 @@ export default function Matchs({ matc, user, test }) {
       </div>
     )
   }
-
+const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate()+1) : "-0" + Number(new Date().getDate()+1) ;
+console.log((Number(new Date().getDate() + 1) > 9))
   return (
     <div className="backgrounds" style={{ minHeight: '100vh' }}>
       <Backdrop
@@ -658,7 +659,7 @@ export default function Matchs({ matc, user, test }) {
           </Stack>
           <div className='live2'>
                       <p className='mscore'>{matches.time}</p>
-                      <p className='mtime'>{(matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate()+1) ) ? 'Tomorrow' : Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())}</p>
+                      <p className='mtime'>{(matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : matches.date}</p>
                       <p className='mtime'>Match ID: {matches.match_id}</p>
                   </div>
           {/* <MatchCountDown /> */}
