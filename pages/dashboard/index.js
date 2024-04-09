@@ -362,7 +362,6 @@ export default function Home({foot}) {
   function SearchBar() {
     const [search, setSearch] = useState('');
     const [filterSearch ,setFilterSearch ] = useState([])
-    const [foots, setFoots] = useState(foot);
     
     const searcher = (e) => {
       //this runs on every key stroke
