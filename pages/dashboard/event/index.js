@@ -343,7 +343,7 @@ useEffect(()=>{
                   </div>
                   <div className='live2'>
                       <p className='mscore'>{data.time}</p>
-                      <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : matches.date}</p>
+                      <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : data.date}</p>
                       <p className='mtime'>{data.match_id}</p>
                   </div>
                   <div className='live1'>
