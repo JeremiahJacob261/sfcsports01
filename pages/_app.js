@@ -68,9 +68,9 @@ function App({ Component, pageProps }) {
           <meta name="twitter:image" content="https://Eplsports.com/icons/android-chrome-192x192.png" />
           <meta name="twitter:creator" content="@Eplsports" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="PWA App" />
-          <meta property="og:description" content="Best PWA App in the world" />
-          <meta property="og:site_name" content="PWA App" />
+          <meta property="og:title" content="EPLSPORTS" />
+          <meta property="og:description" content="Number One Investment Bet Platform" />
+          <meta property="og:site_name" content="EPLSPORTS" />
           <meta property="og:url" content="https://Eplsports.com" />
           <meta property="og:image" content="https://Eplsports.com//logo.png" />
 
