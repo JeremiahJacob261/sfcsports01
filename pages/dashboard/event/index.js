@@ -329,7 +329,8 @@ useEffect(()=>{
               //   </Link>
               // )
               const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate()+1) : "-0" + Number(new Date().getDate()+1) ;
-
+              const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDate()) : "-0" + Number(new Date().getDate()) ;
+ 
               return( 
                 <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'330px'}}>
              
@@ -343,7 +344,7 @@ useEffect(()=>{
                   </div>
                   <div className='live2'>
                       <p className='mscore'>{data.time}</p>
-                      <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + "-0" + Number(new Date().getDate())) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : data.date}</p>
+                      <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayn) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : data.date}</p>
                       <p className='mtime'>{data.match_id}</p>
                   </div>
                   <div className='live1'>
