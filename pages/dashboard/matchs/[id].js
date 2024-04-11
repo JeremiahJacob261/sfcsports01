@@ -83,8 +83,8 @@ export default function Matchs({ matc, user, test }) {
         alert('Please Input a Number')
         setDrop(false)
         return;
-      } else if (parseFloat(stake) < 5) {
-        alert('Minimum stake is 5 USDT')
+      } else if (parseFloat(stake) < 1) {
+        alert('Minimum stake is 1 USDT')
         setDrop(false)
         return;
       } else if (parseFloat(stake) > user.balance) {
