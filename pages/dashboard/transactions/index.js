@@ -75,7 +75,7 @@ export default function Transaction({ transaction }) {
                                             <p>Transaction Type: </p><p>{m.type ?? 'unknown type'}</p></Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                            <p>Amount: </p><p>{(m.method === 'bankbri') ? (m.amount / 1550).toFixed(3) : m.amount} USDT</p>
+                                            <p>Amount: </p><p>{(m.method === 'bankbri') ? (m.amount / 1550).toFixed(2) : (m.amount).toFixed(2)} USDT</p>
                                         </Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
