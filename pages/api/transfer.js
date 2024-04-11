@@ -9,13 +9,13 @@ export default async function handler(req, res) {
             .eq('username', body.username)
         if (data[0].balance < body.amount) {
             res.status(200).json({ status: 'failed', message: 'Insuffient Funds' })
-        } else if (data[0].pin === body.pass) {
+        } else if (data[0].pin != body.pass) {
             res.status(200).json({ status: 'failed', message: 'Wrong Transaction Pin' })
 
         } else {
             const { data: uu, error: euu } = await supabase
                 .from('users')
-                .select()
+                .select('*')
                 .eq('uid', body.uid)
             if (uu.length < 1) {
 
@@ -33,6 +33,7 @@ export default async function handler(req, res) {
                 }
                 Depositing(body.amount, uu[0].username);
                 Withdrawer(body.amount, body.username);
+                res.status(200).json({ status: 'success', message: 'Transfer Successful' })
             }
         }
     } catch (e) {

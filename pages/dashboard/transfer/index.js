@@ -57,7 +57,7 @@ export default function BindWallet() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: name, pass: password, amount: amount })
+            body: JSON.stringify({ username: name, pass: password, amount: amount,uid:address })
         }).then(data => {
             return data.json();
         })

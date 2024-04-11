@@ -19,10 +19,11 @@ export async function getStaticProps({ locale }) {
 export default function BindWalletSuccess() {
     const router = useRouter();
     const { t } = useTranslation('all')
-    const [user,setUser] = useState({})
+    const [user,setUser] = useState();
     useEffect(()=>{
         setUser(localStorage.getItem("signNames"))
-    })
+        console.log(localStorage.getItem("signNames"))
+    },[])
     return(
         <div className="backgrounds" >
             <Stack justifyContent='center' alignItems="center" direction="column" spacing={2} sx={{ minHeight:'98vh',width:'100%'}}>
@@ -30,7 +31,7 @@ export default function BindWalletSuccess() {
                 <p className='text-md text-sheffield-red-deep'>Funds Transferred Successfully</p>
                 <p className='text-sm text-grey-500'>Your Funds Transfer request was successful</p>
             <motion.p onClick={() => {
-                      router.push('/dashboard/wallet?id='+user.username)
+                      router.push('/dashboard/wallet?id='+user)
                     
                     }}
                         whileTap={{ background: '#573b41',color:'rgba(194,127,8,1)', scale: 0.9 }}
