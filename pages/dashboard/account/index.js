@@ -516,7 +516,7 @@ export default function Account({ vips }) {
             <Head>
                 <title>{t("Account")}</title>
                 <meta name="description" content="Register With us to get the latest betting market and fantantic Bonus" />
-                <link rel="icon" href="/icon512_rounded.png" />
+                <link rel="icon" href="/logo.png" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <Toaster
