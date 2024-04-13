@@ -63,6 +63,8 @@ export default function Transaction({ transaction }) {
                             let minute = time.getMinutes();
                             let sent = date + ' ' + hour + ':' + minute;
                             let stat = m.sent ?? 'pending';
+                            let amountc = m.amount ?? 0;
+                            let amountx = parseFloat(amountc).toFixed(2);
                             return (
                                 <Stack sx={{ width:'100%',padding:'8px' }} direction='row' justifyContent='center' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
 
@@ -75,7 +77,7 @@ export default function Transaction({ transaction }) {
                                             <p>Transaction Type: </p><p>{m.type ?? 'unknown type'}</p></Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                            <p>Amount: </p><p>{(m.method === 'bankbri') ? (m.amount / 1550).toFixed(2) : m.amount} USDT</p>
+                                            <p>Amount: </p><p>{amountx} USDT</p>
                                         </Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">

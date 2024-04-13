@@ -244,7 +244,7 @@ export default function Matchs({ matc, user, test }) {
               <p style={{ color: 'black', textAlign: 'center', fontSize: '20px', fontWeight: '700', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '80%', borderRadius: '5px' }}>{amountInput} </p>
               <Stack direction="row" justifyContent="space-around" sx={{ width: '100%' }} spacing={1}>
                 <Stack direction="column" spacing={1}>
-                  <p>Balance : {user.balance ?? 0} USDT</p>
+                  <p>Balance : {user.balance.toFixed(2) ?? 0} USDT</p>
                   <p>Stake: {amountInput}</p>
                 </Stack>
                 <Stack direction="column" spacing={1}>
@@ -271,6 +271,7 @@ export default function Matchs({ matc, user, test }) {
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('7')} className="figures">7</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('8')} className="figures">8</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('9')} className="figures">9</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('.')} className="figures">.</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('X')} className="figures">X</motion.p>
                   </Stack>
 
@@ -396,11 +397,11 @@ export default function Matchs({ matc, user, test }) {
               <p style={{ color: 'black', textAlign: 'center', fontSize: '20px', fontWeight: '700', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '80%', borderRadius: '5px' }}>{amountInput} </p>
               <Stack direction="row" justifyContent="space-around" sx={{ width: '100%' }} spacing={1}>
                 <Stack direction="column" spacing={1}>
-                  <p>Balance : {user.balance ?? 0} USDT</p>
+                  <p>Balance : {user.balance.toFixed(2) ?? 0} USDT</p>
                   <p>Stake: {amountInput}</p>
                 </Stack>
                 <Stack direction="column" spacing={1}>
-                  <p>Profit: {profit}</p>
+                  <p>Profit: {profit.toFixed(2)}</p>
                   <p>Winnings: {total}</p>
                 </Stack>
 
@@ -423,6 +424,7 @@ export default function Matchs({ matc, user, test }) {
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('7')} className="figures">7</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('8')} className="figures">8</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('9')} className="figures">9</motion.p>
+                    <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('.')} className="figures">.</motion.p>
                     <motion.p whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => click('X')} className="figures">X</motion.p>
                   </Stack>
 
