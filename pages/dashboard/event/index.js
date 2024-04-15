@@ -506,7 +506,7 @@ useEffect(()=>{
             router.push('/dashboard')
           }} />
           <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0',flex:1 }}>Games</p>
-          <motion.div onClick={()=>{ router.push('/dashboard/wallet?id=' + user.username)}} whileTap={{ x:-5 }} className='onhead'>$ {user.balance ?? 0}</motion.div>
+          <motion.div onClick={()=>{ router.push('/dashboard/wallet?id=' + user.username)}} whileTap={{ x:-5 }} className='onhead'>$ {parseFloat(user.balance).toFixed(2) ?? 0}</motion.div>
         </Stack>
         <SearchBar/>
         {/* <CountDown /> */}

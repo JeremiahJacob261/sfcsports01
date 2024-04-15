@@ -137,7 +137,7 @@ export default function BetDetails({ datas }) {
                         <p style={{ color:'#9506ce' }}>Return</p>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
                            <p>$</p>
-                        <p>{datas.stake + datas.aim}</p>
+                        <p>{parseFloat(datas.stake + datas.aim).toFixed(2)}</p>
                         </Stack>
                     </Stack>
 

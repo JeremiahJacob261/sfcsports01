@@ -63,7 +63,7 @@ export default function Wallet({user}) {
                             </motion.div>
                         </Stack>
                    <p className="azabalance"
-            > $ {user.balance}</p>
+            > $ {parseFloat(user.balance).toFixed(2)}</p>
              
             </div>
             <div style={{ height:'30px',width:'1px'}}></div>
