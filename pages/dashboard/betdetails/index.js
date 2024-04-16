@@ -141,7 +141,6 @@ export default function BetDetails({ datas }) {
                         </Stack>
                     </Stack>
 
-
                     <Stack direction="column">
                         <p style={{ color:'#9506ce' }}>Status</p>
                         <p style={{ fontSize:'13px',padding:0}}>{(datas.won != 'null') ? 'Finished' : (stams + 5400 < curren) ? 'Pending' : (stams < curren) ? 'Ongoing' : 'Not Started'}</p>

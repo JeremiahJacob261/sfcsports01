@@ -161,6 +161,11 @@
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg"
     },
     {
+      "name":"Kyrgyzstan",
+      "code":"+996",
+      "flag_image_link":"https://upload.wikimedia.org/wikipedia/commons/c/c7/Flag_of_Kyrgyzstan.svg"
+    },
+    {
       "name": "Liberia",
       "code": "+231",
       "flag_image_link": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg"
