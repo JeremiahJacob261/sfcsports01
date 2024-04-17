@@ -354,7 +354,7 @@ export default function Home({foot}) {
           <Link href="/dashboard/fund" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
           <Link href="/dashboard/withdraw" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>WITHDRAW</motion.p></Link>
           <Link href="/dashboard/bets" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>BETS</motion.p></Link>
-          <Link href="https://t.me/EPL_customercare" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>SUPPORT</motion.p></Link>
+          <Link href="https://t.me/EPL_Customerservice" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>SUPPORT</motion.p></Link>
         </Stack>
       </div>
     )

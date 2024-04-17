@@ -64,7 +64,6 @@ export default function Wallet({user}) {
                         </Stack>
                    <p className="azabalance"
             > $ {parseFloat(user.balance).toFixed(2)}</p>
-             
             </div>
             <div style={{ height:'30px',width:'1px'}}></div>
             <div className='new-concept'>
@@ -76,7 +75,7 @@ export default function Wallet({user}) {
                <div className="icon-con" style={{ width:'90px'}}><motion.div onClick={() => { handleToggle('/dashboard/codesetting') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="carbon:security" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>transaction pin</p></div>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/changepassword') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="tabler:password-fingerprint" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>password</p></div>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/promotion') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="material-symbols:rewarded-ads-outline-rounded" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>rewards</p></div>
-               <Link href="https://t.me/EPL_customercare">
+               <Link href="https://t.me/EPL_Customerservice">
                <div className="icon-con"><motion.div onClick={() => {  }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mdi:customer-service" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>support</p></div>
                </Link>
                <Link href="https://t.me/EPLFOOTBALLOFFICIAL">
