@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Icon } from '@iconify/react';
 import { Stack, Button } from '@mui/material';
-import Barcode from '@/public/barcode.jpg'
+import Barcode from '@/public/barcode1.png'
 import { useState } from 'react';
 import Bankbri from '@/public/bankbri.jpg'
 import { motion } from 'framer-motion'
@@ -57,10 +57,10 @@ export default function Address({ method }) {
         </motion.div>
         <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>Account name:  Deri pratama</p> 
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>{(method === 'bankbri') ? "174901058158503" : "TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z"}</p>
+          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>{(method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ"}</p>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Icon icon="solar:copy-bold-duotone" color="#981FC0" width={30} height={30} onClick={() => {
-              navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TLqT2eGy3t18wbmjTvhg3Up95oiC6VA54z");
+              navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ");
               toast.success('Copied to clipboard');
             }} />
           </motion.div>
