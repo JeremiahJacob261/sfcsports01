@@ -123,7 +123,7 @@ export default function Address({ method }) {
         <p style={{ color: 'greenyellow', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Network: USDT (TRC20)</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <Icon icon="ph:info-light" color="#981FC0" />
-          <p style={{ color: 'whitesmoke', fontSize: '12px', fontWeight: '100', maxWidth: '70%' }}>You are expected to upload an image of the receipt in the next page within 30minutes of making the transaction else transferred funds might be lost!</p>
+          <p style={{ color: 'whitesmoke', fontSize: '12px', fontWeight: '100', maxWidth: '70%' }}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!. <br/>Contact Support for more information</p>
         </Stack>
         <motion.p onClick={() => {
           router.push('/dashboard/fund/upload')
