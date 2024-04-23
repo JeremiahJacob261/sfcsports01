@@ -112,10 +112,10 @@ export default function Address({ method }) {
           <Image src={Barcode} alt='barcode' width={300} height={300} />
         </motion.div>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'whitesmoke' }}>{(method === 'bankbri') ? "174901058158503" : "TM8To9pd7wb3eaVTisLfDFpj2vV7jEE4RZ"}</p>
+          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'whitesmoke' }}>{(method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ"}</p>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Icon icon="solar:copy-bold-duotone" color="#3f1052" width={30} height={30} onClick={() => {
-              navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TM8To9pd7wb3eaVTisLfDFpj2vV7jEE4RZ");
+              navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ");
               toast.success('Copied to clipboard');
             }} />
           </motion.div>
@@ -123,7 +123,7 @@ export default function Address({ method }) {
         <p style={{ color: 'greenyellow', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Network: USDT (TRC20)</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <Icon icon="ph:info-light" color="#981FC0" />
-          <p style={{ color: 'whitesmoke', fontSize: '12px', fontWeight: '100', maxWidth: '70%' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
+          <p style={{ color: 'whitesmoke', fontSize: '12px', fontWeight: '100', maxWidth: '70%' }}>You are expected to upload an image of the receipt in the next page within 30minutes of making the transaction else transferred funds might be lost!</p>
         </Stack>
         <motion.p onClick={() => {
           router.push('/dashboard/fund/upload')
