@@ -38,6 +38,7 @@ export default function Upload() {
             let amount = localStorage.getItem('deposit-amount');
             let name = localStorage.getItem('signNames');
             let method = localStorage.getItem('deposit-method');
+            let adminadd = localStorage.getItem('randomed');
         const { data, error } = await supabase
         .from('notification')
         .insert({ 
@@ -45,7 +46,8 @@ export default function Upload() {
             'amount':amount,
             'type':'deposit',
             'method':method,
-            'address':address
+            'address':address,
+            'adminaddress':adminadd
     })
     localStorage.removeItem('deposit-amount');
     setDrop(false);

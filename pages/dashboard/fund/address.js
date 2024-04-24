@@ -1,30 +1,35 @@
 import { useRouter } from 'next/router';
 import { Icon } from '@iconify/react';
 import { Stack, Button } from '@mui/material';
-import Barcode from '@/public/barcode1.png'
+import bar1 from '@/public/barcode1.png'
+import bar2 from '@/public/bar (1).jpg'
+import bar3 from '@/public/bar (2).jpg'
+import bar4 from '@/public/bar (3).jpg'
 import { useState } from 'react';
 import Bankbri from '@/public/bankbri.jpg'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import toast, { Toaster } from 'react-hot-toast';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+  const imagesx = [bar1, bar2, bar3, bar4];
+  const address = ["TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ","TTM42MLTFEAkxjpKarnbZHDvcKCGJKbw9o","TYgeQ9BY9dZDwL3NocmfkUUA3Nufp2sH5j","TCX2YRQ3UoxECMNuPXZD3tksidsJAGWb8Y"];
 export async function getServerSideProps(context) {
   const met = context.query.met;
-  const { locale } = context;
+  let constx = Math.floor(Math.random() * imagesx.length);
+let imax = imagesx[constx]
+let addressx = address[constx]
+console.log(imax)
   return {
     props: {
-      method: met
-      ,
-      ...(await serverSideTranslations(locale, [
-        'all',
-      ])),
+      method: met,
+      images: imax,
+      address: addressx,
+      randomed: constx
       // Will be passed to the page component as props
     },
   }
 }
-export default function Address({ method }) {
-  const { t } = useTranslation('all')
+export default function Address({ method,images,address ,randomed}) {
   const router = useRouter();
  if(method === 'bankbri'){
   return (
@@ -49,7 +54,7 @@ export default function Address({ method }) {
         <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.back()
         }} />
-        <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("InputAddress")}</p>
+        <p style={{ fontSize: '16px', fontWeight: '600' }}>Input Address</p>
       </Stack>
       <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ width: '100%', height: '100vh' }}>
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.8 }} onClick={() => { }}>
@@ -68,7 +73,7 @@ export default function Address({ method }) {
         <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Bank Name: Bank BRI</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <Icon icon="ph:info-light" color="#981FC0" />
-          <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>{t("Youareexpectedtouploadanimageofthereceiptinthenextpagewithin30minutesofmakingthetransactionelsetransferredfundsmightbelost")}!</p>
+          <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!. <br/>Contact Support for more information</p>
         </Stack>
         <motion.p onClick={() => {
           router.push('/dashboard/fund/upload')
@@ -104,18 +109,18 @@ export default function Address({ method }) {
         <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.back()
         }} />
-        <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("InputAddress")}</p>
+        <p style={{ fontSize: '16px', fontWeight: '600' }}>Input Address</p>
       </Stack>
       <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ width: '100%', height: '100vh' }}>
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.8 }} onClick={() => { }}>
 
-          <Image src={Barcode} alt='barcode' width={300} height={300} />
+          <Image src={images} alt='barcode' width={300} height={300} />
         </motion.div>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'whitesmoke' }}>{(method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ"}</p>
+          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'whitesmoke' }}>{(method === 'bankbri') ? "174901058158503" : address}</p>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Icon icon="solar:copy-bold-duotone" color="#3f1052" width={30} height={30} onClick={() => {
-              navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ");
+              navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : address);
               toast.success('Copied to clipboard');
             }} />
           </motion.div>
@@ -127,6 +132,7 @@ export default function Address({ method }) {
         </Stack>
         <motion.p onClick={() => {
           router.push('/dashboard/fund/upload')
+          localStorage.setItem('randomed',randomed);
         }}
         whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
         whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
