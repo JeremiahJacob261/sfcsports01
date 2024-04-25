@@ -349,14 +349,16 @@ export default function Home({foot}) {
   }
   function ShortCuts() {
     return (
-      <div>
+      <Stack direction="column">
+        <Link href="https://t.me/EPLFOOTBALLOFFICIAL" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts' style={{ width:'100%'}}>EplSports Group</motion.p></Link>
+         
         <Stack direction='row' justifyContent='space-between' spacing={1} sx={{ width: '100%', padding: '4px', overflow: 'auto' }}>
           <Link href="/dashboard/fund" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
           <Link href="/dashboard/withdraw" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>WITHDRAW</motion.p></Link>
           <Link href="/dashboard/bets" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>BETS</motion.p></Link>
           <Link href="https://t.me/EPL_Customerservice" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>SUPPORT</motion.p></Link>
         </Stack>
-      </div>
+      </Stack>
     )
   }
   function SearchBar() {

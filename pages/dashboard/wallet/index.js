@@ -79,7 +79,7 @@ export default function Wallet({user}) {
                <div className="icon-con"><motion.div onClick={() => {  }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mdi:customer-service" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>support</p></div>
                </Link>
                <Link href="https://t.me/EPLFOOTBALLOFFICIAL">
-               <div className="icon-con"><motion.div onClick={() => { handleToggle('/dashboard/bind') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="fluent:people-community-16-filled" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>community</p></div>
+               <div className="icon-con"><motion.div onClick={() => {  }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="fluent:people-community-16-filled" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>community</p></div>
                </Link>
                <div className="icon-con"><motion.div onClick={() => { handleToggle('/faq') }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.7 }} className='new-icon'><Icon icon="mingcute:question-fill" width="24" height="24" style={{ color: '#981FC0' }} /></motion.div><p style={{ fontSize:'10px',fontWeight:'200'}}>FAQ</p></div>
                { 
