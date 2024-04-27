@@ -74,10 +74,77 @@ export default function Matchs({ matc, user, test }) {
   const placebet = async (matches, stake, profit, username, market, odd) => {
     setDrop(true)
     console.log(stake)
-    if ( user.gcount > 2) {
-      //user.username === "Godlike1" || user.username === "Godlike2" || user.username === "Gentleman" || user.username === "Gentleman1" || user.username === "Grace123" || 
-      alert('You have exceeded the number of games you can play today')
-      setDrop(false)
+    if (user.gcount > 2) {
+      // || 
+      if (user.username === "Godlike1" || user.username === "Godlike2" || user.username === "Gentleman" || user.username === "Gentleman1" || user.username === "Grace123") {
+        if (!stake) {
+          alert('Please Input a Number')
+          setDrop(false)
+          return;
+        } else if (parseFloat(stake) < 1) {
+          alert('Minimum stake is 1 USDT')
+          setDrop(false)
+          return;
+        } else if (parseFloat(stake) > user.balance) {
+          alert('Insufficient Balance')
+          setDrop(false)
+          return;
+
+        } else {
+          try {
+            const { error } = await supabase
+              .from('placed')
+              .upsert({
+                'match_id': matches.match_id,
+                'market': market,
+                'username': username,
+                'started': false,
+                'stake': parseFloat(stake ?? 0),
+                'profit': parseFloat(((odd * stake) / 100)).toFixed(2),
+                'aim': (odd * stake) / 100,
+                "home": matches.home,
+                "away": matches.away,
+                "time": matches.time,
+                "date": matches.date,
+                "odd": odd,
+                "ihome": matches.ihome ?? ball,
+                "iaway": matches.iaway ?? ball,
+                "league": matches.league,
+              })
+            const { error: err } = await supabase
+              .from('users')
+              .update({
+                'gcount': user.gcount + 1,
+              })
+              .eq('username', user.username)
+            const { error: arr } = await supabase
+              .from('activa')
+              .insert({
+                'code': 'bet-placed',
+                'username': user.username,
+                'amount': parseFloat(stake),
+                'type': matches.home + ' vs ' + matches.away,
+              })
+            const { error: errr } = await supabase
+              .rpc('withdrawer', {
+                names: user.username,
+                amount: stake
+              })
+            alert('Bet Placed Successfully')
+            setParentOpen(false)
+            location.reload();
+            console.log(error, err, arr, errr)
+            setDrop(false)
+          } catch (e) {
+            console.log(e)
+            setDrop(false)
+          }
+        }
+      } else {
+        alert('You have exceeded the number of games you can play today')
+        setDrop(false)
+      }
+
       return;
     } else {
       if (!stake) {
@@ -626,9 +693,9 @@ export default function Matchs({ matc, user, test }) {
       </div>
     )
   }
-const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate()+1) : "-0" + Number(new Date().getDate()+1) ;
-const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDate()) : "-0" + Number(new Date().getDate()) ;
- 
+  const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate() + 1) : "-0" + Number(new Date().getDate() + 1);
+  const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDate()) : "-0" + Number(new Date().getDate());
+
   return (
     <div className="backgrounds" style={{ minHeight: '100vh' }}>
       <Backdrop
@@ -662,10 +729,10 @@ const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDat
             </Stack>
           </Stack>
           <div className='live2'>
-                      <p className='mscore'>{matches.time}</p>
-                      <p className='mtime'>{(matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayn) ? 'TODAY' : (matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : matches.date}</p>
-                      <p className='mtime'>Match ID: {matches.match_id}</p>
-                  </div>
+            <p className='mscore'>{matches.time}</p>
+            <p className='mtime'>{(matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth() + 1) + dayn) ? 'TODAY' : (matches.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth() + 1) + dayl) ? 'Tomorrow' : matches.date}</p>
+            <p className='mtime'>Match ID: {matches.match_id}</p>
+          </div>
           {/* <MatchCountDown /> */}
           <OddArrange />
         </Stack>
