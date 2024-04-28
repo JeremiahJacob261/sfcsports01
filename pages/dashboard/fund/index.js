@@ -7,6 +7,7 @@ import Alertz from '@/pages/UIComponents/dialogs/alertz';
 import { Alert } from 'react-bootstrap';
 import Image from 'next/image';
 import Bankbri from '@/public/bankbri.jpg'
+import toast, { Toaster } from 'react-hot-toast';
 import BCA from '@/public/bca.jpg'
 import Tether from '@/public/tether.jpg'
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded';
@@ -39,7 +40,7 @@ export default function Fund() {
     }, [method, v])
     return (
         <div className="backgrounds" style={{ height: '100vh', width: 'auto' }}>
-
+<Toaster/>
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.push('/dashboard/')
@@ -120,13 +121,25 @@ export default function Fund() {
                     </div>
                     <Stack sx={{ width: '100%' }} alignItems="center">
                         <motion.p onClick={() => {
+                           if(method === 'usdt'){
                             if (amount < 10) {
-
+                                toast.error('Minimum Deposit is 10 USDT')
                             } else {
                                 router.push('/dashboard/fund/address?met=' + method);
                                 // transaction();
                                 localStorage.setItem('deposit-amount', amount)
+                                localStorage.setItem('deposit-method',method)
                             }
+                           }else{
+                            if (amount < 162500) {
+                                toast.error('Minimum Deposit is 162500 IDR')
+                            } else {
+                                router.push('/dashboard/fund/address?met=' + method);
+                                // transaction();
+                                localStorage.setItem('deposit-amount', amount)
+                                localStorage.setItem('deposit-method',method)
+                            }
+                           }
                         }}
                             whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
                             whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
