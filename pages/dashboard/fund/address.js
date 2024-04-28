@@ -8,6 +8,7 @@ import bar4 from '@/public/bar (3).jpg'
 import { useState } from 'react';
 import Bankbri from '@/public/bankbri.jpg'
 import { motion } from 'framer-motion'
+import BCA from '@/public/bca.jpg'
 import Image from 'next/image'
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -31,7 +32,7 @@ console.log(imax)
 }
 export default function Address({ method,images,address ,randomed}) {
   const router = useRouter();
- if(method === 'bankbri'){
+ if(method === 'bca'){
   return (
     <div className="backgrounds">
       <Toaster
@@ -58,19 +59,19 @@ export default function Address({ method,images,address ,randomed}) {
       </Stack>
       <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ width: '100%', height: '100vh' }}>
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.8 }} onClick={() => { }}>
-          <Image src={Bankbri} alt='barcode' width={300} height={300} style={{ borderRadius:'10px'}}/>
+          <Image src={BCA} alt='barcode' width={300} height={300} style={{ borderRadius:'10px'}}/>
         </motion.div>
-        <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>Account name:  Deri pratama</p> 
+        <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>Account name:  TONY</p> 
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>{(method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ"}</p>
+          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>{(method === 'bca') ? "066 077 0445" : address}</p>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Icon icon="solar:copy-bold-duotone" color="#981FC0" width={30} height={30} onClick={() => {
-              navigator.clipboard.writeText((method === 'bankbri') ? "174901058158503" : "TMqYfYgpRgrDtxqJ4kTEh8MgCtvu4W4YPZ");
+              navigator.clipboard.writeText((method === 'bca') ? "0660770445" : address);
               toast.success('Copied to clipboard');
             }} />
           </motion.div>
         </Stack>
-        <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Bank Name: Bank BRI</p>
+        <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Bank Name: BCA</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <Icon icon="ph:info-light" color="#981FC0" />
           <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!. <br/>Contact Support for more information</p>

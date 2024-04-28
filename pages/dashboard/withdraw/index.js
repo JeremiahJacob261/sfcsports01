@@ -52,7 +52,7 @@ export default function Withdraw() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount), method: (method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount), method: (method === 'USDT (TRC20)') ? 'usdt' : 'idr' })
         }).then(data => {
             return data.json();
         })
@@ -104,11 +104,11 @@ export default function Withdraw() {
                 alert('Password does not match')
             } else if (amount === '') {
                 alert('Please enter amount')
-            } else if (amount < 31000) {
-                alert('Minimum amount to withdraw is 20 USDT or 31000 IDR')
+            } else if (amount < 243750) {
+                alert('Minimum amount to withdraw is 20 USDT or 243750 IDR')
 
-            } else if (amount > 155000) {
-                alert('Maximum amount including charges to withdraw is 100 USDT or 155000 IDR')
+            } else if (amount > 1625000) {
+                alert('Maximum amount including charges to withdraw is 100 USDT or 1625000 IDR')
 
             } else {
                 testRoute();
@@ -139,7 +139,7 @@ export default function Withdraw() {
                             users.map((data) => {
                                 if (data.wallet !== '' && data.wallet !== null) {
                                     return (
-                                        <MenuItem key={data.id} value={data.wallet}>{data.wallet} - {(data.method === 'bankbri') ? 'IDR (Bank BRI)' : 'USDT (TRC20)'}</MenuItem>
+                                        <MenuItem key={data.id} value={data.wallet}>{data.wallet} - {(data.method === 'idr') ? 'IDR (Indonesia)' : 'USDT (TRC20)'}</MenuItem>
 
                                     )
                                 }
@@ -206,7 +206,7 @@ export default function Withdraw() {
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ display: (method === 'USDT (TRC20)') ? 'none' : 'visible' }}>
                         <p style={{ fontSize: '12px', fontWeight: '600', color: 'whitesmoke' }}> Expected Amount in USDT</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600', color: 'whitesmoke' }}>{(parseFloat((amount * 0.92).toFixed(3)) / 1550).toFixed(3)} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600', color: 'whitesmoke' }}>{(parseFloat((amount * 0.92).toFixed(3)) / 16250).toFixed(3)} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
@@ -226,6 +226,7 @@ export default function Withdraw() {
                             sx={{ color: 'black', backgroundColor: 'grey' }}
                         >
                             <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
+                            <MenuItem value='IDR'>IDR (Indonesia)</MenuItem>
                         </Select>
                     </FormControl>
                 </Stack>

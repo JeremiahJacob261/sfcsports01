@@ -55,7 +55,7 @@ export default function BindWallet() {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ name: name,pass:password,wallet:address,method:(method === 'USDT (TRC20)') ? 'usdt' : 'bankbri' })
+          body: JSON.stringify({ name: name,pass:password,wallet:address,method:(method === 'USDT (TRC20)') ? 'usdt' : 'idr' })
         }).then(data => {
           return data.json();
           })
@@ -158,6 +158,7 @@ export default function BindWallet() {
                             sx={{ color: 'black', backgroundColor: 'white' }}
                         >
                             <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
+                            <MenuItem value='IDR'>IDR (Indonesia)</MenuItem>
                         </Select>
                     </FormControl>
                 </Stack>

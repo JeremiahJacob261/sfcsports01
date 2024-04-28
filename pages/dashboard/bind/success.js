@@ -24,7 +24,7 @@ export default function BindWalletSuccess() {
             <Stack justifyContent='center' alignItems="center" direction="column" spacing={2} sx={{ minHeight:'98vh',width:'100%'}}>
                 <Image src={Logo} width={100} height={100} alt="logo"/>
                 <p className='text-md text-sheffield-red-deep'>{t("BindWalletSuccess")}</p>
-                <p className='text-sm text-grey-500'>{t("YourUSDTwallethasbeenlinkedtoyouraccountsuccessfully")}</p>
+                <p className='text-sm text-grey-500'>Your wallet has been linked to your account successfully</p>
             <motion.p onClick={() => {
                       router.push('/dashboard/')
                     
