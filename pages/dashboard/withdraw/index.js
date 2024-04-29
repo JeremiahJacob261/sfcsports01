@@ -105,7 +105,7 @@ export default function Withdraw() {
             } else if (amount === '') {
                 alert('Please enter amount')
             } else if (amount < 243750) {
-                alert('Minimum amount to withdraw is 20 USDT or 243750 IDR')
+                alert('Minimum amount to withdraw is 15 USDT or 243750 IDR')
 
             } else if (amount > 1625000) {
                 alert('Maximum amount including charges to withdraw is 100 USDT or 1625000 IDR')
@@ -192,16 +192,16 @@ export default function Withdraw() {
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Amount")}</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? amount + " USDT" : amount + " IDR"}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(amount) + " USDT" : amount + " IDR"}</p>
                     </Stack>
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Charge")} </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? (amount * 0.08).toFixed(3) + " USDT" : (amount * 0.08).toFixed(3) + " IDR"}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(parseFloat(amount) + 1).toFixed(3) + " USDT" : (amount * 0.08).toFixed(3) + " IDR"}</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> Expected Amount </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? (amount * 0.92).toFixed(3) + " USDT" : (amount * 0.92).toFixed(3) + " IDR"}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(amount * 0.92).toFixed(3) + " USDT" : (amount * 0.92).toFixed(3) + " IDR"}</p>
                     </Stack>
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ display: (method === 'USDT (TRC20)') ? 'none' : 'visible' }}>

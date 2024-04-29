@@ -22,7 +22,7 @@ export default async  function handler(req, res) {
                         const { data, error } = await supabase
                         .from('wallets')
                         .insert(
-                          { username: body.name, wallet: body.wallet,method:body.method },
+                          { username: body.name, wallet: body.wallet,method:body.method,accountname:body.accountname,bank:body.bank },
                         )
                         if(error){
                             console.log(error)
