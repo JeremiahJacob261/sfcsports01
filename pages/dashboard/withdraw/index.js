@@ -144,7 +144,6 @@ export default function Withdraw() {
                                     return (
                                         <MenuItem key={data.id} value={data.wallet} 
                                         onClick={()=>{
-                                            console.log("hello",data);
                                             setWalletInfo(data);
                                         }}
                                         >{data.wallet} - {(data.method === 'idr') ? 'IDR (Indonesia)' : 'USDT (TRC20)'}</MenuItem>

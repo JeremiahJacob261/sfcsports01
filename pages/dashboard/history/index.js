@@ -186,6 +186,29 @@ export default function History({credent}) {
                                     </Stack>
                                 </Stack>
                                 )
+                            }else{
+                                if(item.code === 'transfersend'){
+                                    return(
+                                        <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
+                                        <Stack>
+                                            <p style={{ fontWeight:'bold',color:'greenyellow'}}>You have sent funds of {item.amount} USDT from {item.type}</p>
+                                            <p style={{ color: 'white',fontSize:'11px' }}>If you did not make this E-Transfer, please contact Customer Care as soon as possible.</p>
+                                            <p style={{ color: 'white' }}>{fullDay}</p>
+                                        </Stack>
+                                    </Stack>
+                                    )
+                                }else if(item.code === 'transfercollect'){
+                                    return(
+                                        <Stack className='bottomnav' direction='row' key={item.id} justifyContent='space-between' alignItems='center' sx={{ border: '1px solid #981FC0', maxWidth: '90%', minWidth: '80%', borderRadius: '5px' }}>
+                                        <Stack>
+                                            <p style={{ fontWeight:'bold',color:'greenyellow'}}>You have recieved funds of {item.amount} USDT from {item.type}</p>
+                                            <p style={{ color: 'white' }}>{fullDay}</p>
+                                        </Stack>
+                                    </Stack>
+                                    )
+                                }else{
+                                    return;
+                                }
                             }
                            }
                           }
