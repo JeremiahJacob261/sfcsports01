@@ -40,7 +40,7 @@ export default async function handler(req, res) {
                 } else {
                     const { error } = await supabase
                         .from('notification')
-                        .insert({ address: body.wallet, username: body.name, amount: (body.method === 'idr' || body.method === 'bca') ? parseFloat(parseFloat(body.amount / 16250).toFixed(3)) * 0.92 : parseFloat(body.amount) * 0.92, sent: 'pending', type: "withdraw", method: body.method,bank:body.bank,accountname:body.accountname })
+                        .insert({ address: body.wallet, username: body.name, amount: (body.method === 'idr' || body.method === 'bca') ? parseFloat(parseFloat(body.amount).toFixed(3)) * 0.92 : parseFloat(body.amount) * 0.92, sent: 'pending', type: "withdraw", method: body.method,bank:body.bank,accountname:body.accountname })
                     try {
         
                         const { data, error } = await supabase
