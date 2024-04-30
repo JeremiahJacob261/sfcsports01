@@ -28,6 +28,7 @@ export default function Withdraw() {
     const [wallet, setWallet] = useState('');
     const [users, setUsers] = useState([]);
     const [password, setPassword] = useState('');
+    const [walletinfo,setWalletInfo] = useState({});
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
     const [method, setMethod] = useState('USDT (TRC20)');
@@ -52,7 +53,9 @@ export default function Withdraw() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount), method: (method === 'USDT (TRC20)') ? 'usdt' : 'idr' })
+            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount), method: (method === 'USDT (TRC20)') ? 'usdt' : 'idr',
+        "bank":walletinfo.bank, "accountname":walletinfo.accountname,
+        })
         }).then(data => {
             return data.json();
         })
@@ -139,7 +142,12 @@ export default function Withdraw() {
                             users.map((data) => {
                                 if (data.wallet !== '' && data.wallet !== null) {
                                     return (
-                                        <MenuItem key={data.id} value={data.wallet}>{data.wallet} - {(data.method === 'idr') ? 'IDR (Indonesia)' : 'USDT (TRC20)'}</MenuItem>
+                                        <MenuItem key={data.id} value={data.wallet} 
+                                        onClick={()=>{
+                                            console.log("hello",data);
+                                            setWalletInfo(data);
+                                        }}
+                                        >{data.wallet} - {(data.method === 'idr') ? 'IDR (Indonesia)' : 'USDT (TRC20)'}</MenuItem>
 
                                     )
                                 }

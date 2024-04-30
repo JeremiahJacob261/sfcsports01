@@ -32,7 +32,7 @@ export default function Fund() {
     const [v, setV] = useState(false);
 
     const options = [50, 100, 200, 500, 1000, 2000, 3000, 5000];
-    const optionx = [1250 * 50, 1250 * 100, 1250 * 200, 1250 * 500, 1250 * 1000, 1250 * 2000, 1250 * 3000, 1250 * 5000];
+    const optionx = [16250 * 50, 16250 * 100, 16250 * 200, 16250 * 500, 16250 * 1000, 16250 * 2000, 16250 * 3000, 16250 * 5000];
     const [option, setOption] = useState(options);
     useEffect(() => {
         console.log('method', method)
