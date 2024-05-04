@@ -32,6 +32,38 @@ export default function Withdraw() {
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
     const [method, setMethod] = useState('USDT (TRC20)');
+    let amountlimit = {
+        '1': 20,
+        '2': 50,
+        '3': 100,
+        '4': 200,
+        '5': 300,
+        '6': 500,
+        '7': 1000
+  }
+
+  let amountlimitx = {
+    '1': 16250 * 20,
+    '2': 16250 * 50,
+    '3': 16250 * 100,
+    '4': 16250 * 200,
+    '5': 16250 * 300,
+    '6': 16250 * 500,
+    '7': 16250 * 1000
+}
+   const getVip = async () => {
+       let test = await fetch('http://localhost:3000/api/vipcalculate', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json'
+           },
+               body: JSON.stringify({ 'username': localStorage.getItem('signNames') })
+         }).then(data => {
+           return data.json();
+         })
+         return test;
+   }
+ 
     useEffect(() => {
         const getRef = async () => {
             try {
@@ -48,27 +80,35 @@ export default function Withdraw() {
         getRef();
     }, [])
     const testRoute = async () => {
-        let test = await fetch('/api/withdraw', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount), method: (method === 'USDT (TRC20)') ? 'usdt' : 'idr',
-        "bank":walletinfo.bank, "accountname":walletinfo.accountname,
-        })
-        }).then(data => {
-            return data.json();
-        })
-        console.log(test);
-        if (test[0].status === 'Failed') {
-            alert(test[0].message);
-            if (test[0].message === 'No transaction pin has been set') {
-                router.push('/dashboard/codesetting')
-            }
-        } else {
+        getVip().then( async (data) => { 
+            let viplevel = data.viplevel;
+             console.log(amountlimit[viplevel]);
+             //this sends data to the withdraw in backend
 
-            router.push('/dashboard/withdraw/success')
-        }
+
+             let test = await fetch('/api/withdraw', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount).toFixed(3), method: (method === 'USDT (TRC20)') ? 'usdt' : 'idr',
+            "bank":walletinfo.bank, "accountname":walletinfo.accountname,vipamount: (method === 'USDT (TRC20)') ? amountlimit[viplevel] : amountlimitx[viplevel]
+            })
+            }).then(data => {
+                return data.json();
+            })
+            console.log(test);
+            if (test[0].status === 'Failed') {
+                alert(test[0].message);
+                if (test[0].message === 'No transaction pin has been set') {
+                    router.push('/dashboard/codesetting')
+                }
+            } else {
+    
+                router.push('/dashboard/withdraw/success')
+            }
+         })
+        
 
     }
     const transaction = async () => {
