@@ -8,7 +8,7 @@ export default function handler(req, res) {
             url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
             params: {id: id},
             headers: {
-              'X-RapidAPI-Key': '8a51f19561msh71e8b1c64f06e9dp11f369jsn088cf89fde6f',
+              'X-RapidAPI-Key': 'f5b4ee9f21msh394dd2a731e6dbcp1f9a51jsncaf00161d00b',
               'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
             }
           };
