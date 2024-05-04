@@ -52,7 +52,7 @@ export default function Withdraw() {
     '7': 16250 * 1000
 }
    const getVip = async () => {
-       let test = await fetch('http://localhost:3000/api/vipcalculate', {
+       let test = await fetch('/api/vipcalculate', {
            method: 'POST',
            headers: {
              'Content-Type': 'application/json'
