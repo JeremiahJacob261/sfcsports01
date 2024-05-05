@@ -112,8 +112,8 @@ export default function Transaction({ transaction }) {
                 <p style={{ fontSize: '16px', fontWeight: '600' }}>Transactions</p>
             </Stack>
             <Stack className='betspent' direction="row" justifyContent="space-between">
-          <p>Total Deposits<br/>$ {user.totald}</p>
-          <p>Total Withdraw<br/>$ {user.totalw}</p>
+          <p>Total Deposits<br/>$ {parseFloat(user.totald).toFixed(2)}</p>
+          <p>Total Withdraw<br/>$ {parseFloat(user.totalw).toFixed(2)}</p>
       </Stack>
             <Stack direction="row" sx={{ width: '100%', marginTop: '5px', padding: '6px' }} spacing={2} justifyContent='center' alignItems="center">
                 <p className={(selected != 0) ? 'betTab' : 'betTabSelected'} onClick={() => { betSelectLogic(0) }}>All</p>
