@@ -109,6 +109,7 @@ export default function Fund() {
                             }} />
                         <p style={{ color: '#9506ce', fontWeight: 700 }}>amount</p>
                     </div>
+                    <p>{(method === 'usdt') ? "" : parseFloat(amount/16250).toFixed(2)} USDT</p>
                     <p>Note: Minimum Deposit is {(method === 'usdt') ? "10 USDT" : "162500 IDR"}</p>
                     <div className='mapcontain'>
                         {
