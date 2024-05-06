@@ -107,7 +107,7 @@ export default function BetDetails({ datas }) {
                     <Stack direction="column">
                         <p>{datas.market}</p>
                         <p>{resulta ?? 'unavailable'}</p>
-                        <p>{datas.odd}</p>
+                        <p>{parseFloat(datas.odd).toFixed(2)}</p>
                         <p>{fulltime}</p>
                         <p>{datas.match_id}</p>
                     </Stack>
@@ -118,7 +118,7 @@ export default function BetDetails({ datas }) {
                         <p style={{ color:'#9506ce' }}>Stake</p>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
                            <p>$</p>
-                              <p>{datas.stake}</p>
+                              <p>{parseFloat(datas.stake).toFixed(2)}</p>
                         </Stack>
                       
                     </Stack>
@@ -128,7 +128,7 @@ export default function BetDetails({ datas }) {
                         <p style={{ color:'#9506ce' }}>Profit</p>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems={"center"}>
                            <p>$</p>
-                        <p>{datas.profit}</p>
+                        <p>{parseFloat(datas.profit).toFixed(2)}</p>
                         </Stack>
                     </Stack>
 
