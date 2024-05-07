@@ -330,7 +330,7 @@ export default function Referral({ test,vips }) {
 export async function getServerSideProps(context) {
     try {
         let id = context.query.name;
-        let test = await fetch('https://www.app.epl-sports.com/api/referral', {
+        let test = await fetch('https://app.epl-sports.com/api/referral', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
