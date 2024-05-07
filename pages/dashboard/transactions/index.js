@@ -7,6 +7,12 @@ export default function Transaction({ transaction }) {
     const [selected, setSelected] = useState(0);
     const [content, setContent] = useState([]);
     const [user, setUser] = useState({});
+    const rate = {
+        'usdt': 1,
+        'idr': 16250,
+        'bca':16250,
+        'pkr': 279
+    }
     const betSelectLogic = (index) => {
         setSelected(index);
         //return bet desired data
@@ -15,6 +21,7 @@ export default function Transaction({ transaction }) {
             1: 'deposit',
             2: 'withdraw'
         };
+
         let usernam = localStorage.getItem('signNames');
         console.log(usernam)
         const testRoute = async () => {
@@ -77,11 +84,11 @@ export default function Transaction({ transaction }) {
                                             <p>Transaction Type: </p><p>{m.type ?? 'unknown type'}</p></Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                            <p>Amount: </p><p>{amountx} {(m.method === 'bankbri' || m.method === 'bca') ? `IDR (${(parseFloat(amountx)/16250).toFixed(2)}USDT)` : "USDT"}</p>
+                                            <p>Amount: </p><p>{amountx} {(m.method === 'bankbri' || m.method === 'bca' || m.method === 'pkr') ? `${(m.method === 'bankbri' || m.method === 'bca') ? 'IDR' : 'PKR'} (${(parseFloat(amountx)/rate[m.method]).toFixed(2)}USDT)` : "USDT"}</p>
                                         </Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                            <p>Transaction Currency: </p><p> {(m.method === 'bankbri' || m.method === 'bca') ? "IDR" : "USDT"}</p>
+                                            <p>Transaction Currency: </p><p> {(m.method === 'bankbri' || m.method === 'bca') ? "IDR" : (m.method === 'pkr') ? "PKR" : "USDT"}</p>
                                         </Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
