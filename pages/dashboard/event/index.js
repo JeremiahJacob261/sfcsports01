@@ -522,7 +522,7 @@ useEffect(()=>{
 export async function getServerSideProps(context) {
  
   try {
-    let test = await fetch('https://app.epl-sports.com/api/match', {
+    let test = await fetch('https://www.epl-sports.com/api/match', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

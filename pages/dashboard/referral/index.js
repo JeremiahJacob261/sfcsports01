@@ -296,7 +296,7 @@ export default function Referral({ test,vips }) {
                             <Icon icon="tdesign:link" style={{ color: 'white' }} />
                             <Stack direction='column'>
                                 <p>Referral Link</p>
-                                <p style={{ color: 'white', fontSize: '10px', fontWeight: '200' }}>https://app.epl-sports.com/register?refer={vips.newrefer}</p>
+                                <p style={{ color: 'white', fontSize: '10px', fontWeight: '200' }}>https://www.epl-sports.com/register?refer={vips.newrefer}</p>
                                 <p style={{ color: 'grey', fontSize: '10px', fontWeight: '200' }}>copy the above link and share to get more rewards</p>
                             </Stack>
                         </Stack>
@@ -304,7 +304,7 @@ export default function Referral({ test,vips }) {
                             whileHover={{ scale: 1.1, color: '#981FC0' }} whileTap={{ scale: 0.8, color: '#981FC0' }} style={{ color: '#FFFFFF' }}
                         >
                             <Icon icon="solar:copy-bold-duotone" width={24} height={24} onClick={() => {
-                                navigator.clipboard.writeText('https://app.epl-sports.com/register?refer=' + vips.newrefer);
+                                navigator.clipboard.writeText('https://www.epl-sports.com/register?refer=' + vips.newrefer);
                                 toast.success('Referral link copied to clipboard');
                             }} />
                         </motion.div>
@@ -330,7 +330,7 @@ export default function Referral({ test,vips }) {
 export async function getServerSideProps(context) {
     try {
         let id = context.query.name;
-        let test = await fetch('https://app.epl-sports.com/api/referral', {
+        let test = await fetch('https://www.epl-sports.com/api/referral', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
