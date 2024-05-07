@@ -77,7 +77,7 @@ export default function Transaction({ transaction }) {
                                             <p>Transaction Type: </p><p>{m.type ?? 'unknown type'}</p></Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                            <p>Amount: </p><p>{amountx} {(m.method === 'bankbri' || m.method === 'bca') ? "IDR" : "USDT"}</p>
+                                            <p>Amount: </p><p>{amountx} {(m.method === 'bankbri' || m.method === 'bca') ? `IDR (${(parseFloat(amountx)/16250).toFixed(2)}USDT)` : "USDT"}</p>
                                         </Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">

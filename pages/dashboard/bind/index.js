@@ -57,7 +57,7 @@ export default function BindWallet() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: name, pass: password, wallet: address, method: (method === 'USDT (TRC20)') ? 'usdt' : 'idr', bank: bank, accountname: accountname })
+      body: JSON.stringify({ name: name, pass: password, wallet: address, method: (method === 'USDT (TRC20)') ? 'usdt' : (method === 'PKR') ? 'pkr' : 'idr', bank: bank, accountname: accountname })
     }).then(data => {
       return data.json();
     })
@@ -131,7 +131,7 @@ export default function BindWallet() {
       <Stack direction='column' justifyContent='center' alignItems='center' spacing={2} sx={{ padding: '8px', width: '100%' }}>
 
         <Stack direction='column' alignItems='center' justifyContent='center' sx={{ background: '#573b41', padding: '12px', borderRadius: '8px', margin: '8px', maxWidth: '310px' }}>
-          <p style={{ color: 'rgba(194,127,8,1)', fontSize: '18px' }} >{t("ExistingWallets")}</p>
+          <p style={{ color: 'rgba(194,127,8,1)', fontSize: '18px' }} >Existing Wallets</p>
           {
             users.map((m) => {
               let date = new Date(m.created_at);
@@ -161,9 +161,9 @@ export default function BindWallet() {
           <form>
             <Stack direction='column' spacing={3}>
               <Stack spacing={2} sx={{ width: '310px' }}>
-                <p>{t("SelectPaymentMethod")}</p>
+                <p>Select Payment Method</p>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">{t("PaymentMethod")}</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Payment Method</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -178,11 +178,12 @@ export default function BindWallet() {
                   >
                     <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
                     <MenuItem value='IDR'>IDR (Indonesia)</MenuItem>
+                    <MenuItem value='PKR'>PKR (Pakistani)</MenuItem>
                   </Select>
                 </FormControl>
               </Stack>
               {
-                (method === 'IDR') &&
+                (method != 'USDT (TRC20)') &&
                 <div className='arrange-label'>
                   <label className='standard-label'>Bank Name</label>
                   <input className='standard-input' placeholder='Bank Name' type='text' value={bank} onChange={(e) => { setBank(e.target.value) }} />
@@ -190,15 +191,15 @@ export default function BindWallet() {
               }
 
               {
-                (method === 'IDR') &&
+                (method != 'USDT (TRC20)') &&
                 <div className='arrange-label'>
                   <label className='standard-label'>Account Name</label>
                   <input className='standard-input' placeholder='Account Name' type='text' value={accountname} onChange={(e) => { setAccountName(e.target.value) }} />
                 </div>
               }
               <div className='arrange-label'>
-                <label className='standard-label'>{(method === "IDR") ? "Account Number" : "Wallet Address"}</label>
-                <input className='standard-input' placeholder={(method === "IDR") ? "Account Number" : "Wallet Address"} type='text' value={address} onChange={(e) => { setAddress(e.target.value) }} />
+                <label className='standard-label'>{(method === "IDR" || method === "PKR") ? "Account Number" : "Wallet Address"}</label>
+                <input className='standard-input' placeholder={(method === "IDR" || method === "PKR") ? "Account Number" : "Wallet Address"} type='text' value={address} onChange={(e) => { setAddress(e.target.value) }} />
               </div>
 
               <div className='arrange-label'>

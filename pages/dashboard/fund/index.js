@@ -7,6 +7,7 @@ import Alertz from '@/pages/UIComponents/dialogs/alertz';
 import { Alert } from 'react-bootstrap';
 import Image from 'next/image';
 import Bankbri from '@/public/bankbri.jpg'
+import PKR from '@/public/pkr.png'
 import toast, { Toaster } from 'react-hot-toast';
 import BCA from '@/public/bca.jpg'
 import Tether from '@/public/tether.jpg'
@@ -32,6 +33,7 @@ export default function Fund() {
     const [v, setV] = useState(false);
 
     const options = [50, 100, 200, 500, 1000, 2000, 3000, 5000];
+    const optiony = [279 * 50, 279 * 100, 279 * 200, 279 * 500, 279 * 1000, 279 * 2000, 279 * 3000, 279 * 5000];
     const optionx = [16250 * 50, 16250 * 100, 16250 * 200, 16250 * 500, 16250 * 1000, 16250 * 2000, 16250 * 3000, 16250 * 5000];
     const [option, setOption] = useState(options);
     useEffect(() => {
@@ -94,6 +96,25 @@ export default function Fund() {
                                 <p>Indonesian: </p><p style={{ color: 'greenyellow', fontWeight: 700 }}>  BCA</p>
                             </Stack>
                         </Stack>
+
+
+                        <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center" 
+                        onClick={() => {
+                            setMethod('pkr');
+                            setV(true);
+                            setOption(optiony);
+                        }}>
+                            <Image src={PKR} width={100} height={100} style={{ borderRadius: '5px',background:'#f5f5f5' }} alt="bank_image" 
+                             onClick={() => {
+                                setMethod('pkr');
+                                setV(true);
+                                setOption(optiony);
+                            }}
+                            />
+                            <Stack direction="row">
+                                <p>Pakistani: </p><p style={{ color: 'greenyellow', fontWeight: 700 }}>  PKR</p>
+                            </Stack>
+                        </Stack>
                     </Stack>
 
                 </div>
@@ -109,8 +130,8 @@ export default function Fund() {
                             }} />
                         <p style={{ color: '#9506ce', fontWeight: 700 }}>amount</p>
                     </div>
-                    <p>{(method === 'usdt') ? "" : parseFloat(amount/16250).toFixed(2)} USDT</p>
-                    <p>Note: Minimum Deposit is {(method === 'usdt') ? "10 USDT" : "162500 IDR"}</p>
+                    <p>{(method === 'usdt') ? "" : (method === 'pkr') ? parseFloat(amount/279).toFixed(2) :  parseFloat(amount/16250).toFixed(2)} USDT</p>
+                    <p>Note: Minimum Deposit is {(method === 'usdt') ? "10 USDT" : (method === 'pkr') ?  "2790 PKR"  :  "162500 IDR"}</p>
                     <div className='mapcontain'>
                         {
                             option.map((i) => {
@@ -125,6 +146,15 @@ export default function Fund() {
                            if(method === 'usdt'){
                             if (amount < 10) {
                                 toast.error('Minimum Deposit is 10 USDT')
+                            } else {
+                                router.push('/dashboard/fund/address?met=' + method);
+                                // transaction();
+                                localStorage.setItem('deposit-amount', amount)
+                                localStorage.setItem('deposit-method',method)
+                            }
+                           }else if(method === 'pkr'){
+                            if (amount < 2790) {
+                                toast.error('Minimum Deposit is 2790 PKR')
                             } else {
                                 router.push('/dashboard/fund/address?met=' + method);
                                 // transaction();

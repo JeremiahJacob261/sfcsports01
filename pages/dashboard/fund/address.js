@@ -6,7 +6,7 @@ import bar2 from '@/public/bar (1).jpg'
 import bar3 from '@/public/bar (2).jpg'
 import bar4 from '@/public/bar (3).jpg'
 import { useState } from 'react';
-import Bankbri from '@/public/bankbri.jpg'
+import PKRPICK from '@/public/pkrpicker.jpg'
 import { motion } from 'framer-motion'
 import BCA from '@/public/bca.jpg'
 import Image from 'next/image'
@@ -72,6 +72,61 @@ export default function Address({ method,images,address ,randomed}) {
           </motion.div>
         </Stack>
         <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Bank Name: BCA</p>
+        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+          <Icon icon="ph:info-light" color="#981FC0" />
+          <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!. <br/>Contact Support for more information</p>
+        </Stack>
+        <motion.p onClick={() => {
+          router.push('/dashboard/fund/upload')
+        }}
+          whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
+          whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
+          style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '8px', background: '#981FC0', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
+          NEXT</motion.p>
+      </Stack>
+
+    </div>
+  )
+ }else if(method === 'pkr'){
+  return (
+    <div className="backgrounds">
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            fontSize: '14px',
+            background: '#981FC0',
+            color: '#fff',
+          },
+          iconTheme: {
+            primary: 'white',
+            secondary: 'rgba(194,127,8,1)',
+          },
+        }}
+      />
+
+      <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
+        <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
+          router.back()
+        }} />
+        <p style={{ fontSize: '16px', fontWeight: '600' }}>Input Address</p>
+      </Stack>
+      <Stack direction='column' alignItems='center' justifyContent='center' spacing={1} sx={{ width: '100%', height: '100vh' }}>
+        <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.8 }} onClick={() => { }}>
+          <Image src={PKRPICK} alt='barcode' width={300} height={300} style={{ borderRadius:'10px'}}/>
+        </motion.div>
+        <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>Account name:  REHMAT ALI</p> 
+        <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+          <p style={{ fontSize: '14px', fontWeight: '400px', color: 'rgba(194,127,8,1)' }}>{(method === 'pkr') ? "03276043783" : address}</p>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Icon icon="solar:copy-bold-duotone" color="#981FC0" width={30} height={30} onClick={() => {
+              navigator.clipboard.writeText((method === 'pkr') ? "03276043783" : address);
+              toast.success('Copied to clipboard');
+            }} />
+          </motion.div>
+        </Stack>
+        <p style={{ color: 'green', fontSize: '13px', fontWeight: '200', maxWidth: '70%' }}>Bank Name: Easy Paisa</p>
         <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
           <Icon icon="ph:info-light" color="#981FC0" />
           <p style={{ color: 'grey', fontSize: '12px', fontWeight: '200', maxWidth: '70%' }}>You are expected to upload an image of the receipt in the next page within 30 minutes of making the transaction else transferred funds might be lost!. <br/>Contact Support for more information</p>

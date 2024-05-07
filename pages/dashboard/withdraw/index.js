@@ -32,6 +32,24 @@ export default function Withdraw() {
     const [cpassword, setCPassword] = useState('');
     const [amount, setAmount] = useState('');
     const [method, setMethod] = useState('USDT (TRC20)');
+
+    const methodmin = {
+        'USDT (TRC20)': 15,
+        'IDR': 243750,
+        'PKR': 279 * 15
+    }
+
+    const methodmax = {
+        'USDT (TRC20)': 100,
+        'IDR': 1625000,
+        'PKR': 279 * 100
+    }
+
+    const rate = {
+        'USDT (TRC20)': 1,
+        'IDR': 16250,
+        'PKR': 279
+    }
     let amountlimit = {
         '1': 20,
         '2': 50,
@@ -50,6 +68,16 @@ export default function Withdraw() {
     '5': 16250 * 300,
     '6': 16250 * 500,
     '7': 16250 * 1000
+}
+
+let amountlimity = {
+    '1': 279 * 20,
+    '2': 279 * 50,
+    '3': 279 * 100,
+    '4': 279 * 200,
+    '5': 279 * 300,
+    '6': 279 * 500,
+    '7': 279 * 1000
 }
    const getVip = async () => {
        let test = await fetch('/api/vipcalculate', {
@@ -91,8 +119,8 @@ export default function Withdraw() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount).toFixed(3), method: (method === 'USDT (TRC20)') ? 'usdt' : 'idr',
-            "bank":walletinfo.bank, "accountname":walletinfo.accountname,vipamount: (method === 'USDT (TRC20)') ? amountlimit[viplevel] : amountlimitx[viplevel]
+                body: JSON.stringify({ name: users[0].username, pass: password, wallet: wallet, amount: parseFloat(amount).toFixed(3), method: (method === 'USDT (TRC20)') ? 'usdt' :(method === 'PKR') ? 'pkr' : 'idr',
+            "bank":walletinfo.bank, "accountname":walletinfo.accountname,vipamount: (method === 'USDT (TRC20)') ? amountlimit[viplevel] : (method === 'PKR') ? amountlimity[viplevel] :  amountlimitx[viplevel]
             })
             }).then(data => {
                 return data.json();
@@ -112,7 +140,7 @@ export default function Withdraw() {
 
     }
     const transaction = async () => {
-        if (method === 'USDT (TRC20)') {
+       
             if (wallet === 1) {
                 alert('Please select a wallet address')
             } else if (wallet === 2) {
@@ -125,38 +153,16 @@ export default function Withdraw() {
                 alert('Password does not match')
             } else if (amount === '') {
                 alert('Please enter amount')
-            } else if (amount < 15) {
-                alert('Minimum amount to withdraw is 15 USDT')
+            } else if (amount < methodmin[method]) {
+                alert(`Minimum amount to withdraw is ${methodmin[method]} ${method}`)
 
-            } else if (amount > 100) {
-                alert('Maximum amount to withdraw including charges is 100 USDT')
-
-            } else {
-                testRoute();
-            }
-        } else {
-            if (wallet === 1) {
-                alert('Please select a wallet address')
-            } else if (wallet === 2) {
-                alert('Please add a wallet address')
-            } else if (password === '') {
-                alert('Please enter your password')
-            } else if (cpassword === '') {
-                alert('Please confirm your password')
-            } else if (password !== cpassword) {
-                alert('Password does not match')
-            } else if (amount === '') {
-                alert('Please enter amount')
-            } else if (amount < 243750) {
-                alert('Minimum amount to withdraw is 15 USDT or 243750 IDR')
-
-            } else if (amount > 1625000) {
-                alert('Maximum amount including charges to withdraw is 100 USDT or 1625000 IDR')
+            } else if (amount > methodmax[method]) {
+                alert(`Maximum amount to withdraw including charges is ${methodmax[method]} ${method}`)
 
             } else {
                 testRoute();
             }
-        }
+        
     }
     function MenuShow() {
         if(users && users.length) {
@@ -186,7 +192,7 @@ export default function Withdraw() {
                                         onClick={()=>{
                                             setWalletInfo(data);
                                         }}
-                                        >{data.wallet} - {(data.method === 'idr') ? 'IDR (Indonesia)' : 'USDT (TRC20)'}</MenuItem>
+                                        >{data.wallet} - {(data.method === 'idr' || data.method === 'bca') ? 'IDR (Indonesia)' :(data.method === 'pkr') ? 'PKR (Pakistani)' :  'USDT (TRC20)'}</MenuItem>
 
                                     )
                                 }
@@ -239,21 +245,21 @@ export default function Withdraw() {
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Amount")}</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(amount) + " USDT" : amount + " IDR"}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(amount) + " USDT" : amount +" " +  method}</p>
                     </Stack>
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> {t("Charge")} </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(parseFloat(amount) + 1).toFixed(3) + " USDT" : (amount * 0.08).toFixed(3) + " IDR"}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(parseFloat(amount) * 0.08).toFixed(3) + " USDT" : (amount * 0.08).toFixed(3) +" " +  method}</p>
                     </Stack>
                     <Stack direction='row' alignItems='center' justifyContent='space-between' >
                         <p style={{ fontSize: '12px', fontWeight: '600' }}> Expected Amount </p>
-                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(amount * 0.92).toFixed(3) + " USDT" : (amount * 0.92).toFixed(3) + " IDR"}</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600' }}> {(method === 'USDT (TRC20)') ? parseFloat(amount * 0.92).toFixed(3) + " USDT" : (amount * 0.92).toFixed(3) + " " + method}</p>
                     </Stack>
 
                     <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ display: (method === 'USDT (TRC20)') ? 'none' : 'visible' }}>
                         <p style={{ fontSize: '12px', fontWeight: '600', color: 'whitesmoke' }}> Expected Amount in USDT</p>
-                        <p style={{ fontSize: '12px', fontWeight: '600', color: 'whitesmoke' }}>{(parseFloat((amount * 0.92).toFixed(3)) / 16250).toFixed(3)} USDT</p>
+                        <p style={{ fontSize: '12px', fontWeight: '600', color: 'whitesmoke' }}>{(parseFloat((amount * 0.92).toFixed(3)) / rate[method]).toFixed(3)} USDT</p>
                     </Stack>
                 </Stack>
                 <Stack spacing={2} sx={{ width: '310px' }}>
@@ -274,6 +280,7 @@ export default function Withdraw() {
                         >
                             <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
                             <MenuItem value='IDR'>IDR (Indonesia)</MenuItem>
+                            <MenuItem value='PKR'>PKR (Pakistani)</MenuItem>
                         </Select>
                     </FormControl>
                 </Stack>
