@@ -37,14 +37,21 @@ export default async function handler(req, res) {
                     console.log('insufficient funds')
                     res.status(200).json([{ 'status': 'Failed', 'message': 'Insufficient funds' }]);
         
-                } else if(body.amount > body.vipamount ){
-                    console.log('Amount exceeds daily limit')
-                    res.status(200).json([{ 'status': 'Failed', 'message': 'Amount exceeds daily limit' }]);
+                } else if(body.amount > body.vipamount || parseFloat((parseFloat(body.amount) + parseFloat(data[0].dailywl)).toFixed(2)) > body.vipamount){
+                    console.log('Amount exceeds daily withdrawal limit')
+                    res.status(200).json([{ 'status': 'Failed', 'message': 'Amount exceeds daily withdrawal limit' }]);
 
                 }else {
                     const { error } = await supabase
                         .from('notification')
                         .insert({ address: body.wallet, username: body.name, amount: (body.method === 'idr' || body.method === 'bca') ? parseFloat(parseFloat(body.amount).toFixed(3)) * 0.92 : parseFloat(body.amount) * 0.92, sent: 'pending', type: "withdraw", method: body.method,bank:body.bank,accountname:body.accountname })
+                    try {
+        
+                        const { data, error } = await supabase
+                            .rpc('withdrawer', { amount: amountx(), names: body.name })
+                    } catch (e) {
+                        console.log(e)
+                    }
                     try {
         
                         const { data, error } = await supabase
