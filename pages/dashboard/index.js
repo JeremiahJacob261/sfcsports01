@@ -24,6 +24,8 @@ import Avatar from '@/public/avatar.png'
 import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
 import { Divider, Modal } from '@mui/material';
+
+
 export async function getServerSideProps(context) {
  
     try {
