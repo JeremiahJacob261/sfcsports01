@@ -39,9 +39,9 @@ export default async function handler(req, res) {
                 console.log('insufficient funds')
                 res.status(200).json([{ 'status': 'Failed', 'message': 'Insufficient funds' }]);
 
-            } else if (body.amount > body.vipamount || parseFloat((parseFloat(body.amount) + parseFloat(data[0].dailywl)).toFixed(2)) > body.vipamount) {
-                console.log('Amount exceeds daily withdrawal limit')
-                res.status(200).json([{ 'status': 'Failed', 'message': 'Amount exceeds daily withdrawal limit' }]);
+            // } else if (body.amount > body.vipamount || parseFloat((parseFloat(body.amount) + parseFloat(data[0].dailywl)).toFixed(2)) > body.vipamount) {
+            //     console.log('Amount exceeds daily withdrawal limit')
+            //     res.status(200).json([{ 'status': 'Failed', 'message': 'Amount exceeds daily withdrawal limit' }]);
 
             } else {
                 const { error } = await supabase

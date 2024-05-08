@@ -73,7 +73,10 @@ export default function Transaction({ transaction }) {
                             let amountc = m.amount ?? 0;
                             let amountx = parseFloat(amountc).toFixed(2);
                             return (
-                                <Stack sx={{ width:'100%',padding:'8px' }} direction='row' justifyContent='center' alignItems="center" spacing={3} key={m.uid} className='transactionrow'>
+                                <Stack sx={{ width:'100%',padding:'8px' }} direction='row' justifyContent='center' alignItems="center" spacing={3} key={m.uid}
+                                 className='transactionrow'
+                                 onClick={()=>{ console.log(m)}}
+                                 >
 
                                     <Stack direction='column' spacing={1}>
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -84,11 +87,11 @@ export default function Transaction({ transaction }) {
                                             <p>Transaction Type: </p><p>{m.type ?? 'unknown type'}</p></Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                            <p>Amount: </p><p>{amountx} {(m.method === 'bankbri' || m.method === 'bca' || m.method === 'pkr') ? `${(m.method === 'bankbri' || m.method === 'bca') ? 'IDR' : 'PKR'} (${(parseFloat(amountx)/rate[m.method]).toFixed(2)}USDT)` : "USDT"}</p>
+                                            <p>Amount: </p><p>{amountx} {(m.method === 'idr' || m.method === 'bca' || m.method === 'pkr') ? `${(m.method === 'idr' || m.method === 'bca') ? 'IDR' : 'PKR'} (${(parseFloat(amountx)/rate[m.method]).toFixed(2)}USDT)` : "USDT"}</p>
                                         </Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                            <p>Transaction Currency: </p><p> {(m.method === 'bankbri' || m.method === 'bca') ? "IDR" : (m.method === 'pkr') ? "PKR" : "USDT"}</p>
+                                            <p>Transaction Currency: </p><p> {(m.method === 'idr' || m.method === 'bca') ? "IDR" : (m.method === 'pkr') ? "PKR" : "USDT"}</p>
                                         </Stack>
                                         <Divider sx={{ background: 'grey' }} />
                                         <Stack direction="row" justifyContent="space-between" alignItems="center">
