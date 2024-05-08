@@ -157,7 +157,8 @@ export default function BindWallet() {
                     </Stack>
                     <motion.p onClick={() => {
                         //   router.push('/dashboard/fund/success')
-                        checkValid();
+                        // checkValid();
+                        alert("E-Transfer is temporarily unavailable")
                     }}
                         whileTap={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 0.9 }}
                         whileHover={{ background: '#573b41', color: 'rgba(194,127,8,1)', scale: 1.1 }}
