@@ -46,7 +46,7 @@ export default async function handler(req, res) {
                 try {
 
                     const { data, error } = await supabase
-                        .rpc('withdrawer', { amount: amountx, names: body.name })
+                        .rpc('dailywl', { amount: amountx, names: body.name })
                 } catch (e) {
                     console.log(e)
                 }
