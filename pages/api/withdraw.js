@@ -3,16 +3,12 @@ import { NextResponse } from 'next/server';
 import { supabase } from '../../pages/api/supabase';
 export default async function handler(req, res) {
     const body = req.body;
-    const amountx = () => {
-        if (body.method === 'idr' || body.method === 'bca') {
-            return parseFloat((parseFloat(body.amount) / 16250).toFixed(3));
-        } else if (body.method === 'pkr') {
-            return parseFloat((parseFloat(body.amount) / 279).toFixed(3));
-        } else {
-            return body.amount;
-        }
+    const rate = {
+        'usdt': 1,
+        'idr': 16250,
+        'pkr': 279
     }
-
+    const amountx = body.amount * rate[body.method];
     const { data, error } = await supabase
         .from('users')
         .select('*')
@@ -35,11 +31,11 @@ export default async function handler(req, res) {
                 console.log('wrong password')
 
                 res.status(200).json([{ 'status': 'Failed', 'message': 'Wrong password' }]);
-            } else if (data[0].balance < amountx) {
+            } else if (data[0].balance < body.amount * rate[body.method]) {
                 console.log('insufficient funds')
                 res.status(200).json([{ 'status': 'Failed', 'message': 'Insufficient funds' }]);
 
-            } else if (amountx > body.vipamount || parseFloat((parseFloat(amountx) + parseFloat(data[0].dailywl)).toFixed(2)) > body.vipamount) {
+            } else if (body.amount * rate[body.method] > body.vipamount || parseFloat((parseFloat(body.amount * rate[body.method]) + parseFloat(data[0].dailywl)).toFixed(2)) > body.vipamount) {
                 console.log('Amount exceeds daily withdrawal limit')
                 res.status(200).json([{ 'status': 'Failed', 'message': 'Amount exceeds daily withdrawal limit' }]);
 
@@ -50,14 +46,14 @@ export default async function handler(req, res) {
                 try {
 
                     const { data, error } = await supabase
-                        .rpc('withdrawer', { amount: amountx(), names: body.name })
+                        .rpc('withdrawer', { amount: amountx, names: body.name })
                 } catch (e) {
                     console.log(e)
                 }
                 try {
 
                     const { data, error } = await supabase
-                        .rpc('withdrawer', { amount: amountx(), names: body.name })
+                        .rpc('withdrawer', { amount: amountx, names: body.name })
                 } catch (e) {
                     console.log(e)
                 }
