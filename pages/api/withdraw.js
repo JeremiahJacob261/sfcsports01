@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         'idr': 16250,
         'pkr': 279
     }
-    const amountx = body.amount * rate[body.method];
+    const amountx = body.amount / rate[body.method];
     const { data, error } = await supabase
         .from('users')
         .select('*')
@@ -31,11 +31,11 @@ export default async function handler(req, res) {
                 console.log('wrong password')
 
                 res.status(200).json([{ 'status': 'Failed', 'message': 'Wrong password' }]);
-            } else if (data[0].balance < body.amount * rate[body.method]) {
+            } else if (data[0].balance < body.amount / rate[body.method]) {
                 console.log('insufficient funds')
                 res.status(200).json([{ 'status': 'Failed', 'message': 'Insufficient funds' }]);
 
-            } else if (body.amount * rate[body.method] > body.vipamount || parseFloat((parseFloat(body.amount * rate[body.method]) + parseFloat(data[0].dailywl)).toFixed(2)) > body.vipamount) {
+            } else if (body.amount / rate[body.method] > body.vipamount || parseFloat((parseFloat(body.amount / rate[body.method]) + parseFloat(data[0].dailywl)).toFixed(2)) > body.vipamount) {
                 console.log('Amount exceeds daily withdrawal limit')
                 res.status(200).json([{ 'status': 'Failed', 'message': 'Amount exceeds daily withdrawal limit' }]);
 
