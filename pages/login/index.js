@@ -188,27 +188,6 @@ export default function Login({ranter}) {
       sign(data[0].email);
       //end of supabase sgn in
 
-      // signInWithEmailAndPassword(auth, data[0].email, values.password)
-      //   .then((userCredential) => {
-      //     // Signed in 
-      //     const user = userCredential.user;
-      //     // ...
-
-      //     alert('you are logged in');
-      //     localStorage.setItem('signRef', data[0].newrefer);
-      //     localStorage.setItem('signedIns', true);
-      //     localStorage.setItem('signUids', user.uid);
-      //     localStorage.setItem('signNames', user.displayName);
-      //     setDrop(false)
-      //     router.push('/dashboard');
-      //   })
-      //   .catch((error) => {
-      //     const errorCode = error.code;
-      //     const errorMessage = error.message;
-      //     console.log(error.message)
-      //     alert(errorCode);
-      //     setDrop(false)
-      //   });
     }
     setDrop(true)
     localStorage.clear()
