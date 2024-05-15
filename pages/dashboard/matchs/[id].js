@@ -309,8 +309,8 @@ export default function Matchs({ matc, user, test }) {
               <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
                 <p>{placee.market}</p> <p>{placee.txt}</p>
               </Stack>
-              <p style={{ color: 'black', textAlign: 'center', fontSize: '20px', fontWeight: '700', background: 'whitesmoke', padding: '12px', height: '50px', minWidth: '80%', borderRadius: '5px' }}>{amountInput} </p>
-              <Stack direction="row" justifyContent="space-around" sx={{ width: '100%' }} spacing={1}>
+              <TextField value={amountInput} onChange={(e)=>{ setAmountInput(e.target.value) }}/>
+               <Stack direction="row" justifyContent="space-around" sx={{ width: '100%' }} spacing={1}>
                 <Stack direction="column" spacing={1}>
                   <p>Balance : {user.balance.toFixed(2) ?? 0} USDT</p>
                   <p>Stake: {amountInput}</p>
