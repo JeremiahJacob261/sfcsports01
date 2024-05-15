@@ -24,11 +24,11 @@ import Big from '../../public/icon/badge.png'
 import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
 import codes from '../api/codeswithflag.json'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default function Register({ refer }) {
-  const { t } = useTranslation("all")
+ function t(text){
+  return text;
+ }
   const [password, setPassword] = useState("")
   const [cpassword, setcPassword] = useState("")
   const route = useRouter();
@@ -543,9 +543,7 @@ export async function getServerSideProps(context) {
   const { locale } = context;
   return {
     props: {
-      refer: refer, ...(await serverSideTranslations(locale, [
-        'common', 'all'
-      ])),
+      refer: refer,
     },
   }
 }

@@ -6,11 +6,11 @@ import Image from "next/image";
 import Head from "next/head";
 import Tether from '@/public/tether.jpg'
 import { useEffect, useState } from "react";
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default function BetDetails({ datas }) {
-    const { t } = useTranslation('betdetails')
+    function t(text){
+        return text;
+       }
     const [resulta, setResulta] = useState('');
     const router = useRouter();
     const markets = {
@@ -163,18 +163,14 @@ export async function getServerSideProps(context) {
         let datas = data[0];
         return {
             props: {
-                datas, ...(await serverSideTranslations(locale, [
-                    'all', 'betdetails'
-                ])),
+                datas,
             }, // will be passed to the page component as props
         }
     } catch (error) {
         let datas = {};
         return {
             props: {
-                datas, ...(await serverSideTranslations(locale, [
-                    'all',
-                ])),
+                datas,
             }, // will be passed to the page component as props
         }
     }

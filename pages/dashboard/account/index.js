@@ -15,12 +15,12 @@ import Swapic from '@/pages/UIComponents/dialogs/swapic';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Translate from '@/pages/translator';
 
 export default function Account({ vips }) {
-    const { t } = useTranslation('all')
+    function t(text){
+        return text;
+       }
 
     const [users, setUser] = useState({});
     const [placed, setPlaced] = useState([]);
@@ -627,9 +627,7 @@ export async function getServerSideProps(context) {
         return {
             props: {
                 vips: test,
-                ...(await serverSideTranslations(locale, [
-                    'all',
-                  ])),
+               
             }
         }
     } catch (e) {
@@ -637,9 +635,7 @@ export async function getServerSideProps(context) {
         return {
             props: {
                 vips: {},
-                ...(await serverSideTranslations(locale, [
-                    'all',
-                  ])),
+                
             }
         }
     }

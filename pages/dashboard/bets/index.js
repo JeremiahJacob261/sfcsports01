@@ -11,6 +11,9 @@ import BACK from '@/public/backfield.png'
 import { useEffect } from 'react';
 
 export default function Bets() {
+  function t(text){
+    return text;
+   }
   const router = useRouter();
   const [betDta, setBetDta] = useState([]);
   const [betCounter,setBetCounter] = useState(0);

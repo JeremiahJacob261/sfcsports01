@@ -25,12 +25,12 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from "react"; 
 import Warn from '@/public/warn.png'
 import Success from '@/public/success.png'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
 export default function Login({ranter}) {
-  const { t } = useTranslation("all")
+  function t(text){
+    return text;
+   }
   const [username, setUsername] = useState("")
   const [drop, setDrop] = useState(false)
   const router = useRouter();
@@ -440,8 +440,6 @@ export default function Login({ranter}) {
 export async function getServerSideProps({locale}) {
     
   return {
-      props: {'ranter':generateRandomNumber(),   ...(await serverSideTranslations(locale, [
-        'all','login'
-      ])),}, // will be passed to the page component as props
+      props: {'ranter':generateRandomNumber(),}, // will be passed to the page component as props
   }
 }

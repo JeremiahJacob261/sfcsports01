@@ -6,14 +6,14 @@ import { Box, Typography, Modal, Fade, Backdrop } from '@mui/material';
 import { Icon, InlineIcon } from '@iconify/react';
 import { useEffect,useState } from 'react';
 import { supabase } from '@/pages/api/supabase';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Translate from '@/pages/translator';
 
  
 export default function History({credent}) {
     const router = useRouter();
-    const { t } = useTranslation('history')
+    function t(text){
+        return text;
+       }
     const [data, setData] = useState({});
     const [ref,setRef] = useState('')
     const [noti, setNoti] = useState(false);
@@ -250,18 +250,14 @@ export async function getServerSideProps(context) {
         .eq('userId',id)
         return {
             props: {credent:data[0], 
-                ...(await serverSideTranslations(locale, [
-                    'all','history'
-                  ])),
+                
             }, // will be passed to the page component as props
         }
     }catch(err){
         console.log(err);
         let credent = {};
         return {
-            props: {credent:credent, ...(await serverSideTranslations(locale, [
-                'all','history'
-              ])),}, // will be passed to the page component as props
+            props: {credent:credent,}, // will be passed to the page component as props
         }
     }
 }
