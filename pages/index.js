@@ -20,33 +20,24 @@ import Tour3 from '@/public/tour3.png'
 import Head from 'next/head';
 import Massive from '@/public/slider/cn.jpg'
 import Translate from '@/pages/translatec';
-import { useTranslation } from 'next-i18next'
 import { adapter, tronWeb } from '@/crypto/adaptedwc'
 import { useEffect } from 'react';
 import { supabase } from './api/supabase';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {
   Popover,
   PopoverHandler,
   PopoverContent
 } from '@material-tailwind/react'
 import Footer from './footer/index'
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, [
-        'common', 'all'
-      ])),
-      // Will be passed to the page component as props
-    },
-  }
-}
+
 
 export default function Home(locale) {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
   const [parentopen, setParentOpen] = useState(false);
-  const { t } = useTranslation()
+  function t(text) {
+    return text;
+}
   //   const WalletConnect = async () => {
   //     try{
   //  // connect
@@ -173,27 +164,27 @@ export default function Home(locale) {
         </Stack>
         <div style={{ background: 'white', width: '100%', paddingTop: '100px', paddingBottom: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '8px' }}>
           <Stack spacing={5} justifyContent='center' alignItems='center'>
-            <p style={{ color: 'black', fontSize: '15px', fontWeight: '700' }}>{t('all:Trustedbymillionsofplayers')}</p>
-            <p style={{ color: '#661980', fontSize: '24px', fontWeight: '600' }}>{t('all:Whyplaymoneywinninggames')}</p>
-            <p style={{ color: 'black', fontSize: '13px', fontWeight: '400' }}>{t('all:RegisterTodaytoPlayandStartWinningDailyCashPrizes')}</p>
+            <p style={{ color: 'black', fontSize: '15px', fontWeight: '700' }}>{t('Trustedbymillionsofplayers')}</p>
+            <p style={{ color: '#661980', fontSize: '24px', fontWeight: '600' }}>{t('Whyplaymoneywinninggames')}</p>
+            <p style={{ color: 'black', fontSize: '13px', fontWeight: '400' }}>{t('RegisterTodaytoPlayandStartWinningDailyCashPrizes')}</p>
           </Stack>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <Stack spacing={3} sx={{ padding: '12px', margin: '4px', borderRadius: '15px', border: '2px solid #891CAD', width: '335px' }} justifyContent='center' alignItems='center'>
               <Image src={Cup1} width={154} height={149} alt="trophy1" style={{ borderRadius: '100px' }} />
               <p style={{ fontWeight: '600', fontSize: '20px', color: 'black' }}>500 +</p>
-              <p style={{ fontWeight: '600', fontSize: '16px', color: 'black', textAlign: 'center' }}>{t('all:DailyMatches')}</p>
+              <p style={{ fontWeight: '600', fontSize: '16px', color: 'black', textAlign: 'center' }}>{t('DailyMatches')}</p>
             </Stack>
 
             <Stack spacing={3} sx={{ padding: '12px', margin: '4px', borderRadius: '15px', border: '2px solid #891CAD', width: '335px' }} justifyContent='center' alignItems='center'>
               <Image src={Cup2} width={154} height={149} alt="trophy2" style={{ borderRadius: '100px' }} />
               <p style={{ fontWeight: '600', fontSize: '20px', color: 'black' }}>10 000 +</p>
-              < p style={{ fontWeight: '600', fontSize: '16px', color: 'black', textAlign: 'center' }}>{t('all:ActiveUsers')}</ p>
+              < p style={{ fontWeight: '600', fontSize: '16px', color: 'black', textAlign: 'center' }}>{t('ActiveUsers')}</ p>
             </Stack>
 
             <Stack spacing={3} sx={{ padding: '12px', margin: '4px', borderRadius: '15px', border: '2px solid #891CAD', width: '335px' }} justifyContent='center' alignItems='center'>
               <Image src={Cup3} width={154} height={150} alt="trophy3" style={{ borderRadius: '100px' }} />
               <p style={{ fontWeight: '600', fontSize: '20px', color: 'black' }}>200 000 +</p>
-              <p style={{ fontWeight: '600', fontSize: '16px', color: 'black', textAlign: 'center' }}>{t('all:SuccessfulTransactions')}</p>
+              <p style={{ fontWeight: '600', fontSize: '16px', color: 'black', textAlign: 'center' }}>{t('SuccessfulTransactions')}</p>
             </Stack>
           </div>
 
@@ -244,7 +235,7 @@ export default function Home(locale) {
 
         </div>
 
-        <motion.p whileTap={{ color: 'grey', scale: 1.05 }} style={{ color: 'white', fontSize: '21px', fontWeight: '700' }}>{t('all:OurCertificates')}</motion.p>
+        <motion.p whileTap={{ color: 'grey', scale: 1.05 }} style={{ color: 'white', fontSize: '21px', fontWeight: '700' }}>{t('OurCertificates')}</motion.p>
         <Stack spacing={2} style={{ display: "flex", flexDirection: "row", flexWrap: 'wrap', justifyContent: 'center', aligItems: 'center' }}>
           <Image src={Cert1} width={254} height={230} alt="cert1" style={{ margin: '10px' }} />
           <Image src={Cert2} width={254} height={230} alt="cert2" style={{ margin: '10px' }} />

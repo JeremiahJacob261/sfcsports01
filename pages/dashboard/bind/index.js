@@ -15,21 +15,12 @@ import Warn from '@/public/warn.png'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, [
-        'all',
-      ])),
-      // Will be passed to the page component as props
-    },
-  }
-}
+
 
 export default function BindWallet() {
-  const { t } = useTranslation('all');
+  function t(text) {
+    return text;
+}
   const [method, setMethod] = useState('USDT (TRC20)');
   const router = useRouter();
   const [users, setUsers] = useState([])
@@ -126,7 +117,7 @@ export default function BindWallet() {
         <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.back()
         }} />
-        <p className="text-sm text-gray-500">{t("BINDWALLET")}</p>
+        <p className="text-sm text-gray-500">BIND WALLET</p>
       </Stack>
       <Stack direction='column' justifyContent='center' alignItems='center' spacing={2} sx={{ padding: '8px', width: '100%' }}>
 
@@ -225,9 +216,9 @@ export default function BindWallet() {
             whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
             whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
             style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
-            {t("BindWallet")}</motion.p>
+           Bind Wallet </motion.p>
           <Link href='/dashboard/codesetting'>
-            <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>{t("Setatransactionpin")}</p>
+            <p style={{ color: 'greenyellow', fontSize: '12px', fontWeight: 'lighter', textDecoration: 'underline' }}>Set a transaction pin</p>
 
           </Link>
         </Stack>

@@ -9,20 +9,12 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'  
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'all',
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
-  }
+
+
 export default function Alertz({amount,method}) {
-    const { t } = useTranslation('all')
+  function t(text) {
+    return text;
+}
   const checkCredible =  (method) => {
    if(method === 'bankbri'){
     if (amount < 15500) {

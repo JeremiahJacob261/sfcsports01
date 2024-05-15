@@ -5,22 +5,13 @@ import { useState,useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/pages/api/supabase';
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Translate from '@/pages/translator';
 
-export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'all','login'
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
-  }
+
 export default function CodeSetting() {
-    const { t } = useTranslation('all')
+    function t(text) {
+        return text;
+    }
     const router = useRouter();
     const [pi,setPi] = useState('') ;
     const [pin, setPin] = useState('');
@@ -76,7 +67,7 @@ testRoute();
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.back()
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("SetTransactionPin")}</p>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>Set Transaction Pin</p>
             </Stack>
             <Stack direction='column' alignItems='center' sx={{minHeight:'90vh',padding:'12px'}} spacing={2}>
             <Stack direction='row' justifyContent='center' alignItems='center' sx={{ height: '58px', background: '#FBEFEF', borderRadius: '5px', padding: '16px', maxWidth: '344px' }} spacing={2}>

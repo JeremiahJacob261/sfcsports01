@@ -5,7 +5,6 @@ export default function handler(req, res) {
 
 const email = req.body.email;
 const password = req.body.password;
-const username = req.body.username;
 
     const login = async () => {
 
@@ -52,7 +51,7 @@ const username = req.body.username;
 
         }
         if (!email.includes("@")) {
-            let usern = username.replace(/^\s+|\s+$/gm, '')
+         
             const { count, error } = await supabase
                 .from('users')
                 .select('*', { count: 'exact', head: true })

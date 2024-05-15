@@ -4,21 +4,12 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import Logo from "@/public/logo.png";
 import { Stack } from '@mui/material';
-import { useState } from 'react';import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'all',
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
-  }
+import { useState } from 'react';
 export default function BindWalletSuccess() {
     const router = useRouter();
-    const { t } = useTranslation('all')
+    function t(text) {
+      return text;
+  }
     const [user,setUser] = useState();
     useEffect(()=>{
         setUser(localStorage.getItem("signNames"))

@@ -12,20 +12,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import BCA from '@/public/bca.jpg'
 import Tether from '@/public/tether.jpg'
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, [
-                'all',
-            ])),
-            // Will be passed to the page component as props
-        },
-    }
-}
+
 export default function Fund() {
-    const { t } = useTranslation('all')
+    
     const router = useRouter();
     const [amount, setAmount] = useState('');
     const [method, setMethod] = useState('usdt');

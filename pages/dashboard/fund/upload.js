@@ -11,20 +11,9 @@ import { useEffect } from 'react';
 import local from 'next/font/local';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'all',
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
-  }
+
 export default function Upload() {
-    const { t } = useTranslation('all')
+ 
     const router = useRouter();
     const [file, setfile] = useState([]);
     const [modified, setModified] = useState('');
@@ -134,7 +123,7 @@ console.log(data.publicUrl);
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.back()
                 }} />
-                <p style={{ fontSize: '16px', fontWeight: '600' }}>{t("Uploadreceipt")}</p>
+                <p style={{ fontSize: '16px', fontWeight: '600' }}>Upload receipt</p>
             </Stack>
             <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -160,7 +149,7 @@ console.log(data.publicUrl);
                             }} />
                         <p sx={{ fontSize: '12px', fontFamily: 'Poppins,sans-serif', fontWeight: '500', color: 'white' }} onClick={() => {
                             // inputFile.current.click();
-                        }}>{t("Browse")}</p>
+                        }}>Browse</p>
                     </Stack>
                 </motion.div>
 
@@ -184,7 +173,7 @@ console.log(data.publicUrl);
 whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
 whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
 style={{ fontWeight: '500', fontSize: '12px', color: 'white', padding: '10px', background: '#3F1052', border: '0.6px solid #3F1052', width: '30vh', textAlign: 'center', cursor: 'pointer', borderRadius: '5px' }}>
-  {t("COMPLETE")}!</motion.p>
+  COMPLETE !</motion.p>
 
             </Stack>
         </div>

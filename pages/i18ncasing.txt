@@ -13,7 +13,7 @@ export async function getStaticProps({ locale }) {
 
   export default function Casing({children}) { 
     const { t } = useTranslation()
-    console.log(t('all:SeeAllReferrals'))
+    console.log(t('SeeAllReferrals'))
     let modchild;
     try{
     let modchild = children.replaceAll(' ', '');

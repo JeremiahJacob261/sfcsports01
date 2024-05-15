@@ -12,21 +12,12 @@ import Image from 'next/image'
 import LOGO from '@/public/logo.png'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react';
-import Link from 'next/link'; import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, [
-                'all',
-            ])),
-            // Will be passed to the page component as props
-        },
-    }
-}
+import Link from 'next/link'; 
 
 export default function Withdraw() {
-    const { t } = useTranslation('all')
+    function t(text) {
+        return text;
+    }
     const router = useRouter();
     const [wallet, setWallet] = useState('');
     const [users, setUsers] = useState([]);

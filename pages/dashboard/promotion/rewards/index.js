@@ -3,12 +3,13 @@ import { Stack, TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Translate from '@/pages/translator';
 
 export default function Claim() {
-    const { t } = useTranslation('all')
+    
+    function t(text) {
+        return text;
+    }
     const router = useRouter();
     const [bonus, setBonus] = useState('');
     const [password, setPassword] = useState('');
@@ -42,13 +43,13 @@ export default function Claim() {
     }
     const ClaimFunc = async () => {
         if (bonus === '') {
-            alert(t('Pleaseenterbonuscode'));
+            alert('Please enter bonus code');
             return;
         } else if (password === '') {
-            alert(t('Pleaseenterpassword'));
+            alert('Please enter password');
             return;
         } else if(password !== confirmPassword){
-            alert(t('Passworddoesnotmatch'));
+            alert('Password does not match');
             return;
         } else {
             testRoute();
@@ -60,15 +61,15 @@ export default function Claim() {
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.push('/dashboard/promotion')
                 }} />
-                <p className="text-sm text-gray-500">{t("ClaimSignUpBonus")}</p>
+                <p className="text-sm text-gray-500">Claim SignUp Bonus</p>
             </Stack>
             <Stack direction="column" justifyContent='center' alignItems="center" sx={{ padding: '8px', minWidth: '90%' }} spacing={3}>
                 <Stack direction="column">
-                    <p>{t("BonusClaimCode")}</p>
+                    <p>Bonus Claim Code</p>
                     <TextField placeholder="claim code" sx={{ background: 'white', minWidth: '90%' }} value={bonus} onChange={(event) => {
                         setBonus(event.target.value);
                     }} />
-                    <p style={{ fontSize: '10px', color: 'greenyellow' }}>{t("ContactCustomerCaretogetBonusclaimcode")}</p>
+                    <p style={{ fontSize: '10px', color: 'greenyellow' }}>Contact Customer Care to get Bonus claim code</p>
                 </Stack>
                 <Stack >
                     <p>{t("password")}</p>
@@ -94,8 +95,3 @@ export default function Claim() {
         </div>
     )
 }
-export const getStaticProps = async ({ locale }) => ({
-    props: {
-        ...await serverSideTranslations(locale, ['all']),
-    },
-})

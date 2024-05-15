@@ -8,20 +8,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRouter } from 'next/router'
 import faq from '../api/faq.json'
 import CloseIcon from '@mui/icons-material/Close';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'faq',
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
-  }
+
 export default function Faq() {
-  const { t } = useTranslation('faq')
+  function t(text) {
+    return text;
+}
   const [expanded, setExpanded] = useState(false);
 
   let i = 0;

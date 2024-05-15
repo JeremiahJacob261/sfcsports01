@@ -9,20 +9,8 @@ import Head from 'next/head'
 import Link from 'next/link';
 import BACK from '@/public/backfield.png'
 import { useEffect } from 'react';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, [
-          'all','login'
-        ])),
-        // Will be passed to the page component as props
-      },
-    }
-  }
+
 export default function Bets() {
-  const { t } = useTranslation('all')
   const router = useRouter();
   const [betDta, setBetDta] = useState([]);
   const [betCounter,setBetCounter] = useState(0);
@@ -100,7 +88,7 @@ export default function Bets() {
                     <Stack direction='row' alignItems='center' justifyContent='space-between'
                       sx={{ padding: '8px', background: (bet.won === 'true') ? 'green' : (bet.won === 'false') ? 'red' : (stams > curren) ? 'grey' : 'goldenrod', borderRadius: '6px' }}>
                       <p>{t("Status")}</p>
-                      <p>{(bet.won === 'true') ? t('Won') : (bet.won === 'false') ? t('Lost') : (stams + 5400 < curren) ? "pending" :  (stams < curren) ? "Ongoing" : t('NotStarted')}</p> </Stack>
+                      <p>{(bet.won === 'true') ? 'Won' : (bet.won === 'false') ? 'Lost' : (stams + 5400 < curren) ? "pending" :  (stams < curren) ? "Ongoing" : 'NotStarted'}</p> </Stack>
                     {/* team data */}
                     <Stack direction='row'>
                       {/* team names and logo */}
@@ -121,7 +109,7 @@ export default function Bets() {
                       {/* end of team name and logo */}
                     </Stack>
                     {/* end of team data */}
-                    <Stack><p>{t("Stake")}: {bet.stake} USDT</p></Stack>
+                    <Stack><p>Stake: {bet.stake} USDT</p></Stack>
 
                 {/* <Stack direction="row" justifyContent={"space-between"} alignItems={"center"} sx={{ width:'100%'}}>
                    <Stack><p>result {resulta.results ?? ''}</p></Stack>
@@ -141,8 +129,8 @@ export default function Bets() {
     } else {
       return (
         <Stack justifyContent='center' alignItems='center' sx={{ width: '100%', minHeight: '80vh' }}>
-          <p style={{ fontSize: '20px' }}>{t("NoDataAvaliable")}</p>
-          <p style={{ color: 'grey' }}>{t("PleaseCheckyourinternetconnection")}</p>
+          <p style={{ fontSize: '20px' }}>No Data Avaliable</p>
+          <p style={{ color: 'grey' }}>Please Check your internet connection</p>
         </Stack>
       )
     }
@@ -176,7 +164,7 @@ export default function Bets() {
         <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
           router.push('/dashboard')
         }} />
-        <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>{t("Bets")}</p>
+        <p style={{ fontSize: '16px', fontWeight: '600', color: '#981FC0' }}>Bets</p>
       </Stack>
       <Stack className='betspent' direction="row">
           <p>Spent<br/>$ {better.betspend ?? 0}</p>

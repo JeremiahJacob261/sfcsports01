@@ -16,21 +16,12 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-export async function getStaticProps({ locale }) {
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, [
-                'all',
-            ])),
-            // Will be passed to the page component as props
-        },
-    }
-}
+
 
 export default function BindWallet() {
-    const { t } = useTranslation('all');
+    function t(text) {
+        return text;
+    }
     const [method, setMethod] = useState('USDT (TRC20)');
     const router = useRouter();
     const [users, setUsers] = useState([])
