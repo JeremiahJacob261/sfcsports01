@@ -25,39 +25,66 @@ import HomeBottom from '../UIComponents/bottomNav';
 import Link from 'next/link';
 import { Divider, Modal } from '@mui/material';
 
+const cTT = (datex, timex) => {
+  let dateTimeStr = `${datex}T${timex}`;
 
-export async function getServerSideProps(context) {
- 
-    try {
-      let test = await fetch('https://www.epl-sports.com/api/match', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }).then(data => {
-        return data.json();
-      })
-      let bts = test.data.filter(i => i.verified == false );
-      return {
-        props: {
-        foot:bts
-          // Will be passed to the page component as props
-        },
-      }
-    } catch (e) {
-      console.log(e);
-      let err = [];
-      return {
-        props: {
-          foot:[]
-          // Will be passed to the page component as props
-        },
-      }
-    }
- 
+  // Parse the combined string into a Date object
+  let dateObj = new Date(dateTimeStr);
+
+  // Convert the Date object to a timestamp (in milliseconds)
+  let timestamp = dateObj.getTime();
+
+  // Calculate the equivalent number of milliseconds in 1 hour
+  let oneHourInMillis = 60 * 60 * 1000;
+
+  // Subtract 1 hour from the timestamp
+  let newTimestamp = timestamp;
+  return newTimestamp;
 }
 
-export default function Home({foot}) {
+const now = new Date();
+const utcTimestamp = Date.UTC(
+  now.getUTCFullYear(),
+  now.getUTCMonth(),
+  now.getUTCDate(),
+  now.getUTCHours(),
+  now.getUTCMinutes(),
+  now.getUTCSeconds(),
+  now.getUTCMilliseconds()
+);
+
+export async function getServerSideProps(context) {
+
+  try {
+    let test = await fetch('https://www.epl-sports.com/api/match', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(data => {
+      return data.json();
+    })
+    let bts = test.data.filter(i => i.verified == false && cTT(i.date,i.time) > utcTimestamp+3600000);
+    return {
+      props: {
+        foot: bts
+        // Will be passed to the page component as props
+      },
+    }
+  } catch (e) {
+    console.log(e);
+    let err = [];
+    return {
+      props: {
+        foot: []
+        // Will be passed to the page component as props
+      },
+    }
+  }
+
+}
+
+export default function Home({ foot }) {
   const [addresst, setAddress] = useState('');
   const [gcount, setGCount] = useState(0);
   const [open, setOpen] = useState(false);
@@ -66,7 +93,6 @@ export default function Home({foot}) {
   const [authed, setAuthed] = useState(false);
   const [user, setUser] = useState(null);
   const router = useRouter();
-  console.log(foot)
 
   // const sendTRX = async () => {
   //   console.log('started ...');
@@ -352,8 +378,8 @@ export default function Home({foot}) {
   function ShortCuts() {
     return (
       <Stack direction="column">
-        <Link href="https://t.me/EPLFOOTBALLOFFICIAL" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts' style={{ width:'100%'}}>EplSports Group</motion.p></Link>
-         
+        <Link href="https://t.me/EPLFOOTBALLOFFICIAL" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts' style={{ width: '100%' }}>EplSports Group</motion.p></Link>
+
         <Stack direction='row' justifyContent='space-between' spacing={1} sx={{ width: '100%', padding: '4px', overflow: 'auto' }}>
           <Link href="/dashboard/fund" ><motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>DEPOSIT</motion.p></Link>
           <Link href="/dashboard/withdraw" >             <motion.p whileHover={{ y: -10 }} whileTap={{ scale: 0.7 }} className='shorts'>WITHDRAW</motion.p></Link>
@@ -365,17 +391,16 @@ export default function Home({foot}) {
   }
   function SearchBar() {
     const [search, setSearch] = useState('');
-    const [filterSearch ,setFilterSearch ] = useState([])
-    
+    const [filterSearch, setFilterSearch] = useState([])
+
     const searcher = (e) => {
       //this runs on every key stroke
       console.log("typed")
       setSearch(e.target.value);
       setFilterSearch(foot.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
-    console.log(foot.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())))
-    }
+     }
     return (
-      <Stack direction='column' sx={{ height: "auto",minHeight:'70px', width: '100%', padding: '8px', alignItems: 'center' }}>
+      <Stack direction='column' sx={{ height: "auto", minHeight: '70px', width: '100%', padding: '8px', alignItems: 'center' }}>
         <TextField
           id="input-with-icon-textfield"
           label="Search by name or ID"
@@ -408,20 +433,20 @@ export default function Home({foot}) {
             style: { color: '#D8BFD8' } // Light purple color
           }}
         />
-          <Stack sx={{ position:'relative',background:'#3F1052',color:'#981FC0',maxWidth:'99%'}}>
-            {
-              filterSearch.map((data) => { 
-                return ( 
-                  <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ padding: '8px' }}>
-                        <Stack direction={"row"}>
-                          <p style={{ color:'whitesmoke'}}>{data.home} vs {data.away}</p>
-                        </Stack>
-                        <p style={{ color:'#981FC0'}}>{data.match_id}</p>
-                    </Link>
-                )
-              })
-            }
-          </Stack>
+        <Stack sx={{ position: 'relative', background: '#3F1052', color: '#981FC0', maxWidth: '99%' }}>
+          {
+            filterSearch.map((data) => {
+              return (
+                <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ padding: '8px' }}>
+                  <Stack direction={"row"}>
+                    <p style={{ color: 'whitesmoke' }}>{data.home} vs {data.away}</p>
+                  </Stack>
+                  <p style={{ color: '#981FC0' }}>{data.match_id}</p>
+                </Link>
+              )
+            })
+          }
+        </Stack>
       </Stack>
     )
   }
@@ -505,8 +530,10 @@ export default function Home({foot}) {
     )
   }
   function NextMatches() {
-    const [footDat, setFootDat] = useState([]);
+    const [footDat, setFootDat] = useState(foot);
+    
     useEffect(() => {
+
       const getMatch = async () => {
         try {
           let test = await fetch('/api/match', {
@@ -517,10 +544,11 @@ export default function Home({foot}) {
           }).then(data => {
             return data.json();
           })
-          let bts = test.data.filter(i => i.verified == false && (Date.parse(i.date + " " + i.time) / 1000) > (new Date().getTime() / 1000));
+          let bts = test.data.filter(i => i.verified == false && cTT(i.date,i.time) > utcTimestamp+3600000);
 
           setFootDat(bts);
-
+          console.log(cTT(test.data[1].date,test.data[1].time),test.data[1].home,test.data[1].away)
+          console.log(utcTimestamp)
         } catch (e) {
           console.log(e);
           let err = [];
@@ -534,13 +562,9 @@ export default function Home({foot}) {
         <div style={{ height: '5px', width: '1px' }}></div>
         {
           footDat.map((data) => {
-           const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate()+1) : "-0" + Number(new Date().getDate()+1) ;
-           const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDate()) : "-0" + Number(new Date().getDate()) ;
-           const [hours, minutes, seconds] = data.time.split(':');
-           const corrected_timezone =  Math.floor(new Date().getTimezoneOffset() / 60);
-           const newtime = (hours - 1) - corrected_timezone;
-           const newtimeString = newtime + ":" + minutes + ":" + seconds;
-           console.log(newtimeString)
+            const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate() + 1) : "-0" + Number(new Date().getDate() + 1);
+            const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDate()) : "-0" + Number(new Date().getDate());
+
             return (
               <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width: '310px' }}>
 
@@ -552,8 +576,8 @@ export default function Home({foot}) {
                     </div>
                     <div className='live2'>
                       <p className='mleague'>{data.league}</p>
-                      <p className='mscore'>{newtimeString}</p>
-                      <p className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) +  dayn) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : data.date}</p>
+                      <p className='mscore'>{data.time}</p>
+                      <p className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth() + 1) + dayn) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth() + 1) + dayl) ? 'Tomorrow' : data.date}</p>
                       <p className='mtime'>{data.match_id}</p>
                     </div>
                     <div className='live1'>
