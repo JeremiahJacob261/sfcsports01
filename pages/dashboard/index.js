@@ -536,7 +536,11 @@ export default function Home({foot}) {
           footDat.map((data) => {
            const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate()+1) : "-0" + Number(new Date().getDate()+1) ;
            const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDate()) : "-0" + Number(new Date().getDate()) ;
- 
+           const [hours, minutes, seconds] = data.time.split(':');
+           const corrected_timezone =  Math.floor(new Date().getTimezoneOffset() / 60);
+           const newtime = (hours - 1) - corrected_timezone;
+           const newtimeString = newtime + ":" + minutes + ":" + seconds;
+           console.log(newtimeString)
             return (
               <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width: '310px' }}>
 
@@ -548,7 +552,7 @@ export default function Home({foot}) {
                     </div>
                     <div className='live2'>
                       <p className='mleague'>{data.league}</p>
-                      <p className='mscore'>{data.time}</p>
+                      <p className='mscore'>{newtimeString}</p>
                       <p className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) +  dayn) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : data.date}</p>
                       <p className='mtime'>{data.match_id}</p>
                     </div>

@@ -22,6 +22,7 @@ export default function Event({foot}) {
   const router = useRouter();
   const [user, setUser] = useState({});
   const [parentopen, setParentOpen] = useState(false);
+  console.log(new Date().getTimezoneOffset());
 
   useEffect(() => {
     if (!localStorage.getItem('signedIns')) {
@@ -302,35 +303,13 @@ useEffect(()=>{
   }
   //end of match countdown
 
-              // return (
-              //   <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id}>
-              //     <Stack direction="column" sx={{ minWidth: '96%', maxWidth: '310px', border: data.company ? '1px solid #EA2B1F' : '1px solid rgb(102, 27, 27)', boxShadow: data.company ? '0 0 5px 2px #A23E48' : '0' }} className='rowsofdata' justifyContent='center' spacing={1}
-              //       onClick={() => {
-
-              //       }}>
-              //       <Stack direction="row" style={{ color: 'grey' }}>{data.time} {data.date} ID {data.match_id} {data.league} 
-              //       <MatchCountDown/>
-              //       </Stack>
-              //       <Stack direction="row" alignItems='center'>
-
-              //         <Stack direction='column' sx={{ width: '50%' }} spacing={1}>
-              //           <Stack direction='row' spacing={1}><Image src={data.ihome ?? ball} alt='home' width={20} height={20} /><p style={{ color: 'white' }} >{data.home}</p></Stack>
-              //           <Stack direction='row' spacing={1}><Image src={data.iaway ?? ball} alt="away" width={20} height={20} /><p style={{ color: 'white' }}>{data.away}</p></Stack>
-              //         </Stack>
-
-              //         <Stack direction="row" sx={{ width: '50%', height: '100%' }} spacing={2} alignItems='center' justifyContent='center'>
-              //           <Placer txt={data.onenil} data={data} pick={'onenil'} />
-              //           <Placer txt={data.nilnil} data={data} pick={'nilnil'} />
-              //           <Placer txt={data.nilone} data={data} pick={'nilone'} />
-              //         </Stack>
-              //       </Stack>
-              //       <Stack direction="row"></Stack>
-              //     </Stack>
-              //   </Link>
-              // )
               const dayl = (Number(new Date().getDate() + 1) > 9) ? "-" + Number(new Date().getDate()+1) : "-0" + Number(new Date().getDate()+1) ;
               const dayn = (Number(new Date().getDate()) > 9) ? "-" + Number(new Date().getDate()) : "-0" + Number(new Date().getDate()) ;
- 
+              const [hours, minutes, seconds] = data.time.split(':');
+              const corrected_timezone =  Math.floor(new Date().getTimezoneOffset() / 60);
+              const newtime = (hours - 1) - corrected_timezone;
+              const newtimeString = newtime + ":" + minutes + ":" + seconds;
+              console.log(newtimeString)
               return( 
                 <Link href={'/dashboard/matchs/' + data.match_id + '?name=' + localStorage.getItem('signUids')} key={data.match_id} style={{ width:'330px'}}>
              
@@ -343,7 +322,7 @@ useEffect(()=>{
                     <p className='mtxt'>{data.home}</p>
                   </div>
                   <div className='live2'>
-                      <p className='mscore'>{data.time}</p>
+                      <p className='mscore'>{newtimeString}</p>
                       <p  className='mtime'>{(data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayn) ? 'TODAY' : (data.date === new Date().getFullYear() + "-0" + Number(new Date().getMonth()+1) + dayl ) ? 'Tomorrow' : data.date}</p>
                       <p className='mtime'>{data.match_id}</p>
                   </div>
@@ -520,7 +499,7 @@ useEffect(()=>{
 
 
 export async function getServerSideProps(context) {
- 
+  
   try {
     let test = await fetch('https://www.epl-sports.com/api/match', {
       method: 'GET',
