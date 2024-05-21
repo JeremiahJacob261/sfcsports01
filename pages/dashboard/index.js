@@ -30,7 +30,7 @@ const cTT = (datex, timex) => {
 
   // Get the timestamp in milliseconds
   let timestamp = +dateObj;
-  return timestamp/1000;
+  return timestamp / 1000;
 }
 
 const now = new Date();
@@ -44,9 +44,9 @@ const utcTimestamp = Date.UTC(
   now.getUTCMilliseconds()
 );
 
-  console.log(Math.floor(new Date().getTime()/1000.0))
+console.log(Math.floor(new Date().getTime() / 1000.0))
 export async function getServerSideProps(context) {
-  console.log(Math.floor(new Date().getTime()/1000.0))
+  console.log(Math.floor(new Date().getTime() / 1000.0))
   try {
     let test = await fetch('https://www.epl-sports.com/api/match', {
       method: 'GET',
@@ -56,7 +56,7 @@ export async function getServerSideProps(context) {
     }).then(data => {
       return data.json();
     })
-    let bts = test.data.filter(i => i.verified == false && (i.tsgmt/1000)-3600 > Math.floor(new Date().getTime()/1000.0));
+    let bts = test.data.filter(i => i.verified == false && (i.tsgmt / 1000) - 3600 > Math.floor(new Date().getTime() / 1000.0));
     return {
       props: {
         foot: bts
@@ -85,8 +85,11 @@ export default function Home({ foot }) {
   const [authed, setAuthed] = useState(false);
   const [user, setUser] = useState(null);
   const router = useRouter();
+  const [downloadLink, setDownloadLink] = useState("");
 
-  
+
+
+
   async function runOneSignal() {
     await OneSignal.init({ appId: '1fc58f49-adf9-4461-a23d-56ea6586c275', allowLocalhostAsSecureOrigin: true });
     OneSignal.Slidedown.promptPush();
@@ -109,7 +112,7 @@ export default function Home({ foot }) {
       const uid = localStorage.getItem('signUids');
       if (signedIn) {
         setAuthed(true)
-        
+
         const getData = async () => {
           try {
             const { data, error } = await supabase
@@ -332,7 +335,7 @@ export default function Home({ foot }) {
       console.log("typed")
       setSearch(e.target.value);
       setFilterSearch(foot.filter(i => i.home.toLowerCase().includes(e.target.value.toLowerCase()) || i.away.toLowerCase().includes(e.target.value.toLowerCase()) || i.match_id.toLowerCase().includes(e.target.value.toLowerCase())));
-     }
+    }
     return (
       <Stack direction='column' sx={{ height: "auto", minHeight: '70px', width: '100%', padding: '8px', alignItems: 'center' }}>
         <TextField
@@ -465,7 +468,7 @@ export default function Home({ foot }) {
   }
   function NextMatches() {
     const [footDat, setFootDat] = useState([]);
-    
+
     useEffect(() => {
 
       const getMatch = async () => {
@@ -478,10 +481,10 @@ export default function Home({ foot }) {
           }).then(data => {
             return data.json();
           })
-          let bts = test.data.filter(i => i.verified == false && (i.tsgmt/1000)-3600 > Math.floor(new Date().getTime()/1000.0));
+          let bts = test.data.filter(i => i.verified == false && (i.tsgmt / 1000) - 3600 > Math.floor(new Date().getTime() / 1000.0));
 
           setFootDat(bts);
-          
+
         } catch (e) {
           console.log(e);
           let err = [];
@@ -608,7 +611,15 @@ export default function Home({ foot }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Header />
-      <p className='short-title'>SHORTCUTS</p>
+      <Stack sx={{ width: '100%' }} direction="row" alignItems={"center"} justifyContent="space-between">
+        <p className='short-title'>SHORTCUTS</p>
+        <Link style={{ textDecoration:'none' }} href={"https://aidkzrgsgrfotjiouxto.supabase.co/storage/v1/object/public/apks/app-release.apk"}>
+          <motion.div whileHover={{ y: -3 }} whileTap={{ y: 10 }} style={{ margin: 4 }}>
+            <Icon icon="ic:twotone-download" width="34" height="34" style={{ color: '#d24aff' }} />
+          </motion.div>
+        </Link>
+      </Stack>
+
       <ShortCuts />
       <SearchBar />
       <div style={{ width: '300px', height: 'auto' }}>
