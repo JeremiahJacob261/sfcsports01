@@ -26,20 +26,11 @@ import Link from 'next/link';
 import { Divider, Modal } from '@mui/material';
 
 const cTT = (datex, timex) => {
-  let dateTimeStr = `${datex}T${timex}`;
+  let dateObj = new Date(datex + " " + timex);
 
-  // Parse the combined string into a Date object
-  let dateObj = new Date(dateTimeStr);
-
-  // Convert the Date object to a timestamp (in milliseconds)
-  let timestamp = dateObj.getTime();
-
-  // Calculate the equivalent number of milliseconds in 1 hour
-  let oneHourInMillis = 60 * 60 * 1000;
-
-  // Subtract 1 hour from the timestamp
-  let newTimestamp = timestamp;
-  return newTimestamp;
+  // Get the timestamp in milliseconds
+  let timestamp = +dateObj;
+  return timestamp/1000;
 }
 
 const now = new Date();
@@ -53,8 +44,9 @@ const utcTimestamp = Date.UTC(
   now.getUTCMilliseconds()
 );
 
+  console.log(Math.floor(new Date().getTime()/1000.0))
 export async function getServerSideProps(context) {
-
+  console.log(Math.floor(new Date().getTime()/1000.0))
   try {
     let test = await fetch('https://www.epl-sports.com/api/match', {
       method: 'GET',
@@ -64,7 +56,7 @@ export async function getServerSideProps(context) {
     }).then(data => {
       return data.json();
     })
-    let bts = test.data.filter(i => i.verified == false && cTT(i.date,i.time) > utcTimestamp+3600000);
+    let bts = test.data.filter(i => i.verified == false && i.tsgmt > Math.floor(new Date().getTime()/1000.0));
     return {
       props: {
         foot: bts
@@ -94,47 +86,7 @@ export default function Home({ foot }) {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
-  // const sendTRX = async () => {
-  //   console.log('started ...');
-  //   try {
-  //     const unSignedTransaction = await tronWeb.transactionBuilder.sendTrx(reciept, amount, adapter.address);
-  //     // using adapter to sign the transaction
-  //     console.log(unSignedTransaction)
-  //     const signedTransaction = await adapter.signTransaction(unSignedTransaction);
-  //     // broadcast the transaction
-  //     console.log(signedTransaction)
-  //     await tronWeb.trx.sendRawTransaction(signedTransaction);
-  //   } catch (e) {
-
-  //   }
-
-
-  // };
-  // const walletConnect = async () => {
-  //   // connect
-  //   try {
-  //     localStorage.clear();
-  //     let as = await adapter.connect();
-  //     console.log(as);
-
-  //     console.log(adapter.address);
-  //   } catch (e) {
-  //     console.log(e)
-  //     console.log(e.code)
-  //   }
-  // };
-  const testRoute = async () => {
-    // let test = await fetch('/api/test', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ name: usernam,type:'all' })
-    //   }).then(data => {
-    //     return data.json();
-    //     })
-    //     console.log(test)
-  }
+  
   async function runOneSignal() {
     await OneSignal.init({ appId: '1fc58f49-adf9-4461-a23d-56ea6586c275', allowLocalhostAsSecureOrigin: true });
     OneSignal.Slidedown.promptPush();
@@ -157,25 +109,7 @@ export default function Home({ foot }) {
       const uid = localStorage.getItem('signUids');
       if (signedIn) {
         setAuthed(true)
-        // const getUser = async () => {
-        //   try {
-        //     let test = await fetch('/api/match', {
-        //       method: 'POST',
-        //       headers: {
-        //         'Content-Type': 'application/json'
-        //       },
-        //       body: JSON.stringify({})
-        //     }).then(data => {
-        //       return data.json();
-        //     })
-        //     console.log(test)
-        //     setFootDat(test.data);
-        //   } catch (error) {
-        //     console.log(error)
-        //   }
-
-        // }
-        // getUser();
+        
         const getData = async () => {
           try {
             const { data, error } = await supabase
@@ -530,7 +464,7 @@ export default function Home({ foot }) {
     )
   }
   function NextMatches() {
-    const [footDat, setFootDat] = useState(foot);
+    const [footDat, setFootDat] = useState([]);
     
     useEffect(() => {
 
@@ -544,11 +478,10 @@ export default function Home({ foot }) {
           }).then(data => {
             return data.json();
           })
-          let bts = test.data.filter(i => i.verified == false && cTT(i.date,i.time) > utcTimestamp+3600000);
+          let bts = test.data.filter(i => i.verified == false && i.tsgmt > Math.floor(new Date().getTime()/1000.0));
 
           setFootDat(bts);
-          console.log(cTT(test.data[1].date,test.data[1].time),test.data[1].home,test.data[1].away)
-          console.log(utcTimestamp)
+          
         } catch (e) {
           console.log(e);
           let err = [];
