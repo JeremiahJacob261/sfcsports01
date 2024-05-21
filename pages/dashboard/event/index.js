@@ -234,7 +234,7 @@ useEffect(()=>{
         }).then(data => {
           return data.json();
           })
-          let bts = test.data.filter(i => i.verified == false  && i.tsgmt > Math.floor(new Date().getTime()/1000.0));
+          let bts = test.data.filter(i => i.verified == false  && (i.tsgmt/1000)-3600 > Math.floor(new Date().getTime()/1000.0));
                           
      setFootDat(bts);
      
@@ -505,7 +505,7 @@ export async function getServerSideProps(context) {
     }).then(data => {
       return data.json();
     })
-    let bts = test.data.filter(i => i.verified == false && i.tsgmt > Math.floor(new Date().getTime()/1000.0));
+    let bts = test.data.filter(i => i.verified == false && (i.tsgmt/1000)-3600 > Math.floor(new Date().getTime()/1000.0));
     return {
       props: {
       foot:bts
