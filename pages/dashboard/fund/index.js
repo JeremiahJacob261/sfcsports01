@@ -14,7 +14,7 @@ import Tether from '@/public/tether.jpg'
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded';
 
 export default function Fund() {
-    
+
     const router = useRouter();
     const [amount, setAmount] = useState('');
     const [method, setMethod] = useState('usdt');
@@ -31,7 +31,7 @@ export default function Fund() {
     }, [method, v])
     return (
         <div className="backgrounds" style={{ height: '100vh', width: 'auto' }}>
-<Toaster/>
+            <Toaster />
             <Stack className='headers' direction="row" alignItems='center' sx={{ padding: '8px', width: '100%' }} spacing={1}>
                 <Icon icon="material-symbols:arrow-back-ios-new-rounded" width={24} height={24} onClick={() => {
                     router.push('/dashboard/')
@@ -50,36 +50,36 @@ export default function Fund() {
                     <Stack direction="row" spacing={3} alignItems={"center"} justifyContent="space-around">
 
                         <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
-                         onClick={() => {
-                            setMethod('usdt');
-                            setV(true);
-                            setOption(options);
-                        }} 
-                        >
-                            <Image src={Tether} width={100} height={100} alt="usdt" 
                             onClick={() => {
                                 setMethod('usdt');
                                 setV(true);
                                 setOption(options);
-                            }} />
+                            }}
+                        >
+                            <Image src={Tether} width={100} height={100} alt="usdt"
+                                onClick={() => {
+                                    setMethod('usdt');
+                                    setV(true);
+                                    setOption(options);
+                                }} />
                             <Stack direction="row">
                                 <p>Network : </p><p style={{ color: 'greenyellow', fontWeight: 700 }}>  TRC20</p>
                             </Stack>
                         </Stack>
 
 
-                        <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center" 
-                        onClick={() => {
-                            setMethod('bca');
-                            setV(true);
-                            setOption(optionx);
-                        }}>
-                            <Image src={BCA} width={100} height={100} style={{ borderRadius: '5px' }} alt="bank_image" 
-                             onClick={() => {
+                        <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
+                            onClick={() => {
                                 setMethod('bca');
                                 setV(true);
                                 setOption(optionx);
-                            }}
+                            }}>
+                            <Image src={BCA} width={100} height={100} style={{ borderRadius: '5px' }} alt="bank_image"
+                                onClick={() => {
+                                    setMethod('bca');
+                                    setV(true);
+                                    setOption(optionx);
+                                }}
                             />
                             <Stack direction="row">
                                 <p>Indonesian: </p><p style={{ color: 'greenyellow', fontWeight: 700 }}>  BCA</p>
@@ -87,28 +87,28 @@ export default function Fund() {
                         </Stack>
 
 
-                        <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center" 
-                        onClick={() => {
-                            setMethod('pkr');
-                            setV(true);
-                            setOption(optiony);
-                        }}>
-                            <Image src={PKR} width={100} height={100} style={{ borderRadius: '5px',background:'#f5f5f5' }} alt="bank_image" 
-                             onClick={() => {
+                        {/* <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
+                            onClick={() => {
                                 setMethod('pkr');
                                 setV(true);
                                 setOption(optiony);
-                            }}
+                            }}>
+                            <Image src={PKR} width={100} height={100} style={{ borderRadius: '5px', background: '#f5f5f5' }} alt="bank_image"
+                                onClick={() => {
+                                    setMethod('pkr');
+                                    setV(true);
+                                    setOption(optiony);
+                                }}
                             />
                             <Stack direction="row">
                                 <p>Pakistani: </p><p style={{ color: 'greenyellow', fontWeight: 700 }}>  PKR</p>
                             </Stack>
-                        </Stack>
+                        </Stack> */}
                     </Stack>
 
                 </div>
 
-             {v &&   <div>
+                {v && <div>
                     <div className='amount-hold'>
                         <input
                             className='amount-txt'
@@ -119,8 +119,8 @@ export default function Fund() {
                             }} />
                         <p style={{ color: '#9506ce', fontWeight: 700 }}>amount</p>
                     </div>
-                    <p>{(method === 'usdt') ? "" : (method === 'pkr') ? parseFloat(amount/279).toFixed(2) :  parseFloat(amount/16250).toFixed(2)} USDT</p>
-                    <p>Note: Minimum Deposit is {(method === 'usdt') ? "10 USDT" : (method === 'pkr') ?  "2790 PKR"  :  "162500 IDR"}</p>
+                    <p>{(method === 'usdt') ? "" : (method === 'pkr') ? parseFloat(amount / 279).toFixed(2) : parseFloat(amount / 16250).toFixed(2)} USDT</p>
+                    <p>Note: Minimum Deposit is {(method === 'usdt') ? "10 USDT" : (method === 'pkr') ? "2790 PKR" : "162500 IDR"}</p>
                     <div className='mapcontain'>
                         {
                             option.map((i) => {
@@ -132,34 +132,34 @@ export default function Fund() {
                     </div>
                     <Stack sx={{ width: '100%' }} alignItems="center">
                         <motion.p onClick={() => {
-                           if(method === 'usdt'){
-                            if (amount < 10) {
-                                toast.error('Minimum Deposit is 10 USDT')
+                            if (method === 'usdt') {
+                                if (amount < 10) {
+                                    toast.error('Minimum Deposit is 10 USDT')
+                                } else {
+                                    router.push('/dashboard/fund/address?met=' + method);
+                                    // transaction();
+                                    localStorage.setItem('deposit-amount', amount)
+                                    localStorage.setItem('deposit-method', method)
+                                }
+                            } else if (method === 'pkr') {
+                                if (amount < 2790) {
+                                    toast.error('Minimum Deposit is 2790 PKR')
+                                } else {
+                                    router.push('/dashboard/fund/address?met=' + method);
+                                    // transaction();
+                                    localStorage.setItem('deposit-amount', amount)
+                                    localStorage.setItem('deposit-method', method)
+                                }
                             } else {
-                                router.push('/dashboard/fund/address?met=' + method);
-                                // transaction();
-                                localStorage.setItem('deposit-amount', amount)
-                                localStorage.setItem('deposit-method',method)
+                                if (amount < 162500) {
+                                    toast.error('Minimum Deposit is 162500 IDR')
+                                } else {
+                                    router.push('/dashboard/fund/address?met=' + method);
+                                    // transaction();
+                                    localStorage.setItem('deposit-amount', amount)
+                                    localStorage.setItem('deposit-method', method)
+                                }
                             }
-                           }else if(method === 'pkr'){
-                            if (amount < 2790) {
-                                toast.error('Minimum Deposit is 2790 PKR')
-                            } else {
-                                router.push('/dashboard/fund/address?met=' + method);
-                                // transaction();
-                                localStorage.setItem('deposit-amount', amount)
-                                localStorage.setItem('deposit-method',method)
-                            }
-                           }else{
-                            if (amount < 162500) {
-                                toast.error('Minimum Deposit is 162500 IDR')
-                            } else {
-                                router.push('/dashboard/fund/address?met=' + method);
-                                // transaction();
-                                localStorage.setItem('deposit-amount', amount)
-                                localStorage.setItem('deposit-method',method)
-                            }
-                           }
                         }}
                             whileTap={{ background: '#981FC0', color: '#3F1052', scale: 0.9 }}
                             whileHover={{ background: '#981FC0', color: '#3F1052', scale: 1.1 }}
