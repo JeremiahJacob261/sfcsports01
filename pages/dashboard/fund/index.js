@@ -87,7 +87,7 @@ export default function Fund() {
                         </Stack>
 
 
-                        {/* <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
+                        <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
                             onClick={() => {
                                 setMethod('pkr');
                                 setV(true);
@@ -103,7 +103,7 @@ export default function Fund() {
                             <Stack direction="row">
                                 <p>Pakistani: </p><p style={{ color: 'greenyellow', fontWeight: 700 }}>  PKR</p>
                             </Stack>
-                        </Stack> */}
+                        </Stack>
                     </Stack>
 
                 </div>
