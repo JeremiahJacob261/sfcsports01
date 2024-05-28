@@ -308,7 +308,7 @@ export default function Withdraw() {
                         >
                             <MenuItem value='USDT (TRC20)'>USDT (TRC20)</MenuItem>
                             <MenuItem value='IDR'>IDR (Indonesia)</MenuItem>
-                            <MenuItem value='PKR'>PKR (Pakistani)</MenuItem>
+                            {/* <MenuItem value='PKR'>PKR (Pakistani)</MenuItem> */}
                         </Select>
                     </FormControl>
                 </Stack>

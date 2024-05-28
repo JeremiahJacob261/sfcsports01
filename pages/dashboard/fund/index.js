@@ -68,7 +68,7 @@ export default function Fund() {
                         </Stack>
 
 
-                        <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
+                        {/* <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
                             onClick={() => {
                                 setMethod('bca');
                                 setV(true);
@@ -84,7 +84,7 @@ export default function Fund() {
                             <Stack direction="row">
                                 <p>Indonesian: </p><p style={{ color: 'greenyellow', fontWeight: 700 }}>  BCA</p>
                             </Stack>
-                        </Stack>
+                        </Stack> */}
 
 
                         <Stack direction="column" spacing={2} justifyContent={"center"} alignItems="center"
